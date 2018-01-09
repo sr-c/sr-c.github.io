@@ -21,20 +21,14 @@ tags:
 
 ### 1. 在github上新建分支hexo用于存储hexo的配置环境，并将其设置为默认分支。
 
-### 2. 在本地博客根目录下使用git命令将hexo文件上传到github上新建的hexo分支
+### 2. 在本地博客根目录下使用git命令将hexo配置环境上传到github上新建的hexo分支
 ```bash
-// git初始化
-git init
-// 添加仓库地址
-git remote add origin https://github.com/用户名/仓库名.git
-// 新建分支并切换到新建的分支
-git checkout -b 分支名
-// 添加所有本地文件到git
-git add .
-// git提交
-git commit -m "更新说明"
-// 文件推送到hexo分支
-git push origin hexo
+git init  // git初始化
+git remote add origin https://github.com/用户名/仓库名.git  // 添加仓库地址
+git checkout -b hexo  // 新建分支hexo并切换到新建的分支hexo
+git add .  // 添加所有本地文件到git
+git commit -m "更新说明"  // git提交
+git push origin hexo  // 文件推送到hexo分支
 ```
 
 ### 3. 在另一设备上使用git命令下载hexo分支中的文件
@@ -47,8 +41,8 @@ git clone -b 分支名 https://github.com/用户名/仓库名.git
 
 ## 注意事项
 
->*在不同设备上配置github注意要先配置好ssh密钥
->*themes文件夹中的主题如果是直接git clone下来的，在上传前先删除相应主题目录下的`.git`文件夹
+>* 在不同设备上配置github注意要先配置好ssh密钥
+>* `themes`文件夹中的主题如果是直接`git clone`下来的，在上传前先删除相应主题目录下的`.git`文件夹，但仍不能取得相应主题文件夹的权限。[解决方案](http://blog.csdn.net/sinat_27088253/article/details/54314742)是将相应文件夹剪切到别处，执行一遍`add commit push`(在github端删除了该文件夹)，再在本地粘帖回来，执行`add commit push`三连，重新上传，即可。
 
 ## 参考来源
 https://www.zhihu.com/question/21193762
