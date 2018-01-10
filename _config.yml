@@ -96,8 +96,7 @@ jsonContent:
 backup:
     type: git
     theme: landscape,next,yilia
-    repository: 
-        git@github.com:sr-c/sr-c.github.io.git
+    repository: git@github.com:sr-c/sr-c.github.io.git
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
