@@ -97,7 +97,7 @@ backup:
     type: git
     theme: landscape,next,yilia
     repository:
-       github: git@github.com:sr-c/sr-c.github.io.git
+       github: git@github.com:sr-c/sr-c.git,hexo
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
