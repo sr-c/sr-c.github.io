@@ -7,7 +7,7 @@ title: SR-C
 subtitle: 
 description: sr-c's blog
 author: sr-c
-language: zh
+language: zh-Hans
 timezone:
 
 # URL
@@ -72,7 +72,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: next
 
 jsonContent:
     meta: false

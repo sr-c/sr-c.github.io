@@ -1,10 +1,8 @@
 ---
-title: hexo-remote-configuration
+title: hexo的多端配置
 date: 2018-01-08 21:59:17
 tags:
 ---
-# hexo多端配置
-
 想要多设备配置hexo，中间遇到了几个坑，记录下来，也帮助大家。
 
 ## 背景介绍
@@ -15,6 +13,7 @@ tags:
 
 >在github库中另建立一个分支用于存储hexo的编译环境。作者在异地先通过git同步hexo编译环境，再通过hexo发布文章即可。
 
+<!-- more -->
 ## 具体步骤
 
 >前提：笔者已参照[官网说明](https://hexo.io/zh-cn/docs/index.html)在github上配置好了个人站点。（设置好了主题，写了几篇文章）
