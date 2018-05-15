@@ -167,7 +167,7 @@ footer:
   icon:
     # Icon name in fontawesome, see: https://fontawesome.com/v4.7.0/icons
     # `heart` is recommended with animation in red (#ff0000).
-    name: user
+    name: tint
     # If you want to animate the icon, set it to true.
     animated: false
     # Change the color of icon, using Hex Code.
@@ -285,11 +285,16 @@ social_icons:
 # Blog rolls
 links_icon: link
 links_title: Links
-links_layout: block
-#links_layout: inline
-#links:
+#links_layout: block
+links_layout: inline
+links:
   #Title: http://example.com/
-
+  薄荷开源网: http://www.mintos.org/
+  openSUSE: https://forum.suse.org.cn/
+  linuxde: http://man.linuxde.net/
+  庐州月光: http://www.cnblogs.com/xudongliang/
+  Sam's Note: http://qinqianshan.com/
+  
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
 # in site  directory(source/uploads): /uploads/avatar.gif
@@ -300,7 +305,7 @@ toc:
   enable: true
 
   # Automatically add list number to toc.
-  number: true
+  number: false
 
   # If true, all words will placed on next lines if header width longer then sidebar width.
   wrap: false
