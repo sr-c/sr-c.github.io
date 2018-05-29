@@ -11,7 +11,7 @@ image:
 
 <!-- more -->
 
-### Perlberw
+### 安装Perlberw
 
 ```shell
 \curl -L https://install.perlbrew.pl | bash
@@ -19,7 +19,7 @@ image:
 
 安装完成后即可不需`sudo`安装模块，尝试不同版本的perl
 
-### cpanm管理模块
+### 使用cpanminus管理模块
 
 使用perlberw安装cpanm
 
