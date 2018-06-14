@@ -41,14 +41,14 @@ bax2bam -f $FOFN -o $BAM_DIR"/SMRT-cell-"$COMPT --subread  --pulsefeatures=Delet
 ## Step 1 Align subreads.bam
 
 ```shell
-pbalign --nproc 40 $PB_BAM your_assembly.fasta align_xxx.bam
+pbalign --nproc 16 xxx.bam reference.fasta align_xxx.bam
 ```
 
 ## Step 2 Sort bam files
 
 ```shell
 ## Sort alignments by leftmost coordinates, or by read name when -n is used.
-samtools sort [-@ threads] xxx.bam -o xxx.sort.bam
+samtools sort [-@ threads] [-m max memory per threads] align_xxx.bam -o align_xxx.sort.bam
 ```
 
 ## Step 3 Merge all the produced bam files
@@ -57,19 +57,20 @@ samtools sort [-@ threads] xxx.bam -o xxx.sort.bam
 samtools merge <align_xxx.merge.sort.bam> <in1.bam> <in2.bam> [...]
 ```
 
-## Step 3.5 Index the input files
+## Step 4 Index the input files
 
 ```shell
 ## Index a coordinate-sorted BAM or CRAM file for fast random access
 samtools index align_xxx.merge.sort.bam
+pbindex align_xxx.merge.sort.bam
 ## Index reference sequence in the FASTA format 
 samtools faidx reference.fasta
 ```
 
-## Step 4 VariantCaller: arrow
+## Step 5 VariantCaller: arrow
 
 ```shell
-arrow -j 40 --maskRadius 3 \
+arrow -j 16 --maskRadius 3 \
 aligned_xxx.merge.sort.bam \
 -r reference.fasta \
 -o variants.gff -o myConsesus.fasta -o myConsesus.fastq
