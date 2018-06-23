@@ -37,11 +37,17 @@ git clone -b 分支名 https://github.com/用户名/仓库名.git
 ```
 
 ### 4. 在另一设备上（已安装好git与hexo）即可开始对站点的管理
+```bash
+cd <folder>
+npm install
+hexo s
+```
 
 ## 注意事项
 
 >* 在不同设备上配置github注意要先配置好ssh密钥
 >* `themes`文件夹中的主题如果是直接`git clone`下来的，在上传前先删除相应主题目录下的`.git`文件夹，但仍不能取得相应主题文件夹的权限。[解决方案](http://blog.csdn.net/sinat_27088253/article/details/54314742)是将相应文件夹剪切到别处，执行一遍`add commit push`(在github端删除了该文件夹)，再在本地粘帖回来，执行`add commit push`三连，重新上传，即可。
+>* 新配置的设备上，安装好sshkey后仍然提示`Host key verification failed.  fatal: Could not read from remote repository.`，则需要手动连接一次`ssh git@github.com `即可。
 
 ## 参考来源
 https://www.zhihu.com/question/21193762
