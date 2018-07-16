@@ -1,6 +1,6 @@
 ---
-title: aria2-log-level
-tags: []
+title: 设置aria2日志级别
+tags: [aria2]
 date: 2018-07-10 12:51:56
 permalink:
 categories:
