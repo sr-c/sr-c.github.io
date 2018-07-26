@@ -46,6 +46,20 @@ cd $PATHHOME/sample_data
 cpanm DBD::SQLite
 ```
 
+## conda的perl和系统的perl冲突
+
+有一次我遇到这个问题
+
+```bash
+perl: symbol lookup error: /home/wangjw/perl5/lib/perl5/x86_64-linux-thread-multi/auto/Cwd/Cwd.so: undefined symbol
+```
+
+这个问题显然我用系统perl安装的软件被conda的perl有限查找到导致，用`perl -V`和`perl -e '{print "$_\n" foreach @INC}'`可以发现conda的perl查找路径低于我为系统perl安装的路径，[解决方案](https://www.jianshu.com/p/9e90b3524fe2)如下
+
+```bash
+export PERL5LIB=""
+```
+
 ### 报错解决
 
 安装过程中由于之前配置的`conda`环境的干扰，使得在运行`sample data`时出现报错，需要缺少perl模块支持，使用`cpanm`安装模块，却出现编译错误，提示缺少  `db.h`，但`/usr/include/db.h`存在，一时未能排除BUG
@@ -125,5 +139,7 @@ https://github.com/PASApipeline/PASApipeline/wiki/Pasa_installation_instructions
 https://blog.csdn.net/u011450367/article/details/41522729
 
 http://stackoverflow.com/questions/7777252/uninstall-all-perl-modules-installed-by-cpan 
+
+[conda的perl和系统的perl冲突](https://www.jianshu.com/p/9e90b3524fe2)
 
 <hr />
