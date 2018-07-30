@@ -6,7 +6,7 @@ permalink:
 categories:
 description:
 ---
-<p class="description">PASA在`2.3.0`版本后加入了`SQLite`的支持，解放了其对`Mysql`的依赖，使其对普通用户更加友好，但是其安装还是有许多依赖问题需要解决。</p>
+<p class="description">PASA在`2.3.0`版本后加入了`SQLite`的支持，不再需要配置`Mysql`，使其对普通用户更加友好，但是其安装过程还是有许多依赖问题需要解决。</p>
 
 <!-- more -->
 
@@ -23,30 +23,15 @@ echo '$PASAHOME=~/opt/pasa-v2.3.3/' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-## 环境测试
-
-```bash
-cd $PATHHOME/sample_data
-./runMe.SQLite.sh
-```
-
-测试运行约1h后得到输出结果
-
-> sample_mydb_pasa.assemblies.fasta
->
-> sample_mydb_pasa.pasa_assemblies.gff3
->
-> sample_mydb_pasa.pasa_assemblies_described.txt
-
 ## 安装perl模块
 
-安装PASA最大的困难就在于`perl`模块的配置。本文参考使用`perlbrew`与`cpanm`配置perl模块
+安装`PASA`最大的困难就在于`perl`模块的配置。本文参考使用`perlbrew`与`cpanm`[配置perl模块](https://sr-c.github.io/2018/05/27/perl-modules/)
 
 ```bash
 cpanm DBD::SQLite
 ```
 
-## conda的perl和系统的perl冲突
+### conda的perl和系统的perl冲突
 
 有一次我遇到这个问题
 
@@ -62,7 +47,7 @@ export PERL5LIB=""
 
 ### 报错解决
 
-安装过程中由于之前配置的`conda`环境的干扰，使得在运行`sample data`时出现报错，需要缺少perl模块支持，使用`cpanm`安装模块，却出现编译错误，提示缺少  `db.h`，但`/usr/include/db.h`存在，一时未能排除BUG
+安装过程中由于之前配置的`conda`环境的干扰，使得在测试环境时出现报错，提示缺少perl模块支持。使用`cpanm`安装模块，却出现编译错误，提示缺少  `db.h`，但`/usr/include/db.h`存在，一时未能排除BUG。
 
 整理思路后发觉应当在`~/.bashrc`中屏蔽`conda`环境后重新配置。
 
@@ -70,9 +55,9 @@ export PERL5LIB=""
 
 > p.s. [其他解决方案](https://www.jianshu.com/p/9e90b3524fe2)，未验证
 
-### perl模块的卸载
+#### perl模块的卸载
 
-`cpan`工具只管理模块的安装，却[不管卸载](http://stackoverflow.com/questions/7777252/uninstall-all-perl-modules-installed-by-cpan )。使用`App::pmuninstall`模块进行模块的删除
+`cpan`工具只管理模块的安装，却[不管卸载](http://stackoverflow.com/questions/7777252/uninstall-all-perl-modules-installed-by-cpan )。使用`App::pmuninstall`模块来方便地卸载perl模块
 
 ```bash
 cpanm App::pmuninstall
@@ -84,7 +69,7 @@ cpanm App::pmuninstall
 pm-uninstall DBD::SQLite
 ```
 
-此外，还可使用 `App::pmodinfo`模块查看perl模块的相关信息。（安装依赖38个模块，较耗时）
+此外，还可使用 `App::pmodinfo`模块查看perl模块的相关信息，常用参数说明如下。（安装过程依赖38个模块，较耗时）
 
 > -v --version
 >
@@ -96,13 +81,12 @@ pm-uninstall DBD::SQLite
 >
 > -u --check-updates
 
-## 安装其他依赖软件
 
-### 安装GMAP
+## 安装GMAP
 
-### 安装BLAT
+## 安装BLAT
 
-### 安装FASTA
+## 安装FASTA
 
 ```bash
 cd ~/software
@@ -120,9 +104,9 @@ source ~/.bashrc
 >
 > 不知目前版本（v2.3.3）不知是否修复了此BUG，留此存照。
 
-## 安装UniVec数据库
+## 配置UniVec数据库
 
-`seqclean`在v2.3.3版本中默认位于`$PASAHOME/bin/`路径中，不需另行安装。因此只需安装其依赖的数据库即可，在此以`UniVec`数据库为例（大多数情况下，`UniVec`即可满足需求）。
+`seqclean`在v2.3.3版本中默认位于`$PASAHOME/bin/`路径中，不需另行安装。因此只需安装其依赖的数据库即可，在此以`UniVec`数据库为例。（`UniVec`应当能够满足大部分需求）
 
 ```bash
 mkdir ~/database/UniVec
@@ -131,6 +115,21 @@ wget ftp://ftp.ncbi.nlm.nih.gov/pub/UniVec/UniVec
 formatdb -t UniVec -i UniVec -p F -o T
 $PASAHOME/bin/seqclean transcripts.fasta -v ~/database/UniVec/UniVec
 ```
+
+## 环境测试
+
+```bash
+cd $PATHHOME/sample_data
+./runMe.SQLite.sh
+```
+
+测试运行约1h后得到输出结果
+
+> sample_mydb_pasa.assemblies.fasta
+>
+> sample_mydb_pasa.pasa_assemblies.gff3
+>
+> sample_mydb_pasa.pasa_assemblies_described.txt
 
 ## 参考来源
 
