@@ -56,6 +56,8 @@ $ Rscript genomescope.R histogram_file k-mer_length read_length output_dir [kmer
 
 https://github.com/schatzlab/genomescope
 
+https://gif.biotech.iastate.edu/genomescope
+
 http://www.chenlianfu.com/?p=806
 
 https://fengleiblog.wordpress.com/2014/12/17/%E5%9F%BA%E4%BA%8Eillumina%E6%B5%8B%E5%BA%8F%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E7%94%A8jellyfish%E4%BC%B0%E8%AE%A1%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%A4%A7%E5%B0%8F/

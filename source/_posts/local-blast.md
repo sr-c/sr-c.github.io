@@ -41,7 +41,7 @@ $
 -parse_seqids => Parse Seq-ids in FASTA input         
 ```
 
-`-parse_seqids` 和`-out uniprot` 一般都加上，使用`-parse_seqids`需求数据库中每条序列都有唯一的标识，是的blast能够根据序列标识来提取序列。
+`-parse_seqids` 和`-out uniprot` 一般都加上，使用`-parse_seqids`需求数据库中每条序列都有唯一的标识，使得blast能够根据序列标识来提取序列。
 
 ### Use Windowmasker to filter the query sequence(s) in a BLAST search
 
