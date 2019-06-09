@@ -256,8 +256,6 @@ post_meta:
     another_day: true
 categories: true
 
-tag_icon: true
-
   # Any custom text can be defined here.
   #custom_text: Hosted by <a href="https://pages.coding.me" class="theme-link" rel="noopener" target="_blank">Coding Pages</a>
 
@@ -273,3 +271,11 @@ creative_commons:
   post: true
   language:
 
+# Post meta display settings
+post_meta:
+  item_text: true
+  created_at: true
+  updated_at:
+    enable: false
+    another_day: true
+  categories: true
