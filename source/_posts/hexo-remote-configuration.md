@@ -1,7 +1,7 @@
 ---
 title: hexo的多端配置
 date: 2018-01-08 21:59:17
-tags: Hexo,github
+tags: [Hexo,github]
 ---
 想要多设备配置hexo，中间遇到了几个坑，记录下来，也帮助大家。
 

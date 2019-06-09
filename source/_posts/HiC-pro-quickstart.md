@@ -1,6 +1,6 @@
 ---
 title: HiC-Pro使用手册
-tags: [HiC]
+tags: [Hi-C]
 date: 2019-02-20 19:49:38
 permalink:
 categories:
