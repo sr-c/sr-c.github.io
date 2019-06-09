@@ -1,6 +1,6 @@
 ---
 title: Hexo升级
-tags: [node.js,hexo,Next]
+tags: [node.js,Hexo,Next]
 date: 2019-06-05 18:01:20
 permalink:
 categories:

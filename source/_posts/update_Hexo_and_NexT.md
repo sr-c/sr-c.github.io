@@ -1,8 +1,7 @@
 ---
 title: Hexo与NexT升级
 date: 2018-05-13T18:32:53.000Z
-tags:
-  - blog
+tags: Hexo,Next
 ---
 近来发现NexT主题升级到了6.2.0，主仓库由`iissnan`迁移到了`theme-next`，为了更新页面效果，合并站点与主题的配置文件，于是计划升级一波。
 > 升级目标
