@@ -7,7 +7,6 @@ categories:
 description:
 ---
 <p class="description">使用salmon快速计算RNA-seq数据的表达量矩阵</p>
-
 <!-- more -->
 
 传统的RNA-seq分析方法需要将reads比对到基因组上，然后再统计每个基因的counts，进而计算TPM/FPKM。现在，发展出了许多alignment-free的方法，不需要进行比对，直接统计出count矩阵。
@@ -42,6 +41,18 @@ salmon index -t transcripts.fasta -i transcripts_index
 # 全部使用默认参数也可创建索引
 ```
 
+> 20190622 更新
+>
+> 在0.14.0 新版本中，salmon引入了新的[索引方式](https://salmon.readthedocs.io/en/latest/salmon.html#preparing-transcriptome-indices-mapping-based-mode)，且旧版本产生的索引不能在0.14.0版本后通用
+>
+> 新的方式依赖于SalmonTools中提供的[脚本](https://github.com/COMBINE-lab/SalmonTools/blob/master/scripts/generateDecoyTranscriptome.sh)，提供基因组，gtf注释与cds序列，生成`decoys.txt`与`gentrome.fa`
+>
+> ```bash
+> bash /path/to/scripts/generateDecoyTranscriptome.sh -a ~/reference/annotation/mm/mm.gtf -g ~/reference/genome/mm/mm.fasta -t ~/reference/collection/mm/mm.cds.fa -o mm
+> cd mm
+> salmon index -t gentrome.fa -d decoys.txt -i ./
+> ```
+
 ## 定量计算
 
 ```bash
@@ -53,6 +64,23 @@ salmon quant -i transcripts_index  -l A -1 reads_1.fastq -2 reads_2.fastq -o tra
 # -2： read2，支持压缩文件
 # -o： 输出目录
 ```
+
+## 导出表达量矩阵
+
+使用`tximport`[导入](https://bioconductor.org/packages/release/bioc/vignettes/tximport/inst/doc/tximport.html)或导出上游软件计算的表达量矩阵
+
+### count矩阵
+
+```R
+files <- file.path(dir, "salmon", samples$run, "quant.sf.gz")
+names(files) <- paste0("sample", 1:6)
+txi.salmon <- tximport(files, type = "salmon", tx2gene = tx2gene)
+head(txi.salmon$counts)
+
+DEGList(txi.salmon)
+```
+
+
 
 ## 参考来源
 
