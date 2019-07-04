@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=7.1.2" color="#222">
+
+
+  <link rel="manifest" href="/favicons/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="使用PBJelly进行gap filling">
+<meta name="keywords" content="PBJelly,blasr,PacBio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用PBJelly与blasr进行补洞">
+<meta property="og:url" content="https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/index.html">
+<meta property="og:site_name" content="SR-C">
+<meta property="og:description" content="使用PBJelly进行gap filling">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-04T13:20:50.082Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用PBJelly与blasr进行补洞">
+<meta name="twitter:description" content="使用PBJelly进行gap filling">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SR-C" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用PBJelly与blasr进行补洞 | SR-C</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SR-C</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sr-c">
+      <meta itemprop="description" content="sr-c's blog">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SR-C">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用PBJelly与blasr进行补洞
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-02 14:12:47" itemprop="dateCreated datePublished" datetime="2019-07-02T14:12:47+08:00">2019-07-02</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="description">使用PBJelly进行gap filling</p>
+<a id="more"></a>
+
+<p>PBJelly在2012年发表于PLoS ONE, 其设计目的是使用PacBio RS Ⅱ 数据来提升assembly的连续性。目前版本停滞在2015年9月1日的<code>15.8.24</code>，但仍然有<code>19 downloads/week</code>的下载热度。</p>
+<h2 id="安装篇"><a href="#安装篇" class="headerlink" title="安装篇"></a>安装篇</h2><h3 id="legacy-blasr"><a href="#legacy-blasr" class="headerlink" title="legacy-blasr"></a>legacy-blasr</h3><p>PBJelly的安装<a href="https://sourceforge.net/p/pb-jelly/wiki/Home/" target="_blank" rel="noopener">说明</a>表示依赖1.3.1版本的<code>blasr</code>，但此版本在2012年，现已难以<a href="https://github.com/OSGConnect/modulefiles/blob/master/recipes/blasr-1.3.1" target="_blank" rel="noopener">安装</a>。</p>
+<p>几番尝试后，我们选择使用PacBio提供的<a href="https://github.com/PacificBiosciences/pitchfork" target="_blank" rel="noopener">pitchfork</a>来编译该过时的软件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /path/to/software</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PacificBiosciences/pitchfork.git</span><br><span class="line"><span class="built_in">cd</span> pitchfork</span><br><span class="line">git checkout legacy_blasr</span><br><span class="line"><span class="built_in">echo</span> PREFIX=/opt/mybuild &gt; settings.mk</span><br><span class="line">make init</span><br><span class="line">make blasr</span><br></pre></td></tr></table></figure>
+
+<p>此过程会下载依赖的各种软件，<code>python3</code>环境中会报错，需要切换到<code>python2.7</code>环境。</p>
+<p>此外，<code>hdf5-1.8.16</code>的下载路径<a href="https://github.com/PacificBiosciences/pitchfork/issues/289" target="_blank" rel="noopener">失效</a>，自行下载<a href="https://hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.16/src/hdf5-1.8.16.tar.gz" target="_blank" rel="noopener">hdf5-1.8.16.tar.gz</a>至<code>pitchfork/ports/thirdparty/hdf5</code>中，重新<code>make blasr</code>可解决。</p>
+<p>编译完成后，实际的<code>blasr</code>版本为<code>5.0.994e5fc</code>，将其导入环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /opt/mybuild/setup-env.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="networkx-v1-1"><a href="#networkx-v1-1" class="headerlink" title="networkx v1.1"></a>networkx v1.1</h3><p>说明文档要求<code>1.1</code>版本，实测<code>conda</code>安装的<code>1.1.1</code>版本也可成功运行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install networkx==1.1.1</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>p.s.  在extraction步骤，存在警告</p>
+<p>2019-07-04 20:40:10,451 [INFO] Opening GML Files<br>2019-07-04 20:40:10,452 [WARNING] It is unknown if networkx version 1.11 will work.<br>2019-07-04 20:40:10,452 [WARNING] If you get an error here, please report it!!!</p>
+</blockquote>
+<h3 id="PBJelly"><a href="#PBJelly" class="headerlink" title="PBJelly"></a>PBJelly</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://sourceforge.net/projects/pb-jelly/files/PBSuite_15.8.24.tgz</span><br><span class="line">tar zxf PBSuite_15.8.24.tgz</span><br><span class="line"><span class="built_in">cd</span> PBSuite_15.8.24</span><br><span class="line"><span class="comment">## edit SWEETPATH in setup.sh</span></span><br><span class="line">vi setup.sh</span><br><span class="line"><span class="built_in">source</span> setup.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试篇"><a href="#测试篇" class="headerlink" title="测试篇"></a>测试篇</h2><p>按照示例<a href="https://github.com/alvaralmstedt/Tutorials/wiki/Gap-closing-with-PBJelly" target="_blank" rel="noopener">教程</a>进行测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /path/to/PBSuite/docs/jellyExample</span><br><span class="line"><span class="comment">## edit the paths in the &lt;reference&gt; , &lt;outputDir&gt; and the baseDir attribute in the inputs tag to the full path in Protocol.xml</span></span><br><span class="line">vi Protocol.xml</span><br><span class="line"></span><br><span class="line"><span class="comment">#Jelly.py &lt;stage&gt; Protocol.xml</span></span><br><span class="line">Jelly.py setup &lt;jellyprotocol.xml&gt;</span><br><span class="line">Jelly.py mapping &lt;jellyprotocol.xml&gt;</span><br><span class="line">Jelly.py support &lt;jellyprotocol.xml&gt;</span><br><span class="line">Jelly.py extraction &lt;jellyprotocol.xml&gt;</span><br><span class="line">Jelly.py assembly &lt;jellyprotocol.xml&gt; -x “--nproc=4”</span><br><span class="line">Jelly.py output &lt;jellyprotocol.xml&gt;</span><br><span class="line"></span><br><span class="line">grep -Ho N jelly.out.fasta | uniq -c</span><br></pre></td></tr></table></figure>
+
+<p>运行成功，会将输入的3条contig连接为1条，N的数目由1494降至0</p>
+<h2 id="检查输入"><a href="#检查输入" class="headerlink" title="检查输入"></a>检查输入</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sumarizeAssembly.py &lt;reference.fasta&gt;</span><br><span class="line">readSummary.py &lt;Protocol.xml&gt;</span><br></pre></td></tr></table></figure>
+
+<p>PBJelly要求的reference输入格式只能是fasta格式，且后缀只能是<code>.fasta</code>；reads的输入格式可以为<code>fastq</code>或<code>fasta</code>，但输入fasta时要求有相应的质量文件</p>
+<h3 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Jelly.py setup &lt;jellyprotocol.xml&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">##切换到screen中运行</span></span><br><span class="line">screen -S PBJelly</span><br><span class="line">Jelly.py mapping &lt;jellyprotocol.xml&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">##比对步骤很快结束，查验mapping文件夹内的mapping/xxx.fastq.err</span></span><br><span class="line">cat mapping/xxx.fastq.err</span><br><span class="line">2019-07-02 20:03:34,546 [INFO] Running /path/to/software/PBSuite_15.8.24/bin/m4pie.py /path/to/workdir/04.genome_assembling/gap-filling/PBJelly/yourAssembly/mapping/AssemblyXXX.fastq.m4 /path/to/workdir/04.genome_assembling/gap-filling/PBJelly/yourAssembly/data/reads/AssemblyXXX.fastq /path/to/workdir/04.genome_assembling/gap-filling/PBJelly/yourAssembly/data/reference/scaffolds_FINAL.fasta --nproc 4 -i</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/path/to/software/PBSuite_15.8.24/bin/m4pie.py"</span>, line 209, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    run(sys.argv[1:])</span><br><span class="line">  File <span class="string">"/path/to/software/PBSuite_15.8.24/bin/m4pie.py"</span>, line 171, <span class="keyword">in</span> run</span><br><span class="line">    aligns = M4File(args.m4)</span><br><span class="line">  File <span class="string">"/path/to/software/PBSuite_15.8.24/pbsuite/utils/FileHandlers.py"</span>, line 484, <span class="keyword">in</span> __init__</span><br><span class="line">    file = open(file,<span class="string">'r'</span>)</span><br><span class="line">IOError: [Errno 2] No such file or directory: <span class="string">'/path/to/workdir/04.genome_assembling/gap-filling/PBJelly/yourAssembly/mapping/AssemblyXXX.fastq.m4</span></span><br></pre></td></tr></table></figure>
+
+<p>搜索<code>PBSuite_15.8.24/bin/m4pie.py no such file</code>，能发现很多类似情况的报错</p>
+<blockquote>
+<p><a href="https://sourceforge.net/p/pb-jelly/discussion/pbjtiks/thread/0c780910/?limit=25" target="_blank" rel="noopener">https://sourceforge.net/p/pb-jelly/discussion/pbjtiks/thread/0c780910/?limit=25</a></p>
+<p><a href="https://www.biostars.org/p/198519/" target="_blank" rel="noopener">https://www.biostars.org/p/198519/</a></p>
+<p><a href="https://sourceforge.net/p/pb-jelly/discussion/pbjtiks/thread/e351eed7/#a608" target="_blank" rel="noopener">https://sourceforge.net/p/pb-jelly/discussion/pbjtiks/thread/e351eed7/#a608</a></p>
+</blockquote>
+<p>原因不一，包括新旧版本<code>blasr</code>在参数输入中，使用<code>-</code>与<code>--</code>的不同。</p>
+<p>在<code>pbsuite/utils/CommandRunner.py</code>的第18行的<code>subprocess.Popen()</code>函数中<a href="https://sourceforge.net/p/pb-jelly/discussion/pbjtiks/thread/0c780910/#47df" target="_blank" rel="noopener">添加</a><code>executable=&quot;/bin/bash&quot;</code></p>
+<p>但此次报错的可能原因在于<code>screen</code>后的环境配置与原环境不同，使<code>blasr</code>不能正常运行。</p>
+<h4 id="判断依据"><a href="#判断依据" class="headerlink" title="判断依据"></a>判断依据</h4><p>在screen屏幕中，<code>blasr</code>不可执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">blasr --<span class="built_in">help</span></span><br><span class="line">blasr: error <span class="keyword">while</span> loading shared libraries: libpbihdf.so: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>在原环境中执行<code>Jelly.py mapping &lt;jellyprotocol.xml&gt;</code>, <code>blasr</code>即可正常运行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 传递debug参数，帮助排查问题</span></span><br><span class="line">Jelly.py mapping &lt;jellyprotocol.xml&gt; -x <span class="string">"--debug"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="小tips"><a href="#小tips" class="headerlink" title="小tips"></a>小tips</h4><p><code>Ctrl + C</code>手动终止<code>mapping</code>任务时，需注意，<code>blasr</code>不会相应终止，需要在任务管理器中终止。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>运行PBJelly之前，需要依次激活下列环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## pitchfork编译的legacy-blasr环境</span></span><br><span class="line"><span class="built_in">source</span> ~/opt/pitchfock/setup-env.sh</span><br><span class="line"><span class="comment">## 安装有networkx1.1的python2.7环境</span></span><br><span class="line"><span class="built_in">source</span> activate SALSA</span><br><span class="line"><span class="comment">## PBSuite环境</span></span><br><span class="line"><span class="built_in">source</span> ~/software/PBSuite_15.8.24/setup.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p><a href="http://onsnetwork.org/kubu4/2017/10/30/software-installation-pb-jelly-suite-and-blasr-on-emu/" target="_blank" rel="noopener">http://onsnetwork.org/kubu4/2017/10/30/software-installation-pb-jelly-suite-and-blasr-on-emu/</a></p>
+<p><a href="https://genefish.wordpress.com/2017/04/06/pbjelly-pt-2/" target="_blank" rel="noopener">https://genefish.wordpress.com/2017/04/06/pbjelly-pt-2/</a></p>
+<p><a href="https://github.com/alvaralmstedt/Tutorials/wiki/Gap-closing-with-PBJelly" target="_blank" rel="noopener">https://github.com/alvaralmstedt/Tutorials/wiki/Gap-closing-with-PBJelly</a></p>
+<hr>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sr-c</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/" title="使用PBJelly与blasr进行补洞">https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PBJelly/" rel="tag"># PBJelly</a>
+          
+            <a href="/tags/blasr/" rel="tag"># blasr</a>
+          
+            <a href="/tags/PacBio/" rel="tag"># PacBio</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/20/RNA-seq-123/" rel="next" title="RNA-seq-123">
+                <i class="fa fa-chevron-left"></i> RNA-seq-123
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="sr-c">
+            
+              <p class="site-author-name" itemprop="name">sr-c</p>
+              <div class="site-description motion-element" itemprop="description">sr-c's blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">120</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.mintos.org/" title="http://www.mintos.org/" rel="noopener" target="_blank">薄荷开源网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.suse.org.cn/" title="https://forum.suse.org.cn/" rel="noopener" target="_blank">openSUSE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://man.linuxde.net/" title="http://man.linuxde.net/" rel="noopener" target="_blank">linuxde</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/xudongliang/" title="http://www.cnblogs.com/xudongliang/" rel="noopener" target="_blank">庐州月光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://qinqianshan.com/" title="http://qinqianshan.com/" rel="noopener" target="_blank">Sam's Note</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装篇"><span class="nav-number">1.</span> <span class="nav-text">安装篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#legacy-blasr"><span class="nav-number">1.1.</span> <span class="nav-text">legacy-blasr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#networkx-v1-1"><span class="nav-number">1.2.</span> <span class="nav-text">networkx v1.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PBJelly"><span class="nav-number">1.3.</span> <span class="nav-text">PBJelly</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试篇"><span class="nav-number">2.</span> <span class="nav-text">测试篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查输入"><span class="nav-number">3.</span> <span class="nav-text">检查输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Debug"><span class="nav-number">3.1.</span> <span class="nav-text">Debug</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断依据"><span class="nav-number">3.1.1.</span> <span class="nav-text">判断依据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小tips"><span class="nav-number">3.1.2.</span> <span class="nav-text">小tips</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">5.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-tint"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sr-c</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

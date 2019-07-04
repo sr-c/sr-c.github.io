@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=7.1.2" color="#222">
+
+
+  <link rel="manifest" href="/favicons/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在Rosalind上进行练习">
+<meta name="keywords" content="Python,Rosalind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python练习-2">
+<meta property="og:url" content="https://sr-c.github.io/2018/10/30/python-exercise-2/index.html">
+<meta property="og:site_name" content="SR-C">
+<meta property="og:description" content="在Rosalind上进行练习">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-12T09:50:17.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python练习-2">
+<meta name="twitter:description" content="在Rosalind上进行练习">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SR-C" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sr-c.github.io/2018/10/30/python-exercise-2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python练习-2 | SR-C</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SR-C</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sr-c.github.io/2018/10/30/python-exercise-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sr-c">
+      <meta itemprop="description" content="sr-c's blog">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SR-C">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python练习-2
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-30 17:58:54" itemprop="dateCreated datePublished" datetime="2018-10-30T17:58:54+08:00">2018-10-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="description">在Rosalind上进行练习</p>
+
+<a id="more"></a>
+
+<h2 id="查找核酸序列的子集"><a href="#查找核酸序列的子集" class="headerlink" title="查找核酸序列的子集"></a>查找核酸序列的子集</h2><p><a href="http://rosalind.info/problems/subs/" target="_blank" rel="noopener">http://rosalind.info/problems/subs/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">'rosalind_subs.txt'</span>) <span class="keyword">as</span> lines:</span><br><span class="line">    string_1 = lines.readline().strip()</span><br><span class="line">    string_2 = lines.readline().strip()</span><br><span class="line"></span><br><span class="line">    note = []</span><br><span class="line">    length_2 = len(string_2)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(string_1)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> string_1[i:i+length_2] == string_2:</span><br><span class="line">            note.append(str(i+<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    notes = <span class="string">' '</span>.join(note)</span><br><span class="line">print(notes)</span><br></pre></td></tr></table></figure>
+
+<h2 id="计算两条序列间的汉明距离"><a href="#计算两条序列间的汉明距离" class="headerlink" title="计算两条序列间的汉明距离"></a>计算两条序列间的汉明距离</h2><p><a href="http://rosalind.info/problems/hamm/" target="_blank" rel="noopener">http://rosalind.info/problems/hamm/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">'rosalind_hamm.txt'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    s,t = f.read().split()</span><br><span class="line"></span><br><span class="line">count_n = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(t)):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> s[i] == t[i]:</span><br><span class="line">        count_n += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(count_n)</span><br></pre></td></tr></table></figure>
+
+<h2 id="将核酸序列转换为蛋白序列"><a href="#将核酸序列转换为蛋白序列" class="headerlink" title="将核酸序列转换为蛋白序列"></a>将核酸序列转换为蛋白序列</h2><p><a href="http://rosalind.info/problems/prot/" target="_blank" rel="noopener">http://rosalind.info/problems/prot/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prot</span><span class="params">(condon)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> condon <span class="keyword">in</span> [<span class="string">'GCU'</span>, <span class="string">'GCC'</span>, <span class="string">'GCA'</span>, <span class="string">'GCG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'A'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'CGU'</span>, <span class="string">'CGC'</span>, <span class="string">'CGA'</span>, <span class="string">'CGG'</span>, <span class="string">'AGA'</span>, <span class="string">'AGG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'R'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'AAU'</span>, <span class="string">'AAC'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'N'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'GAU'</span>, <span class="string">'GAC'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'D'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'UGU'</span>, <span class="string">'UGC'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'C'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'CAA'</span>, <span class="string">'CAG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Q'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'GAA'</span>, <span class="string">'GAG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'E'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'GGU'</span>, <span class="string">'GGC'</span>, <span class="string">'GGA'</span>, <span class="string">'GGG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'G'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'CAU'</span>, <span class="string">'CAC'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'H'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'UUA'</span>, <span class="string">'UUG'</span>, <span class="string">'CUU'</span>, <span class="string">'CUC'</span>, <span class="string">'CUA'</span>, <span class="string">'CUG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'L'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'AUU'</span>, <span class="string">'AUC'</span>, <span class="string">'AUA'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'I'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'AAA'</span>, <span class="string">'AAG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'K'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'AUG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'M'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'UUU'</span>, <span class="string">'UUC'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'F'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'CCU'</span>, <span class="string">'CCC'</span>, <span class="string">'CCA'</span>, <span class="string">'CCG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'P'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'UCU'</span>, <span class="string">'UCC'</span>, <span class="string">'UCA'</span>, <span class="string">'UCG'</span>, <span class="string">'AGU'</span>, <span class="string">'AGC'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'S'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'ACU'</span>, <span class="string">'ACC'</span>, <span class="string">'ACA'</span>, <span class="string">'ACG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'T'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'UGG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'W'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'UAU'</span>, <span class="string">'UAC'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Y'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'GUU'</span>, <span class="string">'GUC'</span>, <span class="string">'GUA'</span>, <span class="string">'GUG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'V'</span></span><br><span class="line">    <span class="keyword">elif</span> condon <span class="keyword">in</span> [<span class="string">'AUG'</span>, <span class="string">'UAA'</span>, <span class="string">'UGA'</span>, <span class="string">'UAG'</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'Not proper condon input.'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'rosalind_prot.txt'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    RNA_string = f.readline().strip()</span><br><span class="line">    p_len = int(len(RNA_string)/<span class="number">3</span>)</span><br><span class="line">    prots = [prot(RNA_string[i*<span class="number">3</span>:i*<span class="number">3</span>+<span class="number">3</span>]) <span class="keyword">for</span> i <span class="keyword">in</span> range(p_len)]</span><br><span class="line">    prot_string = <span class="string">''</span>.join(prots)</span><br><span class="line"></span><br><span class="line">print(prot_string)</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断一个能否被整除"><a href="#判断一个能否被整除" class="headerlink" title="判断一个能否被整除"></a>判断一个能否被整除</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x % <span class="number">3</span> == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"x能够被3整除"</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"x不能够被3整除"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查找列表"><a href="#查找列表" class="headerlink" title="查找列表"></a>查找列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'a'</span> <span class="keyword">in</span> a_list</span><br><span class="line">a_list.index(<span class="string">'a'</span>)</span><br><span class="line">a_list.find(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p><a href="https://en.wikipedia.org/wiki/Hamming_distance" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Hamming_distance</a></p>
+<p><a href="https://blog.csdn.net/qq_31747765/article/details/80944227" target="_blank" rel="noopener">https://blog.csdn.net/qq_31747765/article/details/80944227</a></p>
+<p><a href="https://blog.csdn.net/qq842977873/article/details/79372844" target="_blank" rel="noopener">https://blog.csdn.net/qq842977873/article/details/79372844</a></p>
+<hr>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sr-c</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://sr-c.github.io/2018/10/30/python-exercise-2/" title="Python练习-2">https://sr-c.github.io/2018/10/30/python-exercise-2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Rosalind/" rel="tag"># Rosalind</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/29/python-exercise-1/" rel="next" title="Python练习-1">
+                <i class="fa fa-chevron-left"></i> Python练习-1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/31/python-exercise-3/" rel="prev" title="Python练习-3">
+                Python练习-3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="sr-c">
+            
+              <p class="site-author-name" itemprop="name">sr-c</p>
+              <div class="site-description motion-element" itemprop="description">sr-c's blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">120</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.mintos.org/" title="http://www.mintos.org/" rel="noopener" target="_blank">薄荷开源网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.suse.org.cn/" title="https://forum.suse.org.cn/" rel="noopener" target="_blank">openSUSE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://man.linuxde.net/" title="http://man.linuxde.net/" rel="noopener" target="_blank">linuxde</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/xudongliang/" title="http://www.cnblogs.com/xudongliang/" rel="noopener" target="_blank">庐州月光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://qinqianshan.com/" title="http://qinqianshan.com/" rel="noopener" target="_blank">Sam's Note</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找核酸序列的子集"><span class="nav-number">1.</span> <span class="nav-text">查找核酸序列的子集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算两条序列间的汉明距离"><span class="nav-number">2.</span> <span class="nav-text">计算两条序列间的汉明距离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将核酸序列转换为蛋白序列"><span class="nav-number">3.</span> <span class="nav-text">将核酸序列转换为蛋白序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断一个能否被整除"><span class="nav-number">3.1.</span> <span class="nav-text">判断一个能否被整除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找列表"><span class="nav-number">3.2.</span> <span class="nav-text">查找列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">4.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-tint"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sr-c</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

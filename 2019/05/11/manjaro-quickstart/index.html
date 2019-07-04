@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=7.1.2" color="#222">
+
+
+  <link rel="manifest" href="/favicons/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在manjaro上配置工作环境">
+<meta name="keywords" content="linux,manjaro,arch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在manjaro上配置工作环境">
+<meta property="og:url" content="https://sr-c.github.io/2019/05/11/manjaro-quickstart/index.html">
+<meta property="og:site_name" content="SR-C">
+<meta property="og:description" content="在manjaro上配置工作环境">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-12T09:50:17.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在manjaro上配置工作环境">
+<meta name="twitter:description" content="在manjaro上配置工作环境">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SR-C" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sr-c.github.io/2019/05/11/manjaro-quickstart/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>在manjaro上配置工作环境 | SR-C</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SR-C</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sr-c.github.io/2019/05/11/manjaro-quickstart/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sr-c">
+      <meta itemprop="description" content="sr-c's blog">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SR-C">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在manjaro上配置工作环境
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-11 19:48:51" itemprop="dateCreated datePublished" datetime="2019-05-11T19:48:51+08:00">2019-05-11</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="description">在manjaro上配置工作环境</p>
+
+<a id="more"></a>
+
+<p>最近看老莱视频，了解到用户友好的<code>manjaro</code>(竟然内置steam), 再加上强大的AUG, 忍不住来尝试一下。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用<code>dd</code>将安装镜像写入到u盘</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#确认u盘的挂载位置，写入前取消挂载</span></span><br><span class="line">df -h</span><br><span class="line">umount /dev/sdx</span><br><span class="line"><span class="comment">#使用dd命令写入</span></span><br><span class="line">dd <span class="keyword">if</span>=path/to/manjaro.iso of=/dev/sdx bs=4M status=progress</span><br></pre></td></tr></table></figure>
+
+<p>系统安装过程非常方便，<code>manjaro</code>的安装引导非常友好，在分区过程的提示很细致，还会提示每个磁盘的分区表类型。</p>
+<p>最简单安装只需指定efi的引导分区<code>/boot/efi</code>和<code>/</code>挂载点即可</p>
+<blockquote>
+<p>由于 Windows10 本身的引导分区就是 ESP 分区，所以到分区的界面，只需要将 /boot/efi 挂载到 ESP 分区即可。</p>
+</blockquote>
+<h2 id="软件源配置"><a href="#软件源配置" class="headerlink" title="软件源配置"></a>软件源配置</h2><p>安装时语言设置为en.utf-8, 时区设置为上海，默认就安装了中文支持。</p>
+<h3 id="软件源"><a href="#软件源" class="headerlink" title="软件源"></a>软件源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选择最快的镜像源</span></span><br><span class="line">sudo pacman-mirrors -i -c China -m rank</span><br><span class="line"><span class="comment">#刷新缓存</span></span><br><span class="line">sudo pacman -Syy</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加ArchLinuxCN源"><a href="#添加ArchLinuxCN源" class="headerlink" title="添加ArchLinuxCN源"></a>添加ArchLinuxCN源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在文件/etc/pacman.conf末尾添加如下内容</span></span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">'[archlinuxcn]\nSigLevel = Optional TrustedOnly\nServer = https://mirrors.ustc.edu.cn/archlinuxcn/$arch'</span> &gt;&gt; /etc/pacman.conf</span><br><span class="line"><span class="comment">#导入archlinuxcn-keyring</span></span><br><span class="line">sudo pacman -Syy &amp;&amp; sudo pacman -S archlinuxcn-keyring</span><br><span class="line"><span class="comment">#再次刷新缓存，下载速度应该就比较令人满意了</span></span><br><span class="line">sudo panman -Syy</span><br></pre></td></tr></table></figure>
+
+<h2 id="时间设置"><a href="#时间设置" class="headerlink" title="时间设置"></a>时间设置</h2><p>对于<code>Windows</code>与<code>linux</code>双系统的用户，系统时间的设置往往是一个比较头疼的问题。</p>
+<h3 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，系统时间实际分为<code>Local time</code>,<code>Universal time</code>与<code>RTC time</code></p>
+<p>Windows使用的是本地时间<code>Local time</code>, 而UNIX使用的是UTC时间<code>Universal time</code>. </p>
+<p>Windows会认为主板BIOS上的硬件时间就是本地时间，同步时间后也会将时间写入BIOS. UNIX则认为硬件时间是UTC时间，同步时间后会将本地时间按照时区计算后得到的UTC时间写入主板。</p>
+<p>这样，在一个已有Windows的电脑上，BIOS的硬件时间就会被写为本地时间。之后安装的UNIX会将BIOS上的硬件时间识别为UTC时间，再根据时区信息计算出本地时间，显示在系统上。因此，我们会看到UNIX默认显示的时间与实际本地时间相差8个小时。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>因此，该问题就存在两种解决方案。一是让Linux使用本地时间<code>local time</code>, 或是让Windows使用UTC时间。以下方案择一即可。</p>
+<h4 id="Linux方案"><a href="#Linux方案" class="headerlink" title="Linux方案"></a>Linux方案</h4><p>修改为本地时间（目前使用此方案）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">timedatectl <span class="built_in">set</span>-local-rtc 1 --adjust-system-clock</span><br><span class="line">timedatectl <span class="built_in">set</span>-ntp 0</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://alexiachen.github.io/blog/2018/08/11/manjaro-hello/" target="_blank" rel="noopener">使用NTP同步时间</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ntpdate cn.ntp.org.cn <span class="comment">#可以换成任何一个公开的NTP Server地址</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Windows方案"><a href="#Windows方案" class="headerlink" title="Windows方案"></a>Windows方案</h4><p>修改注册表，且需关闭时间同步。（未执行）</p>
+<blockquote>
+<p>[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation]</p>
+<p>“RealTimeIsUniversal”=dword:00000001</p>
+</blockquote>
+<h2 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h2><h3 id="安装fcitx"><a href="#安装fcitx" class="headerlink" title="安装fcitx"></a>安装fcitx</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S fcitx-googlepinyin</span><br><span class="line">sudo pacman -S fcitx-im</span><br><span class="line">sudo pacman -S fcitx-configtool</span><br><span class="line"></span><br><span class="line"><span class="comment">#在桌面环境配置文件中写入相关设置</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexport XMODIFIERS=@im=fcitx"</span> &gt;&gt; ~/.xprofile</span><br></pre></td></tr></table></figure>
+
+<p>注销后即可正常使用fcitx</p>
+<blockquote>
+<p>若初始选择安装的英文系统，再安装fcitx可能会使得fcitx中的中文输入法不能正常调用，此时应修改本地化设定中的语言</p>
+</blockquote>
+<h3 id="安装yay"><a href="#安装yay" class="headerlink" title="安装yay"></a>安装yay</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo panman -S yay</span><br></pre></td></tr></table></figure>
+
+<p>由于<code>yaourt</code>目前已停止开发，存在安全问题，故选择<code>yay</code>进行包管理</p>
+<h3 id="其他软件"><a href="#其他软件" class="headerlink" title="其他软件"></a>其他软件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S wps-office nutstore typora sublime-text-imfix visual-studio-code-bin</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h2><h3 id="字体配置"><a href="#字体配置" class="headerlink" title="字体配置"></a>字体配置</h3><p><code>XFCE</code>桌面默认的字体配置在<code>外观</code>中设置。默认字体为<code>Noto Sans Regular</code>, 默认等宽字体为<code>Monospace Regular</code>, 已有不错的显示效果。</p>
+<p>字体大小默认为10号字，根据屏幕情况可自行调整至12或14号字。</p>
+<h3 id="自启动配置"><a href="#自启动配置" class="headerlink" title="自启动配置"></a>自启动配置</h3><p>配置文件位于<code>～/.config/autostart/</code>目录下，也可通过<code>会话和启动</code>进行设置。</p>
+<p>参考坚果云写入的自启动方式，可自行将启动项写入为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">"(sleep 30 &amp;&amp; nohup /opt/nutstore/bin/nutstore-pydaemon.py &gt;/dev/null 2&gt;&amp;1) &amp;"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p><a href="https://wenqixiang.com/manjaro-guide/" target="_blank" rel="noopener">https://wenqixiang.com/manjaro-guide/</a></p>
+<p><a href="https://www.lanbu.net/d/52/11" target="_blank" rel="noopener">https://www.lanbu.net/d/52/11</a></p>
+<p><a href="http://blog.sina.com.cn/s/blog_18373c26b0102xo4g.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_18373c26b0102xo4g.html</a></p>
+<p><a href="https://blog.csdn.net/aaazz47/article/details/78696899" target="_blank" rel="noopener">https://blog.csdn.net/aaazz47/article/details/78696899</a></p>
+<hr>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sr-c</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://sr-c.github.io/2019/05/11/manjaro-quickstart/" title="在manjaro上配置工作环境">https://sr-c.github.io/2019/05/11/manjaro-quickstart/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/manjaro/" rel="tag"># manjaro</a>
+          
+            <a href="/tags/arch/" rel="tag"># arch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/30/how-heatmaps-work/" rel="next" title="如何绘制一张热图">
+                <i class="fa fa-chevron-left"></i> 如何绘制一张热图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/27/RNA-seq-expression-units/" rel="prev" title="RNA-seq的表达量计算单元">
+                RNA-seq的表达量计算单元 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="sr-c">
+            
+              <p class="site-author-name" itemprop="name">sr-c</p>
+              <div class="site-description motion-element" itemprop="description">sr-c's blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">120</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.mintos.org/" title="http://www.mintos.org/" rel="noopener" target="_blank">薄荷开源网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.suse.org.cn/" title="https://forum.suse.org.cn/" rel="noopener" target="_blank">openSUSE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://man.linuxde.net/" title="http://man.linuxde.net/" rel="noopener" target="_blank">linuxde</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/xudongliang/" title="http://www.cnblogs.com/xudongliang/" rel="noopener" target="_blank">庐州月光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://qinqianshan.com/" title="http://qinqianshan.com/" rel="noopener" target="_blank">Sam's Note</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件源配置"><span class="nav-number">2.</span> <span class="nav-text">软件源配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件源"><span class="nav-number">2.1.</span> <span class="nav-text">软件源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加ArchLinuxCN源"><span class="nav-number">2.2.</span> <span class="nav-text">添加ArchLinuxCN源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间设置"><span class="nav-number">3.</span> <span class="nav-text">时间设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题原因"><span class="nav-number">3.1.</span> <span class="nav-text">问题原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">3.2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux方案"><span class="nav-number">3.2.1.</span> <span class="nav-text">Linux方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows方案"><span class="nav-number">3.2.2.</span> <span class="nav-text">Windows方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用软件"><span class="nav-number">4.</span> <span class="nav-text">常用软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装fcitx"><span class="nav-number">4.1.</span> <span class="nav-text">安装fcitx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装yay"><span class="nav-number">4.2.</span> <span class="nav-text">安装yay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他软件"><span class="nav-number">4.3.</span> <span class="nav-text">其他软件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他设置"><span class="nav-number">5.</span> <span class="nav-text">其他设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字体配置"><span class="nav-number">5.1.</span> <span class="nav-text">字体配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自启动配置"><span class="nav-number">5.2.</span> <span class="nav-text">自启动配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">6.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-tint"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sr-c</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

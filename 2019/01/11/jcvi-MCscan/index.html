@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=7.1.2" color="#222">
+
+
+  <link rel="manifest" href="/favicons/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="jcvi是Haibao Tang开发的基因组组装注释与比较基因组分析工具，可视化效果很不错">
+<meta name="keywords" content="jcvi,MCscan">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用jcvi进行MCscan可视化">
+<meta property="og:url" content="https://sr-c.github.io/2019/01/11/jcvi-MCscan/index.html">
+<meta property="og:site_name" content="SR-C">
+<meta property="og:description" content="jcvi是Haibao Tang开发的基因组组装注释与比较基因组分析工具，可视化效果很不错">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://camo.githubusercontent.com/222430d386faca2179528563cde9d8339bc8ad72/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f33326d6d6f306b66687478356238672f67726170652e70656163682e6373636f72652e39392e706e673f7261773d31">
+<meta property="og:image" content="https://camo.githubusercontent.com/d82b2f2ed6b675ab090564d74d9b78ac2b6e21c9/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f686878326474727972756d3267796f2f67726170652e70656163682e64657074682e706e673f7261773d31">
+<meta property="og:image" content="https://camo.githubusercontent.com/b43d5bd13f2abaf1255fac49d6fe8ba5b3f86ec5/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f35316b386a756a797a616765336f612f67726170652e70656163682e6b6172796f747970652e706e673f7261773d31">
+<meta property="og:image" content="https://camo.githubusercontent.com/be5a68f92e48eaf6173442ce8543cefd89445e2b/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f6978326d736464736e6477653276652f67726170652e70656163682e626c6f636b732e706e673f7261773d31">
+<meta property="og:updated_time" content="2019-06-12T09:50:17.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用jcvi进行MCscan可视化">
+<meta name="twitter:description" content="jcvi是Haibao Tang开发的基因组组装注释与比较基因组分析工具，可视化效果很不错">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/222430d386faca2179528563cde9d8339bc8ad72/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f33326d6d6f306b66687478356238672f67726170652e70656163682e6373636f72652e39392e706e673f7261773d31">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SR-C" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sr-c.github.io/2019/01/11/jcvi-MCscan/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用jcvi进行MCscan可视化 | SR-C</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SR-C</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sr-c.github.io/2019/01/11/jcvi-MCscan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sr-c">
+      <meta itemprop="description" content="sr-c's blog">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SR-C">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用jcvi进行MCscan可视化
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-11 19:19:34" itemprop="dateCreated datePublished" datetime="2019-01-11T19:19:34+08:00">2019-01-11</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="description">jcvi是Haibao Tang开发的基因组组装注释与比较基因组分析工具，可视化效果很不错</p>
+
+<a id="more"></a>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>软件推荐使用<code>pip</code>安装，但是作为普通用户，还是选择使用conda安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda create -n jcvi python=2.7</span><br><span class="line"><span class="built_in">source</span> activate jcvi</span><br><span class="line"><span class="comment"># 安装前需要确认存在bioconda和r channel，安装前先更新conda</span></span><br><span class="line">conda --add-channel r</span><br><span class="line">conda install jcvi last</span><br></pre></td></tr></table></figure>
+
+<p>后续还可能会由于缺少<code>scipy</code>在绘图时报错<code>ImportError: No module named scipy.spatial</code>，因此可提前安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装scipy</span></span><br><span class="line"><span class="comment">#conda-forge scipy-1.2.0</span></span><br><span class="line">conda install scipy</span><br></pre></td></tr></table></figure>
+
+<h2 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h2><p><code>jcvi</code>支持直接从<a href="https://phytozome.jgi.doe.gov/pz/portal.html" target="_blank" rel="noopener">phytozome</a>下载数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m jcvi.apps.fetch phytozome</span><br></pre></td></tr></table></figure>
+
+<p>按照名称查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">python -m jcvi.apps.fetch phytozome</span><br><span class="line">...</span><br><span class="line">         Acoerulea               Alyrata             Athaliana</span><br><span class="line">       Bdistachyon                 Brapa           Cclementina</span><br><span class="line">           Cpapaya          Creinhardtii              Crubella</span><br><span class="line">          Csativus             Csinensis Csubellipsoidea_C-169</span><br><span class="line">          Egrandis                Fvesca                  Gmax</span><br><span class="line">        Graimondii        Lusitatissimum            Mdomestica</span><br><span class="line">        Mesculenta             Mguttatus     Mpusilla_CCMP1545</span><br><span class="line">   Mpusilla_RCC299           Mtruncatula          Olucimarinus</span><br><span class="line">           Osativa               Ppatens              Ppersica</span><br><span class="line">      Ptrichocarpa             Pvirgatum             Pvulgaris</span><br><span class="line">         Rcommunis              Sbicolor              Sitalica</span><br><span class="line">     Slycopersicum       Smoellendorffii            Stuberosum</span><br><span class="line">            Tcacao            Thalophila              Vcarteri</span><br><span class="line">         Vvinifera                 Zmays         early_release</span><br></pre></td></tr></table></figure>
+
+<p>常见的植物物种都可以直接下载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># download sequences and coordinates of grape and peach</span></span><br><span class="line">python -m jcvi.apps.fetch phytozome Vvinifera,Ppersica</span><br><span class="line"><span class="comment"># convert the GFF to BED file</span></span><br><span class="line">python -m jcvi.formats.gff bed --<span class="built_in">type</span>=mRNA --key=Name Vvinifera_145_gene.gff3.gz -o grape.bed</span><br><span class="line">python -m jcvi.formats.gff bed --<span class="built_in">type</span>=mRNA --key=Name Ppersica_139_gene.gff3.gz -o peach.bed</span><br><span class="line"><span class="comment"># clean headers to remove description fiedls from Phytozome FASTA files.</span></span><br><span class="line">python -m jcvi.formats.fasta format --sep=<span class="string">"|"</span> Vvinifera_145_cds.fa.gz grape.cds</span><br><span class="line">python -m jcvi.formats.fasta format --sep=<span class="string">"|"</span> Ppersica_139_cds.fa.gz peach.cds</span><br></pre></td></tr></table></figure>
+
+<h2 id="共线性分析"><a href="#共线性分析" class="headerlink" title="共线性分析"></a>共线性分析</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python -m jcvi.compara.catalog ortholog grape peach</span><br><span class="line">ls grape.peach.*</span><br><span class="line">grape.peach.lifted.anchors  grape.peach.anchors  grape.peach.last.filtered grape.peach.last grape.peach.pdf</span><br></pre></td></tr></table></figure>
+
+<p>程序默认按照可用线程，调用全部进行LAST比对，速度很快。</p>
+<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><h3 id="点阵图"><a href="#点阵图" class="headerlink" title="点阵图"></a>点阵图</h3><p>目前版本<code>0.8.12</code>在共线性分析后，自动绘制点阵图，手动运行方式如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m jcvi.graphics.dotplot grape.peach.anchors</span><br></pre></td></tr></table></figure>
+
+<p>在两者的点阵图中，不论水平方向或者竖直方向查看，都可以发现不超过3次的共线性区域。这说明，🍇和🍑之间发生了基因组三倍体化的事件，使得出现了这样3:3的模式。</p>
+<p>如果仔细观察，还可以发现3个共线性区域中常常有一个信号更强，对应着两个基因组之间的直系同源区域。如果我们只想要得到这些1:1直系同源的区域呢？我们只需要重复之前的比对，同时加上选项<code>--cscore=.99</code>即可。C-score是由LAST比对区域到BLAST比对区域的比值确定。(C-score is defined by the ratio of LAST hit to the best BLAST hits to either the query and hit. )0.99的C-score阈值有效地过滤LAST比对结果，从而得到最佳相互比对结果(reciprocal best hit, RBH)。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm grape.peach.last.filtered </span><br><span class="line">python -m jcvi.compara.catalog ortholog grape peach --cscore=.99</span><br><span class="line">python -m jcvi.graphics.dotplot grape.peach.anchors</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://camo.githubusercontent.com/222430d386faca2179528563cde9d8339bc8ad72/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f33326d6d6f306b66687478356238672f67726170652e70656163682e6373636f72652e39392e706e673f7261773d31" alt="Grape-peach-synteny-.99"></p>
+<p>还可以手动查看synteny depth分布</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m jcvi.compara.synteny depth --histogram grape.peach.anchors</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://camo.githubusercontent.com/d82b2f2ed6b675ab090564d74d9b78ac2b6e21c9/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f686878326474727972756d3267796f2f67726170652e70656163682e64657074682e706e673f7261773d31" alt="Grape-peach-depth"></p>
+<h3 id="共线型图"><a href="#共线型图" class="headerlink" title="共线型图"></a>共线型图</h3><p>同样由<code>grape.peach.anchors</code>生成，除了BED和共线性文件，还需要手动设置两个文件用于绘图</p>
+<ol>
+<li><p><code>seqids</code>设定绘制哪些染色体，一般会去掉较小和未定位的scaffolds，下方设定了19个🍇的染色体与8个🍑的染色体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19</span><br><span class="line">scaffold_1,scaffold_2,scaffold_3,scaffold_4,scaffold_5,scaffold_6,scaffold_7,scaffold_8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>layout</code>设定画板上如何绘制。整体上canvas绘图的x,y轴的定位在0-1之间，前三行设定了染色体轨道的位置，循环，颜色，标签，垂直排列以及对应的BED文件。下方的track0就是🍇，track1就是🍑。下一节就是设定在哪些tracks之间绘制共线性关系。<code>e,0,1</code>代表着绘制track0与track1之间的共线性，使用<code>grape.peach.anchors.simple</code>文件中的详细信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># y, xstart, xend, rotation, color, label, va,  bed</span><br><span class="line"> .6,     .1,    .8,       0,      , Grape, top, grape.bed</span><br><span class="line"> .4,     .1,    .8,       0,      , Peach, top, peach.bed</span><br><span class="line"># edges</span><br><span class="line">e, 0, 1, grape.peach.anchors.simple</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>注意，这两个设定文件末尾不能够存在多余的空行，否则会报错<a href="https://github.com/tanghaibao/jcvi/issues/56" target="_blank" rel="noopener">#56</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LayoutLine<span class="string">' object has no attribute '</span>color<span class="string">'</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>从<code>.anchors</code>文件中产生更简要的<code>.simple</code>文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m jcvi.compara.synteny screen --minspan=30 --simple grape.peach.anchors grape.peach.anchors.new</span><br></pre></td></tr></table></figure>
+
+<p>绘图</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m jcvi.graphics.karyotype seqids layout</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://camo.githubusercontent.com/b43d5bd13f2abaf1255fac49d6fe8ba5b3f86ec5/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f35316b386a756a797a616765336f612f67726170652e70656163682e6b6172796f747970652e706e673f7261773d31" alt="Grape-peach-karyotype"></p>
+<h3 id="局部可视化"><a href="#局部可视化" class="headerlink" title="局部可视化"></a>局部可视化</h3><p>首先从基因水平提取匹配的区块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m jcvi.compara.synteny mcscan grape.bed grape.peach.lifted.anchors --iter=1 -o grape.peach.i1.blocks</span><br></pre></td></tr></table></figure>
+
+<p>参数<code>--iter=1</code>表明从每个🍇区域中提取1个最佳匹配区域。若将<code>--iter</code>设置为2，那么每个🍇区域就会有2个对应的🍑区域。这一点对于基因组重复区域的绘制很有帮助。</p>
+<p>目前<code>grape.peach.i1.blocks</code>中包含有很多局部区域，我们可以手动选择需要绘制的部分。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -50 grape.peach.i1.blocks &gt; blocks</span><br></pre></td></tr></table></figure>
+
+<p>最终，我们仍然需要一个<code>layout</code>文件进行绘图，<code>blocks.layout</code>文件如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># x,   y, rotation,   ha,     va,   color, ratio,            label</span><br><span class="line">0.5, 0.6,        0, left, center,       m,     1,       grape Chr1</span><br><span class="line">0.5, 0.4,        0, left, center, #fc8d62,     1, peach scaffold_1</span><br><span class="line"># edges</span><br><span class="line">e, 0, 1</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们就可以进行绘制了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat grape.bed peach.bed &gt; grape_peach.bed</span><br><span class="line">python -m jcvi.graphics.synteny blocks grape_peach.bed blocks.layout</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://camo.githubusercontent.com/be5a68f92e48eaf6173442ce8543cefd89445e2b/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f6978326d736464736e6477653276652f67726170652e70656163682e626c6f636b732e706e673f7261773d31" alt="Grape-peach-blocks"></p>
+<h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p><a href="https://github.com/tanghaibao/jcvi/wiki/MCscan-%28Python-version%29" target="_blank" rel="noopener">https://github.com/tanghaibao/jcvi/wiki/MCscan-%28Python-version%29</a></p>
+<p><a href="https://www.jianshu.com/p/39448b970287" target="_blank" rel="noopener">https://www.jianshu.com/p/39448b970287</a></p>
+<hr>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sr-c</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://sr-c.github.io/2019/01/11/jcvi-MCscan/" title="使用jcvi进行MCscan可视化">https://sr-c.github.io/2019/01/11/jcvi-MCscan/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jcvi/" rel="tag"># jcvi</a>
+          
+            <a href="/tags/MCscan/" rel="tag"># MCscan</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/08/R4ds-exercises-1/" rel="next" title="R4ds-exercises-1">
+                <i class="fa fa-chevron-left"></i> R4ds-exercises-1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/12/R4ds-exercises-2/" rel="prev" title="R4ds-exercises-2">
+                R4ds-exercises-2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="sr-c">
+            
+              <p class="site-author-name" itemprop="name">sr-c</p>
+              <div class="site-description motion-element" itemprop="description">sr-c's blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">120</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.mintos.org/" title="http://www.mintos.org/" rel="noopener" target="_blank">薄荷开源网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.suse.org.cn/" title="https://forum.suse.org.cn/" rel="noopener" target="_blank">openSUSE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://man.linuxde.net/" title="http://man.linuxde.net/" rel="noopener" target="_blank">linuxde</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/xudongliang/" title="http://www.cnblogs.com/xudongliang/" rel="noopener" target="_blank">庐州月光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://qinqianshan.com/" title="http://qinqianshan.com/" rel="noopener" target="_blank">Sam's Note</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备数据"><span class="nav-number">2.</span> <span class="nav-text">准备数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共线性分析"><span class="nav-number">3.</span> <span class="nav-text">共线性分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可视化"><span class="nav-number">4.</span> <span class="nav-text">可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#点阵图"><span class="nav-number">4.1.</span> <span class="nav-text">点阵图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共线型图"><span class="nav-number">4.2.</span> <span class="nav-text">共线型图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部可视化"><span class="nav-number">4.3.</span> <span class="nav-text">局部可视化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">5.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-tint"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sr-c</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=7.1.2" color="#222">
+
+
+  <link rel="manifest" href="/favicons/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="keywords" content="ggplot,R4ds">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R4ds-exercises-2">
+<meta property="og:url" content="https://sr-c.github.io/2019/01/12/R4ds-exercises-2/index.html">
+<meta property="og:site_name" content="SR-C">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://d33wubrfki0l68.cloudfront.net/000302d6f6f06bfd86a6cc171a92329ad3028ce8/b1bb1/transform_files/figure-html/unnamed-chunk-36-1.png">
+<meta property="og:image" content="https://d33wubrfki0l68.cloudfront.net/3ce17d57f9df5a7a90f50bcc1026bb808480c65a/3146f/transform_files/figure-html/unnamed-chunk-41-1.png">
+<meta property="og:image" content="https://d33wubrfki0l68.cloudfront.net/484e2a8eadf0f3df06b10bd719f8a3044e53ba92/472a5/transform_files/figure-html/unnamed-chunk-42-1.png">
+<meta property="og:image" content="https://d33wubrfki0l68.cloudfront.net/af8935d2a1381788e62708a193c138c3dabe8bc8/80057/transform_files/figure-html/unnamed-chunk-43-1.png">
+<meta property="og:updated_time" content="2019-06-12T09:50:17.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R4ds-exercises-2">
+<meta name="twitter:image" content="https://d33wubrfki0l68.cloudfront.net/000302d6f6f06bfd86a6cc171a92329ad3028ce8/b1bb1/transform_files/figure-html/unnamed-chunk-36-1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SR-C" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sr-c.github.io/2019/01/12/R4ds-exercises-2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>R4ds-exercises-2 | SR-C</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SR-C</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sr-c.github.io/2019/01/12/R4ds-exercises-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sr-c">
+      <meta itemprop="description" content="sr-c's blog">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SR-C">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">R4ds-exercises-2
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-12 14:53:31" itemprop="dateCreated datePublished" datetime="2019-01-12T14:53:31+08:00">2019-01-12</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="description"></p>
+
+<a id="more"></a>
+
+<h2 id="分组摘要"><a href="#分组摘要" class="headerlink" title="分组摘要"></a>分组摘要</h2><p>摘要函数<code>summaize()</code>结合分组函数<code>group_by()</code>能够很方便地得到统计结果。</p>
+<p>结合使用管道符号<code>%&gt;%</code>，可以省却很多变量命名的麻烦，使代码更加简洁。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分组，摘要，结果过滤一步完成</span></span><br><span class="line">delays &lt;- flights %&gt;% </span><br><span class="line">  group_by(dest) %&gt;% </span><br><span class="line">  summarise(</span><br><span class="line">    count = n(),</span><br><span class="line">    dist = mean(distance, na.rm = <span class="literal">TRUE</span>),</span><br><span class="line">    delay = mean(arr_delay, na.rm = <span class="literal">TRUE</span>)</span><br><span class="line">  ) %&gt;% </span><br><span class="line">  filter(count &gt; <span class="number">20</span>, dest != <span class="string">"HNL"</span>)</span><br><span class="line"></span><br><span class="line">ggplot(data = delay, mapping = aes(x = dist, y = delay)) +</span><br><span class="line">  geom_point(aes(size = count), alpha = <span class="number">1</span>/<span class="number">3</span>) +</span><br><span class="line">  geom_smooth(se = <span class="literal">FALSE</span>)</span><br><span class="line"><span class="comment">#&gt; `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://d33wubrfki0l68.cloudfront.net/000302d6f6f06bfd86a6cc171a92329ad3028ce8/b1bb1/transform_files/figure-html/unnamed-chunk-36-1.png" alt="img"></p>
+<h3 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h3><p>在整合数据时，使用计数函数<code>n()</code>或计数所有非缺失值<code>sum(is.na(x))</code>常常很有帮助。这使得我们能够查看数据是否来自一些非常小的样本。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">not_cancelled &lt;- flights %&gt;% </span><br><span class="line">  filter(!is.na(dep_delay), !is.na(arr_delay))</span><br><span class="line"><span class="comment"># 按照航班机尾编号进行分组</span></span><br><span class="line">delays &lt;- not_cancelled %&gt;% </span><br><span class="line">  group_by(tailnum) %&gt;% </span><br><span class="line">  summarise(</span><br><span class="line">    delay = mean(arr_delay)</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">ggplot(data = delays, mapping = aes(x = delay)) + </span><br><span class="line">  geom_freqpoly(binwidth = <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://d33wubrfki0l68.cloudfront.net/3ce17d57f9df5a7a90f50bcc1026bb808480c65a/3146f/transform_files/figure-html/unnamed-chunk-41-1.png" alt="img"></p>
+<p>有一些航班的延误时间长达300 min，这是我们需要查看一下样本数量，排除偶然偏差的影响。</p>
+<p>绘制一个航班数量对平均延误时间的散点图能够帮助我们直观地理解</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">delays &lt;- not_cancelled %&gt;% </span><br><span class="line">  group_by(tailnum) %&gt;% </span><br><span class="line">  summarise(</span><br><span class="line">    delay = mean(arr_delay, na.rm = <span class="literal">TRUE</span>),</span><br><span class="line">    n = n()</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">ggplot(data = delays, mapping = aes(x = n, y = delay)) + </span><br><span class="line">  geom_point(alpha = <span class="number">1</span>/<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://d33wubrfki0l68.cloudfront.net/484e2a8eadf0f3df06b10bd719f8a3044e53ba92/472a5/transform_files/figure-html/unnamed-chunk-42-1.png" alt="img"></p>
+<p>可以见到，在样本数量较少时，平均延误时间的偏差很大。</p>
+<p>这种情况下，过滤掉最小的哪些观察值能够帮助我们发现规律。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">delays %&gt;% </span><br><span class="line">  filter(n &gt; 25) %&gt;% </span><br><span class="line">  ggplot(mapping = aes(x = n, y = delay)) + </span><br><span class="line">    geom_point(alpha = 1/10)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://d33wubrfki0l68.cloudfront.net/af8935d2a1381788e62708a193c138c3dabe8bc8/80057/transform_files/figure-html/unnamed-chunk-43-1.png" alt="img"></p>
+<h3 id="常用的摘要函数"><a href="#常用的摘要函数" class="headerlink" title="常用的摘要函数"></a>常用的摘要函数</h3><ol>
+<li><p>位置度量</p>
+<p>mean(x) </p>
+<p>median(x)</p>
+</li>
+<li><p>分散程度度量</p>
+<p>sd(x), 标准差</p>
+<p>IQR(x), 四分位距</p>
+<p>mad(x), 绝对中位差</p>
+</li>
+<li><p>秩的度量</p>
+<p>min(x), quantile(x, 0.25), max(x)</p>
+</li>
+<li><p>定位度量</p>
+<p>first(x), nth(x, 2), last(x)</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">not_cancelled %&gt;% </span><br><span class="line">  group_by(year, month, day) %&gt;% </span><br><span class="line">  summarise(</span><br><span class="line">    first_dep = first(dep_time), </span><br><span class="line">    last_dep = last(dep_time)</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计数</p>
+<p><code>n()</code>不需要任何参数，返回当前分组的大小</p>
+<p><code>sum(is.na(x))</code>统计非缺失值的数量</p>
+<p><code>n_distinct(x)</code>计算唯一值的数量</p>
+</li>
+<li><p>逻辑值的计数和比例</p>
+<p>sum(x &gt; 10)和mean(y == 0)</p>
+</li>
+</ol>
+<h3 id="按多个变量分组"><a href="#按多个变量分组" class="headerlink" title="按多个变量分组"></a>按多个变量分组</h3><p>当使用多个变量分组时，每次摘要统计会消耗一个分组变量。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">daily &lt;- group_by(flights, year, month, day)</span><br><span class="line">(per_day   &lt;- summarise(daily, flights = n()))</span><br><span class="line"><span class="comment">#&gt; # A tibble: 365 x 4</span></span><br><span class="line"><span class="comment">#&gt; # Groups:   year, month [?]</span></span><br><span class="line"><span class="comment">#&gt;    year month   day flights</span></span><br><span class="line"><span class="comment">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt;</span></span><br><span class="line"><span class="comment">#&gt; 1  2013     1     1     842</span></span><br><span class="line"><span class="comment">#&gt; 2  2013     1     2     943</span></span><br><span class="line"><span class="comment">#&gt; 3  2013     1     3     914</span></span><br><span class="line"><span class="comment">#&gt; 4  2013     1     4     915</span></span><br><span class="line"><span class="comment">#&gt; 5  2013     1     5     720</span></span><br><span class="line"><span class="comment">#&gt; 6  2013     1     6     832</span></span><br><span class="line"><span class="comment">#&gt; # … with 359 more rows</span></span><br><span class="line">(per_month &lt;- summarise(per_day, flights = sum(flights)))</span><br><span class="line"><span class="comment">#&gt; # A tibble: 12 x 3</span></span><br><span class="line"><span class="comment">#&gt; # Groups:   year [?]</span></span><br><span class="line"><span class="comment">#&gt;    year month flights</span></span><br><span class="line"><span class="comment">#&gt;   &lt;int&gt; &lt;int&gt;   &lt;int&gt;</span></span><br><span class="line"><span class="comment">#&gt; 1  2013     1   27004</span></span><br><span class="line"><span class="comment">#&gt; 2  2013     2   24951</span></span><br><span class="line"><span class="comment">#&gt; 3  2013     3   28834</span></span><br><span class="line"><span class="comment">#&gt; 4  2013     4   28330</span></span><br><span class="line"><span class="comment">#&gt; 5  2013     5   28796</span></span><br><span class="line"><span class="comment">#&gt; 6  2013     6   28243</span></span><br><span class="line"><span class="comment">#&gt; # … with 6 more rows</span></span><br><span class="line">(per_year  &lt;- summarise(per_month, flights = sum(flights)))</span><br><span class="line"><span class="comment">#&gt; # A tibble: 1 x 2</span></span><br><span class="line"><span class="comment">#&gt;    year flights</span></span><br><span class="line"><span class="comment">#&gt;   &lt;int&gt;   &lt;int&gt;</span></span><br><span class="line"><span class="comment">#&gt; 1  2013  336776</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="取消分组"><a href="#取消分组" class="headerlink" title="取消分组"></a>取消分组</h3><p><code>ungroup()</code></p>
+<h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p><a href="https://r4ds.had.co.nz/transform.html#grouped-summaries-with-summarise" target="_blank" rel="noopener">https://r4ds.had.co.nz/transform.html#grouped-summaries-with-summarise</a></p>
+<hr>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sr-c</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://sr-c.github.io/2019/01/12/R4ds-exercises-2/" title="R4ds-exercises-2">https://sr-c.github.io/2019/01/12/R4ds-exercises-2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ggplot/" rel="tag"># ggplot</a>
+          
+            <a href="/tags/R4ds/" rel="tag"># R4ds</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/11/jcvi-MCscan/" rel="next" title="使用jcvi进行MCscan可视化">
+                <i class="fa fa-chevron-left"></i> 使用jcvi进行MCscan可视化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/16/RIdeogram/" rel="prev" title="RIdeogram">
+                RIdeogram <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="sr-c">
+            
+              <p class="site-author-name" itemprop="name">sr-c</p>
+              <div class="site-description motion-element" itemprop="description">sr-c's blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">120</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.mintos.org/" title="http://www.mintos.org/" rel="noopener" target="_blank">薄荷开源网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.suse.org.cn/" title="https://forum.suse.org.cn/" rel="noopener" target="_blank">openSUSE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://man.linuxde.net/" title="http://man.linuxde.net/" rel="noopener" target="_blank">linuxde</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/xudongliang/" title="http://www.cnblogs.com/xudongliang/" rel="noopener" target="_blank">庐州月光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://qinqianshan.com/" title="http://qinqianshan.com/" rel="noopener" target="_blank">Sam's Note</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分组摘要"><span class="nav-number">1.</span> <span class="nav-text">分组摘要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计数"><span class="nav-number">1.1.</span> <span class="nav-text">计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的摘要函数"><span class="nav-number">1.2.</span> <span class="nav-text">常用的摘要函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按多个变量分组"><span class="nav-number">1.3.</span> <span class="nav-text">按多个变量分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消分组"><span class="nav-number">1.4.</span> <span class="nav-text">取消分组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">2.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-tint"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sr-c</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

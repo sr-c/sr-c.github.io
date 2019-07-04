@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=7.1.2" color="#222">
+
+
+  <link rel="manifest" href="/favicons/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="环境变量对于程序的运行非常重要，因此厘清其中的细节很有必要。">
+<meta name="keywords" content="include,library,path,gcc,linux,环境变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转载】环境变量，include搜索路径，lib库搜索路径">
+<meta property="og:url" content="https://sr-c.github.io/2018/07/16/LIBRARY-PATH/index.html">
+<meta property="og:site_name" content="SR-C">
+<meta property="og:description" content="环境变量对于程序的运行非常重要，因此厘清其中的细节很有必要。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-12T09:50:17.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转载】环境变量，include搜索路径，lib库搜索路径">
+<meta name="twitter:description" content="环境变量对于程序的运行非常重要，因此厘清其中的细节很有必要。">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SR-C" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sr-c.github.io/2018/07/16/LIBRARY-PATH/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【转载】环境变量，include搜索路径，lib库搜索路径 | SR-C</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SR-C</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sr-c.github.io/2018/07/16/LIBRARY-PATH/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sr-c">
+      <meta itemprop="description" content="sr-c's blog">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SR-C">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【转载】环境变量，include搜索路径，lib库搜索路径
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-16 20:36:04" itemprop="dateCreated datePublished" datetime="2018-07-16T20:36:04+08:00">2018-07-16</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="description">环境变量对于程序的运行非常重要，因此厘清其中的细节很有必要。</p>
+
+<a id="more"></a>
+
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><h3 id="系统环境变量"><a href="#系统环境变量" class="headerlink" title="系统环境变量"></a>系统环境变量</h3><p>我们知道，我们经常要设置一些环境变量，系统环境变量我们非常容易理解。其实我们在windows中经常容易接触。其实环境变量是一个非常广泛的一个概念，它与web应用程序中的web.config所处的角色很像。什么意思呢？就是说，程序（系统或应用）要运行的时候，它的基本业务逻辑可能是一定的，但是实现业务逻辑的时候有些设置性的东西却可以改变程序很多。如web应用程序，编译之后他的业务逻辑基本不会发生改变，但是如果你更改一些web.config中的参数，程序的运行就会发生相应的改变。这些设置。就像电视机上面调制一样。改变了设置会得到某些不同。</p>
+<p>那么环境变量可以理解成设置的一种，为什么有不直接称为设置呢？因为它处于一种被动的境地。越多说越糊涂。</p>
+<p>最常见的环境变量莫过于PATH，和ClassPATH，这个在设置jdk的时候就需要设置，这里的PATH变量指的是，当系统的接口接收到一个程序启动命令的时候，除了默认在当前目录下寻找那个可执行文件意外，还需要到那些地方寻找。有了这个设置，你就不需要一定要进入那个目录才能执行那个程序了。ClassPATH变量也差不多，它设置的是那些类似于动态库的路径，也就是说，程序在执行的时候，发现要引入动态库，那样就要在这个变量指定的地方去找。</p>
+<p>在linux中，系统也有一个PATH变量。其实系统有一个文件是专门记录那些环境变量的。</p>
+<p>1）/etc/profile，系统登录会执行这个文件在当前环境中引入那些变量。</p>
+<p>2）还有  /home/ali/.bashrc这个文件，简单的来说，/etc/profile是对全局有效的，而./bashrc是对当前用户有效.</p>
+<p>3）还有一种设置方法，就是通过终端命令直接修改，我们知道前面两个文件其作用的方式就是当程序进入状态的时候，他们会被执行引入到当前空间，那么在当前状态下就会有这些变量，程序也就是可以使用它们。那么如果我们直接在内存中修改该他们，就可以起到暂时的作用。</p>
+<h3 id="程序环境变量"><a href="#程序环境变量" class="headerlink" title="程序环境变量"></a>程序环境变量</h3><p>根据前面我们说过环境变量的作用和意义，就很容易推出，普通的程序也可以有环境变量。按照前面系统的环境变量起作用的模式。应用程序，也可以有一些配置文件来持久保存这些环境变量，在程序执行的时候，这些变量会通过某种方式进入程序执行的空间，这样程序执行的时候就可以使用这些变量了。而同样，我们可以改变这些变量来“适量”的改变我们的程序。</p>
+<p>GCC就是这样一个程序。很多时候，应用程序需不需要环境变量机制，关键看他是否有很多的选择性，GCC就是一个这样的程序。</p>
+<p>最常用GCC环境变量的就是include搜索路径，以及库搜索路径。他们分别在编译和连接的时候使用。</p>
+<p>他们的使用背景是：</p>
+<h2 id="include搜索路径"><a href="#include搜索路径" class="headerlink" title="include搜索路径"></a>include搜索路径</h2><p>通常，使用C/C++进行开发程序的时候，会使用头文件，并且有头文件的实现文件，这个时候有三类文件，使用头文件的源文件，头文件，实现头文件的源文件。编译的时候，头文件和源文件一起就可以了。通常他们是在同一目录下的。所以不会有什么问题。</p>
+<p>但是，当你使用到了系统自身的一些头文件的时候，你需要引入一些头文件，而这些文件不在当前目录下，使用绝对地址是一个办法，但是是一个极差的办法。所以GCC就有一个搜索机制。就是在规定的那些文件夹下，搜索你所引入的那个头文件。这样解决了问题。这个环境变量叫着CPLUS_INCLUDE_PATH。属于GCC，与系统无关。我们看看GCC头文件搜索路径</p>
+<p><strong>头文件：</strong></p>
+<ol>
+<li>#include“headfile.h”</li>
+</ol>
+<p>搜索顺序为：</p>
+<p>①先搜索当前目录</p>
+<p>②然后搜索-I指定的目录</p>
+<p>③再搜索gcc的环境变量CPLUS_INCLUDE_PATH（C程序使用的是C_INCLUDE_PATH）</p>
+<p>④最后搜索gcc的内定目录</p>
+<p>/usr/include</p>
+<p>/usr/local/include</p>
+<p>/usr/lib/gcc/x86_64-redhat-linux/4.1.1/include</p>
+<p>各目录存在相同文件时，先找到哪个使用哪个。</p>
+<ol start="2">
+<li>#include&lt;headfile.h&gt;</li>
+</ol>
+<p>①先搜索-I指定的目录</p>
+<p>②然后搜索gcc的环境变量CPLUS_INCLUDE_PATH</p>
+<p>③最后搜索gcc的内定目录</p>
+<p>/usr/include</p>
+<p>/usr/local/include</p>
+<p>/usr/lib/gcc/x86_64-redhat-linux/4.1.1/include</p>
+<p>与上面的相同，各目录存在相同文件时，先找到哪个使用哪个。这里要注意，#include&lt;&gt;方式不会搜索当前目录！</p>
+<p>虽然搜索了GCC自定义的环境变量目录之后，下一个的内定目录，就应该是操作系统有关这种头文件的定义。这种推导很正确。事实上就算不是这样的。GCC头文件搜索模式，也是按照先“专”后“宽”的模式，也就是说，大部分都是使用自己的一套，所以基本都能找到，可能真有一些是那些大家共有的头文件。所以，这里的内定目录其实与继承操作系统的目录的意思没有多大区别。</p>
+<p>这里要说下include的内定目录，它不是由$PATH环境变量指定的，而是由g++的配置prefix指定的(知道它在安装g++时可以指定，不知安装后如何修改的，可能是修改配置文件，需要时再研究下)：</p>
+<p>-bash-3.2$ g++ -v</p>
+<p>Using built-inspecs.</p>
+<p>Target:x86_64-redhat-linux</p>
+<p>Configured with:../configure <strong>–prefix=/usr</strong>  –mandir=/usr/share/man–infodir=/usr/share/info –enable-shared  –enable-threads=posix–enable-checking=release –with-system-zlib  –enable-__cxa_atexit–disable-libunwind-exceptions   –enable-libgcj-multifile–enable-languages=c,c++,objc,obj-c++,java,fortran,ada–enable-java-awt=gtk  –disable-dssi  –enable-plugin–with-java-home=/usr/lib/jvm/java-1.4.2-gcj-1.4.2.0/jre–with-cpu=generic  –host=x86_64-redhat-linux</p>
+<p>Thread model:posix</p>
+<p>gcc version 4.1.2 20080704(Red Hat 4.1.2-46)</p>
+<p>在安装g++时，指定了prefix，那么内定搜索目录就是：</p>
+<p>Prefix/include</p>
+<p>Prefix/local/include</p>
+<p>Prefix/lib/gcc/–host/–version/include</p>
+<p>编译时可以通过-nostdinc++选项屏蔽对内定目录搜索头文件。</p>
+<h2 id="库搜索路径"><a href="#库搜索路径" class="headerlink" title="库搜索路径"></a>库搜索路径</h2><p>在编译之后，程序要进行链接操作，前面指出，链接不管是动态和是静态，GCC这个程序，必须确认“真的有”那些头文件的实现。于是就需要定位找到那些文件。与include的情景差不多。使用绝对目录是可以的，但不适于管理。于是就出现了lib搜索路径这个环境变量。LIBRARY_PATH。</p>
+<p>他们的搜索路径为：</p>
+<p><strong>库文件：</strong></p>
+<p>编译的时候：</p>
+<p>①gcc会去找-L</p>
+<p>②再找gcc的环境变量LIBRARY_PATH</p>
+<p>③再找内定目录/lib /usr/lib/usr/local/lib 这是当初compile gcc时写在程序内的（不可配置的？）</p>
+<p><strong>运行时动态库的搜索路径</strong></p>
+<p><strong>(不要把这个和库的搜索路径混淆了，这里程序执行的时候有linux系统/usr/bin/ld程序控制的过程，这里只是顺带介绍。以完整程序整个生命周期。编译、链接、启动，装载（包括动态装载)、执行）：</strong></p>
+<p>动态库的搜索路径搜索的先后顺序是：</p>
+<p>①编译目标代码时指定的动态库搜索路径（这是通过gcc 的参数”-Wl,-rpath,”指定。当指定多个动态库搜索路径时，路径之间用冒号”：”分隔）</p>
+<p>②环境变量LD_LIBRARY_PATH指定的动态库搜索路径（当通过该环境变量指定多个动态库搜索路径时，路径之间用冒号”：”分隔）</p>
+<p>③配置文件/etc/ld.so.conf中指定的动态库搜索路径；</p>
+<p>④默认的动态库搜索路径/lib；</p>
+<p>⑤默认的动态库搜索路径/usr/lib。</p>
+<p>我们在来对GCC这个命令的这一方面进行总结一下。</p>
+<p>编译的时候使用-I命令可以装入include搜索路径。</p>
+<p>连接的时候使用-l  -L命令可以装入连接搜索路径或文件</p>
+<p>执行的时候。在当初编译连接时候使用-Wl 这个可以装入动态库的搜索路径。</p>
+<h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p><a href="http://blog.sina.com.cn/s/blog_93b45b0f01011nrz.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_93b45b0f01011nrz.html</a></p>
+<hr>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sr-c</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://sr-c.github.io/2018/07/16/LIBRARY-PATH/" title="【转载】环境变量，include搜索路径，lib库搜索路径">https://sr-c.github.io/2018/07/16/LIBRARY-PATH/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/include/" rel="tag"># include</a>
+          
+            <a href="/tags/library/" rel="tag"># library</a>
+          
+            <a href="/tags/path/" rel="tag"># path</a>
+          
+            <a href="/tags/gcc/" rel="tag"># gcc</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/环境变量/" rel="tag"># 环境变量</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/15/pasa-install/" rel="next" title="PASA的安装">
+                <i class="fa fa-chevron-left"></i> PASA的安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/16/pilon/" rel="prev" title="Pilon的使用">
+                Pilon的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="sr-c">
+            
+              <p class="site-author-name" itemprop="name">sr-c</p>
+              <div class="site-description motion-element" itemprop="description">sr-c's blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">120</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.mintos.org/" title="http://www.mintos.org/" rel="noopener" target="_blank">薄荷开源网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.suse.org.cn/" title="https://forum.suse.org.cn/" rel="noopener" target="_blank">openSUSE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://man.linuxde.net/" title="http://man.linuxde.net/" rel="noopener" target="_blank">linuxde</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/xudongliang/" title="http://www.cnblogs.com/xudongliang/" rel="noopener" target="_blank">庐州月光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://qinqianshan.com/" title="http://qinqianshan.com/" rel="noopener" target="_blank">Sam's Note</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量"><span class="nav-number">1.</span> <span class="nav-text">环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统环境变量"><span class="nav-number">1.1.</span> <span class="nav-text">系统环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序环境变量"><span class="nav-number">1.2.</span> <span class="nav-text">程序环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#include搜索路径"><span class="nav-number">2.</span> <span class="nav-text">include搜索路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库搜索路径"><span class="nav-number">3.</span> <span class="nav-text">库搜索路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">4.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-tint"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sr-c</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

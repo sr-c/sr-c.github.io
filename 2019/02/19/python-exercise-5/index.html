@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=7.1.2" color="#222">
+
+
+  <link rel="manifest" href="/favicons/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在Rosalind上进行练习">
+<meta name="keywords" content="Python,Rosalind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python练习5">
+<meta property="og:url" content="https://sr-c.github.io/2019/02/19/python-exercise-5/index.html">
+<meta property="og:site_name" content="SR-C">
+<meta property="og:description" content="在Rosalind上进行练习">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-12T09:50:17.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python练习5">
+<meta name="twitter:description" content="在Rosalind上进行练习">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SR-C" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sr-c.github.io/2019/02/19/python-exercise-5/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python练习5 | SR-C</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SR-C</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sr-c.github.io/2019/02/19/python-exercise-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sr-c">
+      <meta itemprop="description" content="sr-c's blog">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SR-C">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python练习5
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-19 16:20:13" itemprop="dateCreated datePublished" datetime="2019-02-19T16:20:13+08:00">2019-02-19</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="description">在Rosalind上进行练习</p>
+
+<a id="more"></a>
+
+<h2 id="计算肽链的分子量"><a href="#计算肽链的分子量" class="headerlink" title="计算肽链的分子量"></a>计算肽链的分子量</h2><p><a href="http://rosalind.info/problems/prtm/" target="_blank" rel="noopener">http://rosalind.info/problems/prtm/</a></p>
+<p>值得注意的是，最后一个氨基酸中一个水分子的分子量18.01056 Da. 但我的结果中没有加上这个水，仍然提示我为正确答案，可见还是比较宽松的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line">mass_table = dict(A=<span class="number">71.03711</span>, C=<span class="number">103.00919</span>, D=<span class="number">115.02694</span>, E=<span class="number">129.04259</span>, F=<span class="number">147.06841</span>, G=<span class="number">57.02146</span>, H=<span class="number">137.05891</span>, I=<span class="number">113.08406</span>,</span><br><span class="line">                  K=<span class="number">128.09496</span>, L=<span class="number">113.08406</span>, M=<span class="number">131.04049</span>, N=<span class="number">114.04293</span>, P=<span class="number">97.05276</span>, Q=<span class="number">128.05858</span>, R=<span class="number">156.10111</span>, S=<span class="number">87.03203</span>,</span><br><span class="line">                  T=<span class="number">101.04768</span>, V=<span class="number">99.06841</span>, W=<span class="number">186.07931</span>, Y=<span class="number">163.06333</span>)</span><br><span class="line">prot_mass = <span class="number">0</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"rosalind_prtm.txt"</span>) <span class="keyword">as</span> prot:</span><br><span class="line">    pro_line = prot.readline().strip()</span><br><span class="line"><span class="comment">#    for i in range(len(pro_line)):</span></span><br><span class="line"><span class="comment">#        prot_mass += mass_table[pro_line[i]]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> pro_line:</span><br><span class="line">        prot_mass += mass_table[i]</span><br><span class="line">    print(prot_mass)</span><br></pre></td></tr></table></figure>
+
+<h3 id="他山之石"><a href="#他山之石" class="headerlink" title="他山之石"></a>他山之石</h3><p>快速输入字符串，并转换为字典的方式值得学习。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">mmt = <span class="string">"""</span></span><br><span class="line"><span class="string">A   71.03711</span></span><br><span class="line"><span class="string">C   103.00919</span></span><br><span class="line"><span class="string">D   115.02694</span></span><br><span class="line"><span class="string">E   129.04259</span></span><br><span class="line"><span class="string">F   147.06841</span></span><br><span class="line"><span class="string">G   57.02146</span></span><br><span class="line"><span class="string">H   137.05891</span></span><br><span class="line"><span class="string">I   113.08406</span></span><br><span class="line"><span class="string">K   128.09496</span></span><br><span class="line"><span class="string">L   113.08406</span></span><br><span class="line"><span class="string">M   131.04049</span></span><br><span class="line"><span class="string">N   114.04293</span></span><br><span class="line"><span class="string">P   97.05276</span></span><br><span class="line"><span class="string">Q   128.05858</span></span><br><span class="line"><span class="string">R   156.10111</span></span><br><span class="line"><span class="string">S   87.03203</span></span><br><span class="line"><span class="string">T   101.04768</span></span><br><span class="line"><span class="string">V   99.06841</span></span><br><span class="line"><span class="string">W   186.07931</span></span><br><span class="line"><span class="string">Y   163.06333</span></span><br><span class="line"><span class="string">"""</span>.split()</span><br><span class="line">mmt = dict(zip(mmt[::<span class="number">2</span>],map(float,mmt[<span class="number">1</span>::<span class="number">2</span>])))</span><br><span class="line"></span><br><span class="line">s = <span class="string">"SKADYEK"</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"%.2f"</span>%(sum(map(<span class="keyword">lambda</span> x:mmt[x],s))+<span class="number">18.01528</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="孟德尔第二定律"><a href="#孟德尔第二定律" class="headerlink" title="孟德尔第二定律"></a>孟德尔第二定律</h2><p><a href="http://rosalind.info/problems/lia/" target="_blank" rel="noopener">http://rosalind.info/problems/lia/</a></p>
+<p>亲本(第0代)的基因型为<code>AaBb</code>，与基因型同为<code>AaBa</code>的个体产生2个后代。之后，每个个体产生2个后代，且均与<code>AaBa</code>基因型的个体婚配。求在第k代的所有个体中，至少有N个个体的基因型为<code>AaBb</code>的概率。</p>
+<blockquote>
+<p>题干中专门提示了不需要计算每一代中个体AaBb基因型婚配的具体情况。这是因为每代的个体都与AaBa婚配，因此种群中A/a,B/b基因型的频率保持不变，一直为1/2。因此每一代中个体为AaBb基因型的概率均为1/2*1/2=1/4。</p>
+<p>接下来就是一个高中概率论的排列组合问题。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"rosalind_lia.txt"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    (k, N) = f.readline().strip().split(<span class="string">" "</span>)</span><br><span class="line">    k = int(k)</span><br><span class="line">    N = int(N)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算排列数A(m, n)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">aR</span><span class="params">(m, n)</span>:</span></span><br><span class="line">    be = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        be *= m - i</span><br><span class="line">    <span class="keyword">return</span> be</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算组合数C(m, n)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cR</span><span class="params">(m, n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> m &lt; n:</span><br><span class="line">        print(<span class="string">"error input"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> aR(m, n) / aR(n, n)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算第k代(2^k个体)中至少含有N个0.25概率事件发生的总概率</span></span><br><span class="line">rate = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">    rate += cR(<span class="number">2</span> ** k, i) * <span class="number">0.25</span> ** i * <span class="number">0.75</span> ** (<span class="number">2</span> ** k - i)</span><br><span class="line"></span><br><span class="line">ans = <span class="number">1</span> - rate</span><br><span class="line">print(ans)</span><br></pre></td></tr></table></figure>
+
+<h3 id="他山之石-1"><a href="#他山之石-1" class="headerlink" title="他山之石"></a>他山之石</h3><p>其他人的答案中，使用R能够更方便地进行这个排列组合计算</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pbinom(N-<span class="number">1</span>, <span class="number">2</span>^k, <span class="number">0.25</span>, lower.tail=<span class="literal">F</span>)</span><br></pre></td></tr></table></figure>
+
+<p>python中使用scipy也可以计算排列组合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="keyword">from</span> scipy.special <span class="keyword">import</span> comb, perm</span><br><span class="line">&gt;&gt; perm(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line"><span class="number">6.0</span></span><br><span class="line">&gt;&gt; comb(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line"><span class="number">3.0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p><a href="http://rosalind.info/problems/prtm/solutions/" target="_blank" rel="noopener">http://rosalind.info/problems/prtm/solutions/</a></p>
+<p><a href="http://rosalind.info/problems/lia/solutions/" target="_blank" rel="noopener">http://rosalind.info/problems/lia/solutions/</a></p>
+<p><a href="https://blog.csdn.net/lanchunhui/article/details/51824602" target="_blank" rel="noopener">https://blog.csdn.net/lanchunhui/article/details/51824602</a></p>
+<hr>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sr-c</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://sr-c.github.io/2019/02/19/python-exercise-5/" title="Python练习5">https://sr-c.github.io/2019/02/19/python-exercise-5/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Rosalind/" rel="tag"># Rosalind</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/16/Error-C-stack-usage-is-too-close-to-the-limit/" rel="next" title="【debug】C stack usage is too close to the limit">
+                <i class="fa fa-chevron-left"></i> 【debug】C stack usage is too close to the limit
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/20/HiC-pro-quickstart/" rel="prev" title="HiC-Pro使用手册">
+                HiC-Pro使用手册 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="sr-c">
+            
+              <p class="site-author-name" itemprop="name">sr-c</p>
+              <div class="site-description motion-element" itemprop="description">sr-c's blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">120</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.mintos.org/" title="http://www.mintos.org/" rel="noopener" target="_blank">薄荷开源网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.suse.org.cn/" title="https://forum.suse.org.cn/" rel="noopener" target="_blank">openSUSE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://man.linuxde.net/" title="http://man.linuxde.net/" rel="noopener" target="_blank">linuxde</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/xudongliang/" title="http://www.cnblogs.com/xudongliang/" rel="noopener" target="_blank">庐州月光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://qinqianshan.com/" title="http://qinqianshan.com/" rel="noopener" target="_blank">Sam's Note</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算肽链的分子量"><span class="nav-number">1.</span> <span class="nav-text">计算肽链的分子量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#他山之石"><span class="nav-number">1.1.</span> <span class="nav-text">他山之石</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#孟德尔第二定律"><span class="nav-number">2.</span> <span class="nav-text">孟德尔第二定律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#他山之石-1"><span class="nav-number">2.1.</span> <span class="nav-text">他山之石</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">3.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-tint"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sr-c</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

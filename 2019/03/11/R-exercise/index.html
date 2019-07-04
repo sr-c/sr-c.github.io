@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=7.1.2" color="#222">
+
+
+  <link rel="manifest" href="/favicons/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="生信技能树的R语言练习题">
+<meta name="keywords" content="R,生信技能树,biotrainee">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言练习题">
+<meta property="og:url" content="https://sr-c.github.io/2019/03/11/R-exercise/index.html">
+<meta property="og:site_name" content="SR-C">
+<meta property="og:description" content="生信技能树的R语言练习题">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-12T09:50:17.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R语言练习题">
+<meta name="twitter:description" content="生信技能树的R语言练习题">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SR-C" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sr-c.github.io/2019/03/11/R-exercise/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>R语言练习题 | SR-C</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SR-C</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sr-c.github.io/2019/03/11/R-exercise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sr-c">
+      <meta itemprop="description" content="sr-c's blog">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SR-C">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">R语言练习题
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-11 15:52:28" itemprop="dateCreated datePublished" datetime="2019-03-11T15:52:28+08:00">2019-03-11</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="description">生信技能树的R语言练习题</p>
+
+<a id="more"></a>
+
+<h2 id="初级"><a href="#初级" class="headerlink" title="初级"></a>初级</h2><p><a href="http://www.bio-info-trainee.com/3793.html" target="_blank" rel="noopener">http://www.bio-info-trainee.com/3793.html</a></p>
+<h3 id="1-打开-Rstudio-告诉我它的工作目录。"><a href="#1-打开-Rstudio-告诉我它的工作目录。" class="headerlink" title="1. 打开 Rstudio 告诉我它的工作目录。"></a>1. 打开 Rstudio 告诉我它的工作目录。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getwd()</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值）"><a href="#2-新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值）" class="headerlink" title="2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值）"></a>2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值）</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Character</span></span><br><span class="line">v_char &lt;- c(<span class="string">"www"</span>,<span class="string">"biotrainee"</span>,<span class="string">"com"</span>)</span><br><span class="line"><span class="comment"># Numeric</span></span><br><span class="line">v_num &lt;- seq(<span class="number">1</span>,<span class="number">10</span>)</span><br><span class="line"><span class="comment"># Logical</span></span><br><span class="line">v_logical &lt;- c(<span class="literal">TRUE</span>, <span class="literal">FALSE</span>, <span class="literal">FALSE</span>)</span><br><span class="line"><span class="comment"># Interger</span></span><br><span class="line">v_inter &lt;- <span class="number">2L</span></span><br><span class="line"><span class="comment"># Complex</span></span><br><span class="line">v_complex &lt;- <span class="number">2</span>+<span class="number">5i</span></span><br><span class="line"><span class="comment"># Raw</span></span><br><span class="line">v_raw &lt;- charToRaw(<span class="string">"Hello"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-告诉我-getwd-返回的是什么？"><a href="#3-告诉我-getwd-返回的是什么？" class="headerlink" title="3. 告诉我 getwd() 返回的是什么？"></a>3. 告诉我 getwd() 返回的是什么？</h3><blockquote>
+<p>当前工作目录</p>
+</blockquote>
+<h3 id="4-新建5个其它数据结构，矩阵，数组，数据框，列表，因子（重点是数据框，矩阵）"><a href="#4-新建5个其它数据结构，矩阵，数组，数据框，列表，因子（重点是数据框，矩阵）" class="headerlink" title="4. 新建5个其它数据结构，矩阵，数组，数据框，列表，因子（重点是数据框，矩阵）"></a>4. 新建5个其它数据结构，矩阵，数组，数据框，列表，因子（重点是数据框，矩阵）</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Matrix</span></span><br><span class="line">matrix1 &lt;- matrix(seq(<span class="number">1</span>,<span class="number">10</span>), nrow = <span class="number">2</span>, ncol = <span class="number">5</span>, byrow = <span class="literal">TRUE</span>)</span><br><span class="line"><span class="comment"># Array</span></span><br><span class="line">array1 &lt;- array(c(<span class="number">1</span>,<span class="number">0</span>), dim = c(<span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>))</span><br><span class="line"><span class="comment"># data frame</span></span><br><span class="line">data_frame1 &lt;- data.frame(</span><br><span class="line">    gender = c(<span class="string">"male"</span>, <span class="string">"female"</span>, <span class="string">"male"</span>),</span><br><span class="line">    height = c(<span class="number">130</span>, <span class="number">142</span>, <span class="number">137</span>),</span><br><span class="line">    age = c(<span class="number">7</span>, <span class="number">6</span>, <span class="number">6</span>)</span><br><span class="line">    )</span><br><span class="line"><span class="comment"># List</span></span><br><span class="line">list1 &lt;- list(v_char, v_num, <span class="number">1</span>)</span><br><span class="line"><span class="comment"># Factor</span></span><br><span class="line">factor1 &lt;- factor(v_char)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-在你新建的数据框进行切片操作，比如首先取第1，3行，-然后取第4，6列"><a href="#5-在你新建的数据框进行切片操作，比如首先取第1，3行，-然后取第4，6列" class="headerlink" title="5. 在你新建的数据框进行切片操作，比如首先取第1，3行， 然后取第4，6列"></a>5. 在你新建的数据框进行切片操作，比如首先取第1，3行， 然后取第4，6列</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data_frame1[,<span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">data_frame1[<span class="number">4</span>,<span class="number">6</span>:]</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-使用data函数来加载R内置数据集-rivers-描述它。并且可以查看更多的R语言内置的数据集："><a href="#6-使用data函数来加载R内置数据集-rivers-描述它。并且可以查看更多的R语言内置的数据集：" class="headerlink" title="6. 使用data函数来加载R内置数据集 rivers 描述它。并且可以查看更多的R语言内置的数据集："></a>6. 使用data函数来加载R内置数据集 rivers 描述它。并且可以查看更多的R语言内置的数据集：</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data(rivers)</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-下载-https-www-ncbi-nlm-nih-gov-sra-term-SRP133642-里面的-RunInfo-Table-文件读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。"><a href="#7-下载-https-www-ncbi-nlm-nih-gov-sra-term-SRP133642-里面的-RunInfo-Table-文件读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。" class="headerlink" title="7. 下载 https://www.ncbi.nlm.nih.gov/sra?term=SRP133642 里面的 RunInfo Table 文件读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。"></a>7. 下载 <a href="https://www.ncbi.nlm.nih.gov/sra?term=SRP133642" target="_blank" rel="noopener">https://www.ncbi.nlm.nih.gov/sra?term=SRP133642</a> 里面的 RunInfo Table 文件读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &lt;- read.table(<span class="string">"SraRunTable.txt"</span>, header = <span class="literal">TRUE</span>, sep = <span class="string">'\t'</span>)</span><br><span class="line">str(a)</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-下载-https-www-ncbi-nlm-nih-gov-geo-query-acc-cgi-acc-GSE111229-里面的样本信息读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。"><a href="#8-下载-https-www-ncbi-nlm-nih-gov-geo-query-acc-cgi-acc-GSE111229-里面的样本信息读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。" class="headerlink" title="8. 下载 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111229 里面的样本信息读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。"></a>8. 下载 <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111229" target="_blank" rel="noopener">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111229</a> 里面的样本信息读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b &lt;- read.table(<span class="string">"GSE111229_series_matrix.txt.gz"</span>, comment.char = <span class="string">'!'</span>, sep = <span class="string">'\t'</span>, header = <span class="literal">TRUE</span>)</span><br><span class="line">str(b)</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-把两个表关联起来，使用merge函数。"><a href="#9-把两个表关联起来，使用merge函数。" class="headerlink" title="9. 把两个表关联起来，使用merge函数。"></a>9. 把两个表关联起来，使用merge函数。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c &lt;- merge(a, b, by = <span class="string">"Sample_Name"</span>, all.x = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-对前面读取的-RunInfo-Table-文件在R里面探索其MBases列，包括-箱线图-boxplot-和五分位数-fivenum-，还有频数图-hist-，以及密度图-density-。"><a href="#10-对前面读取的-RunInfo-Table-文件在R里面探索其MBases列，包括-箱线图-boxplot-和五分位数-fivenum-，还有频数图-hist-，以及密度图-density-。" class="headerlink" title="10. 对前面读取的 RunInfo Table 文件在R里面探索其MBases列，包括 箱线图(boxplot)和五分位数(fivenum)，还有频数图(hist)，以及密度图(density) 。"></a>10. 对前面读取的 RunInfo Table 文件在R里面探索其MBases列，包括 箱线图(boxplot)和五分位数(fivenum)，还有频数图(hist)，以及密度图(density) 。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; boxplot(sra_table$MBases)</span><br><span class="line">&gt; fivenum(sra_table$MBases)</span><br><span class="line">[<span class="number">1</span>]  <span class="number">0</span>  <span class="number">8</span> <span class="number">12</span> <span class="number">16</span> <span class="number">74</span></span><br><span class="line">&gt; hist(sra_table$MBases)</span><br><span class="line">&gt; density(sra_table$MBases)</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-把前面读取的样本信息表格的样本名字根据下划线分割看第3列元素的统计情况。第三列代表该样本所在的plate"><a href="#11-把前面读取的样本信息表格的样本名字根据下划线分割看第3列元素的统计情况。第三列代表该样本所在的plate" class="headerlink" title="11. 把前面读取的样本信息表格的样本名字根据下划线分割看第3列元素的统计情况。第三列代表该样本所在的plate"></a>11. 把前面读取的样本信息表格的样本名字根据下划线分割看第3列元素的统计情况。第三列代表该样本所在的plate</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plate=unlist(lapply(e[,<span class="number">2</span>],<span class="keyword">function</span>(x)&#123;</span><br><span class="line"> x</span><br><span class="line"> strsplit(x,<span class="string">'_'</span>)[[<span class="number">1</span>]][<span class="number">3</span>]</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+
+<h2 id="中级"><a href="#中级" class="headerlink" title="中级"></a>中级</h2><p><a href="http://www.bio-info-trainee.com/3750.html" target="_blank" rel="noopener">http://www.bio-info-trainee.com/3750.html</a></p>
+<h3 id="1-请根据R包org-Hs-eg-db找到下面ensembl-基因ID-对应的基因名-symbol"><a href="#1-请根据R包org-Hs-eg-db找到下面ensembl-基因ID-对应的基因名-symbol" class="headerlink" title="1. 请根据R包org.Hs.eg.db找到下面ensembl 基因ID 对应的基因名(symbol)"></a>1. 请根据R包org.Hs.eg.db找到下面ensembl 基因ID 对应的基因名(symbol)</h3><blockquote>
+<p>ENSG00000000003.13<br>ENSG00000000005.5<br>ENSG00000000419.11<br>ENSG00000000457.12<br>ENSG00000000460.15<br>ENSG00000000938.11</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(org.Hs.eg.db)</span><br><span class="line">g2s=toTable(org.Hs.egSYMBOL)</span><br><span class="line">g2e=toTable(org.Hs.egENSEMBL)</span><br><span class="line">g2s_e &lt;- merge(g2s, g2e, by = <span class="string">'gene_id'</span>, all = <span class="literal">TRUE</span>)</span><br><span class="line">esbID &lt;- c(<span class="string">"ENSG00000000003.13"</span>,</span><br><span class="line">+             <span class="string">"ENSG00000000005.5"</span>,</span><br><span class="line">+             <span class="string">"ENSG00000000419.11"</span>,</span><br><span class="line">+             <span class="string">"ENSG00000000457.12"</span>,</span><br><span class="line">+             <span class="string">"ENSG00000000460.15"</span>,</span><br><span class="line">+             <span class="string">"ENSG00000000938.11"</span>)</span><br><span class="line"><span class="comment"># 使用strsplit处理文本ID，取.前的部分</span></span><br><span class="line">ID6 &lt;- unlist(lapply(esbID, <span class="keyword">function</span>(x)&#123;</span><br><span class="line"> strsplit(x,<span class="string">'.'</span>,fixed = <span class="literal">TRUE</span>)[[<span class="number">1</span>]][<span class="number">1</span>]</span><br><span class="line"> &#125;)</span><br><span class="line">)</span><br><span class="line">ID6 &lt;- data.frame(ensembl_id = ID6)</span><br><span class="line">merge(ID6, g2s_e, by = <span class="string">"ensembl_id"</span>, all.x = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-根据R包hgu133a-db找到下面探针对应的基因名-symbol"><a href="#2-根据R包hgu133a-db找到下面探针对应的基因名-symbol" class="headerlink" title="2. 根据R包hgu133a.db找到下面探针对应的基因名(symbol)"></a>2. 根据R包hgu133a.db找到下面探针对应的基因名(symbol)</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rm(list = ls())</span><br><span class="line">options(stringsAsFactors = <span class="literal">F</span>)</span><br><span class="line"><span class="keyword">library</span>(hgu133a.db)</span><br><span class="line">ids=toTable(hgu133aSYMBOL)</span><br><span class="line">pr_id &lt;- read.table(<span class="string">"R_test2.txt"</span>, col.names = c(<span class="string">"probe_id"</span>))</span><br><span class="line">merge(pr_id, ids, by = <span class="string">"probe_id"</span>, all.x = <span class="literal">F</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-找到R包CLL内置的数据集的表达矩阵里面的TP53基因的表达量，并且绘制在-progres-stable分组的boxplot图"><a href="#3-找到R包CLL内置的数据集的表达矩阵里面的TP53基因的表达量，并且绘制在-progres-stable分组的boxplot图" class="headerlink" title="3. 找到R包CLL内置的数据集的表达矩阵里面的TP53基因的表达量，并且绘制在 progres.-stable分组的boxplot图"></a>3. 找到R包CLL内置的数据集的表达矩阵里面的TP53基因的表达量，并且绘制在 progres.-stable分组的boxplot图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">rm(list = ls())</span><br><span class="line">options(stringsAsFactors = <span class="literal">F</span>)</span><br><span class="line">suppressPackageStartupMessages(<span class="keyword">library</span>(CLL))</span><br><span class="line">data(sCLLex)</span><br><span class="line">exprSet=exprs(sCLLex) </span><br><span class="line"><span class="keyword">library</span>(hgu95av2.db)</span><br><span class="line">columns(hgu95av2.db)</span><br><span class="line">TP53_prob &lt;- select(hgu95av2.db, </span><br><span class="line">       keys = c(<span class="string">"TP53"</span>),</span><br><span class="line">       columns = c(<span class="string">"ALIAS"</span>,<span class="string">"PROBEID"</span>),</span><br><span class="line">       keytype = <span class="string">"ALIAS"</span>)</span><br><span class="line">boxplot(t(exprSet[TP53_prob$PROBEID,]))</span><br><span class="line">boxplot(exprSet[<span class="number">1</span>,]~gourp_list)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-找到BRCA1基因在TCGA数据库的乳腺癌数据集-Breast-Invasive-Carcinoma-TCGA-PanCancer-Atlas-的表达情况"><a href="#4-找到BRCA1基因在TCGA数据库的乳腺癌数据集-Breast-Invasive-Carcinoma-TCGA-PanCancer-Atlas-的表达情况" class="headerlink" title="4. 找到BRCA1基因在TCGA数据库的乳腺癌数据集(Breast Invasive Carcinoma (TCGA, PanCancer Atlas))的表达情况"></a>4. 找到BRCA1基因在TCGA数据库的乳腺癌数据集(Breast Invasive Carcinoma (TCGA, PanCancer Atlas))的表达情况</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># http://www.cbioportal.org/index.do</span></span><br><span class="line"><span class="comment"># Select Studies 选项中输入Breast Invasive Carcinoma PanCancer 搜索并选中目标数据集</span></span><br><span class="line"><span class="comment"># Enter Genes 数据框中输入目标基因BRCA1</span></span><br><span class="line"><span class="comment"># 点击Submit Query提交搜索请求</span></span><br><span class="line"><span class="comment"># 结果页面中，Plots选项卡选择合适数据进行绘图，或下载数据</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-找到TP53基因在TCGA数据库的乳腺癌数据集的表达量分组看其是否影响生存"><a href="#5-找到TP53基因在TCGA数据库的乳腺癌数据集的表达量分组看其是否影响生存" class="headerlink" title="5. 找到TP53基因在TCGA数据库的乳腺癌数据集的表达量分组看其是否影响生存"></a>5. 找到TP53基因在TCGA数据库的乳腺癌数据集的表达量分组看其是否影响生存</h3><blockquote>
+<p><a href="http://www.oncolnc.org/kaplan/?lower=50&amp;upper=50&amp;cancer=BRCA&amp;gene_id=7157&amp;raw=TP53&amp;species=mRNA" target="_blank" rel="noopener">http://www.oncolnc.org/kaplan/?lower=50&amp;upper=50&amp;cancer=BRCA&amp;gene_id=7157&amp;raw=TP53&amp;species=mRNA</a></p>
+</blockquote>
+<h3 id="6-下载数据集GSE17215的表达矩阵并且提取下面的基因画热图"><a href="#6-下载数据集GSE17215的表达矩阵并且提取下面的基因画热图" class="headerlink" title="6. 下载数据集GSE17215的表达矩阵并且提取下面的基因画热图"></a>6. 下载数据集GSE17215的表达矩阵并且提取下面的基因画热图</h3><blockquote>
+<p>ACTR3B ANLN BAG1 BCL2 BIRC5 BLVRA CCNB1 CCNE1 CDC20 CDC6 CDCA1 CDH3 CENPF CEP55 CXXC5 EGFR ERBB2 ESR1 EXO1 FGFR4 FOXA1 FOXC1 GPR160 GRB7 KIF2C KNTC2 KRT14 KRT17 KRT5 MAPT MDM2 MELK MIA MKI67 MLPH MMP11 MYBL2 MYC NAT1 ORC6L PGR PHGDH PTTG1 RRM2 SFRP1 SLC39A6 TMEM45B TYMS UBE2C UBE2T</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载链接ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE17nnn/GSE17215/matrix/GSE17215_series_matrix.txt.gz</span></span><br><span class="line"><span class="keyword">library</span>(hthgu133a.db)</span><br><span class="line">expMa &lt;- read.table(<span class="string">"zhong6/GSE17215_series_matrix.txt.gz"</span>,</span><br><span class="line">                    comment.char = <span class="string">"!"</span>,</span><br><span class="line">                    sep = <span class="string">"\t"</span>,</span><br><span class="line">                    header = <span class="literal">TRUE</span>,</span><br><span class="line">                    row.names = <span class="string">"ID_REF"</span>)</span><br><span class="line">ALIAS &lt;- <span class="string">"ACTR3B ANLN BAG1 BCL2 BIRC5 BLVRA CCNB1 CCNE1 CDC20 CDC6 CDCA1 CDH3 CENPF CEP55 CXXC5 EGFR ERBB2 ESR1 EXO1 FGFR4 FOXA1 FOXC1 GPR160 GRB7 KIF2C KNTC2 KRT14 KRT17 KRT5 MAPT MDM2 MELK MIA MKI67 MLPH MMP11 MYBL2 MYC NAT1 ORC6L PGR PHGDH PTTG1 RRM2 SFRP1 SLC39A6 TMEM45B TYMS UBE2C UBE2T"</span></span><br><span class="line">ALIAS_id &lt;- strsplit(ALIAS, split = <span class="string">" "</span>)[[<span class="number">1</span>]]</span><br><span class="line">probe_id &lt;- select(hthgu133a.db, </span><br><span class="line">                    keys = ALIAS_id,</span><br><span class="line">                    columns = c(<span class="string">"ALIAS"</span>,<span class="string">"PROBEID"</span>),</span><br><span class="line">                    keytype = <span class="string">"ALIAS"</span>)</span><br><span class="line">names(probe_id) &lt;- c(<span class="string">"ALIAS"</span>,<span class="string">"ID_REF"</span>)</span><br><span class="line">exprSet &lt;- merge(probe_id, expMa, by = <span class="string">"ID_REF"</span>)[,-<span class="number">2</span>]</span><br><span class="line">row.names(exprSet) &lt;- exprSet$ID_REF</span><br><span class="line">exprSet &lt;- exprSet[,-<span class="number">1</span>]</span><br><span class="line">exprSet &lt;- log(edgeR::cpm(exprSet) + <span class="number">1</span>)</span><br><span class="line">pheatmap::pheatmap(log(exprSet + <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-下载数据集GSE24673的表达矩阵计算样本的相关性并且绘制热图，需要标记上样本分组信息"><a href="#7-下载数据集GSE24673的表达矩阵计算样本的相关性并且绘制热图，需要标记上样本分组信息" class="headerlink" title="7. 下载数据集GSE24673的表达矩阵计算样本的相关性并且绘制热图，需要标记上样本分组信息"></a>7. 下载数据集GSE24673的表达矩阵计算样本的相关性并且绘制热图，需要标记上样本分组信息</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">expMa &lt;- read.table(<span class="string">"zhong7/GSE24673_series_matrix.txt.gz"</span>,</span><br><span class="line">                    comment.char = <span class="string">"!"</span>,</span><br><span class="line">                    sep = <span class="string">"\t"</span>,</span><br><span class="line">                    header = <span class="literal">TRUE</span>,</span><br><span class="line">                    row.names = <span class="string">"ID_REF"</span>)</span><br><span class="line">dim(expMa)</span><br><span class="line">group_list &lt;- factor(c(rep(<span class="string">"RB_139_09"</span>,<span class="number">3</span>),rep(<span class="string">"RB_535_09"</span>,<span class="number">3</span>), rep(<span class="string">"RB_984_09"</span>,<span class="number">3</span>), rep(<span class="string">"Healthy"</span>, <span class="number">2</span>)))</span><br><span class="line"><span class="comment"># pheatmap</span></span><br><span class="line">choosen_gene &lt;- expMa[names(sort(apply(expMa,<span class="number">1</span>,mad),decreasing = <span class="literal">TRUE</span>))[<span class="number">1</span>:<span class="number">50</span>],]</span><br><span class="line">heatMatrix &lt;- t(scale(t(choosen_gene)))</span><br><span class="line">annotation_col &lt;- data.frame(group_list=group_list)</span><br><span class="line">rownames(annotation_col) &lt;- colnames(choosen_gene)</span><br><span class="line">pheatmap::pheatmap(heatMatrix, annotation_col = annotation_col)</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-找到-GPL6244-platform-of-Affymetrix-Human-Gene-1-0-ST-Array-对应的R的bioconductor注释包，并且安装它！"><a href="#8-找到-GPL6244-platform-of-Affymetrix-Human-Gene-1-0-ST-Array-对应的R的bioconductor注释包，并且安装它！" class="headerlink" title="8. 找到 GPL6244 platform of Affymetrix Human Gene 1.0 ST Array 对应的R的bioconductor注释包，并且安装它！"></a>8. 找到 GPL6244 platform of Affymetrix Human Gene 1.0 ST Array 对应的R的bioconductor注释包，并且安装它！</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">options(BioC_mirror=<span class="string">"https://mirrors.ustc.edu.cn/bioc/"</span>)</span><br><span class="line">options(<span class="string">"repos"</span> = c(CRAN=<span class="string">"https://mirrors.tuna.tsinghua.edu.cn/CRAN/"</span>))</span><br><span class="line">BiocManager::install(<span class="string">"hugene10sttranscriptcluster.db"</span>, version = <span class="string">"3.8"</span>)</span><br><span class="line"><span class="comment"># 直接根据关键字搜索，第一个结果可能是pd.hugene.1.0.st.v1, 但它并不是GPL6244正确的注释包。</span></span><br><span class="line"><span class="comment"># 关于芯片与注释包的对应关系，参考jimmy同学的文章https://www.jianshu.com/p/f6906ba703a0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="9-下载数据集GSE42872的表达矩阵，并且分别挑选出-所有样本的-平均表达量-sd-mad-最大的探针，并且找到它们对应的基因。"><a href="#9-下载数据集GSE42872的表达矩阵，并且分别挑选出-所有样本的-平均表达量-sd-mad-最大的探针，并且找到它们对应的基因。" class="headerlink" title="9. 下载数据集GSE42872的表达矩阵，并且分别挑选出 所有样本的(平均表达量/sd/mad/)最大的探针，并且找到它们对应的基因。"></a>9. 下载数据集GSE42872的表达矩阵，并且分别挑选出 所有样本的(平均表达量/sd/mad/)最大的探针，并且找到它们对应的基因。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(GEOquery)</span><br><span class="line">gset = getGEO(<span class="string">'GSE42872'</span>, GSEMatrix = <span class="literal">TRUE</span>, AnnotGPL = <span class="literal">FALSE</span>, getGPL= <span class="literal">FALSE</span>)</span><br><span class="line">exprSet = exprs(gset[[<span class="number">1</span>]])</span><br><span class="line"><span class="comment"># exprSet &lt;- exprSet[apply(exprSet, 1, function(x) sum(x&gt;1) &gt; 5),]</span></span><br><span class="line"><span class="comment"># exprSet &lt;- log(edgeR::cpm(exprSet) + 1)</span></span><br><span class="line"><span class="comment"># 处理中平均值最大的探针</span></span><br><span class="line">max_mean &lt;- names(sort(apply(exprSet,<span class="number">1</span>, mean), decreasing = <span class="literal">T</span>))[<span class="number">1</span>]</span><br><span class="line"><span class="comment"># 处理中sd最大的探针</span></span><br><span class="line">max_sd &lt;- names(sort(apply(exprSet,<span class="number">1</span>, sd), decreasing = <span class="literal">T</span>))[<span class="number">1</span>]</span><br><span class="line"><span class="comment"># 处理中mad最大的探针</span></span><br><span class="line">max_mad &lt;- names(sort(apply(exprSet,<span class="number">1</span>, mad), decreasing = <span class="literal">T</span>))[<span class="number">1</span>]</span><br><span class="line"><span class="comment"># 查询探针ID对应基因的symbol</span></span><br><span class="line"><span class="keyword">library</span>(hugene10sttranscriptcluster.db)</span><br><span class="line">select(hugene10sttranscriptcluster.db,</span><br><span class="line">       keys = c(max_mean, max_sd, max_mad),</span><br><span class="line">       columns = c(<span class="string">"SYMBOL"</span>),</span><br><span class="line">       keytype = <span class="string">"PROBEID"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-下载数据集GSE42872的表达矩阵，并且根据分组使用limma做差异分析，得到差异结果矩阵"><a href="#10-下载数据集GSE42872的表达矩阵，并且根据分组使用limma做差异分析，得到差异结果矩阵" class="headerlink" title="10. 下载数据集GSE42872的表达矩阵，并且根据分组使用limma做差异分析，得到差异结果矩阵"></a>10. 下载数据集GSE42872的表达矩阵，并且根据分组使用limma做差异分析，得到差异结果矩阵</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">gset = getGEO(<span class="string">'GSE42872'</span>, GSEMatrix = <span class="literal">TRUE</span>, AnnotGPL = <span class="literal">FALSE</span>, getGPL= <span class="literal">FALSE</span>)</span><br><span class="line">s &lt;- toTable(hugene10sttranscriptclusterSYMBOL)</span><br><span class="line">exprSet = exprs(gset[[<span class="number">1</span>]])</span><br><span class="line">group_list &lt;- as.character(c(rep(<span class="string">"Control"</span>,<span class="number">3</span>),rep(<span class="string">"Vemurafenib"</span>,<span class="number">3</span>)))</span><br><span class="line">dim(exprSet)</span><br><span class="line"><span class="comment"># 过滤【只保留和注释文件探针id相同的探针】</span></span><br><span class="line">efilt &lt;- exprSet[rownames(exprSet)%<span class="keyword">in</span>%s$probe_id,]</span><br><span class="line">dim(efilt)</span><br><span class="line"><span class="comment">## 整合1【目的：保证一个基因对应一个探针；如果基因和探针一一对应很好说，但如果一个基因对应多个探针：每个探针取一行的均值-》对应同一基因的探针取表达量最大的探针-》按照基因名给他们建索引，因为是按照基因来过滤探针（不用s$probe_id构建索引的原因是，看清楚我们的目的是让注释包的一个基因对应我们自己表达矩阵的一个探针。如果用s$probe_id那么结果就成了让注释包的一个探针对应我们自己表达矩阵的一个探针，当然这样也运行不成功，因为自己表达矩阵的探针过滤后的数量和注释包的探针数量不相等，这样没法一一对应。但基因名数量是不变的，什么是索引？以不变应万变的就是索引）】</span></span><br><span class="line">maxp = by(efilt,s$symbol,<span class="keyword">function</span>(x) rownames(x)[which.max(rowMeans(x))]) </span><br><span class="line">uniprobes = as.character(maxp)</span><br><span class="line">efilt=efilt[rownames(efilt)%<span class="keyword">in</span>%uniprobes,]</span><br><span class="line"><span class="comment">## 整合2【目的：将我们表达矩阵的行名换成刚才一对一的基因名，并且match这个函数保证了表达矩阵和注释包的顺序是一致的】</span></span><br><span class="line">rownames(efilt)=s[match(rownames(efilt),s$probe_id),<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 差异分析</span></span><br><span class="line">suppressMessages(<span class="keyword">library</span>(limma))</span><br><span class="line"><span class="comment">#limma需要三个矩阵：表达矩阵（efilt）、分组矩阵（design）、比较矩阵（contrast）</span></span><br><span class="line"><span class="comment">#先做一个分组矩阵～design，说明MAO是哪几个样本，MNO又是哪几个，其中1代表“是”</span></span><br><span class="line">design &lt;- model.matrix(~<span class="number">0</span>+factor(group_list))</span><br><span class="line">colnames(design) &lt;- levels(factor(group_list))</span><br><span class="line">rownames(design) &lt;- colnames(efilt)</span><br><span class="line">design</span><br><span class="line"><span class="comment">#再做一个比较矩阵【一般是case比control】</span></span><br><span class="line">contrast&lt;-makeContrasts(paste0(unique(group_list),collapse = <span class="string">"-"</span>),levels = design)</span><br><span class="line">contrast</span><br><span class="line"></span><br><span class="line">DEG &lt;- <span class="keyword">function</span>(efilt,design,contrast)&#123;</span><br><span class="line">  <span class="comment">##step1</span></span><br><span class="line">  fit &lt;- lmFit(efilt,design)</span><br><span class="line">  <span class="comment">##step2</span></span><br><span class="line">  fit2 &lt;- contrasts.fit(fit, contrast) </span><br><span class="line">  fit2 &lt;- eBayes(fit2)  </span><br><span class="line">  <span class="comment">##step3</span></span><br><span class="line">  mtx = topTable(fit2, coef=<span class="number">1</span>, n=<span class="literal">Inf</span>)</span><br><span class="line">  deg_mtx = na.omit(mtx) </span><br><span class="line">  <span class="keyword">return</span>(deg_mtx)</span><br><span class="line">&#125;</span><br><span class="line">DEG_mtx &lt;- DEG(efilt,design,contrast) <span class="comment">#得到全部的差异基因矩阵</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h2><p><a href="http://www.bio-info-trainee.com/3409.html" target="_blank" rel="noopener">http://www.bio-info-trainee.com/3409.html</a></p>
+<h3 id="1-安装一些R包："><a href="#1-安装一些R包：" class="headerlink" title="1.安装一些R包："></a>1.安装一些R包：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">数据包： ALL, CLL, pasilla, airway </span><br><span class="line">软件包：limma，DESeq2，clusterProfiler </span><br><span class="line">工具包：reshape2</span><br><span class="line">绘图包：ggplot2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BiocManager::install(<span class="string">"reshape2"</span>, version = <span class="string">"3.8"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-了解ExpressionSet对象，比如CLL包里面就有data-sCLLex-，找到它包含的元素，提取其表达矩阵-使用exprs函数-，查看其大小"><a href="#2-了解ExpressionSet对象，比如CLL包里面就有data-sCLLex-，找到它包含的元素，提取其表达矩阵-使用exprs函数-，查看其大小" class="headerlink" title="2. 了解ExpressionSet对象，比如CLL包里面就有data(sCLLex) ，找到它包含的元素，提取其表达矩阵(使用exprs函数)，查看其大小"></a>2. 了解ExpressionSet对象，比如<code>CLL</code>包里面就有<code>data(sCLLex)</code> ，找到它包含的元素，提取其表达矩阵(使用exprs函数)，查看其大小</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">library</span>(CLL)</span><br><span class="line"><span class="comment"># sCLLex是一个ExpressionSet对象，封装了表达矩阵与样本信息</span></span><br><span class="line">&gt; data(sCLLex)</span><br><span class="line">&gt; sCLLex</span><br><span class="line">ExpressionSet (storageMode: lockedEnvironment) <span class="comment">#ExpressionSet对象</span></span><br><span class="line">assayData: <span class="number">12625</span> features, <span class="number">22</span> samples </span><br><span class="line">  element names: exprs </span><br><span class="line">protocolData: none</span><br><span class="line">phenoData</span><br><span class="line">  sampleNames: CLL11.CEL CLL12.CEL <span class="keyword">...</span> CLL9.CEL (<span class="number">22</span> total) <span class="comment">#样品名称</span></span><br><span class="line">  varLabels: SampleID Disease <span class="comment">#用于分组的变量</span></span><br><span class="line">  varMetadata: labelDescription</span><br><span class="line">featureData: none</span><br><span class="line">experimentData: use <span class="string">'experimentData(object)'</span></span><br><span class="line">Annotation: hgu95av2 <span class="comment">#对应的注释包</span></span><br><span class="line"><span class="comment"># 通过exprs函数提取表达矩阵</span></span><br><span class="line">&gt; exprMatrix &lt;- exprs(sCLLex)</span><br><span class="line">&gt; dim(exprMatrix)</span><br><span class="line"><span class="comment"># 通过pData函数提取样本分组信息</span></span><br><span class="line">&gt; meta &lt;- pData(sCLLex)</span><br><span class="line">&gt; table(meta$Disease)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-了解-str-head-help函数，作用于第二步提取到的表达矩阵"><a href="#3-了解-str-head-help函数，作用于第二步提取到的表达矩阵" class="headerlink" title="3. 了解 str,head,help函数，作用于第二步提取到的表达矩阵"></a>3. 了解 str,head,help函数，作用于第二步提取到的表达矩阵</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; str(exprMatrix) <span class="comment">#结果表明这是一个12625行，22列的二维矩阵</span></span><br><span class="line"> num [<span class="number">1</span>:<span class="number">12625</span>, <span class="number">1</span>:<span class="number">22</span>] <span class="number">5.74</span> <span class="number">2.29</span> <span class="number">3.31</span> <span class="number">1.09</span> <span class="number">7.54</span> <span class="keyword">...</span></span><br><span class="line"> - attr(*, <span class="string">"dimnames"</span>)=List of <span class="number">2</span></span><br><span class="line">  ..$ : chr [<span class="number">1</span>:<span class="number">12625</span>] <span class="string">"1000_at"</span> <span class="string">"1001_at"</span> <span class="string">"1002_f_at"</span> <span class="string">"1003_s_at"</span> <span class="keyword">...</span></span><br><span class="line">  ..$ : chr [<span class="number">1</span>:<span class="number">22</span>] <span class="string">"CLL11.CEL"</span> <span class="string">"CLL12.CEL"</span> <span class="string">"CLL13.CEL"</span> <span class="string">"CLL14.CEL"</span> <span class="keyword">...</span></span><br><span class="line">&gt; head(exprMatrix) <span class="comment">#得到前6行结果</span></span><br><span class="line">&gt; help(exprMatrix) <span class="comment">#该函数已过时。The function, class, or data object you have asked for has been deprecated or made defunct.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-安装并了解-hgu95av2-db-包-看看-ls-quot-package-hgu95av2-db-quot-后-显示的那些变量"><a href="#4-安装并了解-hgu95av2-db-包-看看-ls-quot-package-hgu95av2-db-quot-后-显示的那些变量" class="headerlink" title="4. 安装并了解 hgu95av2.db 包,看看 ls(&quot;package:hgu95av2.db&quot;) 后 显示的那些变量"></a>4. 安装并了解 <code>hgu95av2.db</code> 包,看看 <code>ls(&quot;package:hgu95av2.db&quot;)</code> 后 显示的那些变量</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; BiocManager::install(<span class="string">"hgu95av2.db"</span>, version = <span class="string">"3.8"</span>)</span><br><span class="line">&gt; <span class="keyword">library</span>(hgu95av2.db)</span><br><span class="line">&gt; ls(<span class="string">"package:hgu95av2.db"</span>) <span class="comment">#可以发现hgu95v2.db中含有24个变量</span></span><br><span class="line"> [<span class="number">1</span>] <span class="string">"hgu95av2"</span>              <span class="string">"hgu95av2.db"</span>          </span><br><span class="line"> [<span class="number">3</span>] <span class="string">"hgu95av2_dbconn"</span>       <span class="string">"hgu95av2_dbfile"</span>      </span><br><span class="line"> [<span class="number">5</span>] <span class="string">"hgu95av2_dbInfo"</span>       <span class="string">"hgu95av2_dbschema"</span>    </span><br><span class="line"> [<span class="number">7</span>] <span class="string">"hgu95av2ACCNUM"</span>        <span class="string">"hgu95av2ALIAS2PROBE"</span>  </span><br><span class="line"> [<span class="number">9</span>] <span class="string">"hgu95av2CHR"</span>           <span class="string">"hgu95av2CHRLENGTHS"</span>   </span><br><span class="line">[<span class="number">11</span>] <span class="string">"hgu95av2CHRLOC"</span>        <span class="string">"hgu95av2CHRLOCEND"</span>    </span><br><span class="line">[<span class="number">13</span>] <span class="string">"hgu95av2ENSEMBL"</span>       <span class="string">"hgu95av2ENSEMBL2PROBE"</span></span><br><span class="line">[<span class="number">15</span>] <span class="string">"hgu95av2ENTREZID"</span>      <span class="string">"hgu95av2ENZYME"</span>       </span><br><span class="line">[<span class="number">17</span>] <span class="string">"hgu95av2ENZYME2PROBE"</span>  <span class="string">"hgu95av2GENENAME"</span>     </span><br><span class="line">[<span class="number">19</span>] <span class="string">"hgu95av2GO"</span>            <span class="string">"hgu95av2GO2ALLPROBES"</span> </span><br><span class="line">[<span class="number">21</span>] <span class="string">"hgu95av2GO2PROBE"</span>      <span class="string">"hgu95av2MAP"</span>          </span><br><span class="line">[<span class="number">23</span>] <span class="string">"hgu95av2MAPCOUNTS"</span>     <span class="string">"hgu95av2OMIM"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-理解-head-toTable-hgu95av2SYMBOL-的用法，找到-TP53-基因对应的探针ID"><a href="#5-理解-head-toTable-hgu95av2SYMBOL-的用法，找到-TP53-基因对应的探针ID" class="headerlink" title="5. 理解 head(toTable(hgu95av2SYMBOL)) 的用法，找到 TP53 基因对应的探针ID"></a>5. 理解 <code>head(toTable(hgu95av2SYMBOL))</code> 的用法，找到 TP53 基因对应的探针ID</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; head(toTable(hgu95av2SYMBOL)) <span class="comment">#查看芯片ID与基因symbol之间的对应关系</span></span><br><span class="line">   probe_id  symbol</span><br><span class="line"><span class="number">1</span>   1000_at   MAPK3</span><br><span class="line"><span class="number">2</span>   1001_at    TIE1</span><br><span class="line"><span class="number">3</span> 1002_f_at CYP2C19</span><br><span class="line"><span class="number">4</span> 1003_s_at   CXCR5</span><br><span class="line"><span class="number">5</span>   1004_at   CXCR5</span><br><span class="line"><span class="number">6</span>   1005_at   DUSP1</span><br><span class="line">&gt; probe_sym &lt;- toTable(hgu95av2SYMBOL)</span><br><span class="line">&gt; subset(probe_sym, symbol == <span class="string">"TP53"</span>) <span class="comment">#使用subset抽取data.frame中的数据，筛选条件可以多样，使用逻辑关系运算组合</span></span><br><span class="line">      probe_id symbol</span><br><span class="line"><span class="number">966</span>    1939_at   TP53</span><br><span class="line"><span class="number">997</span>  1974_s_at   TP53</span><br><span class="line"><span class="number">1420</span>  31618_at   TP53</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-理解探针与基因的对应关系，总共多少个基因，基因最多对应多少个探针，是哪些基因，是不是因为这些基因很长，所以在其上面设计多个探针呢？"><a href="#6-理解探针与基因的对应关系，总共多少个基因，基因最多对应多少个探针，是哪些基因，是不是因为这些基因很长，所以在其上面设计多个探针呢？" class="headerlink" title="6. 理解探针与基因的对应关系，总共多少个基因，基因最多对应多少个探针，是哪些基因，是不是因为这些基因很长，所以在其上面设计多个探针呢？"></a>6. 理解探针与基因的对应关系，总共多少个基因，基因最多对应多少个探针，是哪些基因，是不是因为这些基因很长，所以在其上面设计多个探针呢？</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">library</span>(magrittr)</span><br><span class="line">&gt; probe_sym$symbol%&gt;%unique()%&gt;%length() <span class="comment">#基因的数目</span></span><br><span class="line">[<span class="number">1</span>] <span class="number">8585</span></span><br><span class="line">&gt; probe_sym$symbol%&gt;%table()%&gt;%sort()%&gt;%tail() <span class="comment">#对应最多探针的基因有哪些</span></span><br><span class="line">.</span><br><span class="line">YME1L1  GAPDH INPP4A    MYB PTGER3  STAT1 </span><br><span class="line">     <span class="number">7</span>      <span class="number">8</span>      <span class="number">8</span>      <span class="number">8</span>      <span class="number">8</span>      <span class="number">8</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵，找到那些不在-hgu95av2-db-包收录的对应着SYMBOL的探针。"><a href="#7-第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵，找到那些不在-hgu95av2-db-包收录的对应着SYMBOL的探针。" class="headerlink" title="7. 第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵，找到那些不在 hgu95av2.db 包收录的对应着SYMBOL的探针。"></a>7. 第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵，找到那些不在 <code>hgu95av2.db</code> 包收录的对应着SYMBOL的探针。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e_filter_out &lt;- exprMatrix[!rownames(exprMatrix)%<span class="keyword">in</span>%probe_sym$probe_id,]</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-过滤表达矩阵，删除那1165个没有对应基因名字的探针。"><a href="#8-过滤表达矩阵，删除那1165个没有对应基因名字的探针。" class="headerlink" title="8. 过滤表达矩阵，删除那1165个没有对应基因名字的探针。"></a>8. 过滤表达矩阵，删除那1165个没有对应基因名字的探针。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e_filter &lt;- exprMatrix[rownames(exprMatrix)%<span class="keyword">in</span>%probe_sym$probe_id,]</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-整合表达矩阵，多个探针对应一个基因的情况下，只保留在所有样本里面平均表达量最大的那个探针。"><a href="#9-整合表达矩阵，多个探针对应一个基因的情况下，只保留在所有样本里面平均表达量最大的那个探针。" class="headerlink" title="9. 整合表达矩阵，多个探针对应一个基因的情况下，只保留在所有样本里面平均表达量最大的那个探针。"></a>9. 整合表达矩阵，多个探针对应一个基因的情况下，只保留在所有样本里面平均表达量最大的那个探针。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">max_e &lt;- by(e_filter, </span><br><span class="line">            probe_sym$symbol, </span><br><span class="line">            <span class="keyword">function</span>(x) rownames(x)[which.max(rowMeans(x))])</span><br><span class="line">uniprobes &lt;- as.character(max_e)</span><br><span class="line">e_filter &lt;- e_filter[rownames(e_filter)%<span class="keyword">in</span>%uniprobes,]</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-把过滤后的表达矩阵更改行名为基因的symbol，因为这个时候探针和基因是一对一关系了。"><a href="#10-把过滤后的表达矩阵更改行名为基因的symbol，因为这个时候探针和基因是一对一关系了。" class="headerlink" title="10. 把过滤后的表达矩阵更改行名为基因的symbol，因为这个时候探针和基因是一对一关系了。"></a>10. 把过滤后的表达矩阵更改行名为基因的symbol，因为这个时候探针和基因是一对一关系了。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rownames(e_filter) &lt;- probe_sym[match(rownames(e_filter), probe_sym$probe_id),<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-对第10步得到的表达矩阵进行探索，先画第一个样本的所有基因的表达量的boxplot-hist-density-，-然后画所有样本的-这些图"><a href="#11-对第10步得到的表达矩阵进行探索，先画第一个样本的所有基因的表达量的boxplot-hist-density-，-然后画所有样本的-这些图" class="headerlink" title="11. 对第10步得到的表达矩阵进行探索，先画第一个样本的所有基因的表达量的boxplot,hist,density ， 然后画所有样本的 这些图"></a>11. 对第10步得到的表达矩阵进行探索，先画第一个样本的所有基因的表达量的boxplot,hist,density ， 然后画所有样本的 这些图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">exprM_L1 &lt;- data.frame(symbol = row.names(e_filter),</span><br><span class="line">                       expm = e_filter[,<span class="number">1</span>])</span><br><span class="line">p_box &lt;- ggplot(exprM_L1, aes(y = expm)) + geom_boxplot()</span><br><span class="line">p_hist &lt;- ggplot(exprM_L1, aes(x = expm)) + geom_histogram(bins = <span class="number">50</span>)</span><br><span class="line">p_dens &lt;- ggplot(exprM_L1, aes(x = expm)) + geom_density()</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-理解统计学指标mean-median-max-min-sd-var-mad并计算出每个基因在所有样本的这些统计学指标，最后按照mad值排序，取top-50-mad值的基因，得到列表。"><a href="#12-理解统计学指标mean-median-max-min-sd-var-mad并计算出每个基因在所有样本的这些统计学指标，最后按照mad值排序，取top-50-mad值的基因，得到列表。" class="headerlink" title="12. 理解统计学指标mean,median,max,min,sd,var,mad并计算出每个基因在所有样本的这些统计学指标，最后按照mad值排序，取top 50 mad值的基因，得到列表。"></a>12. 理解统计学指标mean,median,max,min,sd,var,mad并计算出每个基因在所有样本的这些统计学指标，最后按照mad值排序，取top 50 mad值的基因，得到列表。</h3><blockquote>
+<p>注意：这个题目出的并不合规，请仔细看。</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">e_mean &lt;- rowMeans(e_filter)</span><br><span class="line">e_median &lt;- rowMedians(e_filter)</span><br><span class="line">e_max &lt;- rowMax(e_filter)</span><br><span class="line">e_min &lt;- rowMin(e_filter)</span><br><span class="line">e_sd &lt;- apply(e_filter, <span class="number">1</span>, sd) %&gt;% sort() <span class="comment">#没有对应的row系列函数的话，可以使用apply方法</span></span><br><span class="line">e_var &lt;- apply(e_filter, <span class="number">1</span>, var) %&gt;% sort() </span><br><span class="line">e_mad_50 &lt;- apply(e_filter, <span class="number">1</span>, mad) %&gt;% sort() %&gt;% tail(<span class="number">50</span>)</span><br><span class="line">&gt; names(e_mad_50)</span><br><span class="line"> [<span class="number">1</span>] <span class="string">"PFN2"</span>     <span class="string">"TNFSF9"</span>   <span class="string">"ARHGAP44"</span> <span class="string">"P2RY14"</span>   <span class="string">"THEMIS2"</span>  <span class="string">"LPL"</span>     </span><br><span class="line"> [<span class="number">7</span>] <span class="string">"ANXA4"</span>    <span class="string">"DUSP6"</span>    <span class="string">"DUSP5"</span>    <span class="string">"H1FX"</span>     <span class="string">"FLNA"</span>     <span class="string">"CLEC2B"</span>  </span><br><span class="line">[<span class="number">13</span>] <span class="string">"TSPYL2"</span>   <span class="string">"ZNF266"</span>   <span class="string">"S100A9"</span>   <span class="string">"NR4A2"</span>    <span class="string">"TGFBI"</span>    <span class="string">"ARF6"</span>    </span><br><span class="line">[<span class="number">19</span>] <span class="string">"APBB2"</span>    <span class="string">"VCAN"</span>     <span class="string">"RBM38"</span>    <span class="string">"CAPG"</span>     <span class="string">"PLXNC1"</span>   <span class="string">"RGS2"</span>    </span><br><span class="line">[<span class="number">25</span>] <span class="string">"RNASE6"</span>   <span class="string">"VAMP5"</span>    <span class="string">"CYBB"</span>     <span class="string">"GNLY"</span>     <span class="string">"CCL3"</span>     <span class="string">"OAS1"</span>    </span><br><span class="line">[<span class="number">31</span>] <span class="string">"TRIB2"</span>    <span class="string">"ZNF804A"</span>  <span class="string">"IGH"</span>      <span class="string">"PCDH9"</span>    <span class="string">"VIPR1"</span>    <span class="string">"COBLL1"</span>  </span><br><span class="line">[<span class="number">37</span>] <span class="string">"GUSBP11"</span>  <span class="string">"S100A8"</span>   <span class="string">"HBB"</span>      <span class="string">"LHFPL2"</span>   <span class="string">"FCN1"</span>     <span class="string">"ZAP70"</span>   </span><br><span class="line">[<span class="number">43</span>] <span class="string">"IGLC1"</span>    <span class="string">"LGALS1"</span>   <span class="string">"FOS"</span>      <span class="string">"SLAMF1"</span>   <span class="string">"TCF7"</span>     <span class="string">"DMD"</span>     </span><br><span class="line">[<span class="number">49</span>] <span class="string">"IGF2BP3"</span>  <span class="string">"FAM30A"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="13-根据第12步骤得到top-50-mad值的基因列表来取表达矩阵的子集，并且热图可视化子表达矩阵。试试看其它5种热图的包的不同效果。"><a href="#13-根据第12步骤得到top-50-mad值的基因列表来取表达矩阵的子集，并且热图可视化子表达矩阵。试试看其它5种热图的包的不同效果。" class="headerlink" title="13. 根据第12步骤得到top 50 mad值的基因列表来取表达矩阵的子集，并且热图可视化子表达矩阵。试试看其它5种热图的包的不同效果。"></a>13. 根据第12步骤得到top 50 mad值的基因列表来取表达矩阵的子集，并且热图可视化子表达矩阵。试试看其它5种热图的包的不同效果。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">e50 &lt;- e_filter[names(e_mad_50),]</span><br><span class="line">pheatmap::pheatmap(e50)</span><br><span class="line">tt_50 &lt;- t(scale(t(e50)))</span><br><span class="line">pheatmap::pheatmap(tt_50)</span><br></pre></td></tr></table></figure>
+
+<h3 id="14-取不同统计学指标mean-median-max-mean-sd-var-mad的各top50基因列表，使用UpSetR包来看他们之间的overlap情况。"><a href="#14-取不同统计学指标mean-median-max-mean-sd-var-mad的各top50基因列表，使用UpSetR包来看他们之间的overlap情况。" class="headerlink" title="14. 取不同统计学指标mean,median,max,mean,sd,var,mad的各top50基因列表，使用UpSetR包来看他们之间的overlap情况。"></a>14. 取不同统计学指标mean,median,max,mean,sd,var,mad的各top50基因列表，使用UpSetR包来看他们之间的overlap情况。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">e_mean_50 &lt;- rowMeans(e_filter) %&gt;% sort() %&gt;% tail(<span class="number">50</span>)</span><br><span class="line">e_median_50 &lt;- rowMedians(e_filter) %&gt;% sort() %&gt;% tail(<span class="number">50</span>)</span><br><span class="line">e_max_50 &lt;- rowMax(e_filter) %&gt;% sort() %&gt;% tail(<span class="number">50</span>)</span><br><span class="line">e_min_50 &lt;- rowMin(e_filter) %&gt;% sort() %&gt;% tail(<span class="number">50</span>)</span><br><span class="line">e_sd_50 &lt;- apply(e_filter, <span class="number">1</span>, sd) %&gt;% sort() %&gt;% tail(<span class="number">50</span>)</span><br><span class="line">e_var_50 &lt;- apply(e_filter, <span class="number">1</span>, var) %&gt;% sort() %&gt;% tail(<span class="number">50</span>)</span><br><span class="line">e_mad_50 &lt;- apply(e_filter, <span class="number">1</span>, mad) %&gt;% sort() %&gt;% tail(<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">g_all &lt;- unique(c(names(e_mean_50),</span><br><span class="line">                  names(e_median_50),</span><br><span class="line">                  names(e_max_50),</span><br><span class="line">                  names(e_min_50),</span><br><span class="line">                  names(e_sd_50),</span><br><span class="line">                  names(e_var_50),</span><br><span class="line">                  names(e_mad_50)))</span><br><span class="line">g_upset &lt;- data.frame(g_all = g_all,</span><br><span class="line">                      g_mean=ifelse(g_all %<span class="keyword">in</span>% names(e_mean_50),<span class="number">1</span>,<span class="number">0</span>),</span><br><span class="line">                      g_median=ifelse(g_all %<span class="keyword">in</span>% names(e_median_50),<span class="number">1</span>,<span class="number">0</span>),</span><br><span class="line">                      g_max=ifelse(g_all %<span class="keyword">in</span>% names(e_max_50),<span class="number">1</span>,<span class="number">0</span>),</span><br><span class="line">                      g_min=ifelse(g_all %<span class="keyword">in</span>% names(e_min_50),<span class="number">1</span>,<span class="number">0</span>),</span><br><span class="line">                      g_sd=ifelse(g_all %<span class="keyword">in</span>% names(e_sd_50),<span class="number">1</span>,<span class="number">0</span>),</span><br><span class="line">                      g_var=ifelse(g_all %<span class="keyword">in</span>% names(e_var_50),<span class="number">1</span>,<span class="number">0</span>),</span><br><span class="line">                      g_mad=ifelse(g_all %<span class="keyword">in</span>% names(e_mad_50),<span class="number">1</span>,<span class="number">0</span>)</span><br><span class="line">                      )</span><br><span class="line">UpSetR::upset(g_upset, nsets = <span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="15-在第二步的基础上面提取CLL包里面的data-sCLLex-数据对象的样本的表型数据。"><a href="#15-在第二步的基础上面提取CLL包里面的data-sCLLex-数据对象的样本的表型数据。" class="headerlink" title="15. 在第二步的基础上面提取CLL包里面的data(sCLLex) 数据对象的样本的表型数据。"></a>15. 在第二步的基础上面提取<code>CLL</code>包里面的<code>data(sCLLex)</code> 数据对象的样本的表型数据。</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pdata=pData(sCLLex)</span><br><span class="line">group_list=as.character(pdata[,<span class="number">2</span>])</span><br><span class="line">group_list</span><br></pre></td></tr></table></figure>
+
+<h3 id="16-对所有样本的表达矩阵进行聚类并且绘图，然后添加样本的临床表型数据信息-更改样本名"><a href="#16-对所有样本的表达矩阵进行聚类并且绘图，然后添加样本的临床表型数据信息-更改样本名" class="headerlink" title="16. 对所有样本的表达矩阵进行聚类并且绘图，然后添加样本的临床表型数据信息(更改样本名)"></a>16. 对所有样本的表达矩阵进行聚类并且绘图，然后添加样本的临床表型数据信息(更改样本名)</h3><h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p><a href="https://www.jianshu.com/p/993b4022363f" target="_blank" rel="noopener">https://www.jianshu.com/p/993b4022363f</a></p>
+<p><a href="http://www.bio-info-trainee.com/3415.html" target="_blank" rel="noopener">http://www.bio-info-trainee.com/3415.html</a></p>
+<p><a href="https://www.statmethods.net/stats/withby.html" target="_blank" rel="noopener">https://www.statmethods.net/stats/withby.html</a></p>
+<hr>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sr-c</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://sr-c.github.io/2019/03/11/R-exercise/" title="R语言练习题">https://sr-c.github.io/2019/03/11/R-exercise/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/R/" rel="tag"># R</a>
+          
+            <a href="/tags/生信技能树/" rel="tag"># 生信技能树</a>
+          
+            <a href="/tags/biotrainee/" rel="tag"># biotrainee</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/08/SERF-identify-telomere-sequences/" rel="next" title="使用SERF鉴定端粒序列">
+                <i class="fa fa-chevron-left"></i> 使用SERF鉴定端粒序列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/11/linux-exercise/" rel="prev" title="linux练习题">
+                linux练习题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="sr-c">
+            
+              <p class="site-author-name" itemprop="name">sr-c</p>
+              <div class="site-description motion-element" itemprop="description">sr-c's blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">120</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.mintos.org/" title="http://www.mintos.org/" rel="noopener" target="_blank">薄荷开源网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.suse.org.cn/" title="https://forum.suse.org.cn/" rel="noopener" target="_blank">openSUSE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://man.linuxde.net/" title="http://man.linuxde.net/" rel="noopener" target="_blank">linuxde</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/xudongliang/" title="http://www.cnblogs.com/xudongliang/" rel="noopener" target="_blank">庐州月光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://qinqianshan.com/" title="http://qinqianshan.com/" rel="noopener" target="_blank">Sam's Note</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初级"><span class="nav-number">1.</span> <span class="nav-text">初级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-打开-Rstudio-告诉我它的工作目录。"><span class="nav-number">1.1.</span> <span class="nav-text">1. 打开 Rstudio 告诉我它的工作目录。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值）"><span class="nav-number">1.2.</span> <span class="nav-text">2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-告诉我-getwd-返回的是什么？"><span class="nav-number">1.3.</span> <span class="nav-text">3. 告诉我 getwd() 返回的是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-新建5个其它数据结构，矩阵，数组，数据框，列表，因子（重点是数据框，矩阵）"><span class="nav-number">1.4.</span> <span class="nav-text">4. 新建5个其它数据结构，矩阵，数组，数据框，列表，因子（重点是数据框，矩阵）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-在你新建的数据框进行切片操作，比如首先取第1，3行，-然后取第4，6列"><span class="nav-number">1.5.</span> <span class="nav-text">5. 在你新建的数据框进行切片操作，比如首先取第1，3行， 然后取第4，6列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-使用data函数来加载R内置数据集-rivers-描述它。并且可以查看更多的R语言内置的数据集："><span class="nav-number">1.6.</span> <span class="nav-text">6. 使用data函数来加载R内置数据集 rivers 描述它。并且可以查看更多的R语言内置的数据集：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-下载-https-www-ncbi-nlm-nih-gov-sra-term-SRP133642-里面的-RunInfo-Table-文件读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。"><span class="nav-number">1.7.</span> <span class="nav-text">7. 下载 https://www.ncbi.nlm.nih.gov/sra?term=SRP133642 里面的 RunInfo Table 文件读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-下载-https-www-ncbi-nlm-nih-gov-geo-query-acc-cgi-acc-GSE111229-里面的样本信息读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。"><span class="nav-number">1.8.</span> <span class="nav-text">8. 下载 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111229 里面的样本信息读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-把两个表关联起来，使用merge函数。"><span class="nav-number">1.9.</span> <span class="nav-text">9. 把两个表关联起来，使用merge函数。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-对前面读取的-RunInfo-Table-文件在R里面探索其MBases列，包括-箱线图-boxplot-和五分位数-fivenum-，还有频数图-hist-，以及密度图-density-。"><span class="nav-number">1.10.</span> <span class="nav-text">10. 对前面读取的 RunInfo Table 文件在R里面探索其MBases列，包括 箱线图(boxplot)和五分位数(fivenum)，还有频数图(hist)，以及密度图(density) 。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-把前面读取的样本信息表格的样本名字根据下划线分割看第3列元素的统计情况。第三列代表该样本所在的plate"><span class="nav-number">1.11.</span> <span class="nav-text">11. 把前面读取的样本信息表格的样本名字根据下划线分割看第3列元素的统计情况。第三列代表该样本所在的plate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中级"><span class="nav-number">2.</span> <span class="nav-text">中级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-请根据R包org-Hs-eg-db找到下面ensembl-基因ID-对应的基因名-symbol"><span class="nav-number">2.1.</span> <span class="nav-text">1. 请根据R包org.Hs.eg.db找到下面ensembl 基因ID 对应的基因名(symbol)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-根据R包hgu133a-db找到下面探针对应的基因名-symbol"><span class="nav-number">2.2.</span> <span class="nav-text">2. 根据R包hgu133a.db找到下面探针对应的基因名(symbol)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-找到R包CLL内置的数据集的表达矩阵里面的TP53基因的表达量，并且绘制在-progres-stable分组的boxplot图"><span class="nav-number">2.3.</span> <span class="nav-text">3. 找到R包CLL内置的数据集的表达矩阵里面的TP53基因的表达量，并且绘制在 progres.-stable分组的boxplot图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-找到BRCA1基因在TCGA数据库的乳腺癌数据集-Breast-Invasive-Carcinoma-TCGA-PanCancer-Atlas-的表达情况"><span class="nav-number">2.4.</span> <span class="nav-text">4. 找到BRCA1基因在TCGA数据库的乳腺癌数据集(Breast Invasive Carcinoma (TCGA, PanCancer Atlas))的表达情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-找到TP53基因在TCGA数据库的乳腺癌数据集的表达量分组看其是否影响生存"><span class="nav-number">2.5.</span> <span class="nav-text">5. 找到TP53基因在TCGA数据库的乳腺癌数据集的表达量分组看其是否影响生存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-下载数据集GSE17215的表达矩阵并且提取下面的基因画热图"><span class="nav-number">2.6.</span> <span class="nav-text">6. 下载数据集GSE17215的表达矩阵并且提取下面的基因画热图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-下载数据集GSE24673的表达矩阵计算样本的相关性并且绘制热图，需要标记上样本分组信息"><span class="nav-number">2.7.</span> <span class="nav-text">7. 下载数据集GSE24673的表达矩阵计算样本的相关性并且绘制热图，需要标记上样本分组信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-找到-GPL6244-platform-of-Affymetrix-Human-Gene-1-0-ST-Array-对应的R的bioconductor注释包，并且安装它！"><span class="nav-number">2.8.</span> <span class="nav-text">8. 找到 GPL6244 platform of Affymetrix Human Gene 1.0 ST Array 对应的R的bioconductor注释包，并且安装它！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-下载数据集GSE42872的表达矩阵，并且分别挑选出-所有样本的-平均表达量-sd-mad-最大的探针，并且找到它们对应的基因。"><span class="nav-number">2.9.</span> <span class="nav-text">9. 下载数据集GSE42872的表达矩阵，并且分别挑选出 所有样本的(平均表达量/sd/mad/)最大的探针，并且找到它们对应的基因。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-下载数据集GSE42872的表达矩阵，并且根据分组使用limma做差异分析，得到差异结果矩阵"><span class="nav-number">2.10.</span> <span class="nav-text">10. 下载数据集GSE42872的表达矩阵，并且根据分组使用limma做差异分析，得到差异结果矩阵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级"><span class="nav-number">3.</span> <span class="nav-text">高级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装一些R包："><span class="nav-number">3.1.</span> <span class="nav-text">1.安装一些R包：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-了解ExpressionSet对象，比如CLL包里面就有data-sCLLex-，找到它包含的元素，提取其表达矩阵-使用exprs函数-，查看其大小"><span class="nav-number">3.2.</span> <span class="nav-text">2. 了解ExpressionSet对象，比如CLL包里面就有data(sCLLex) ，找到它包含的元素，提取其表达矩阵(使用exprs函数)，查看其大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-了解-str-head-help函数，作用于第二步提取到的表达矩阵"><span class="nav-number">3.3.</span> <span class="nav-text">3. 了解 str,head,help函数，作用于第二步提取到的表达矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-安装并了解-hgu95av2-db-包-看看-ls-quot-package-hgu95av2-db-quot-后-显示的那些变量"><span class="nav-number">3.4.</span> <span class="nav-text">4. 安装并了解 hgu95av2.db 包,看看 ls(&quot;package:hgu95av2.db&quot;) 后 显示的那些变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-理解-head-toTable-hgu95av2SYMBOL-的用法，找到-TP53-基因对应的探针ID"><span class="nav-number">3.5.</span> <span class="nav-text">5. 理解 head(toTable(hgu95av2SYMBOL)) 的用法，找到 TP53 基因对应的探针ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-理解探针与基因的对应关系，总共多少个基因，基因最多对应多少个探针，是哪些基因，是不是因为这些基因很长，所以在其上面设计多个探针呢？"><span class="nav-number">3.6.</span> <span class="nav-text">6. 理解探针与基因的对应关系，总共多少个基因，基因最多对应多少个探针，是哪些基因，是不是因为这些基因很长，所以在其上面设计多个探针呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵，找到那些不在-hgu95av2-db-包收录的对应着SYMBOL的探针。"><span class="nav-number">3.7.</span> <span class="nav-text">7. 第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵，找到那些不在 hgu95av2.db 包收录的对应着SYMBOL的探针。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-过滤表达矩阵，删除那1165个没有对应基因名字的探针。"><span class="nav-number">3.8.</span> <span class="nav-text">8. 过滤表达矩阵，删除那1165个没有对应基因名字的探针。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-整合表达矩阵，多个探针对应一个基因的情况下，只保留在所有样本里面平均表达量最大的那个探针。"><span class="nav-number">3.9.</span> <span class="nav-text">9. 整合表达矩阵，多个探针对应一个基因的情况下，只保留在所有样本里面平均表达量最大的那个探针。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-把过滤后的表达矩阵更改行名为基因的symbol，因为这个时候探针和基因是一对一关系了。"><span class="nav-number">3.10.</span> <span class="nav-text">10. 把过滤后的表达矩阵更改行名为基因的symbol，因为这个时候探针和基因是一对一关系了。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-对第10步得到的表达矩阵进行探索，先画第一个样本的所有基因的表达量的boxplot-hist-density-，-然后画所有样本的-这些图"><span class="nav-number">3.11.</span> <span class="nav-text">11. 对第10步得到的表达矩阵进行探索，先画第一个样本的所有基因的表达量的boxplot,hist,density ， 然后画所有样本的 这些图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-理解统计学指标mean-median-max-min-sd-var-mad并计算出每个基因在所有样本的这些统计学指标，最后按照mad值排序，取top-50-mad值的基因，得到列表。"><span class="nav-number">3.12.</span> <span class="nav-text">12. 理解统计学指标mean,median,max,min,sd,var,mad并计算出每个基因在所有样本的这些统计学指标，最后按照mad值排序，取top 50 mad值的基因，得到列表。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-根据第12步骤得到top-50-mad值的基因列表来取表达矩阵的子集，并且热图可视化子表达矩阵。试试看其它5种热图的包的不同效果。"><span class="nav-number">3.13.</span> <span class="nav-text">13. 根据第12步骤得到top 50 mad值的基因列表来取表达矩阵的子集，并且热图可视化子表达矩阵。试试看其它5种热图的包的不同效果。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-取不同统计学指标mean-median-max-mean-sd-var-mad的各top50基因列表，使用UpSetR包来看他们之间的overlap情况。"><span class="nav-number">3.14.</span> <span class="nav-text">14. 取不同统计学指标mean,median,max,mean,sd,var,mad的各top50基因列表，使用UpSetR包来看他们之间的overlap情况。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-在第二步的基础上面提取CLL包里面的data-sCLLex-数据对象的样本的表型数据。"><span class="nav-number">3.15.</span> <span class="nav-text">15. 在第二步的基础上面提取CLL包里面的data(sCLLex) 数据对象的样本的表型数据。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-对所有样本的表达矩阵进行聚类并且绘图，然后添加样本的临床表型数据信息-更改样本名"><span class="nav-number">3.16.</span> <span class="nav-text">16. 对所有样本的表达矩阵进行聚类并且绘图，然后添加样本的临床表型数据信息(更改样本名)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">4.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-tint"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sr-c</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

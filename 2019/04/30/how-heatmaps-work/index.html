@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=7.1.2" color="#222">
+
+
+  <link rel="manifest" href="/favicons/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="如今，转录组数据展示最为常见的方式就是绘制热图。但是，热图是如何绘制出来的，却常常被人们所忽略。">
+<meta name="keywords" content="R,heatmap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何绘制一张热图">
+<meta property="og:url" content="https://sr-c.github.io/2019/04/30/how-heatmaps-work/index.html">
+<meta property="og:site_name" content="SR-C">
+<meta property="og:description" content="如今，转录组数据展示最为常见的方式就是绘制热图。但是，热图是如何绘制出来的，却常常被人们所忽略。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.frontiersin.org/files/Articles/53165/fgene-04-00153-r4/image_m/fgene-04-00153-g005.jpg">
+<meta property="og:image" content="http://www.opiniomics.org/wp-content/uploads/2015/03/gex.png">
+<meta property="og:image" content="http://www.opiniomics.org/wp-content/uploads/2015/03/hclust.png">
+<meta property="og:image" content="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap1.png">
+<meta property="og:image" content="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap2.png">
+<meta property="og:image" content="http://www.opiniomics.org/wp-content/uploads/2015/03/hclust_corr.png">
+<meta property="og:image" content="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap3.png">
+<meta property="og:image" content="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap4.png">
+<meta property="og:updated_time" content="2019-06-12T09:50:17.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何绘制一张热图">
+<meta name="twitter:description" content="如今，转录组数据展示最为常见的方式就是绘制热图。但是，热图是如何绘制出来的，却常常被人们所忽略。">
+<meta name="twitter:image" content="http://www.frontiersin.org/files/Articles/53165/fgene-04-00153-r4/image_m/fgene-04-00153-g005.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SR-C" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://sr-c.github.io/2019/04/30/how-heatmaps-work/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>如何绘制一张热图 | SR-C</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SR-C</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sr-c.github.io/2019/04/30/how-heatmaps-work/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sr-c">
+      <meta itemprop="description" content="sr-c's blog">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SR-C">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何绘制一张热图
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-30 11:28:59" itemprop="dateCreated datePublished" datetime="2019-04-30T11:28:59+08:00">2019-04-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p class="description">如今，转录组数据展示最为常见的方式就是绘制热图。但是，热图是如何绘制出来的，却常常被人们所忽略。</p>
+
+<a id="more"></a>
+
+<p><img src="http://www.frontiersin.org/files/Articles/53165/fgene-04-00153-r4/image_m/fgene-04-00153-g005.jpg" alt="classical-heatmap"></p>
+<p>绘制热图的过程分为两个关键的步骤，第一，将数据聚类；第二，将数值矩阵转化为颜色图像。</p>
+<h2 id="将数据聚类"><a href="#将数据聚类" class="headerlink" title="将数据聚类"></a>将数据聚类</h2><p>聚类的方法有许多，其中最简单的方法就是分层聚集聚类(hierarchical, agglomerative cluster analysis). </p>
+<p>简单来说，该方法会首先计算矩阵中所有数据点之间的相互距离，然后将相聚最近的数据点连接起来，然后连接距离第二近的数据点，重复直至所有数据点都被聚类。我们得到的聚类树就是这一过程的展示。</p>
+<p>聚类过程中，有时需要将不同的类再次聚类，这个过程也有许多不同的方法，但是最常用的方式是计算两个类中所有点之间的平均距离。</p>
+<h2 id="计算距离"><a href="#计算距离" class="headerlink" title="计算距离"></a>计算距离</h2><p>距离代表着两个数据点之间的差异。这与相似性测量是正交的（相互独立的）。</p>
+<p>距离是如何计算的呢？在<code>R</code>的<code>heatmap()</code>或<code>heatmap.2()</code>函数的默认方法是使用<code>dist()</code>函数。<code>dist()</code>函数的默认方式是欧几里得距离。这一方法测量的是数据向量之间的绝对距离，但是却与其表达模式( the “shape” of the “curve”)无关。</p>
+<p>例如，测定4个基因在8个时间点的表达量。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">h1 &lt;- c(<span class="number">10</span>,<span class="number">20</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">10</span>,<span class="number">20</span>)</span><br><span class="line">h2 &lt;- c(<span class="number">20</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">l1 &lt;- c(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">l2 &lt;- c(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">mat &lt;- rbind(h1,h2,l1,l2)</span><br><span class="line"></span><br><span class="line">par(mar=c(<span class="number">4</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">plot(<span class="number">1</span>:<span class="number">8</span>,rep(<span class="number">0</span>,<span class="number">8</span>), ylim=c(<span class="number">0</span>,<span class="number">35</span>), pch=<span class="string">""</span>, xlab=<span class="string">"Time"</span>, ylab=<span class="string">"Gene Expression"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:nrow(mat)) &#123;</span><br><span class="line">lines(<span class="number">1</span>:<span class="number">8</span>,mat[i,], lwd=<span class="number">3</span>, col=i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">legend(<span class="number">1</span>,<span class="number">35</span>,rownames(mat), <span class="number">1</span>:<span class="number">4</span>, cex=<span class="number">0.7</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.opiniomics.org/wp-content/uploads/2015/03/gex.png" alt="gene-expression-example"></p>
+<p>可以看到，图中表达的基因与两个低表达的基因。关键的是，这两对基因的表达模式完全相反。</p>
+<p>如果我们将这个数据置于<code>dist()</code>函数中，可得到这样的距离矩阵</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dist(mat)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">          h1        h2        l1</span><br><span class="line">h2 <span class="number">28.284271</span>                    </span><br><span class="line">l1 <span class="number">38.470768</span> <span class="number">40.496913</span>          </span><br><span class="line">l2 <span class="number">40.496913</span> <span class="number">38.470768</span>  <span class="number">5.656854</span></span><br></pre></td></tr></table></figure>
+
+<p>距离矩阵中最小的值是<code>l1</code>与<code>l2</code>之间的距离(5.65)，因此这两者被聚为一类；然后，次小值是<code>h1</code>与<code>h2</code>之间的距离(28.28)，因此，这两者接下来被聚类；最后，这两个类连接起来。这就产生了一个基于距离矩阵的简单聚类分析。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hc &lt;- hclust(dist(mat))</span><br><span class="line">plot(hc)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.opiniomics.org/wp-content/uploads/2015/03/hclust.png" alt="cluster"></p>
+<p>简单的热图（列水平上不聚类，保持时间点的顺序）</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(gplots)</span><br><span class="line">heatmap(mat, Colv=<span class="literal">NA</span>, col=greenred(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap1.png" alt="naive-heatmap"></p>
+<p>聚类过程按照距离进行，l1与l2是最相似的，因此它们被聚为一类；然后，h1与h2被聚类。但是，由于颜色不合适，热图看起来很糟糕。尽管l1与l2被聚为一类，它们的颜色却不是同一个模式；h1与h2也是如此。此外，l1与h1有相同的颜色，尽管它们的表达量相差很大。</p>
+<h2 id="数据缩放-scaling"><a href="#数据缩放-scaling" class="headerlink" title="数据缩放(scaling)"></a>数据缩放(scaling)</h2><p>l2与h2有着相同的颜色，但实际上它们的表达量不同。这是因为它们的表达量被缩放了，然后再转化为热图中的颜色。<code>heatmap()</code>与<code>heatmap.2()</code>中的默认设置都是按照行缩放(scale by row). 数据矩阵按行依次使用<code>scale()</code>函数进行缩放，然后转换为颜色。</p>
+<p>关闭缩放后，我们可以看到热图通过欧几里得距离聚类后的结果。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heatmap(mat, Colv=<span class="literal">NA</span>, col=greenred(<span class="number">10</span>), scale=<span class="string">"none"</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap2.png" alt="no-scale"></p>
+<p>这样看起来结果好了一些，但是还不完善。<code>l1</code>与<code>l2</code>都是绿色，而<code>h1</code>与<code>h2</code>都是红色/黑色。</p>
+<p>一般来说，热图中的绿色代表较低的数值；红色代表较高的数值；黑色则代表中间值。在不进行缩放的时候，<code>l1</code>与<code>l2</code>都是较低的值，因此，它们是绿色；<code>h1</code>与<code>h2</code>中的较大值是较高的值，因此为红色；其中较低的值则是中间值，因此为黑色。</p>
+<h2 id="问题所在"><a href="#问题所在" class="headerlink" title="问题所在"></a>问题所在</h2><p>通常情况下，我们系统将有相近表达模式的基因聚类在一起。而有些基因的表达量高，有些基因的表达量低。将所有高表达的基因标为红色，低表达的基因表为绿色，而不考虑随时间表达模式的变化。有些时候，我们希望这样，但更多时候，我们系统将相同表达模式的基因聚类在一起。</p>
+<p>因此，<code>heatmap()</code>和<code>heatmap.2()</code>的默认参数结果对我们不可用。它们默认都缩放了数据，这在所有数据点都有着相近表达模式时很有用，但是它们还是用了欧几里得距离，这在我们系统通过表达模式聚类时并不适用。</p>
+<p>我们知道h1与l1有相近的表达模式(similar shape)，h2与l2也有相近的表达模式。但是，<code>dist()</code>函数只考虑绝对距离，并不考虑其表达模式。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>使用另一种距离计算方式，相似性计算，皮尔逊相关系数(<a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient" target="_blank" rel="noopener">the pearson correlation co-efficient</a>)。简单来说，它产生一个在-1到1之间的值；1代表两者相同；-1则表达两者正好相对。</p>
+<p>其计算结果如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cor(t(mat))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   h1 h2 l1 l2</span><br><span class="line">h1  <span class="number">1</span> -<span class="number">1</span>  <span class="number">1</span> -<span class="number">1</span></span><br><span class="line">h2 -<span class="number">1</span>  <span class="number">1</span> -<span class="number">1</span>  <span class="number">1</span></span><br><span class="line">l1  <span class="number">1</span> -<span class="number">1</span>  <span class="number">1</span> -<span class="number">1</span></span><br><span class="line">l2 -<span class="number">1</span>  <span class="number">1</span> -<span class="number">1</span>  <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>结果中，h1与h2的相关系数为-1, 因此它们非常不相似，而h1与l1，h2与l2则完全正相关。</p>
+<p>在聚类过程中，我们需要的时距离矩阵，不是相似性矩阵。因此，我们需要用1减去相似性，转换得到：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> - cor(t(mat))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   h1 h2 l1 l2</span><br><span class="line">h1  <span class="number">0</span>  <span class="number">2</span>  <span class="number">0</span>  <span class="number">2</span></span><br><span class="line">h2  <span class="number">2</span>  <span class="number">0</span>  <span class="number">2</span>  <span class="number">0</span></span><br><span class="line">l1  <span class="number">0</span>  <span class="number">2</span>  <span class="number">0</span>  <span class="number">2</span></span><br><span class="line">l2  <span class="number">2</span>  <span class="number">0</span>  <span class="number">2</span>  <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>这样h1与l1之间的距离为0；h1与h2之间的距离为2. 那么我们可以得到简单的聚类结果：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hc &lt;- hclust(as.dist(<span class="number">1</span>-cor(t(mat))))</span><br><span class="line">plot(hc)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.opiniomics.org/wp-content/uploads/2015/03/hclust_corr.png" alt="similar-cluster"></p>
+<p>简单的热图结果</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heatmap(mat, Rowv=as.dendrogram(hc), Colv=<span class="literal">NA</span>, col=greenred(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap3.png" alt></p>
+<p>如此，相同表达模式的基因被聚类在一起，也具有相同的颜色。</p>
+<h2 id="热图实例"><a href="#热图实例" class="headerlink" title="热图实例"></a>热图实例</h2><p>来自ARK-Genomic的<a href="http://www.ark-genomics.org/events-online-training/heatmaps-r" target="_blank" rel="noopener">实例</a></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(gplots)</span><br><span class="line"></span><br><span class="line">read the data <span class="keyword">in</span> from URL</span><br><span class="line">bots &lt;- read.table(url(<span class="string">"http://genome-www.stanford.edu/cellcycle/data/rawdata/combined.txt"</span>), sep=<span class="string">"t"</span>, header=<span class="literal">TRUE</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># get just the alpha data</span></span><br><span class="line">abot &lt;- bots[,c(<span class="number">8</span>:<span class="number">25</span>)]</span><br><span class="line">rownames(abot) &lt;- bots[,<span class="number">1</span>]</span><br><span class="line">abot[<span class="number">1</span>:<span class="number">7</span>,]</span><br><span class="line"></span><br><span class="line"><span class="comment"># get rid of NAs</span></span><br><span class="line">abot[is.na(abot)] &lt;- <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># we need to find a way of reducing the data.</span></span><br><span class="line"><span class="comment"># Sort on max difference and take first 1000</span></span><br><span class="line">min &lt;-apply(abot, <span class="number">1</span>, min)</span><br><span class="line">max &lt;- apply(abot, <span class="number">1</span>, max)</span><br><span class="line">sabot &lt;- abot[order(max - min, decreasing=<span class="literal">TRUE</span>),][<span class="number">1</span>:<span class="number">1000</span>,]</span><br><span class="line"></span><br><span class="line"><span class="comment"># cluster on correlation</span></span><br><span class="line">hc &lt;- hclust(as.dist(<span class="number">1</span> - cor(t(sabot))), method=<span class="string">"average"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># draw a heatmap</span></span><br><span class="line">heatmap(as.matrix(sabot),</span><br><span class="line">Rowv=as.dendrogram(hc),</span><br><span class="line">Colv=<span class="literal">NA</span>,</span><br><span class="line">col=greenred(<span class="number">10</span>),</span><br><span class="line">labRow=<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap4.png" target="_blank" rel="noopener"><img src="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap4.png" alt="heatmap4"></a></p>
+<p>因此，热图绘制还是一个比较复杂的可视化过程。</p>
+<h2 id="无量纲化"><a href="#无量纲化" class="headerlink" title="无量纲化"></a>无量纲化</h2><h3 id="极差法"><a href="#极差法" class="headerlink" title="极差法"></a>极差法</h3><blockquote>
+<p>(观测值-最小值)/极差</p>
+</blockquote>
+<p>将数值缩放到0至1之间，又称为<strong>归一化(normalization)</strong></p>
+<h3 id="log函数标准化"><a href="#log函数标准化" class="headerlink" title="log函数标准化"></a>log函数标准化</h3><blockquote>
+<p>log10(X)/log10(MAX)</p>
+</blockquote>
+<p>适用于观测值大于等于1的情况，这也是一种特殊的归一化。</p>
+<h3 id="z-score"><a href="#z-score" class="headerlink" title="z-score"></a>z-score</h3><blockquote>
+<p>(观测值-均值)/标准差</p>
+</blockquote>
+<p>将数值转化为均值为0，方差为1的标准正态分布的形式，又称作<strong>标准化(standrdization)</strong></p>
+<h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p><a href="http://www.opiniomics.org/you-probably-dont-understand-heatmaps/" target="_blank" rel="noopener">http://www.opiniomics.org/you-probably-dont-understand-heatmaps/</a></p>
+<p><a href="https://sebastianraschka.com/Articles/2014_about_feature_scaling.html" target="_blank" rel="noopener">https://sebastianraschka.com/Articles/2014_about_feature_scaling.html</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU4NjU4ODQ2MQ==&amp;mid=2247485966&amp;idx=1&amp;sn=7c7cfcc79eba37dd377a31dd30e16e3b&amp;chksm=fdf8424cca8fcb5af1d10b141f92ee545d737483b58fd0a08b45ae2802947db4aaf4f3660092" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzU4NjU4ODQ2MQ==&amp;mid=2247485966&amp;idx=1&amp;sn=7c7cfcc79eba37dd377a31dd30e16e3b&amp;chksm=fdf8424cca8fcb5af1d10b141f92ee545d737483b58fd0a08b45ae2802947db4aaf4f3660092</a></p>
+<hr>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sr-c</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://sr-c.github.io/2019/04/30/how-heatmaps-work/" title="如何绘制一张热图">https://sr-c.github.io/2019/04/30/how-heatmaps-work/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/R/" rel="tag"># R</a>
+          
+            <a href="/tags/heatmap/" rel="tag"># heatmap</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/21/ggtree-quickstart/" rel="next" title="ggtree-quickstart">
+                <i class="fa fa-chevron-left"></i> ggtree-quickstart
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/11/manjaro-quickstart/" rel="prev" title="在manjaro上配置工作环境">
+                在manjaro上配置工作环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="sr-c">
+            
+              <p class="site-author-name" itemprop="name">sr-c</p>
+              <div class="site-description motion-element" itemprop="description">sr-c's blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">120</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.mintos.org/" title="http://www.mintos.org/" rel="noopener" target="_blank">薄荷开源网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://forum.suse.org.cn/" title="https://forum.suse.org.cn/" rel="noopener" target="_blank">openSUSE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://man.linuxde.net/" title="http://man.linuxde.net/" rel="noopener" target="_blank">linuxde</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/xudongliang/" title="http://www.cnblogs.com/xudongliang/" rel="noopener" target="_blank">庐州月光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://qinqianshan.com/" title="http://qinqianshan.com/" rel="noopener" target="_blank">Sam's Note</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#将数据聚类"><span class="nav-number">1.</span> <span class="nav-text">将数据聚类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算距离"><span class="nav-number">2.</span> <span class="nav-text">计算距离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据缩放-scaling"><span class="nav-number">3.</span> <span class="nav-text">数据缩放(scaling)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题所在"><span class="nav-number">4.</span> <span class="nav-text">问题所在</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">4.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#热图实例"><span class="nav-number">5.</span> <span class="nav-text">热图实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无量纲化"><span class="nav-number">6.</span> <span class="nav-text">无量纲化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#极差法"><span class="nav-number">6.1.</span> <span class="nav-text">极差法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#log函数标准化"><span class="nav-number">6.2.</span> <span class="nav-text">log函数标准化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#z-score"><span class="nav-number">6.3.</span> <span class="nav-text">z-score</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">7.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-tint"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sr-c</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
