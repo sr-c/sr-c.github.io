@@ -100,18 +100,20 @@
 
 
 
-  <meta name="description" content="使用`pheatmap`绘制热图">
+  <meta name="description" content="使用pheatmap绘制热图">
 <meta name="keywords" content="heatmap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用pheatmap绘制热图">
 <meta property="og:url" content="https://sr-c.github.io/2018/06/30/pheatmap/index.html">
 <meta property="og:site_name" content="SR-C">
-<meta property="og:description" content="使用`pheatmap`绘制热图">
+<meta property="og:description" content="使用pheatmap绘制热图">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-12T09:50:17.298Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/903467-20ef5aee33fa32ab.png">
+<meta property="og:updated_time" content="2019-07-16T07:18:18.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用pheatmap绘制热图">
-<meta name="twitter:description" content="使用`pheatmap`绘制热图">
+<meta name="twitter:description" content="使用pheatmap绘制热图">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/903467-20ef5aee33fa32ab.png">
 
 
 
@@ -391,11 +393,10 @@
       
 
       
-        <p class="description">使用`pheatmap`绘制热图</p>
-
+        <p class="description">使用pheatmap绘制热图</p>
 <a id="more"></a>
 
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span>(<span class="string">"http://bioconductor.org/biocLite.R"</span>)</span><br><span class="line">biocLite(<span class="string">"pheatmap"</span>)</span><br><span class="line"><span class="keyword">library</span>(pheatmap)</span><br></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.package(<span class="string">"pheatmap"</span>)</span><br><span class="line"><span class="keyword">library</span>(pheatmap)</span><br></pre></td></tr></table></figure>
 
 <h2 id="读入数据"><a href="#读入数据" class="headerlink" title="读入数据"></a>读入数据</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setwd(<span class="string">"path/to/my/workdir/"</span>)</span><br><span class="line">data &lt;- read.delim(<span class="string">"mydata.txt"</span>, header = <span class="literal">T</span>, sep = <span class="string">"\t"</span>, row.names = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
@@ -416,8 +417,20 @@
 <h3 id="根据特定条件将热图分隔开"><a href="#根据特定条件将热图分隔开" class="headerlink" title="根据特定条件将热图分隔开"></a>根据特定条件将热图分隔开</h3><p><code>cutree_rows</code>, <code>cutree_cols</code> 根据行列的聚类数将热图分隔开<br>pheatmap(test, cutree_rows=3, cutree_cols=2)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#还可以自己设定各个分组的颜色</span><br><span class="line">ann_colors = list(Time = c(&quot;white&quot;, &quot;firebrick&quot;), #连续数值型分组可设置成渐变</span><br><span class="line">    CellType = c(CT1 = &quot;#1B9E77&quot;, CT2 = &quot;#D95F02&quot;),</span><br><span class="line">    GeneClass = c(Path1 = &quot;#7570B3&quot;, Path2 = &quot;#E7298A&quot;, Path3 = &quot;#66A61E&quot;))</span><br><span class="line">pheatmap(test, annotation_col = annotation_col, annotation_row = annotation_row, annotation_colors = ann_colors)</span><br><span class="line">#还可以利用gaps_row, gaps_col自己设定要分隔开的位置</span><br><span class="line">pheatmap(test, annotation_col = annotation_col, cluster_rows = FALSE, gaps_row = c(10, 14), cutree_col = 2)</span><br></pre></td></tr></table></figure>
 
+<h3 id="指定取色范围"><a href="#指定取色范围" class="headerlink" title="指定取色范围"></a>指定取色范围</h3><p>默认的取色范围就是数据的取值范围<code>range(data)</code>，而常常我们会需求特定的取值范围，或者指定中间特定值（如0）的颜色。那么就需要使用<code>breaks</code>参数指定取色范围，并根据break范围设定颜色范围。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#breaks</span></span><br><span class="line">bk &lt;- c(seq(-<span class="number">9</span>,-<span class="number">0.1</span>,by=<span class="number">0.01</span>),seq(<span class="number">0</span>,<span class="number">9</span>,by=<span class="number">0.01</span>))</span><br><span class="line"><span class="comment">#pheatmap</span></span><br><span class="line">pheatmap(data1,</span><br><span class="line">         scale = <span class="string">"none"</span>,</span><br><span class="line">         color = c(colorRampPalette(colors = c(<span class="string">"blue"</span>,<span class="string">"white"</span>))(length(bk)/<span class="number">2</span>),colorRampPalette(colors = c(<span class="string">"white"</span>,<span class="string">"red"</span>))(length(bk)/<span class="number">2</span>)),</span><br><span class="line">         legend_breaks=seq(-<span class="number">8</span>,<span class="number">8</span>,<span class="number">2</span>),</span><br><span class="line">         breaks=bk)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/903467-20ef5aee33fa32ab.png" alt="break_color"></p>
+<h3 id="设置legend的大小"><a href="#设置legend的大小" class="headerlink" title="设置legend的大小"></a>设置legend的大小</h3><p><code>pheatmap</code>关于<code>legend</code>仅提供了3个参数，而如何设定legend的大小并不方便。</p>
+<ul>
+<li>legend 是否显示legend</li>
+<li>legend_breaks 以向量方式设定breakpoint</li>
+<li>legend_labels 以向量方式提供breakpoint的标签</li>
+</ul>
+<p>一个讨巧的<a href="https://stackoverflow.com/questions/25495965/pheatmap-formatting-in-r-legend-size-and-creating-a-square-plot?answertab=active#tab-top" target="_blank" rel="noopener">方法</a>是通过设定字体的方式来调整，增大字体可以改变legend的大小。而文本的字体可以使用<code>fontsize_row</code>和<code>fontsize_col</code>来分别限定。</p>
 <h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p><a href="https://blog.csdn.net/sinat_38163598/article/details/72770404" target="_blank" rel="noopener">https://blog.csdn.net/sinat_38163598/article/details/72770404</a></p>
 <p><a href="https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf" target="_blank" rel="noopener">https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf</a></p>
+<p><a href="https://www.jianshu.com/p/6b765e83d723" target="_blank" rel="noopener">https://www.jianshu.com/p/6b765e83d723</a></p>
 <hr>
       
     </div>
@@ -925,7 +938,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读入数据"><span class="nav-number">2.</span> <span class="nav-text">读入数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始绘制"><span class="nav-number">3.</span> <span class="nav-text">开始绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数设置"><span class="nav-number">4.</span> <span class="nav-text">参数设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将数值显示在热图的格子中"><span class="nav-number">4.1.</span> <span class="nav-text">将数值显示在热图的格子中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改变每个格子的大小"><span class="nav-number">4.2.</span> <span class="nav-text">改变每个格子的大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据特定条件将热图分隔开"><span class="nav-number">4.3.</span> <span class="nav-text">根据特定条件将热图分隔开</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">5.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读入数据"><span class="nav-number">2.</span> <span class="nav-text">读入数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始绘制"><span class="nav-number">3.</span> <span class="nav-text">开始绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数设置"><span class="nav-number">4.</span> <span class="nav-text">参数设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将数值显示在热图的格子中"><span class="nav-number">4.1.</span> <span class="nav-text">将数值显示在热图的格子中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改变每个格子的大小"><span class="nav-number">4.2.</span> <span class="nav-text">改变每个格子的大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据特定条件将热图分隔开"><span class="nav-number">4.3.</span> <span class="nav-text">根据特定条件将热图分隔开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定取色范围"><span class="nav-number">4.4.</span> <span class="nav-text">指定取色范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置legend的大小"><span class="nav-number">4.5.</span> <span class="nav-text">设置legend的大小</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源"><span class="nav-number">5.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
             
 
           </div>
