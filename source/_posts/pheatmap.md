@@ -6,15 +6,13 @@ permalink:
 categories:
 description:
 ---
-<p class="description">使用`pheatmap`绘制热图</p>
-
+<p class="description">使用pheatmap绘制热图</p>
 <!-- more -->
 
 ## 安装
 
 ```R
-source("http://bioconductor.org/biocLite.R")
-biocLite("pheatmap")
+install.package("pheatmap")
 library(pheatmap)
 ```
 
@@ -99,10 +97,39 @@ pheatmap(test, annotation_col = annotation_col, annotation_row = annotation_row,
 pheatmap(test, annotation_col = annotation_col, cluster_rows = FALSE, gaps_row = c(10, 14), cutree_col = 2)
 ```
 
+### 指定取色范围
+
+默认的取色范围就是数据的取值范围`range(data)`，而常常我们会需求特定的取值范围，或者指定中间特定值（如0）的颜色。那么就需要使用`breaks`参数指定取色范围，并根据break范围设定颜色范围。
+
+```R
+#breaks
+bk <- c(seq(-9,-0.1,by=0.01),seq(0,9,by=0.01))
+#pheatmap
+pheatmap(data1,
+         scale = "none",
+         color = c(colorRampPalette(colors = c("blue","white"))(length(bk)/2),colorRampPalette(colors = c("white","red"))(length(bk)/2)),
+         legend_breaks=seq(-8,8,2),
+         breaks=bk)
+```
+
+![break_color](https://upload-images.jianshu.io/upload_images/903467-20ef5aee33fa32ab.png)
+
+### 设置legend的大小
+
+`pheatmap`关于`legend`仅提供了3个参数，而如何设定legend的大小并不方便。
+
+- legend 是否显示legend
+- legend_breaks 以向量方式设定breakpoint
+- legend_labels 以向量方式提供breakpoint的标签
+
+一个讨巧的[方法](https://stackoverflow.com/questions/25495965/pheatmap-formatting-in-r-legend-size-and-creating-a-square-plot?answertab=active#tab-top)是通过设定字体的方式来调整，增大字体可以改变legend的大小。而文本的字体可以使用`fontsize_row`和`fontsize_col`来分别限定。
+
 ## 参考来源
 
 https://blog.csdn.net/sinat_38163598/article/details/72770404
 
 https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf
+
+https://www.jianshu.com/p/6b765e83d723
 
 <hr />
