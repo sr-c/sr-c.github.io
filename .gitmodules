@@ -1,0 +1,4 @@
+[submodule "public"]
+	path = public
+	url = https://github.com/sr-c/sr-c.github.io.git
+	branch = master
