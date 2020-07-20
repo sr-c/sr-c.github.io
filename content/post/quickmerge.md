@@ -1,11 +1,10 @@
 ---
 title: quickmerge的使用
-tags: [pacbio]
+tags: [PacBio]
 date: 2018-06-04 22:44:59
-permalink:
+permalink: [Assembly, Genomics]
 categories:
 description:
-image:
 ---
 <p class="description">quickmerge可以用于综合不同软件的组装结果，以得到更加优秀的参考基因组</p>
 

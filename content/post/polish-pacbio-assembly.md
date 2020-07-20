@@ -1,9 +1,9 @@
 ---
-title: Polish Pacbio Assembly
-tags: [pacbio,polish]
+title: "Polish Pacbio Assembly"
+tags: [PacBio]
 date: 2018-05-29 23:18:05
 permalink:
-categories:
+categories: [Assembly, Genomics]
 description:
 image:
 ---

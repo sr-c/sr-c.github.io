@@ -8,8 +8,8 @@ hugo -t even # if using a theme, replace with `hugo -t <YOURTHEME>`
 # Go To Public folder
 cd public
 
-+ git init
-+ git remote add origin git@github.com:sr-c/sr-c.github.io.git
+git init
+git remote add origin git@github.com:sr-c/sr-c.github.io.git
 # Add changes to git.
 git add .
 
@@ -26,4 +26,4 @@ git push origin master -f
 # Come Back up to the Project Root
 cd ..
 
-+ rm -rf public
+#rm -rf public
