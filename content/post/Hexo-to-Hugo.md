@@ -8,6 +8,8 @@ description:
 
 Github最近总是邮件提醒我有些插件过时了，存在安全问题。随着文章数量增多，Hexo的速度越来越慢。因此决定切换到Hugo
 
+<!-- more -->
+
 # 安装
 
 ## 安装 Git 和 Go 
@@ -75,11 +77,23 @@ hugo server
 hugo server -D ##强制渲染非草稿的文章
 ```
 
-# github项目迁移
+# Github项目迁移
 
 之前，为了Hexo项目的[多地部署](https://sr-c.github.io/2018/01/08/hexo-remote-configuration/)，我在`sr-c.github.io`新开了一个`hexo`分支用于同步Hexo站点的配置目录。每次更新文章，先将站点目录`git push`到`hexo`分支，再使用`hexo g -d`调用`git`将`public`目录的内容提交至`master`分支。
 
 顺应这个思路，我又新建了一个`hugo`分支用于同步站点目录，再将每次更新生成的`public`目录推送至`master`分支。
+
+## 向GitHub添加SSH key
+
+参考之前的[设置](https://www.cnblogs.com/ayseeing/p/3572582.html)方式，对于已有的SSH key，可直接添加至GitHub.
+
+```bash
+# Add SSH key to clipboard
+clip < ~/.ssh/id_rsa.pub
+# Paste the key to GitHub Accout Settings page.
+# Test the Key
+ssh -T git@github.com
+```
 
 ## 提交hugo分支
 
@@ -92,7 +106,7 @@ git remote add origin https://<USERNAME>/<USERNAME>.github.io.git  # 添加仓�
 git checkout -b hugo  # 新建分支hexo并切换到新建的分支hexo
 git add .  # 添加所有本地文件到git
 git commit -m "version_log"  # git提交
-git push origin hexo  # 文件推送到hugo分支
+git push origin hugo  # 文件推送到hugo分支
 ```
 
 ## 提交master分支
@@ -101,7 +115,7 @@ Hugo[官方文档](https://gohugo.io/hosting-and-deployment/hosting-on-github/#s
 
 ```bash
 rm -rf public
-git submodule add -b master https://github.com/<USERNAME>/<USERNAME>.github.io.git public
+#git submodule add -b master https://github.com/<USERNAME>/<USERNAME>.github.io.git public
 
 ## deploy.sh
 #!/bin/sh
@@ -118,8 +132,7 @@ hugo # if using a theme, replace with `hugo -t <YOURTHEME>`
 cd public
 
 # Ensure submit to object branch
-git init
-git remote add origin git@github.com:sr-c/sr-c.github.io.git
+git clone git@github.com:sr-c/sr-c.github.io.git master
 # Add changes to git.
 git add .
 
@@ -166,3 +179,5 @@ https://scarletsky.github.io/2019/05/02/migrate-hexo-to-hugo/
 https://www.flysnow.org/2018/07/29/from-hexo-to-hugo.html
 
 https://io-oi.me/tech/hugo-vs-hexo/
+
+https://ouuan.github.io/post/from-hexo-to-hugo/
