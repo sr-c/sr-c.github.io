@@ -9,9 +9,9 @@ categories: [Blog]
 
 <!-- more -->
 
-# 修改配色方案
+## 修改主题配色
 
-even主题的样式文件位于`${Hugo-Site}/themes/even/assets/sass/_variables.scss`
+`even`主题的样式文件位于`${Hugo-Site}/themes/even/assets/sass/_variables.scss`
 
 修改其中的`white`与`global-font-color`结果如下
 
@@ -31,9 +31,9 @@ $global-font-color: #657b83 !default;
 ...
 ```
 
-# 添加搜索栏
+## 添加搜索菜单
 
-[lryong](https://github.com/lryong)在issues#289中提到添加搜索功能的方案[hugo-search-fuse-js](https://github.com/kaushalmodi/hugo-search-fuse-js).
+[lryong](https://github.com/lryong)在[issues#289](https://github.com/olOwOlo/hugo-theme-even/issues/289)中提到添加搜索功能的方案[hugo-search-fuse-js](https://github.com/kaushalmodi/hugo-search-fuse-js).
 
 1. 下载[hugo-search-fuse-js](https://github.com/kaushalmodi/hugo-search-fuse-js)至`theme`目录
 2. 添加"hugo-search-fuse-js"至`config.toml`
@@ -46,30 +46,7 @@ $global-font-color: #657b83 !default;
 将`${Hugo-sites}\themes\even\layouts\_default\baseof.html`拷至`${Hugo-sites}\layouts\_default`目录中。然后在合适的位置插入`main`与`footer`block. 修改后的`baseof.html`如下
 
 ```html
-{{ if ne .Site.Params.version "4.x" -}}
-  {{ errorf "\n\nThere are two possible situations that led to this error:\n  1. You haven't copied the config.toml yet. See https://github.com/olOwOlo/hugo-theme-even#installation \n  2. You have an incompatible update. See https://github.com/olOwOlo/hugo-theme-even/blob/master/CHANGELOG.md#400-2018-11-06 \n\n有两种可能的情况会导致这个错误发生:\n  1. 你还没有复制 config.toml 参考 https://github.com/olOwOlo/hugo-theme-even/blob/master/README-zh.md#installation \n  2. 你进行了一次不兼容的更新 参考 https://github.com/olOwOlo/hugo-theme-even/blob/master/CHANGELOG.md#400-2018-11-06 \n" -}}
-{{ end -}}
-<!DOCTYPE html>
-<html lang="{{ .Site.Language }}">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>
-    {{- block "title" . -}}
-      {{ if .IsPage }}{{ .Title }} - {{ .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}
-    {{- end -}}
-  </title>
-  {{ partial "head.html" . }}
-</head>
-<body>
-  {{ partial "slideout.html" . }}
-  <div class="container" id="mobile-panel">
-    {{ if not .Params.hideHeaderAndFooter -}}
-    <header id="header" class="header">
-        {{ partial "header.html" . }}
-    </header>
-    {{- end }}
-
+...
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
@@ -86,15 +63,7 @@ $global-font-color: #657b83 !default;
       {{ block "footer" . }}{{ end }}
     </footer>
     {{- end }}
-
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont icon-up"></i>
-    </div>
-  </div>
-  {{ partial "scripts.html" . }}
-
-</body>
-</html>
+...
 ```
 
 在站点的配置文件`config.toml`中添加`Search`菜单
@@ -107,10 +76,68 @@ $global-font-color: #657b83 !default;
   url = "/search/"
 ```
 
+## 添加评论区
+
+`even`主题现已加入`utterances`支持，参照[文档](https://utteranc.es/)，其已经设定为GitHub App安装非常方便，步骤如下：
+
+1. 在GitHub中新建一个repo (sr-c/blog-comment)用于存放评论
+2. 在GitHub中一键安装utterances app
+3. 在设置页面选择 repo: sr-c/blog-comment
+4. 在站点`config.toml`中的`[params.utterances]`字段中填入`owner = "sr-c"`与`repo = "blog-comment"`
+
+查看`themes/even/layouts/paritals/comments.html`, 可以看到其中已经集成了`utterances`的script字段，无需再做修改。
+
+```html
+  <!-- utterances -->
+  {{- if .Site.Params.utterances.owner}}
+    <script src="https://utteranc.es/client.js"
+            repo="{{ .Site.Params.utterances.owner }}/{{ .Site.Params.utterances.repo }}"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+  {{- end }}
+```
+
+## 添加RSS订阅
+
+参考[官方文档](https://www.gohugo.org/doc/templates/rss/)，添加`/layouts/rss.xml`文件
+
+```xml
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>Recent content {{ with .Title }}in {{.}} {{ end }}on {{ .Site.Title }}</description>
+    <generator>Hugo -- gohugo.io</generator>{{ with .Site.LanguageCode }}
+    <language>{{.}}</language>{{end}}{{ with .Site.Author.email }}
+    <managingEditor>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}{{ with .Site.Author.email }}
+    <webMaster>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</webMaster>{{end}}{{ with .Site.Copyright }}
+    <copyright>{{.}}</copyright>{{end}}{{ if not .Date.IsZero }}
+    <lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
+    <atom:link href="{{.URL}}" rel="self" type="application/rss+xml" />
+    {{ range first 15 .Data.Pages }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
+      <guid>{{ .Permalink }}</guid>
+      <description>{{ .Content | html }}</description>
+    </item>
+    {{ end }}
+  </channel>
+</rss>
+```
 
 
-# 参考来源
+
+## 参考来源
 
 http://www.herbert.top:18080/2020/07/09/how_change_hugo_even_font/
 
 https://github.com/olOwOlo/hugo-theme-even/issues/289#issuecomment-657229431
+
+https://www.dazhuanlan.com/2019/12/05/5de8934e6f081/

@@ -10,17 +10,17 @@ Github最近总是邮件提醒我有些插件过时了，存在安全问题。�
 
 <!-- more -->
 
-# 安装
+## 安装
 
-## 安装 Git 和 Go 
+### 安装 Git 和 Go 
 
 Hugo是用Golang编写的，使用Hugo前需要安装[Git](https://git-scm.com/) 和 [Go](https://golang.org/dl/) 语言开发环境。
 
-## 安装Hugo
+### 安装Hugo
 
 参考[官方文档](https://gohugo.io/getting-started/installing/#windows)有很多安装方式。对于Windows用户，可直接下载二进制文件，将放置路径添加至环境变量`PATH`即可。
 
-# 生成博客
+## 生成博客
 
 ```bash
 hugo version # 查看版本
@@ -29,7 +29,7 @@ cd myblog # 进入myblog目录
 hugo server # 启动本地调试服务
 ```
 
-## 安装主题
+### 安装主题
 
 Hugo没有自带的主题，但其官网的[主题库](https://themes.gohugo.io/)也非常丰富，应该能满足大部分人的需要。安装方式也与Hexo类似，在`themes`目录中`git clone`需要的主题即可。目前使用的是`even`, 推荐的还有`LeaveIt`,`maupassant`
 
@@ -77,13 +77,13 @@ hugo server
 hugo server -D ##强制渲染非草稿的文章
 ```
 
-# Github项目迁移
+## Github项目迁移
 
 之前，为了Hexo项目的[多地部署](https://sr-c.github.io/2018/01/08/hexo-remote-configuration/)，我在`sr-c.github.io`新开了一个`hexo`分支用于同步Hexo站点的配置目录。每次更新文章，先将站点目录`git push`到`hexo`分支，再使用`hexo g -d`调用`git`将`public`目录的内容提交至`master`分支。
 
 顺应这个思路，我又新建了一个`hugo`分支用于同步站点目录，再将每次更新生成的`public`目录推送至`master`分支。
 
-## 向GitHub添加SSH key
+### 向GitHub添加SSH key
 
 参考之前的[设置](https://www.cnblogs.com/ayseeing/p/3572582.html)方式，对于已有的SSH key，可直接添加至GitHub.
 
@@ -95,7 +95,7 @@ clip < ~/.ssh/id_rsa.pub
 ssh -T git@github.com
 ```
 
-## 提交hugo分支
+### 提交hugo分支
 
 在新建立的Hugo站点目录中
 
@@ -109,7 +109,7 @@ git commit -m "version_log"  # git提交
 git push origin hugo  # 文件推送到hugo分支
 ```
 
-## 提交master分支
+### 提交master分支
 
 Hugo[官方文档](https://gohugo.io/hosting-and-deployment/hosting-on-github/#step-by-step-instructions)推荐使用[子项目](https://github.blog/2016-02-01-working-with-submodules/)的方式管理并提交`public`目录至`master`分支。
 
@@ -160,19 +160,13 @@ rm -rf .git/modules/path/to/submodule
 git rm -f path/to/submodule
 ```
 
-## 进入之前的Hexo项目目录
-
-```bash
-git clone <YOUR-PROJECT-URL> && cd <YOUR-PROJECT>
-```
-
-## 托管至master分支中的`docs`目录
+### 托管至master分支中的`docs`目录
 
 https://sspai.com/post/59904中推荐将Github Page使用docs目录进行部署，但是实测目前该方法已经失效。
 
 `Github`对于个人用户的`<username>.github.io`或`<orgname>.github.io`的Page页面现在只能通过`master`分支进行部署，不支持自定义，也[不支持使用`docs`目录](https://docs.github.com/en/enterprise/2.14/user/articles/configuring-a-publishing-source-for-github-pages#publishing-your-github-pages-site-from-a-docs-folder-on-your-master-branch)了。
 
-# 参考来源
+### 参考来源
 
 https://scarletsky.github.io/2019/05/02/migrate-hexo-to-hugo/
 
@@ -181,3 +175,5 @@ https://www.flysnow.org/2018/07/29/from-hexo-to-hugo.html
 https://io-oi.me/tech/hugo-vs-hexo/
 
 https://ouuan.github.io/post/from-hexo-to-hugo/
+
+https://blog.eric7.site/2020/01/05/%E8%BF%81%E7%A7%BBhexo%E5%8D%9A%E5%AE%A2%E5%88%B0hugo/

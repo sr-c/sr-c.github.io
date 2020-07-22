@@ -6,19 +6,17 @@ categories:
 draft: true
 ---
 
-
-
 使用Anaconda配置python环境，在VScode中使用
 
 <!-- more -->
 
-# 安装
+## 安装
 
 anaconda和VScode的安装都很方便，默认安装即可。Windows中安装在`C://Program Files`目录下可能会存在权限问题，不推荐。
 
-# 配置
+## 配置
 
-## .condarc
+### .condarc
 
 使用`conda config`命令新建`.condarc`文件。一般的路径如下：
 
@@ -36,7 +34,7 @@ channels:
 
 文件规范了各个conda源的优先级。还可以设定镜像软件源的地址，但现在官方源的速度也不错，可以不做设置。
 
-## 新建conda环境
+### 新建conda环境
 
 `conda`虽然方便，但为了降低BUG几率，最好保障`base`环境干净。因此，一般都在新建的环境中进行配置。
 
@@ -46,11 +44,11 @@ conda create -n "scipy" pandas biopython
 
 新建一个`scipy`环境，安装了`pandas`,`biopython`方便日常调用。
 
-## 在VScode中调用conda环境
+### 在VScode中调用conda环境
 
 参考[官方文档](https://code.visualstudio.com/docs/python/environments)，首先在VScode扩展市场中安装Microsoft官方的`python`[扩展](https://marketplace.visualstudio.com/items?itemName=ms-python.python)。
 
-### 选择环境
+#### 选择环境
 
 使用`Ctrl+Shift+P`打开`Phthon: Select Interpreter`选择python解释器。
 
@@ -60,7 +58,7 @@ conda create -n "scipy" pandas biopython
 
 ![current_interpreter](https://code.visualstudio.com/assets/docs/python/environments/selected-interpreter-status-bar.png)
 
-### 手动设置解释器
+#### 手动设置解释器
 
 在`settings.json`中可使用`python.pythonPath`字段设置Python的路径。使用`Ctrl + ,`打开`settings.json`
 
@@ -68,7 +66,7 @@ conda create -n "scipy" pandas biopython
 "python.pythonPath": "<path-to-your-interpreter>\\python.exe"
 ```
 
-### 终端自动激活目标环境
+#### 终端自动激活目标环境
 
 在`settings.json`中配置终端自动激活conda环境，添加如下字段
 
@@ -82,9 +80,7 @@ conda create -n "scipy" pandas biopython
 “terminal.integrated.shell.windows”:“C:\\Windows\\System32\\cmd.exe”
 ```
 
-
-
-# 参考来源
+## 参考来源
 
 https://code.visualstudio.com/docs/python/environments
 
