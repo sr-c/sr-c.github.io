@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PyPI on SR-C</title>
+    <link>https://sr-c.github.io/tags/PyPI/</link>
+    <description>Recent content in PyPI on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 26 Oct 2018 12:46:43 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/PyPI/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Python】函数模块</title>
+      <link>https://sr-c.github.io/2018/10/26/python-learning-2/</link>
+      <pubDate>Fri, 26 Oct 2018 12:46:43 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/26/python-learning-2/</guid>
+      <description>命名空间 主Python程序中的代码与一个名为__main__的命名空间关联。将代码放在其单独的模块中时，Python会自动创建一个与模块同名</description>
+    </item>
+    
+  </channel>
+</rss>

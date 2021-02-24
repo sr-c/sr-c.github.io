@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PCA on SR-C</title>
+    <link>https://sr-c.github.io/tags/PCA/</link>
+    <description>Recent content in PCA on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 19 Jul 2019 10:36:28 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/PCA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>StatQuest-PCA</title>
+      <link>https://sr-c.github.io/2019/07/19/StatQuest-PCA/</link>
+      <pubDate>Fri, 19 Jul 2019 10:36:28 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/07/19/StatQuest-PCA/</guid>
+      <description>PCA 主成分分析是处理多维数据时降维的方法。举例说明，不同处理组中上万个基因的表达量矩阵，也就对应着上万个维度。 Step 1 投射Gene1 与Gene2 的</description>
+    </item>
+    
+  </channel>
+</rss>

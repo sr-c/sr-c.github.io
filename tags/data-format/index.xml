@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data format on SR-C</title>
+    <link>https://sr-c.github.io/tags/data-format/</link>
+    <description>Recent content in data format on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 11 Oct 2018 22:35:51 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/data-format/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【R】转换数据格式</title>
+      <link>https://sr-c.github.io/2018/10/11/convert-wide-formatted-data/</link>
+      <pubDate>Thu, 11 Oct 2018 22:35:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/11/convert-wide-formatted-data/</guid>
+      <description>数据格式 Wide format为每列一个变量，也是常见的SPSS，excel等存储数据的格式。例如在基因表达数据中，每行一个基因，每列一个样品，构成</description>
+    </item>
+    
+  </channel>
+</rss>

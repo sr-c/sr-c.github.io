@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pilon on SR-C</title>
+    <link>https://sr-c.github.io/tags/Pilon/</link>
+    <description>Recent content in Pilon on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 16 Jul 2018 20:44:35 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Pilon/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pilon的使用</title>
+      <link>https://sr-c.github.io/2018/07/16/pilon/</link>
+      <pubDate>Mon, 16 Jul 2018 20:44:35 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/16/pilon/</guid>
+      <description>Pilon使用read比对分析识别输入的基因组序列与reads证据之间的不一致，尝试修正基因组序列中的差错，包括： 单碱基变异 小的插入缺失 较大</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SCP遇到&#34;Write failed Broken pipe&#34; - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="解决方案 无管理员权限则修改客户端的ssh配置 1 2 3 4 ##编辑ssh配置文件，无此文件则新建 vi ~/.ssh/config ##在其中添加如下语句 ServerAliveInterval 60 使得客户端在ssh连" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/08/14/Write-failed-Broken-pipe/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SCP遇到&#34;Write failed Broken pipe&#34;" />
+<meta property="og:description" content="解决方案 无管理员权限则修改客户端的ssh配置 1 2 3 4 ##编辑ssh配置文件，无此文件则新建 vi ~/.ssh/config ##在其中添加如下语句 ServerAliveInterval 60 使得客户端在ssh连" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/08/14/Write-failed-Broken-pipe/" />
+<meta property="article:published_time" content="2018-08-14T11:51:50+00:00" />
+<meta property="article:modified_time" content="2018-08-14T11:51:50+00:00" />
+<meta itemprop="name" content="SCP遇到&#34;Write failed Broken pipe&#34;">
+<meta itemprop="description" content="解决方案 无管理员权限则修改客户端的ssh配置 1 2 3 4 ##编辑ssh配置文件，无此文件则新建 vi ~/.ssh/config ##在其中添加如下语句 ServerAliveInterval 60 使得客户端在ssh连">
+<meta itemprop="datePublished" content="2018-08-14T11:51:50+00:00" />
+<meta itemprop="dateModified" content="2018-08-14T11:51:50+00:00" />
+<meta itemprop="wordCount" content="389">
+
+
+
+<meta itemprop="keywords" content="ssh,scp,debug," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SCP遇到&#34;Write failed Broken pipe&#34;"/>
+<meta name="twitter:description" content="解决方案 无管理员权限则修改客户端的ssh配置 1 2 3 4 ##编辑ssh配置文件，无此文件则新建 vi ~/.ssh/config ##在其中添加如下语句 ServerAliveInterval 60 使得客户端在ssh连"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SCP遇到&#34;Write failed Broken pipe&#34;</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-08-14 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#解决方案">解决方案</a></li>
+    <li><a href="#使用rsync下载">使用rsync下载</a>
+      <ul>
+        <li><a href="#选项说明">选项说明</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="解决方案">解决方案</h2>
+<p>无管理员权限则修改客户端的ssh配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">##编辑ssh配置文件，无此文件则新建</span>
+vi ~/.ssh/config
+<span class="c1">##在其中添加如下语句</span>
+ServerAliveInterval <span class="m">60</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使得客户端在ssh连接时，每隔60秒发送一个keep-alive包</p>
+<h2 id="使用rsync下载">使用rsync下载</h2>
+<p>虽然通过上述设置能够避免长时间传输文件时<code>scp</code>异常掉线的问题，但对于大文件传输，仍不能实现断点续传，这时就需要使用同步工具<code>rsync</code>来进行服务器间的同步了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">rsync -Rr 文件夹名 ip::目标模块
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="选项说明">选项说明</h3>
+<blockquote>
+<p>-v, &ndash;verbose 详细模式输出
+-q, &ndash;quiet 精简输出模式
+-c, &ndash;checksum 打开校验开关，强制对文件传输进行校验
+-a, &ndash;archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD
+-r, &ndash;recursive 对子目录以递归模式处理
+-R, &ndash;relative 使用相对路径信息</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">rsync foo/bar/foo.c remote:/tmp/
+<span class="c1">##则在/tmp目录下创建foo.c文件，而如果使用-R参数：</span>
+rsync -R foo/bar/foo.c remote:/tmp/
+<span class="c1">##则会创建文件/tmp/foo/bar/foo.c，也就是会保持完全路径信息。</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://www.logcg.com/archives/897.html">https://www.logcg.com/archives/897.html</a></p>
+<p><a href="https://www.cnblogs.com/dudu/archive/2013/02/07/ssh-write-failed-broken-pipe.html">https://www.cnblogs.com/dudu/archive/2013/02/07/ssh-write-failed-broken-pipe.html</a></p>
+<p><a href="http://blog.51cto.com/1inux/1751255">http://blog.51cto.com/1inux/1751255</a></p>
+<p><a href="http://www.dahouduan.com/2014/11/19/rsync-daemon/">http://www.dahouduan.com/2014/11/19/rsync-daemon/</a></p>
+<p><a href="http://www.cnblogs.com/MikeZhang/p/rsyncExample_20160818.html">http://www.cnblogs.com/MikeZhang/p/rsyncExample_20160818.html</a></p>
+<p><a href="https://blog.csdn.net/hepeng597/article/details/8960885">https://blog.csdn.net/hepeng597/article/details/8960885</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-08-14
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/ssh/">ssh</a>
+          <a href="/tags/scp/">scp</a>
+          <a href="/tags/debug/">debug</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/08/30/count-reads-number/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">快速了解fastq.gz文件中的reads数目</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/08/03/pmma-uv-transmittance/">
+            <span class="next-text nav-default">超净工作台的防护罩能阻挡紫外辐射么？</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

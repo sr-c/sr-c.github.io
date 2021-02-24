@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python练习-2 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="查找核酸序列的子集 http://rosalind.info/problems/subs/ 1 2 3 4 5 6 7 8 9 10 11 12 with open(&amp;#39;rosalind_subs.txt&amp;#39;) as lines: string_1 = lines.readline().strip() string_2 = lines.readline().strip() note = [] length_2 = len(string_2) for i in range(0, len(string_1)&#43;1): if string_1[i:i&#43;length_2] == string_2: note.append(str(i&#43;1)) notes = &amp;#39; &amp;#39;.join(note) print(notes) 计算两条序列间的汉明距离 http://rosalind.info/problems/hamm/ 1 2 3 4" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/10/30/python-exercise-2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python练习-2" />
+<meta property="og:description" content="查找核酸序列的子集 http://rosalind.info/problems/subs/ 1 2 3 4 5 6 7 8 9 10 11 12 with open(&#39;rosalind_subs.txt&#39;) as lines: string_1 = lines.readline().strip() string_2 = lines.readline().strip() note = [] length_2 = len(string_2) for i in range(0, len(string_1)&#43;1): if string_1[i:i&#43;length_2] == string_2: note.append(str(i&#43;1)) notes = &#39; &#39;.join(note) print(notes) 计算两条序列间的汉明距离 http://rosalind.info/problems/hamm/ 1 2 3 4" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/10/30/python-exercise-2/" />
+<meta property="article:published_time" content="2018-10-30T17:58:54+00:00" />
+<meta property="article:modified_time" content="2018-10-30T17:58:54+00:00" />
+<meta itemprop="name" content="Python练习-2">
+<meta itemprop="description" content="查找核酸序列的子集 http://rosalind.info/problems/subs/ 1 2 3 4 5 6 7 8 9 10 11 12 with open(&#39;rosalind_subs.txt&#39;) as lines: string_1 = lines.readline().strip() string_2 = lines.readline().strip() note = [] length_2 = len(string_2) for i in range(0, len(string_1)&#43;1): if string_1[i:i&#43;length_2] == string_2: note.append(str(i&#43;1)) notes = &#39; &#39;.join(note) print(notes) 计算两条序列间的汉明距离 http://rosalind.info/problems/hamm/ 1 2 3 4">
+<meta itemprop="datePublished" content="2018-10-30T17:58:54+00:00" />
+<meta itemprop="dateModified" content="2018-10-30T17:58:54+00:00" />
+<meta itemprop="wordCount" content="441">
+
+
+
+<meta itemprop="keywords" content="Python,Rosalind," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python练习-2"/>
+<meta name="twitter:description" content="查找核酸序列的子集 http://rosalind.info/problems/subs/ 1 2 3 4 5 6 7 8 9 10 11 12 with open(&#39;rosalind_subs.txt&#39;) as lines: string_1 = lines.readline().strip() string_2 = lines.readline().strip() note = [] length_2 = len(string_2) for i in range(0, len(string_1)&#43;1): if string_1[i:i&#43;length_2] == string_2: note.append(str(i&#43;1)) notes = &#39; &#39;.join(note) print(notes) 计算两条序列间的汉明距离 http://rosalind.info/problems/hamm/ 1 2 3 4"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python练习-2</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-10-30 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#查找核酸序列的子集">查找核酸序列的子集</a></li>
+    <li><a href="#计算两条序列间的汉明距离">计算两条序列间的汉明距离</a></li>
+    <li><a href="#将核酸序列转换为蛋白序列">将核酸序列转换为蛋白序列</a>
+      <ul>
+        <li><a href="#判断一个能否被整除">判断一个能否被整除</a></li>
+        <li><a href="#查找列表">查找列表</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="查找核酸序列的子集">查找核酸序列的子集</h2>
+<p><a href="http://rosalind.info/problems/subs/">http://rosalind.info/problems/subs/</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;rosalind_subs.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">lines</span><span class="p">:</span>
+    <span class="n">string_1</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">string_2</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="n">note</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">length_2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">string_2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">string_1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">string_1</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">length_2</span><span class="p">]</span> <span class="o">==</span> <span class="n">string_2</span><span class="p">:</span>
+            <span class="n">note</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="n">notes</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="计算两条序列间的汉明距离">计算两条序列间的汉明距离</h2>
+<p><a href="http://rosalind.info/problems/hamm/">http://rosalind.info/problems/hamm/</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;rosalind_hamm.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">s</span><span class="p">,</span><span class="n">t</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="n">count_n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+        <span class="n">count_n</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">count_n</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="将核酸序列转换为蛋白序列">将核酸序列转换为蛋白序列</h2>
+<p><a href="http://rosalind.info/problems/prot/">http://rosalind.info/problems/prot/</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="k">def</span> <span class="nf">prot</span><span class="p">(</span><span class="n">condon</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;GCU&#39;</span><span class="p">,</span> <span class="s1">&#39;GCC&#39;</span><span class="p">,</span> <span class="s1">&#39;GCA&#39;</span><span class="p">,</span> <span class="s1">&#39;GCG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;A&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CGU&#39;</span><span class="p">,</span> <span class="s1">&#39;CGC&#39;</span><span class="p">,</span> <span class="s1">&#39;CGA&#39;</span><span class="p">,</span> <span class="s1">&#39;CGG&#39;</span><span class="p">,</span> <span class="s1">&#39;AGA&#39;</span><span class="p">,</span> <span class="s1">&#39;AGG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;R&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;AAU&#39;</span><span class="p">,</span> <span class="s1">&#39;AAC&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;N&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;GAU&#39;</span><span class="p">,</span> <span class="s1">&#39;GAC&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;D&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;UGU&#39;</span><span class="p">,</span> <span class="s1">&#39;UGC&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;C&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CAA&#39;</span><span class="p">,</span> <span class="s1">&#39;CAG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;Q&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;GAA&#39;</span><span class="p">,</span> <span class="s1">&#39;GAG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;E&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;GGU&#39;</span><span class="p">,</span> <span class="s1">&#39;GGC&#39;</span><span class="p">,</span> <span class="s1">&#39;GGA&#39;</span><span class="p">,</span> <span class="s1">&#39;GGG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;G&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CAU&#39;</span><span class="p">,</span> <span class="s1">&#39;CAC&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;H&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;UUA&#39;</span><span class="p">,</span> <span class="s1">&#39;UUG&#39;</span><span class="p">,</span> <span class="s1">&#39;CUU&#39;</span><span class="p">,</span> <span class="s1">&#39;CUC&#39;</span><span class="p">,</span> <span class="s1">&#39;CUA&#39;</span><span class="p">,</span> <span class="s1">&#39;CUG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;L&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;AUU&#39;</span><span class="p">,</span> <span class="s1">&#39;AUC&#39;</span><span class="p">,</span> <span class="s1">&#39;AUA&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;I&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;AAA&#39;</span><span class="p">,</span> <span class="s1">&#39;AAG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;K&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;AUG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;M&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;UUU&#39;</span><span class="p">,</span> <span class="s1">&#39;UUC&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;F&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CCU&#39;</span><span class="p">,</span> <span class="s1">&#39;CCC&#39;</span><span class="p">,</span> <span class="s1">&#39;CCA&#39;</span><span class="p">,</span> <span class="s1">&#39;CCG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;P&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;UCU&#39;</span><span class="p">,</span> <span class="s1">&#39;UCC&#39;</span><span class="p">,</span> <span class="s1">&#39;UCA&#39;</span><span class="p">,</span> <span class="s1">&#39;UCG&#39;</span><span class="p">,</span> <span class="s1">&#39;AGU&#39;</span><span class="p">,</span> <span class="s1">&#39;AGC&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;S&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ACU&#39;</span><span class="p">,</span> <span class="s1">&#39;ACC&#39;</span><span class="p">,</span> <span class="s1">&#39;ACA&#39;</span><span class="p">,</span> <span class="s1">&#39;ACG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;T&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;UGG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;W&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;UAU&#39;</span><span class="p">,</span> <span class="s1">&#39;UAC&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;Y&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;GUU&#39;</span><span class="p">,</span> <span class="s1">&#39;GUC&#39;</span><span class="p">,</span> <span class="s1">&#39;GUA&#39;</span><span class="p">,</span> <span class="s1">&#39;GUG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;V&#39;</span>
+    <span class="k">elif</span> <span class="n">condon</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;AUG&#39;</span><span class="p">,</span> <span class="s1">&#39;UAA&#39;</span><span class="p">,</span> <span class="s1">&#39;UGA&#39;</span><span class="p">,</span> <span class="s1">&#39;UAG&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Not proper condon input.&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;rosalind_prot.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">RNA_string</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">p_len</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">RNA_string</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">prots</span> <span class="o">=</span> <span class="p">[</span><span class="n">prot</span><span class="p">(</span><span class="n">RNA_string</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">p_len</span><span class="p">)]</span>
+    <span class="n">prot_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prots</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">prot_string</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="判断一个能否被整除">判断一个能否被整除</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&#34;x能够被3整除&#34;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&#34;x不能够被3整除&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="查找列表">查找列表</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="n">a_list</span>
+<span class="n">a_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">a_list</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://en.wikipedia.org/wiki/Hamming_distance">https://en.wikipedia.org/wiki/Hamming_distance</a></p>
+<p><a href="https://blog.csdn.net/qq_31747765/article/details/80944227">https://blog.csdn.net/qq_31747765/article/details/80944227</a></p>
+<p><a href="https://blog.csdn.net/qq842977873/article/details/79372844">https://blog.csdn.net/qq842977873/article/details/79372844</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-10-30
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Python/">Python</a>
+          <a href="/tags/Rosalind/">Rosalind</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/10/31/python-exercise-3/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python练习-3</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/10/29/python-exercise-1/">
+            <span class="next-text nav-default">Python练习-1</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

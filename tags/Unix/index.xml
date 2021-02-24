@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unix on SR-C</title>
+    <link>https://sr-c.github.io/tags/Unix/</link>
+    <description>Recent content in Unix on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 18 Oct 2018 15:32:05 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Unix/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>回车与换行</title>
+      <link>https://sr-c.github.io/2018/10/18/CR-and-LF/</link>
+      <pubDate>Thu, 18 Oct 2018 15:32:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/18/CR-and-LF/</guid>
+      <description>问题描述 在求一些向量的交集时，发现肉眼可见的交集却得不到结果。 一阵折腾过后，在notepad++中打开，发现在换行时两组数据的差异。CR LF (\r\n)</description>
+    </item>
+    
+    <item>
+      <title>vim使用的小技巧</title>
+      <link>https://sr-c.github.io/2018/07/06/vim-tips/</link>
+      <pubDate>Fri, 06 Jul 2018 17:52:33 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/06/vim-tips/</guid>
+      <description>一、查找 查找命令 1 2 /pattern&amp;lt;Enter&amp;gt; ：向下查找pattern匹配字符串 ?pattern&amp;lt;Enter&amp;gt;：向上查找pattern匹配字符串 使用了查</description>
+    </item>
+    
+  </channel>
+</rss>

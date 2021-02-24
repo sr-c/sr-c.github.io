@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>conda on SR-C</title>
+    <link>https://sr-c.github.io/tags/conda/</link>
+    <description>Recent content in conda on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 21 Jul 2020 16:21:29 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/conda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DNA Features Viewer使用</title>
+      <link>https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/</link>
+      <pubDate>Tue, 21 Jul 2020 16:21:29 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/</guid>
+      <description>最近发表在Bioinformatics的DNA Features Viewer是一个可视化DNA序列特征的Python工具。此为尝鲜。 安装 官方文档目前只提供p</description>
+    </item>
+    
+    <item>
+      <title>conda源的配置</title>
+      <link>https://sr-c.github.io/2019/03/03/conda-channels-order/</link>
+      <pubDate>Sun, 03 Mar 2019 17:05:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/03/conda-channels-order/</guid>
+      <description>conda升级 conda提示的升级方案为 1 conda update -n base conda 按照提示进行升级，但升级提示竟然会将原本3.6版本的python降级至2.7 1 2 3 The following packages</description>
+    </item>
+    
+    <item>
+      <title>使用conda安装软件</title>
+      <link>https://sr-c.github.io/2018/06/12/conda-install/</link>
+      <pubDate>Tue, 12 Jun 2018 23:17:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/12/conda-install/</guid>
+      <description>安装miniconda 在软件主页选择需要安装的版本，在此我们选择Python3.6 64位的版本， 下载后运行安装脚本即可完成安装 1 sh Miniconda3-latest-Linux-x86_64.sh 配置co</description>
+    </item>
+    
+  </channel>
+</rss>

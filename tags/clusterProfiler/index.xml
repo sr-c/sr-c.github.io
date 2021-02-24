@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>clusterProfiler on SR-C</title>
+    <link>https://sr-c.github.io/tags/clusterProfiler/</link>
+    <description>Recent content in clusterProfiler on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 01 Dec 2018 09:26:32 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/clusterProfiler/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用clusterProfiler进行富集分析</title>
+      <link>https://sr-c.github.io/2018/12/01/clusterProfiler/</link>
+      <pubDate>Sat, 01 Dec 2018 09:26:32 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/01/clusterProfiler/</guid>
+      <description>构建物种数据库 准备注释数据 GO注释 由功能注释得到的数据录入，主要分为两类方法： 序列相似性比对（BLAST, diamond） 结构域相似性比对（</description>
+    </item>
+    
+    <item>
+      <title>R-3.5.1安装</title>
+      <link>https://sr-c.github.io/2018/11/24/R-3-5-1-install/</link>
+      <pubDate>Sat, 24 Nov 2018 16:35:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/24/R-3-5-1-install/</guid>
+      <description>conda安装 1 conda create -n R-3.5.1 R=3.5.1 但在安装完成后，运行R出现如下报错： 1 2 (R-3.5.1) [shurh@cluster EggNOG]$ R /Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/bin/exec/R: error while loading shared libraries: libbz2.so.1.0: cannot open shared object file: No such file or directory 此时，覆盖安装bzip2可解决问</description>
+    </item>
+    
+  </channel>
+</rss>

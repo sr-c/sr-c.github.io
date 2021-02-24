@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Viral-genome-assembly - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="目前一般的方法有VICUNA, PRICE, IVA, 因此，我们尝试使用这3种方法进行组装。 本地工具 VICUNA VICUNA出自大名鼎鼎的borad研究所，但在2012年" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/10/26/Virus-genome-assembly/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Viral-genome-assembly" />
+<meta property="og:description" content="目前一般的方法有VICUNA, PRICE, IVA, 因此，我们尝试使用这3种方法进行组装。 本地工具 VICUNA VICUNA出自大名鼎鼎的borad研究所，但在2012年" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/10/26/Virus-genome-assembly/" />
+<meta property="article:published_time" content="2019-10-26T21:57:04+00:00" />
+<meta property="article:modified_time" content="2019-10-26T21:57:04+00:00" />
+<meta itemprop="name" content="Viral-genome-assembly">
+<meta itemprop="description" content="目前一般的方法有VICUNA, PRICE, IVA, 因此，我们尝试使用这3种方法进行组装。 本地工具 VICUNA VICUNA出自大名鼎鼎的borad研究所，但在2012年">
+<meta itemprop="datePublished" content="2019-10-26T21:57:04+00:00" />
+<meta itemprop="dateModified" content="2019-10-26T21:57:04+00:00" />
+<meta itemprop="wordCount" content="419">
+
+
+
+<meta itemprop="keywords" content="assembly," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Viral-genome-assembly"/>
+<meta name="twitter:description" content="目前一般的方法有VICUNA, PRICE, IVA, 因此，我们尝试使用这3种方法进行组装。 本地工具 VICUNA VICUNA出自大名鼎鼎的borad研究所，但在2012年"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Viral-genome-assembly</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-26 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#本地工具">本地工具</a>
+      <ul>
+        <li><a href="#vicuna">VICUNA</a></li>
+        <li><a href="#price">PRICE</a></li>
+        <li><a href="#iva">IVA</a></li>
+      </ul>
+    </li>
+    <li><a href="#网页工具">网页工具</a>
+      <ul>
+        <li><a href="#viramp">VirAmp</a></li>
+        <li><a href="#virustap">VirusTAP</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<p>目前一般的方法有<a href="https://www.broadinstitute.org/viral-genomics/vicuna">VICUNA</a>, <a href="http://derisilab.ucsf.edu/software/price/index.html">PRICE</a>, <a href="https://sanger-pathogens.github.io/iva/">IVA</a>, 因此，我们尝试使用这3种方法进行组装。</p>
+<h2 id="本地工具">本地工具</h2>
+<h3 id="vicuna">VICUNA</h3>
+<p>VICUNA出自大名鼎鼎的borad研究所，但在2012年后，就停止了开发。</p>
+<h3 id="price">PRICE</h3>
+<p>DeRisi实验室出品，2014年停止开发。组装需提供一个seed sequence</p>
+<h3 id="iva">IVA</h3>
+<p>总结之前的工具，发表于Gigascience</p>
+<h2 id="网页工具">网页工具</h2>
+<h3 id="viramp">VirAmp</h3>
+<p>默认使用<code>velvet</code>进行组装</p>
+<blockquote>
+<p><strong>VirAmp workflow</strong></p>
+<p>Virus Assembly Pipeline contains a set of programs to assemble the  the virus genome from shotgun sequence in a fast and accurate way with a related genome as guide.  In general, it contains the following steps:</p>
+<ol>
+<li>Quality Control</li>
+</ol>
+<p>This step trims out the low quality bases in reads from both end using seqtk toolkit</p>
+<ol start="2">
+<li>Diginal Normalization</li>
+</ol>
+<p>Digital normalization (diginorm) uses a single-pass computational  algorithm to reduce the high and redundant coverage in shotgun sequence  dataset, thus significantly decreasing time and memory requirements for  the de novo assembly while retaining the accuracy.</p>
+<p><strong>Notice</strong> Since Digital Normalization is designed to deal with extreme high  coverage data (x1000 or above), by default it&rsquo;s not turned on. One can  choose to turn on at the input panel.</p>
+<ol start="3">
+<li>De novo assembly (velvet)</li>
+</ol>
+<p>This step uses the velvet program to do a de novo assembly from the  shotgun sequence. This step results in a set of contigs of various  lengths.</p>
+<ol start="4">
+<li>Reference-guided Scaffolding (AMOScmp)</li>
+</ol>
+<p>Contigs generated from velvet in step 3 are oriented and connected into scaffolds by the reference-guided assembly tool AMOScmp</p>
+<ol start="5">
+<li>Scaffolding using paired-end information (SSPACE)</li>
+</ol>
+<p>Uses paired-end reads from the original dataset to extend and scaffold contigs</p>
+<ol start="6">
+<li>Assembly assessment</li>
+</ol>
+<p>QUAST (Quality Assessment Tool for Genome Assemblies) program is used for the statistical assessment of the assemblies resulting from step 4</p>
+<ol start="7">
+<li>SNV generation</li>
+</ol>
+<p>MUMmer is used to align the assembly results to the reference genome and report SNVs.</p>
+<ol start="8">
+<li>Draft and reference genome comparison</li>
+</ol>
+<p>MUMmer is used to compare the assembly results (draft genome) with the reference genome.</p>
+</blockquote>
+<h3 id="virustap">VirusTAP</h3>
+<p><a href="https://www.frontiersin.org/articles/10.3389/fmicb.2016.00032/full">https://www.frontiersin.org/articles/10.3389/fmicb.2016.00032/full</a></p>
+<p>需注册</p>
+<h2 id="参考来源">参考来源</h2>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-10-26
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/assembly/">assembly</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/11/15/ANOVA-in-R/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ANOVA-in-R</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/07/19/Docker-basic/">
+            <span class="next-text nav-default">Docker初探</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

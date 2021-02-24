@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>PH525x学习笔记Ⅰ - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="数据导入 安装软件包 1 2 install.packages(&amp;#34;rafalib&amp;#34;) install.packages(&amp;#34;downloader&amp;#34;) 下载课程地址中的femaleMiceWeights.csv，并导入数据到R中。 方法一 直接下载文件到工作目录下，然后" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/09/06/study-notes-PH525x-Chapter0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="PH525x学习笔记Ⅰ" />
+<meta property="og:description" content="数据导入 安装软件包 1 2 install.packages(&#34;rafalib&#34;) install.packages(&#34;downloader&#34;) 下载课程地址中的femaleMiceWeights.csv，并导入数据到R中。 方法一 直接下载文件到工作目录下，然后" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/09/06/study-notes-PH525x-Chapter0/" />
+<meta property="article:published_time" content="2018-09-06T19:48:10+00:00" />
+<meta property="article:modified_time" content="2018-09-06T19:48:10+00:00" />
+<meta itemprop="name" content="PH525x学习笔记Ⅰ">
+<meta itemprop="description" content="数据导入 安装软件包 1 2 install.packages(&#34;rafalib&#34;) install.packages(&#34;downloader&#34;) 下载课程地址中的femaleMiceWeights.csv，并导入数据到R中。 方法一 直接下载文件到工作目录下，然后">
+<meta itemprop="datePublished" content="2018-09-06T19:48:10+00:00" />
+<meta itemprop="dateModified" content="2018-09-06T19:48:10+00:00" />
+<meta itemprop="wordCount" content="620">
+
+
+
+<meta itemprop="keywords" content="PH525x,笔记," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PH525x学习笔记Ⅰ"/>
+<meta name="twitter:description" content="数据导入 安装软件包 1 2 install.packages(&#34;rafalib&#34;) install.packages(&#34;downloader&#34;) 下载课程地址中的femaleMiceWeights.csv，并导入数据到R中。 方法一 直接下载文件到工作目录下，然后"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">PH525x学习笔记Ⅰ</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-06 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#数据导入">数据导入</a>
+      <ul>
+        <li><a href="#安装软件包">安装软件包</a></li>
+        <li><a href="#方法一">方法一</a></li>
+        <li><a href="#方法二">方法二</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据清理dplyr">数据清理<code>dplyr</code></a></li>
+    <li><a href="#summarize函数">summarize函数</a></li>
+    <li><a href="#数学符号">数学符号</a>
+      <ul>
+        <li><a href="#希腊字母">希腊字母</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading">∞</a></li>
+    <li><a href="#积分">积分</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="数据导入">数据导入</h2>
+<h3 id="安装软件包">安装软件包</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;rafalib&#34;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;downloader&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>下载课程<a href="https://github.com/genomicsclass/dagdata/tree/master/inst/extdata">地址</a>中的<code>femaleMiceWeights.csv</code>，并导入数据到R中。</p>
+<h3 id="方法一">方法一</h3>
+<p>直接下载文件到工作目录下，然后使用read.csv导入数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">dat</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&#34;femaleMiceWeights.csv&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="方法二">方法二</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">downloader</span><span class="p">)</span> <span class="c1">##use install.packages to install</span>
+<span class="n">url</span> <span class="o">&lt;-</span> <span class="s">&#34;https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv&#34;</span>
+<span class="n">filename</span> <span class="o">&lt;-</span> <span class="s">&#34;femaleMiceWeights.csv&#34;</span> 
+<span class="nf">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">destfile</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="n">dat</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="数据清理dplyr">数据清理<code>dplyr</code></h2>
+<p>读入<code>femaleMiceWeights.csv</code>的数据后，筛选我们想要的数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span> 
+<span class="n">chow</span> <span class="o">&lt;-</span> <span class="nf">filter</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">Diet</span><span class="o">==</span><span class="s">&#34;chow&#34;</span><span class="p">)</span> <span class="c1">#keep only the ones with chow diet</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">chow</span><span class="p">)</span>
+
+<span class="n">chowVals</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">chow</span><span class="p">,</span><span class="n">Bodyweight</span><span class="p">)</span> <span class="c1">#选择chow中Bodyweight这一列</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在<code>dplyr</code>中可以使用管道符号<code>%&gt;%</code>来构建连续任务，上述步骤可以在一步完成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">chowVals</span> <span class="o">&lt;-</span> <span class="nf">filter</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">Diet</span><span class="o">==</span><span class="s">&#34;chow&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">select</span><span class="p">(</span><span class="n">Bodyweight</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上述命令不会改变数据的性质，若想要将列表转变为向量，则应使用<code>unlist</code>函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">chowVals</span> <span class="o">&lt;-</span> <span class="nf">filter</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">Diet</span><span class="o">==</span><span class="s">&#34;chow&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">select</span><span class="p">(</span><span class="n">Bodyweight</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">unlist</span>
+</code></pre></td></tr></table>
+</div>
+</div><!-- raw HTML omitted -->
+<h2 id="summarize函数">summarize函数</h2>
+<p>该函数的作用是将多个数值降维至单一数值，用法如下</p>
+<p>summarise(.data, &hellip;)</p>
+<blockquote>
+<p>Useful functions</p>
+<p>Center: mean(), median()</p>
+<p>Spread: sd(), IQR(), mad()</p>
+<p>Range: min(), max(), quantile()</p>
+<p>Position: first(), last(), nth(),</p>
+<p>Count: n(), n_distinct()</p>
+<p>Logical: any(), all()</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">dat</span> <span class="o">%&gt;%</span> <span class="nf">summarise</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">sleep_total</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="n">unlist</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="数学符号">数学符号</h2>
+<p>编号，求和，希腊字母</p>
+<h3 id="希腊字母">希腊字母</h3>
+<p><em><strong>μ</strong></em> <strong>, the Greek letter for m (m is for mean)</strong></p>
+<p><em><strong>σ</strong></em> <strong>, the Greek letter for s(s is for standard deviation )</strong></p>
+<p><em><strong>ε</strong></em> <strong>, the Greek letter for e(e is for measurement error )</strong></p>
+<p><em><strong>β</strong></em> <strong>, Effect sizes</strong></p>
+<h2 id="heading">∞</h2>
+<blockquote>
+<p>In the text we often talk about <em>asymptotic</em> results. Typically, 
+this refers to an approximation that gets better and better as the 
+number of data points we consider gets larger and larger, with perfect 
+approximations occurring when the number of data points is ∞. In practice, there is no such thing as ∞,
+but it is a convenient concept to understand. One way to think about 
+asymptotic results is as results that become better and better as some 
+number increases and we can pick a number so that a computer can’t tell 
+the difference between the approximation and the real number. Here is a 
+very simple example that approximates 1/3 with decimals:</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">onethird</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="nf">sum</span><span class="p">(</span> <span class="m">3</span><span class="o">/</span><span class="m">10</span><span class="nf">^c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">))</span>
+<span class="m">1</span><span class="o">/</span><span class="m">3</span> <span class="o">-</span> <span class="nf">onethird</span><span class="p">(</span><span class="m">4</span><span class="p">)</span>
+<span class="c1">## [1] 3.333333e-05</span>
+
+<span class="m">1</span><span class="o">/</span><span class="m">3</span> <span class="o">-</span> <span class="nf">onethird</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
+<span class="c1">## [1] 3.333334e-11</span>
+
+<span class="m">1</span><span class="o">/</span><span class="m">3</span> <span class="o">-</span> <span class="nf">onethird</span><span class="p">(</span><span class="m">16</span><span class="p">)</span>
+<span class="c1">## [1] 0</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>此时，16即是无穷大</p>
+<h2 id="积分">积分</h2>
+<p>∫42f(x)dx</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">width</span> <span class="o">&lt;-</span> <span class="m">0.01</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="n">width</span><span class="p">)</span>
+<span class="n">areaofbars</span> <span class="o">&lt;-</span>  <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">width</span>
+<span class="nf">sum</span><span class="p">(</span> <span class="n">areaofbars</span> <span class="p">)</span>
+
+<span class="c1">## [1] 0.02298998</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="http://genomicsclass.github.io/book/pages/dplyr_intro.html">http://genomicsclass.github.io/book/pages/dplyr_intro.html</a></p>
+<p><a href="http://genomicsclass.github.io/book/pages/dplyr_intro_exercises.html">http://genomicsclass.github.io/book/pages/dplyr_intro_exercises.html</a></p>
+<p><a href="http://genomicsclass.github.io/book/pages/math_notation.html">http://genomicsclass.github.io/book/pages/math_notation.html</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-09-06
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/PH525x/">PH525x</a>
+          <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/09/09/mysql-config/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">配置MySQL Server</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/09/04/augustus-install/">
+            <span class="next-text nav-default">AUGUSTUS的普通用户安装</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

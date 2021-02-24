@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>heatmap on SR-C</title>
+    <link>https://sr-c.github.io/tags/heatmap/</link>
+    <description>Recent content in heatmap on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 30 Apr 2019 11:28:59 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/heatmap/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何绘制一张热图</title>
+      <link>https://sr-c.github.io/2019/04/30/how-heatmaps-work/</link>
+      <pubDate>Tue, 30 Apr 2019 11:28:59 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/04/30/how-heatmaps-work/</guid>
+      <description>绘制热图的过程分为两个关键的步骤，第一，将数据聚类；第二，将数值矩阵转化为颜色图像。 将数据聚类 聚类的方法有许多，其中最简单的方法就是分层聚集</description>
+    </item>
+    
+    <item>
+      <title>使用pheatmap绘制热图</title>
+      <link>https://sr-c.github.io/2018/06/30/pheatmap/</link>
+      <pubDate>Sat, 30 Jun 2018 11:23:27 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/30/pheatmap/</guid>
+      <description>安装 1 2 install.package(&amp;#34;pheatmap&amp;#34;) library(pheatmap) 读入数据 1 2 setwd(&amp;#34;path/to/my/workdir/&amp;#34;) data &amp;lt;- read.delim(&amp;#34;mydata.txt&amp;#34;, header = T, sep = &amp;#34;\t&amp;#34;, row.names = 1) 开始绘制 1 pheatmap(as.matrix(data), color=colorRampPalette(c(&amp;#34;green&amp;#34;,&amp;#34;black&amp;#34;,&amp;#34;red&amp;#34;))(100), scale=&amp;#39;row&amp;#39;, border_color=NA, width=9, height=18, fontsize=9, fontsize_row=6, filename=&amp;#34;heatmap.pdf&amp;#34; ) 参数设置 1 2 3 4 5 6 scale=&amp;#39;row&amp;#39; #对矩阵进行标准化，以row或colu</description>
+    </item>
+    
+  </channel>
+</rss>

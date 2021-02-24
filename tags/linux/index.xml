@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on SR-C</title>
+    <link>https://sr-c.github.io/tags/linux/</link>
+    <description>Recent content in linux on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 02 Sep 2020 22:10:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>批量中止进程</title>
+      <link>https://sr-c.github.io/2020/09/02/kill-task-in-batch/</link>
+      <pubDate>Wed, 02 Sep 2020 22:10:44 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/09/02/kill-task-in-batch/</guid>
+      <description>批量搜索并杀死目标进程 1 2 ## 搜索当前进程 | 关键词过滤 | 获取pid | 批量运行kill -9 ps -ef | grep &amp;#34;key words&amp;#34; | awk &amp;#39;{print $2}&amp;#39; | xargs kill -9 批量杀死同一个会话下的进程 1</description>
+    </item>
+    
+    <item>
+      <title>在manjaro上配置工作环境</title>
+      <link>https://sr-c.github.io/2019/05/11/manjaro-quickstart/</link>
+      <pubDate>Sat, 11 May 2019 19:48:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/05/11/manjaro-quickstart/</guid>
+      <description>最近看老莱视频，了解到用户友好的manjaro(竟然内置steam), 再加上强大的AUG, 忍不住来尝试一下。 安装 使用dd将安装镜像写入到u盘</description>
+    </item>
+    
+    <item>
+      <title>linux练习题</title>
+      <link>https://sr-c.github.io/2019/03/11/linux-exercise/</link>
+      <pubDate>Mon, 11 Mar 2019 20:48:07 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/11/linux-exercise/</guid>
+      <description>http://www.bio-info-trainee.com/2900.html 在任意文件夹下面创建形如 1/2/3/4/5/6/7/8/9 格式的文件夹系列。 1 mkdir -p 1/2/3/4/5/6/7/8/9 在创建好的文件夹下面，比如我的是 /Users/jimmy/tmp/1/2/3/4/5/6/7/8/9 ，里面创建文本文件 me.txt 1 touch me.txt 在文本文件 me.txt 里面输入内容:</description>
+    </item>
+    
+    <item>
+      <title>文本处理小技巧</title>
+      <link>https://sr-c.github.io/2018/11/02/grep-echo-ln-tips/</link>
+      <pubDate>Fri, 02 Nov 2018 11:54:56 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/02/grep-echo-ln-tips/</guid>
+      <description>删除文件夹软链接 通过ln -s方法建立的文件夹软链接，只会将该文件夹链接过来，该文件夹下的文件仍然为原文件，直接删除就是删除原文件。 1 2 3 4 #</description>
+    </item>
+    
+    <item>
+      <title>【转载】环境变量，include搜索路径，lib库搜索路径</title>
+      <link>https://sr-c.github.io/2018/07/16/LIBRARY-PATH/</link>
+      <pubDate>Mon, 16 Jul 2018 20:36:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/16/LIBRARY-PATH/</guid>
+      <description>环境变量 系统环境变量 我们知道，我们经常要设置一些环境变量，系统环境变量我们非常容易理解。其实我们在windows中经常容易接触。其实环境变量</description>
+    </item>
+    
+  </channel>
+</rss>

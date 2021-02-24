@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>transition on SR-C</title>
+    <link>https://sr-c.github.io/tags/transition/</link>
+    <description>Recent content in transition on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 07 Dec 2018 10:53:49 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/transition/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Transition vs Transversion</title>
+      <link>https://sr-c.github.io/2018/12/07/Transition-vs-Transversion/</link>
+      <pubDate>Fri, 07 Dec 2018 10:53:49 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/07/Transition-vs-Transversion/</guid>
+      <description>DNA单碱基的替换有两种类型： Transition是双环结构的嘌呤(A↔G) 或单环结构的嘧啶(C↔T)之间的替换 Transversion则是</description>
+    </item>
+    
+  </channel>
+</rss>

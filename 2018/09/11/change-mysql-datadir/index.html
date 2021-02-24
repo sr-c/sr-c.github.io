@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>更改mysql数据库路径 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="查看mysql文件存放目录 1 show variables like &amp;#39;%dir%&amp;#39;; 能够查看到目前的数据库文件配置信息，其中的datadir值为/var/lib/mysql/ 停止mysql" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/09/11/change-mysql-datadir/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="更改mysql数据库路径" />
+<meta property="og:description" content="查看mysql文件存放目录 1 show variables like &#39;%dir%&#39;; 能够查看到目前的数据库文件配置信息，其中的datadir值为/var/lib/mysql/ 停止mysql" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/09/11/change-mysql-datadir/" />
+<meta property="article:published_time" content="2018-09-11T22:35:20+00:00" />
+<meta property="article:modified_time" content="2018-09-11T22:35:20+00:00" />
+<meta itemprop="name" content="更改mysql数据库路径">
+<meta itemprop="description" content="查看mysql文件存放目录 1 show variables like &#39;%dir%&#39;; 能够查看到目前的数据库文件配置信息，其中的datadir值为/var/lib/mysql/ 停止mysql">
+<meta itemprop="datePublished" content="2018-09-11T22:35:20+00:00" />
+<meta itemprop="dateModified" content="2018-09-11T22:35:20+00:00" />
+<meta itemprop="wordCount" content="626">
+
+
+
+<meta itemprop="keywords" content="mysql,datadir," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="更改mysql数据库路径"/>
+<meta name="twitter:description" content="查看mysql文件存放目录 1 show variables like &#39;%dir%&#39;; 能够查看到目前的数据库文件配置信息，其中的datadir值为/var/lib/mysql/ 停止mysql"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">更改mysql数据库路径</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-11 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#查看mysql文件存放目录">查看mysql文件存放目录</a></li>
+    <li><a href="#停止mysql服务">停止mysql服务</a></li>
+    <li><a href="#迁移数据库文件">迁移数据库文件</a>
+      <ul>
+        <li><a href="#直接移动目录">直接移动目录</a></li>
+        <li><a href="#拷贝目录同时复制文件权限信息">拷贝目录（同时复制文件权限信息）</a></li>
+      </ul>
+    </li>
+    <li><a href="#修改配置文件">修改配置文件</a>
+      <ul>
+        <li><a href="#mycnf">my.cnf</a></li>
+        <li><a href="#usrbinmysqld">usr.bin.mysqld</a></li>
+        <li><a href="#abstractionsmysql">abstractions/mysql</a></li>
+      </ul>
+    </li>
+    <li><a href="#重启数据库">重启数据库</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="查看mysql文件存放目录">查看mysql文件存放目录</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="k">show</span> <span class="n">variables</span> <span class="k">like</span> <span class="s1">&#39;%dir%&#39;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>能够查看到目前的数据库文件配置信息，其中的datadir值为<code>/var/lib/mysql/</code></p>
+<h2 id="停止mysql服务">停止mysql服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo service mysql stop
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="迁移数据库文件">迁移数据库文件</h2>
+<h3 id="直接移动目录">直接移动目录</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mv /var/lib/mysql /mnt/data/
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="拷贝目录同时复制文件权限信息">拷贝目录（同时复制文件权限信息）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo cp -a /var/lib/mysql /mnt/data/
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="修改配置文件">修改配置文件</h2>
+<h3 id="mycnf">my.cnf</h3>
+<p>mysql数据库会按照优先级顺序从/etc/my.cnf, /etc/mysql/my.cnf, /usr/etc/my.cnf, ~/.my.cnf四个位置找my.cnf配置文件。Ubuntu默认将my.cnf配置问价放置在/etc/mysql/my.cnf位置，没有/etc/my.cnf文件。
+在基于Ubuntu的LinuxMint19中，其/etc/mysql/my.cnf文件内容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mysql.conf.d/
+</code></pre></td></tr></table>
+</div>
+</div><p>将配置指向了同级目录另两个文件夹中的配置文件，其中<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>设置了关键内容，在其[mysql]标签下，将datadir值改为新的路径，保存修改后退出。</p>
+<h3 id="usrbinmysqld">usr.bin.mysqld</h3>
+<p>由于Ubuntu使用的apparmor安全模块，还需修改apparmor的配置文件<code>/etc/apparmor.d/usr.sbin.mysqld</code>找到其中
+/var/lib/mysql/ r,
+/var/lib/mysql/** rwk,
+两行权限声明，修改为：
+/mnt/data/mysql/ r,
+/mnt/data/mysql/** rwk,</p>
+<h3 id="abstractionsmysql">abstractions/mysql</h3>
+<p>由于usr.bin.mysqld文件中引用了abstractions/mysql文件，因此还需要修改其中的设置。但在LinuxMint 19 中，并没有这个文件，因此，我们也就不做修改。</p>
+<h2 id="重启数据库">重启数据库</h2>
+<p>重新载入apparmor配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo /etc/init.d/apparmor restart
+</code></pre></td></tr></table>
+</div>
+</div><p>再重启mysql即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo /etc/init.d/mysql start
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://blog.csdn.net/qinxiandiqi/article/details/43270147">https://blog.csdn.net/qinxiandiqi/article/details/43270147</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-09-11
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/mysql/">mysql</a>
+          <a href="/tags/datadir/">datadir</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/09/11/mysql-reinstall/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">重装mysql</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/09/09/mysql-config/">
+            <span class="next-text nav-default">配置MySQL Server</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

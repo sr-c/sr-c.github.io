@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>R4ds-exercises-2 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="分组摘要 摘要函数summaize()结合分组函数group_by()能够很方便地得到统计结果。 结合使用管道符号%&amp;gt;%，可以省却很多变量" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/01/12/R4ds-exercises-2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="R4ds-exercises-2" />
+<meta property="og:description" content="分组摘要 摘要函数summaize()结合分组函数group_by()能够很方便地得到统计结果。 结合使用管道符号%&gt;%，可以省却很多变量" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/01/12/R4ds-exercises-2/" />
+<meta property="article:published_time" content="2019-01-12T14:53:31+00:00" />
+<meta property="article:modified_time" content="2019-01-12T14:53:31+00:00" />
+<meta itemprop="name" content="R4ds-exercises-2">
+<meta itemprop="description" content="分组摘要 摘要函数summaize()结合分组函数group_by()能够很方便地得到统计结果。 结合使用管道符号%&gt;%，可以省却很多变量">
+<meta itemprop="datePublished" content="2019-01-12T14:53:31+00:00" />
+<meta itemprop="dateModified" content="2019-01-12T14:53:31+00:00" />
+<meta itemprop="wordCount" content="887">
+
+
+
+<meta itemprop="keywords" content="R4ds,ggplot," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="R4ds-exercises-2"/>
+<meta name="twitter:description" content="分组摘要 摘要函数summaize()结合分组函数group_by()能够很方便地得到统计结果。 结合使用管道符号%&gt;%，可以省却很多变量"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">R4ds-exercises-2</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-12 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#分组摘要">分组摘要</a>
+      <ul>
+        <li><a href="#计数">计数</a></li>
+        <li><a href="#常用的摘要函数">常用的摘要函数</a></li>
+        <li><a href="#按多个变量分组">按多个变量分组</a></li>
+        <li><a href="#取消分组">取消分组</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="分组摘要">分组摘要</h2>
+<p>摘要函数<code>summaize()</code>结合分组函数<code>group_by()</code>能够很方便地得到统计结果。</p>
+<p>结合使用管道符号<code>%&gt;%</code>，可以省却很多变量命名的麻烦，使代码更加简洁。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1"># 分组，摘要，结果过滤一步完成</span>
+<span class="n">delays</span> <span class="o">&lt;-</span> <span class="n">flights</span> <span class="o">%&gt;%</span> 
+  <span class="nf">group_by</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="nf">summarise</span><span class="p">(</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="nf">n</span><span class="p">(),</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">arr_delay</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+  <span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="nf">filter</span><span class="p">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="m">20</span><span class="p">,</span> <span class="n">dest</span> <span class="o">!=</span> <span class="s">&#34;HNL&#34;</span><span class="p">)</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">delay</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">dist</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">delay</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">count</span><span class="p">),</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">geom_smooth</span><span class="p">(</span><span class="n">se</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="c1">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://d33wubrfki0l68.cloudfront.net/000302d6f6f06bfd86a6cc171a92329ad3028ce8/b1bb1/transform_files/figure-html/unnamed-chunk-36-1.png" alt="img"></p>
+<h3 id="计数">计数</h3>
+<p>在整合数据时，使用计数函数<code>n()</code>或计数所有非缺失值<code>sum(is.na(x))</code>常常很有帮助。这使得我们能够查看数据是否来自一些非常小的样本。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">not_cancelled</span> <span class="o">&lt;-</span> <span class="n">flights</span> <span class="o">%&gt;%</span> 
+  <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">dep_delay</span><span class="p">),</span> <span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">arr_delay</span><span class="p">))</span>
+<span class="c1"># 按照航班机尾编号进行分组</span>
+<span class="n">delays</span> <span class="o">&lt;-</span> <span class="n">not_cancelled</span> <span class="o">%&gt;%</span> 
+  <span class="nf">group_by</span><span class="p">(</span><span class="n">tailnum</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="nf">summarise</span><span class="p">(</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">arr_delay</span><span class="p">)</span>
+  <span class="p">)</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">delays</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">delay</span><span class="p">))</span> <span class="o">+</span> 
+  <span class="nf">geom_freqpoly</span><span class="p">(</span><span class="n">binwidth</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://d33wubrfki0l68.cloudfront.net/3ce17d57f9df5a7a90f50bcc1026bb808480c65a/3146f/transform_files/figure-html/unnamed-chunk-41-1.png" alt="img"></p>
+<p>有一些航班的延误时间长达300 min，这是我们需要查看一下样本数量，排除偶然偏差的影响。</p>
+<p>绘制一个航班数量对平均延误时间的散点图能够帮助我们直观地理解</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">delays</span> <span class="o">&lt;-</span> <span class="n">not_cancelled</span> <span class="o">%&gt;%</span> 
+  <span class="nf">group_by</span><span class="p">(</span><span class="n">tailnum</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="nf">summarise</span><span class="p">(</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">arr_delay</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nf">n</span><span class="p">()</span>
+  <span class="p">)</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">delays</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">delay</span><span class="p">))</span> <span class="o">+</span> 
+  <span class="nf">geom_point</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://d33wubrfki0l68.cloudfront.net/484e2a8eadf0f3df06b10bd719f8a3044e53ba92/472a5/transform_files/figure-html/unnamed-chunk-42-1.png" alt="img"></p>
+<p>可以见到，在样本数量较少时，平均延误时间的偏差很大。</p>
+<p>这种情况下，过滤掉最小的哪些观察值能够帮助我们发现规律。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">delays %&gt;% 
+  filter(n &gt; 25) %&gt;% 
+  ggplot(mapping = aes(x = n, y = delay)) + 
+    geom_point(alpha = 1/10)
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://d33wubrfki0l68.cloudfront.net/af8935d2a1381788e62708a193c138c3dabe8bc8/80057/transform_files/figure-html/unnamed-chunk-43-1.png" alt="img"></p>
+<h3 id="常用的摘要函数">常用的摘要函数</h3>
+<ol>
+<li>
+<p>位置度量</p>
+<p>mean(x)</p>
+<p>median(x)</p>
+</li>
+<li>
+<p>分散程度度量</p>
+<p>sd(x), 标准差</p>
+<p>IQR(x), 四分位距</p>
+<p>mad(x), 绝对中位差</p>
+</li>
+<li>
+<p>秩的度量</p>
+<p>min(x), quantile(x, 0.25), max(x)</p>
+</li>
+<li>
+<p>定位度量</p>
+<p>first(x), nth(x, 2), last(x)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">not_cancelled</span> <span class="o">%&gt;%</span> 
+  <span class="nf">group_by</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="nf">summarise</span><span class="p">(</span>
+    <span class="n">first_dep</span> <span class="o">=</span> <span class="nf">first</span><span class="p">(</span><span class="n">dep_time</span><span class="p">),</span> 
+    <span class="n">last_dep</span> <span class="o">=</span> <span class="nf">last</span><span class="p">(</span><span class="n">dep_time</span><span class="p">)</span>
+  <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>计数</p>
+<p><code>n()</code>不需要任何参数，返回当前分组的大小</p>
+<p><code>sum(is.na(x))</code>统计非缺失值的数量</p>
+<p><code>n_distinct(x)</code>计算唯一值的数量</p>
+</li>
+<li>
+<p>逻辑值的计数和比例</p>
+<p>sum(x &gt; 10)和mean(y == 0)</p>
+</li>
+</ol>
+<h3 id="按多个变量分组">按多个变量分组</h3>
+<p>当使用多个变量分组时，每次摘要统计会消耗一个分组变量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">daily</span> <span class="o">&lt;-</span> <span class="nf">group_by</span><span class="p">(</span><span class="n">flights</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
+<span class="p">(</span><span class="n">per_day</span>   <span class="o">&lt;-</span> <span class="nf">summarise</span><span class="p">(</span><span class="n">daily</span><span class="p">,</span> <span class="n">flights</span> <span class="o">=</span> <span class="nf">n</span><span class="p">()))</span>
+<span class="c1">#&gt; # A tibble: 365 x 4</span>
+<span class="c1">#&gt; # Groups:   year, month [?]</span>
+<span class="c1">#&gt;    year month   day flights</span>
+<span class="c1">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt;</span>
+<span class="c1">#&gt; 1  2013     1     1     842</span>
+<span class="c1">#&gt; 2  2013     1     2     943</span>
+<span class="c1">#&gt; 3  2013     1     3     914</span>
+<span class="c1">#&gt; 4  2013     1     4     915</span>
+<span class="c1">#&gt; 5  2013     1     5     720</span>
+<span class="c1">#&gt; 6  2013     1     6     832</span>
+<span class="c1">#&gt; # … with 359 more rows</span>
+<span class="p">(</span><span class="n">per_month</span> <span class="o">&lt;-</span> <span class="nf">summarise</span><span class="p">(</span><span class="n">per_day</span><span class="p">,</span> <span class="n">flights</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">flights</span><span class="p">)))</span>
+<span class="c1">#&gt; # A tibble: 12 x 3</span>
+<span class="c1">#&gt; # Groups:   year [?]</span>
+<span class="c1">#&gt;    year month flights</span>
+<span class="c1">#&gt;   &lt;int&gt; &lt;int&gt;   &lt;int&gt;</span>
+<span class="c1">#&gt; 1  2013     1   27004</span>
+<span class="c1">#&gt; 2  2013     2   24951</span>
+<span class="c1">#&gt; 3  2013     3   28834</span>
+<span class="c1">#&gt; 4  2013     4   28330</span>
+<span class="c1">#&gt; 5  2013     5   28796</span>
+<span class="c1">#&gt; 6  2013     6   28243</span>
+<span class="c1">#&gt; # … with 6 more rows</span>
+<span class="p">(</span><span class="n">per_year</span>  <span class="o">&lt;-</span> <span class="nf">summarise</span><span class="p">(</span><span class="n">per_month</span><span class="p">,</span> <span class="n">flights</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">flights</span><span class="p">)))</span>
+<span class="c1">#&gt; # A tibble: 1 x 2</span>
+<span class="c1">#&gt;    year flights</span>
+<span class="c1">#&gt;   &lt;int&gt;   &lt;int&gt;</span>
+<span class="c1">#&gt; 1  2013  336776</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="取消分组">取消分组</h3>
+<p><code>ungroup()</code></p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://r4ds.had.co.nz/transform.html#grouped-summaries-with-summarise">https://r4ds.had.co.nz/transform.html#grouped-summaries-with-summarise</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-01-12
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/R4ds/">R4ds</a>
+          <a href="/tags/ggplot/">ggplot</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/01/16/RIdeogram/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">RIdeogram</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/01/11/jcvi-MCscan/">
+            <span class="next-text nav-default">使用jcvi进行MCscan可视化</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

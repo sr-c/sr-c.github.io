@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SALSA on SR-C</title>
+    <link>https://sr-c.github.io/tags/SALSA/</link>
+    <description>Recent content in SALSA on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 28 Feb 2019 22:16:51 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/SALSA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SALSA安装</title>
+      <link>https://sr-c.github.io/2019/02/28/SALSA-install/</link>
+      <pubDate>Thu, 28 Feb 2019 22:16:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/28/SALSA-install/</guid>
+      <description>安装 1 2 3 4 5 6 7 8 git clone https://github.com/machinegun/SALSA.git conda create -n SALSA python=2.7 source activate SALSA conda install boost networkx==1.11 cd SALSA make debug 1 2 3 4 5 g++ -O3 -Wall -Wextra -std=c++11 -o correct_links correct_links.cpp correct_links.cpp:12:10: fatal error: boost/config.hpp: No such file or directory #include &amp;lt;boost/config.hpp&amp;gt; ^~~~~~~~~~~~~~~~~~ compilation terminated. 这表明，编译过程中未配置好之</description>
+    </item>
+    
+  </channel>
+</rss>

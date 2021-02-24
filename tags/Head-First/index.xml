@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Head First on SR-C</title>
+    <link>https://sr-c.github.io/tags/Head-First/</link>
+    <description>Recent content in Head First on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 28 Oct 2018 22:12:13 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Head-First/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Python】理解数据</title>
+      <link>https://sr-c.github.io/2018/10/28/python-learning-5/</link>
+      <pubDate>Sun, 28 Oct 2018 22:12:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/28/python-learning-5/</guid>
+      <description>方法串链与函数串链 方法串链从左向右读 1 f.readline().strip().split(&amp;#39;.&amp;#39;) 函数串链从右向左读 1 print(sorted(james)) 排序有两种方式 原地排序（In-place sorting）是指按照指定的顺序排列</description>
+    </item>
+    
+    <item>
+      <title>【Python】持久存储</title>
+      <link>https://sr-c.github.io/2018/10/28/python-learning-4/</link>
+      <pubDate>Sun, 28 Oct 2018 11:01:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/28/python-learning-4/</guid>
+      <description>用with处理文件 使用try/except处理文件时，若在文件处理过程出现错误，其后的代码都不会运行。此时，应当将关闭文件的语句加入fina</description>
+    </item>
+    
+    <item>
+      <title>【Python】文件与异常</title>
+      <link>https://sr-c.github.io/2018/10/26/python-learning-3/</link>
+      <pubDate>Fri, 26 Oct 2018 22:31:03 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/26/python-learning-3/</guid>
+      <description>输入 Python中的基本输入机制是基于行的：从文本文件向程序读入数据时，一次会到达一个数据行。 基本操作 使用open() BIF处理文件中的数据</description>
+    </item>
+    
+    <item>
+      <title>【Python】函数模块</title>
+      <link>https://sr-c.github.io/2018/10/26/python-learning-2/</link>
+      <pubDate>Fri, 26 Oct 2018 12:46:43 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/26/python-learning-2/</guid>
+      <description>命名空间 主Python程序中的代码与一个名为__main__的命名空间关联。将代码放在其单独的模块中时，Python会自动创建一个与模块同名</description>
+    </item>
+    
+  </channel>
+</rss>

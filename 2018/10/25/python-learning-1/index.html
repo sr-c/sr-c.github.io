@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python语言基础 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="数据类型 变量 变量的动态类型：整型（int），浮点型（float），字符型（str） 基本运算 &#43;，-，*，/，次方（**），整除（//），取余（" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/10/25/python-learning-1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python语言基础" />
+<meta property="og:description" content="数据类型 变量 变量的动态类型：整型（int），浮点型（float），字符型（str） 基本运算 &#43;，-，*，/，次方（**），整除（//），取余（" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/10/25/python-learning-1/" />
+<meta property="article:published_time" content="2018-10-25T22:33:08+00:00" />
+<meta property="article:modified_time" content="2018-10-25T22:33:08+00:00" />
+<meta itemprop="name" content="Python语言基础">
+<meta itemprop="description" content="数据类型 变量 变量的动态类型：整型（int），浮点型（float），字符型（str） 基本运算 &#43;，-，*，/，次方（**），整除（//），取余（">
+<meta itemprop="datePublished" content="2018-10-25T22:33:08+00:00" />
+<meta itemprop="dateModified" content="2018-10-25T22:33:08+00:00" />
+<meta itemprop="wordCount" content="609">
+
+
+
+<meta itemprop="keywords" content="Python," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python语言基础"/>
+<meta name="twitter:description" content="数据类型 变量 变量的动态类型：整型（int），浮点型（float），字符型（str） 基本运算 &#43;，-，*，/，次方（**），整除（//），取余（"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python语言基础</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-10-25 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#数据类型">数据类型</a>
+      <ul>
+        <li><a href="#变量">变量</a></li>
+        <li><a href="#数组序列">数组/序列</a></li>
+        <li><a href="#哈希字典">哈希/字典</a></li>
+      </ul>
+    </li>
+    <li><a href="#输入输出">输入输出</a></li>
+    <li><a href="#argparse-更专业的参数输入">argparse 更专业的参数输入</a></li>
+    <li><a href="#格式化字符串">格式化字符串</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="数据类型">数据类型</h2>
+<h3 id="变量">变量</h3>
+<p>变量的动态类型：整型（int），浮点型（float），字符型（str）</p>
+<h4 id="基本运算">基本运算</h4>
+<p>+，-，*，/，次方（**），整除（//），取余（%）</p>
+<p>四舍五入 round()</p>
+<p>取整 int()</p>
+<h4 id="高级功能">高级功能</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">trunc</span><span class="p">()</span>
+<span class="n">ceil</span><span class="p">()</span>
+<span class="n">floot</span><span class="p">()</span>
+<span class="n">fabs</span><span class="p">()</span>
+<span class="n">sqrt</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">uniform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">randint</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="字符型变量">字符型变量</h4>
+<p><strong>转义字符</strong></p>
+<p><code>\t</code> <code>\n</code> <code>\&quot;</code> <code>\'</code></p>
+<p>忽略多个转义字符，可在字符串前加<code>r</code></p>
+<p><strong>常用操作</strong></p>
+<p>连接 <code>+</code></p>
+<p>重复 <code>s*5</code></p>
+<p>取值/切片</p>
+<blockquote>
+<p>字符型变量可被视作数组处理</p>
+</blockquote>
+<h4 id="函数方法">函数/方法</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="数组序列">数组/序列</h3>
+<p>列表（list） 定义：chr_len = [10, 20, 30]</p>
+<p>元祖（tuple） 定义：chr_len = (10, 20, 30)</p>
+<blockquote>
+<p>元祖不支持原位改变</p>
+</blockquote>
+<h4 id="列表特有操作">列表特有操作</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#增加元素</span>
+<span class="n">append</span><span class="p">()</span>
+<span class="n">extend</span><span class="p">()</span>
+<span class="n">insert</span><span class="p">()</span>
+<span class="c1">#删除元素</span>
+<span class="k">del</span>
+<span class="n">remove</span><span class="p">()</span>
+<span class="n">pop</span><span class="p">()</span>
+<span class="c1">#原位改变</span>
+<span class="n">reverse</span><span class="p">()</span>
+<span class="n">sort</span><span class="p">()</span>
+<span class="c1">#拷贝列表</span>
+<span class="n">copy</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>列表生成式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="p">[</span><span class="s1">&#39;Chr&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">chr</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">int</span><span class="p">)]</span>
+<span class="c1">#操作 + 循环 + 条件</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="哈希字典">哈希/字典</h3>
+<p><strong>定义</strong>： chr = {&lsquo;chr1&rsquo;:10, &lsquo;chr2&rsquo;:20, &lsquo;chr3&rsquo;:30}</p>
+<p><strong>特征</strong>： 无序，键唯一</p>
+<p><strong>调用</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">chr</span><span class="p">[</span><span class="s1">&#39;chr1&#39;</span><span class="p">]</span>
+<span class="nb">chr</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;chr1&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>键，值和项目</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">chr</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="nb">chr</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="nb">chr</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="常用操作">常用操作</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#添加项目</span>
+<span class="nb">chr</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="c1">#删除项目</span>
+<span class="k">del</span> <span class="nb">chr</span><span class="p">[</span><span class="s1">&#39;chr1&#39;</span><span class="p">]</span>
+<span class="nb">chr</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="nb">chr</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>
+<span class="nb">chr</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="c1">#求长度</span>
+<span class="nb">len</span><span class="p">(</span><span class="nb">chr</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="输入输出">输入输出</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#打开句柄</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_fasta</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="c1">#读取所有内容，返回字符串</span>
+<span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span> <span class="c1">#读取所有内容，按行分割，返回列表</span>
+<span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span> <span class="c1">#读取一行内容，返回字符串</span>
+<span class="c1">#关闭文件</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1">#写入一个字符串</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+<span class="c1">#写入一个序列型变量</span>
+<span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>更简洁写法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_fasta</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">lines</span><span class="p">:</span>
+	<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="o">...</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">out</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+    <span class="o">...</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="argparse-更专业的参数输入">argparse 更专业的参数输入</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParaser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">,</span>
+                   <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                   <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+                   <span class="c1">#action=&#39;store_true&#39;,</span>
+                   <span class="c1">#default=&#39;&#39;,</span>
+                   <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                   <span class="n">help</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="格式化字符串">格式化字符串</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;...{2:^16s}...{0:0&gt;6.2f}...{}...&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;total length:&#34;</span><span class="p">,</span><span class="s2">&#34;total_len&#34;</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>格式化输出指定输出格式的方式：</p>
+<blockquote>
+<p>元素下标/名：填充符，对齐方式，字符宽度，[浮点精度]，变量类型</p>
+</blockquote>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="http://www.genek.tv/my/course/194">http://www.genek.tv/my/course/194</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-10-25
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Python/">Python</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/10/26/python-learning-2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">【Python】函数模块</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/10/19/rfam-genome-annotation/">
+            <span class="next-text nav-default">使用Rfam进行ncRNA注释</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

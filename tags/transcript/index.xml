@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>transcript on SR-C</title>
+    <link>https://sr-c.github.io/tags/transcript/</link>
+    <description>Recent content in transcript on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 06 Nov 2018 10:39:42 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/transcript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用STAR判断测序文库的链特异性</title>
+      <link>https://sr-c.github.io/2018/11/06/STAR/</link>
+      <pubDate>Tue, 06 Nov 2018 10:39:42 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/06/STAR/</guid>
+      <description>安装 1 2 3 4 5 6 7 8 9 10 # Get latest STAR source from releases wget https://github.com/alexdobin/STAR/archive/2.6.1c.tar.gz tar -xzf 2.6.1c.tar.gz cd STAR-2.6.1c # Compile cd STAR/source make STAR #在bin/目录下就已存在对应平台的已编译版本，可直接使用 使用 构建索引 1 2 3</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>【R】转换数据格式 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="数据格式 Wide format为每列一个变量，也是常见的SPSS，excel等存储数据的格式。例如在基因表达数据中，每行一个基因，每列一个样品，构成" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/10/11/convert-wide-formatted-data/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="【R】转换数据格式" />
+<meta property="og:description" content="数据格式 Wide format为每列一个变量，也是常见的SPSS，excel等存储数据的格式。例如在基因表达数据中，每行一个基因，每列一个样品，构成" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/10/11/convert-wide-formatted-data/" />
+<meta property="article:published_time" content="2018-10-11T22:35:51+00:00" />
+<meta property="article:modified_time" content="2018-10-11T22:35:51+00:00" />
+<meta itemprop="name" content="【R】转换数据格式">
+<meta itemprop="description" content="数据格式 Wide format为每列一个变量，也是常见的SPSS，excel等存储数据的格式。例如在基因表达数据中，每行一个基因，每列一个样品，构成">
+<meta itemprop="datePublished" content="2018-10-11T22:35:51+00:00" />
+<meta itemprop="dateModified" content="2018-10-11T22:35:51+00:00" />
+<meta itemprop="wordCount" content="633">
+
+
+
+<meta itemprop="keywords" content="R,tidyr,data format," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【R】转换数据格式"/>
+<meta name="twitter:description" content="数据格式 Wide format为每列一个变量，也是常见的SPSS，excel等存储数据的格式。例如在基因表达数据中，每行一个基因，每列一个样品，构成"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">【R】转换数据格式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-10-11 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#数据格式">数据格式</a></li>
+    <li><a href="#解决方案">解决方案</a>
+      <ul>
+        <li><a href="#from-wide-to-long">From wide to long</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="数据格式">数据格式</h2>
+<p>Wide format为每列一个变量，也是常见的SPSS，excel等存储数据的格式。例如在基因表达数据中，每行一个基因，每列一个样品，构成一个数据矩阵，具有较强的人类可读性。</p>
+<p>Long format的最简格式为两列，第一列为变量名，第二列为数值。基因表达矩阵转换为long format后，由三列构成。第一列为基因ID，第二列为样品名，第三列则为基因表达量。此格式更方便用于数据分析。</p>
+<ul>
+<li>wide format</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>基因</th>
+<th>分生组织</th>
+<th>根</th>
+<th>花</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gene1</td>
+<td>582</td>
+<td>91</td>
+<td>495</td>
+</tr>
+<tr>
+<td>gene2</td>
+<td>305</td>
+<td>3505</td>
+<td>33</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>long format</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>基因</th>
+<th>组织</th>
+<th>表达量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gene1</td>
+<td>分生组织</td>
+<td>582</td>
+</tr>
+<tr>
+<td>gene2</td>
+<td>分生组织</td>
+<td>305</td>
+</tr>
+<tr>
+<td>gene1</td>
+<td>根</td>
+<td>91</td>
+</tr>
+<tr>
+<td>gene2</td>
+<td>根</td>
+<td>3503</td>
+</tr>
+<tr>
+<td>gene1</td>
+<td>花</td>
+<td>492</td>
+</tr>
+<tr>
+<td>gene2</td>
+<td>花</td>
+<td>33</td>
+</tr>
+</tbody>
+</table>
+<p>大多数情况下，人类的实验原始记录常以wide format形式存储，而进行数据分析时，需要将其转换为更易操作的long format形式。</p>
+<h2 id="解决方案">解决方案</h2>
+<p>R的<code>tidyr</code>包就是数据清理的好帮手。<code>tidyr</code>使用<code>gather()</code>与<code>spread()</code>函数来改变数据格式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">olddata_wide</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;
+</span><span class="s"> subject sex control cond1 cond2
+</span><span class="s">       1   M     7.9  12.3  10.7
+</span><span class="s">       2   F     6.3  10.6  11.1
+</span><span class="s">       3   F     9.5  13.1  13.8
+</span><span class="s">       4   M    11.5  13.4  12.9
+</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="c1"># Make sure the subject column is a factor</span>
+<span class="n">olddata_wide</span><span class="o">$</span><span class="n">subject</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">olddata_wide</span><span class="o">$</span><span class="n">subject</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="from-wide-to-long">From wide to long</h3>
+<p>Use <code>gather</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">olddata_wide</span>
+<span class="c1">#&gt;   subject sex control cond1 cond2</span>
+<span class="c1">#&gt; 1       1   M     7.9  12.3  10.7</span>
+<span class="c1">#&gt; 2       2   F     6.3  10.6  11.1</span>
+<span class="c1">#&gt; 3       3   F     9.5  13.1  13.8</span>
+<span class="c1">#&gt; 4       4   M    11.5  13.4  12.9</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+
+<span class="c1"># The arguments to gather():</span>
+<span class="c1"># - data: Data object</span>
+<span class="c1"># - key: Name of new key column (made from names of data columns)</span>
+<span class="c1"># - value: Name of new value column</span>
+<span class="c1"># - ...: Names of source columns that contain values</span>
+<span class="c1"># - factor_key: Treat the new key column as a factor (instead of character vector)</span>
+<span class="n">data_long</span> <span class="o">&lt;-</span> <span class="nf">gather</span><span class="p">(</span><span class="n">olddata_wide</span><span class="p">,</span> <span class="n">condition</span><span class="p">,</span> <span class="n">measurement</span><span class="p">,</span> <span class="n">control</span><span class="o">:</span><span class="n">cond2</span><span class="p">,</span> <span class="n">factor_key</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">data_long</span>
+<span class="c1">#&gt;    subject sex condition measurement</span>
+<span class="c1">#&gt; 1        1   M   control         7.9</span>
+<span class="c1">#&gt; 2        2   F   control         6.3</span>
+<span class="c1">#&gt; 3        3   F   control         9.5</span>
+<span class="c1">#&gt; 4        4   M   control        11.5</span>
+<span class="c1">#&gt; 5        1   M     cond1        12.3</span>
+<span class="c1">#&gt; 6        2   F     cond1        10.6</span>
+<span class="c1">#&gt; 7        3   F     cond1        13.1</span>
+<span class="c1">#&gt; 8        4   M     cond1        13.4</span>
+<span class="c1">#&gt; 9        1   M     cond2        10.7</span>
+<span class="c1">#&gt; 10       2   F     cond2        11.1</span>
+<span class="c1">#&gt; 11       3   F     cond2        13.8</span>
+<span class="c1">#&gt; 12       4   M     cond2        12.9</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/</a></p>
+<p><a href="https://www.jianshu.com/p/e3eaea18650d">https://www.jianshu.com/p/e3eaea18650d</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-10-11
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/R/">R</a>
+          <a href="/tags/tidyr/">tidyr</a>
+          <a href="/tags/data-format/">data format</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/10/12/convert-gff-to-bed/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">bed格式转换</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/10/02/local-nr-database/">
+            <span class="next-text nav-default">本地化nr数据库</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ab initio on SR-C</title>
+    <link>https://sr-c.github.io/tags/ab-initio/</link>
+    <description>Recent content in ab initio on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 02 Sep 2018 18:37:52 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/ab-initio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SNAP软件安装</title>
+      <link>https://sr-c.github.io/2018/09/02/SNAP-install/</link>
+      <pubDate>Sun, 02 Sep 2018 18:37:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/02/SNAP-install/</guid>
+      <description>软件下载 虽然在Korf Lab的官网上提供最新版本(latest release 11/29/2013)的下载，但此版本在本机(CENTOS 6.9, GCC )编译时出现错</description>
+    </item>
+    
+  </channel>
+</rss>

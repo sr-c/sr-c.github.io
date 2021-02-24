@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LTR-retriever on SR-C</title>
+    <link>https://sr-c.github.io/tags/LTR-retriever/</link>
+    <description>Recent content in LTR-retriever on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 22 Dec 2018 14:52:20 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/LTR-retriever/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>计算基因组中LTR的插入时间</title>
+      <link>https://sr-c.github.io/2018/12/22/Aging-LTR-insert-time/</link>
+      <pubDate>Sat, 22 Dec 2018 14:52:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/22/Aging-LTR-insert-time/</guid>
+      <description>Aging LTR insertion 使用LTRharvest与c计算LTR-RTs在基因组中的插入时间。 LTRharvest LTRharvest是Genome tools中进行de novo识</description>
+    </item>
+    
+    <item>
+      <title>LTR-RT</title>
+      <link>https://sr-c.github.io/2018/12/13/LTR-RT/</link>
+      <pubDate>Thu, 13 Dec 2018 21:10:19 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/13/LTR-RT/</guid>
+      <description>转座因子 几乎所有基因组内，都存在着转座因子(transposable element)或称转座子(transposon)。它们是基因组中可移动</description>
+    </item>
+    
+  </channel>
+</rss>

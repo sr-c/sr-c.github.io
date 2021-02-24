@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>aria2 on SR-C</title>
+    <link>https://sr-c.github.io/tags/aria2/</link>
+    <description>Recent content in aria2 on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 10 Jul 2018 12:51:56 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/aria2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>设置aria2日志级别</title>
+      <link>https://sr-c.github.io/2018/07/10/aria2-log-level/</link>
+      <pubDate>Tue, 10 Jul 2018 12:51:56 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/10/aria2-log-level/</guid>
+      <description>设置日志文件级别 添加log-level项目 1 2 3 log-level=warn OR log-level=error 删去设置中的log项 去除aria2.conf文件中的log项，程序运行时即不记录日志文</description>
+    </item>
+    
+    <item>
+      <title>百度云的aria2下载</title>
+      <link>https://sr-c.github.io/2018/07/04/aria2-baiduyun/</link>
+      <pubDate>Wed, 04 Jul 2018 17:19:25 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/04/aria2-baiduyun/</guid>
+      <description>下载aria2 1 https://github.com/aria2/aria2/releases/download/release-1.34.0/aria2-1.34.0.tar.gz 编译安装 1 2 3 ./configure --prefix=~/opt/aria2 make make install 浏览器附加组件 Firefox https://addons.mozilla.org/zh-CN/firefox/addon/baidu-pan-exporter/ Chrome https://github.com/acgotaku/BaiduExporter aria2配置文件 1 2 3 4 mkdir download cd download touch aria2.session aria2.log vi aria2.conf 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16</description>
+    </item>
+    
+  </channel>
+</rss>

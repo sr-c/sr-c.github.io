@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用STAR判断测序文库的链特异性 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="安装 1 2 3 4 5 6 7 8 9 10 # Get latest STAR source from releases wget https://github.com/alexdobin/STAR/archive/2.6.1c.tar.gz tar -xzf 2.6.1c.tar.gz cd STAR-2.6.1c # Compile cd STAR/source make STAR #在bin/目录下就已存在对应平台的已编译版本，可直接使用 使用 构建索引 1 2 3" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/11/06/STAR/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用STAR判断测序文库的链特异性" />
+<meta property="og:description" content="安装 1 2 3 4 5 6 7 8 9 10 # Get latest STAR source from releases wget https://github.com/alexdobin/STAR/archive/2.6.1c.tar.gz tar -xzf 2.6.1c.tar.gz cd STAR-2.6.1c # Compile cd STAR/source make STAR #在bin/目录下就已存在对应平台的已编译版本，可直接使用 使用 构建索引 1 2 3" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/11/06/STAR/" />
+<meta property="article:published_time" content="2018-11-06T10:39:42+00:00" />
+<meta property="article:modified_time" content="2018-11-06T10:39:42+00:00" />
+<meta itemprop="name" content="使用STAR判断测序文库的链特异性">
+<meta itemprop="description" content="安装 1 2 3 4 5 6 7 8 9 10 # Get latest STAR source from releases wget https://github.com/alexdobin/STAR/archive/2.6.1c.tar.gz tar -xzf 2.6.1c.tar.gz cd STAR-2.6.1c # Compile cd STAR/source make STAR #在bin/目录下就已存在对应平台的已编译版本，可直接使用 使用 构建索引 1 2 3">
+<meta itemprop="datePublished" content="2018-11-06T10:39:42+00:00" />
+<meta itemprop="dateModified" content="2018-11-06T10:39:42+00:00" />
+<meta itemprop="wordCount" content="1018">
+
+
+
+<meta itemprop="keywords" content="STAR,transcript,dUTP,IGV," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用STAR判断测序文库的链特异性"/>
+<meta name="twitter:description" content="安装 1 2 3 4 5 6 7 8 9 10 # Get latest STAR source from releases wget https://github.com/alexdobin/STAR/archive/2.6.1c.tar.gz tar -xzf 2.6.1c.tar.gz cd STAR-2.6.1c # Compile cd STAR/source make STAR #在bin/目录下就已存在对应平台的已编译版本，可直接使用 使用 构建索引 1 2 3"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用STAR判断测序文库的链特异性</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-06 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#构建索引">构建索引</a></li>
+        <li><a href="#进行比对">进行比对</a></li>
+      </ul>
+    </li>
+    <li><a href="#注意事项">注意事项</a></li>
+    <li><a href="#查看比对结果">查看比对结果</a>
+      <ul>
+        <li><a href="#向igv中导入参考基因组">向IGV中导入参考基因组</a></li>
+        <li><a href="#导入比对文件">导入比对文件</a></li>
+        <li><a href="#检验转录组文库是否具有链特异性">检验转录组文库是否具有链特异性</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="安装">安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Get latest STAR source from releases</span>
+wget https://github.com/alexdobin/STAR/archive/2.6.1c.tar.gz
+tar -xzf 2.6.1c.tar.gz
+<span class="nb">cd</span> STAR-2.6.1c
+
+<span class="c1"># Compile</span>
+<span class="nb">cd</span> STAR/source
+make STAR
+
+<span class="c1">#在bin/目录下就已存在对应平台的已编译版本，可直接使用</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="使用">使用</h2>
+<h3 id="构建索引">构建索引</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">STAR --runMode genomeGenerate <span class="se">\
+</span><span class="se"></span>--genomeDir ~/reference/STAR_index/ <span class="se">\
+</span><span class="se"></span>--genomeFastaFiles ~/reference/genome/hg38/Homo_sapiens.GRCh38.dna.toplevel.fa <span class="se">\
+</span><span class="se"></span>--sjdbGTFfile ~/reference/genome/hg38/Homo_sapiens.GRCh38.90.chr_patch_hapl_scaff.gtf <span class="se">\
+</span><span class="se"></span>--sjdbOverhang <span class="m">149</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="进行比对">进行比对</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">STAR --runThreadN <span class="m">20</span> --genomeDir ~/reference/index/STAR/mm10/ <span class="se">\
+</span><span class="se"></span>--readFilesIn SRR3589959_1.fastq SRR3589959_2.fastq <span class="se">\
+</span><span class="se"></span>--outSAMtype BAM SortedByCoordinate <span class="se">\
+</span><span class="se"></span>--outFileNamePrefix ./SRR3589959
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="注意事项">注意事项</h2>
+<p>比对时候需要注意内存限制，否则可能得到报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">Nov <span class="m">07</span> 16:46:03 ..... started sorting BAM
+Max memory needed <span class="k">for</span> <span class="nv">sorting</span> <span class="o">=</span> <span class="m">2566682989</span>
+
+EXITING because of FATAL ERROR: number of bytes expected from the BAM bin does not agree with the actual size on disk: <span class="m">1613446932</span>   <span class="m">0</span>   <span class="m">45</span>
+
+Nov <span class="m">07</span> 16:46:03 ...... FATAL ERROR, exiting
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="查看比对结果">查看比对结果</h2>
+<p>使用IGV查看结果</p>
+<h3 id="向igv中导入参考基因组">向IGV中导入参考基因组</h3>
+<blockquote>
+<p>Genomes -&gt; Creat a .genome file&hellip;</p>
+</blockquote>
+<p>在弹出窗口中加入基因组序列fasta文件与基因组结构注释gff/gtf文件</p>
+<h3 id="导入比对文件">导入比对文件</h3>
+<blockquote>
+<p>File -&gt; Load from File&hellip;</p>
+</blockquote>
+<p>比对的bam/sam文件需要具有索引</p>
+<h3 id="检验转录组文库是否具有链特异性">检验转录组文库是否具有链特异性</h3>
+<p>首先，需要辨明正反链，正义/反义链，编码链，模板链的概念。</p>
+<p>DNA 的正链和负链，就是那两条反向互补的链。参考基因组给出的那个链就是所谓的正链（forword），另一条链是反链（reverse）。但是这正反一定<strong>不能和正义链（sense strand）反义链（antisense strand）混淆</strong>，两条互补的DNA链其中一条携带编码蛋白质信息的链称为正义链，另一条与之互补的称为反义链。但是携带编码信息的正义链不是模板，只是因为它的序列和RNA相同，正义链也是编码链。而反义链虽然和RNA反向互补，但它可是真正给RNA当模板的链，因此反义链也是模板链。</p>
+<p><strong>总结两点</strong></p>
+<ol>
+<li><strong>正义链（sense strand）= 编码链（coding strand）= 非模板链</strong></li>
+<li><strong>forword strand 上可以同时有sense strand 和 antisense strand。因为这完全是两个不同的概念。</strong></li>
+</ol>
+<p>在IGV的<strong>Read strand</strong>模式中，显示的reads分为红蓝两色，其中红色代表read方向与DNA正链方向相同(5&rsquo; -&gt; 3&rsquo;)，蓝色代表read方向与DNA正链方向相反</p>
+<p>在<strong>First-of-pair strand</strong>模式中，红色代表成对的reads中，第一链的方向与正链相同(5&rsquo; -&gt; 3&rsquo;)，蓝色代表成对的reads中，第一链的方向与正链相反(5&rsquo; -&gt; 3&rsquo;)。这对于展示链特异性的文库特别有帮助。</p>
+<blockquote>
+<p>For a given transcript, non-directional libraries will show a mix of red and blue reads aligning to the locus.</p>
+<p>Directional libraries will show reads of one color in the direction matching the transcript orientation.</p>
+</blockquote>
+<p>对于非链特异性的文库，匹配到同一个基因的reads会表现出红蓝混合的情况；对于链特异性的文库，匹配到同一个基因的reads则会表现出与转录本方向相匹配的颜色。</p>
+<p><a href="http://www.omicsclass.com/article/300">判断测序文库是否链特异性的其他方法</a></p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://github.com/alexdobin/STAR">https://github.com/alexdobin/STAR</a></p>
+<p><a href="https://www.jianshu.com/p/eca16bf2824e">https://www.jianshu.com/p/eca16bf2824e</a></p>
+<p><a href="https://www.jianshu.com/p/a63595a41bed">https://www.jianshu.com/p/a63595a41bed</a></p>
+<p><a href="http://kaopubear.top/2017-10-23-ssrnaseqbasic.html">http://kaopubear.top/2017-10-23-ssrnaseqbasic.html</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-11-06
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/STAR/">STAR</a>
+          <a href="/tags/transcript/">transcript</a>
+          <a href="/tags/dUTP/">dUTP</a>
+          <a href="/tags/IGV/">IGV</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/11/07/python-exercise-4/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python练习4</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/11/02/python-DecodeError/">
+            <span class="next-text nav-default">读取文件UnicodeDecodeError编码错误</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

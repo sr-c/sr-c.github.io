@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用PBJelly与blasr进行补洞 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="PBJelly在2012年发表于PLoS ONE, 其设计目的是使用PacBio RS Ⅱ 数据来提升assembly的连续性。目前版本停滞在2015年9月1" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用PBJelly与blasr进行补洞" />
+<meta property="og:description" content="PBJelly在2012年发表于PLoS ONE, 其设计目的是使用PacBio RS Ⅱ 数据来提升assembly的连续性。目前版本停滞在2015年9月1" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/" />
+<meta property="article:published_time" content="2019-07-02T14:12:47+00:00" />
+<meta property="article:modified_time" content="2019-07-02T14:12:47+00:00" />
+<meta itemprop="name" content="使用PBJelly与blasr进行补洞">
+<meta itemprop="description" content="PBJelly在2012年发表于PLoS ONE, 其设计目的是使用PacBio RS Ⅱ 数据来提升assembly的连续性。目前版本停滞在2015年9月1">
+<meta itemprop="datePublished" content="2019-07-02T14:12:47+00:00" />
+<meta itemprop="dateModified" content="2019-07-02T14:12:47+00:00" />
+<meta itemprop="wordCount" content="1362">
+
+
+
+<meta itemprop="keywords" content="PBJelly,blasr,PacBio," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用PBJelly与blasr进行补洞"/>
+<meta name="twitter:description" content="PBJelly在2012年发表于PLoS ONE, 其设计目的是使用PacBio RS Ⅱ 数据来提升assembly的连续性。目前版本停滞在2015年9月1"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用PBJelly与blasr进行补洞</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-02 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装篇">安装篇</a>
+      <ul>
+        <li><a href="#legacy-blasr">legacy-blasr</a></li>
+        <li><a href="#networkx-v11">networkx v1.1</a></li>
+        <li><a href="#pbjelly">PBJelly</a></li>
+      </ul>
+    </li>
+    <li><a href="#测试篇">测试篇</a></li>
+    <li><a href="#检查输入">检查输入</a>
+      <ul>
+        <li><a href="#debug">Debug</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<p>PBJelly在2012年发表于PLoS ONE, 其设计目的是使用PacBio RS Ⅱ 数据来提升assembly的连续性。目前版本停滞在2015年9月1日的<code>15.8.24</code>，但仍然有<code>19 downloads/week</code>的下载热度。</p>
+<h2 id="安装篇">安装篇</h2>
+<h3 id="legacy-blasr">legacy-blasr</h3>
+<p>PBJelly的安装<a href="https://sourceforge.net/p/pb-jelly/wiki/Home/">说明</a>表示依赖1.3.1版本的<code>blasr</code>，但此版本在2012年，现已难以<a href="https://github.com/OSGConnect/modulefiles/blob/master/recipes/blasr-1.3.1">安装</a>。</p>
+<p>几番尝试后，我们选择使用PacBio提供的<a href="https://github.com/PacificBiosciences/pitchfork">pitchfork</a>来编译该过时的软件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /path/to/software
+git clone https://github.com/PacificBiosciences/pitchfork.git
+<span class="nb">cd</span> pitchfork
+git checkout legacy_blasr
+<span class="nb">echo</span> <span class="nv">PREFIX</span><span class="o">=</span>/opt/mybuild &gt; settings.mk
+make init
+make blasr
+</code></pre></td></tr></table>
+</div>
+</div><p>此过程会下载依赖的各种软件，<code>python3</code>环境中会报错，需要切换到<code>python2.7</code>环境。</p>
+<p>此外，<code>hdf5-1.8.16</code>的下载路径<a href="https://github.com/PacificBiosciences/pitchfork/issues/289">失效</a>，自行下载<a href="https://hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.16/src/hdf5-1.8.16.tar.gz">hdf5-1.8.16.tar.gz</a>至<code>pitchfork/ports/thirdparty/hdf5</code>中，重新<code>make blasr</code>可解决。</p>
+<p>编译完成后，实际的<code>blasr</code>版本为<code>5.0.994e5fc</code>，将其导入环境变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> /opt/mybuild/setup-env.sh
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="networkx-v11">networkx v1.1</h3>
+<p>说明文档要求<code>1.1</code>版本，实测<code>conda</code>安装的<code>1.1.1</code>版本也可成功运行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda install <span class="nv">networkx</span><span class="o">==</span>1.1.1
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>p.s.  在extraction步骤，存在警告</p>
+<p>2019-07-04 20:40:10,451 [INFO] Opening GML Files
+2019-07-04 20:40:10,452 [WARNING] It is unknown if networkx version 1.11 will work.
+2019-07-04 20:40:10,452 [WARNING] If you get an error here, please report it!!!</p>
+</blockquote>
+<h3 id="pbjelly">PBJelly</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget https://sourceforge.net/projects/pb-jelly/files/PBSuite_15.8.24.tgz
+tar zxf PBSuite_15.8.24.tgz
+<span class="nb">cd</span> PBSuite_15.8.24
+<span class="c1">## edit SWEETPATH in setup.sh</span>
+vi setup.sh
+<span class="nb">source</span> setup.sh
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="测试篇">测试篇</h2>
+<p>按照示例<a href="https://github.com/alvaralmstedt/Tutorials/wiki/Gap-closing-with-PBJelly">教程</a>进行测试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /path/to/PBSuite/docs/jellyExample
+<span class="c1">## edit the paths in the &lt;reference&gt; , &lt;outputDir&gt; and the baseDir attribute in the inputs tag to the full path in Protocol.xml</span>
+vi Protocol.xml
+
+<span class="c1">#Jelly.py &lt;stage&gt; Protocol.xml</span>
+Jelly.py setup &lt;jellyprotocol.xml&gt;
+Jelly.py mapping &lt;jellyprotocol.xml&gt;
+Jelly.py support &lt;jellyprotocol.xml&gt;
+Jelly.py extraction &lt;jellyprotocol.xml&gt;
+Jelly.py assembly &lt;jellyprotocol.xml&gt; -x “--nproc<span class="o">=</span>4”
+Jelly.py output &lt;jellyprotocol.xml&gt;
+
+grep -Ho N jelly.out.fasta <span class="p">|</span> uniq -c
+</code></pre></td></tr></table>
+</div>
+</div><p>运行成功，会将输入的3条contig连接为1条，N的数目由1494降至0</p>
+<h2 id="检查输入">检查输入</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sumarizeAssembly.py &lt;reference.fasta&gt;
+readSummary.py &lt;Protocol.xml&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>PBJelly要求的reference输入格式只能是fasta格式，且后缀只能是<code>.fasta</code>；reads的输入格式可以为<code>fastq</code>或<code>fasta</code>，但输入fasta时要求有相应的质量文件</p>
+<h3 id="debug">Debug</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">Jelly.py setup &lt;jellyprotocol.xml&gt;
+
+<span class="c1">##切换到screen中运行</span>
+screen -S PBJelly
+Jelly.py mapping &lt;jellyprotocol.xml&gt;
+
+<span class="c1">##比对步骤很快结束，查验mapping文件夹内的mapping/xxx.fastq.err</span>
+cat mapping/xxx.fastq.err
+2019-07-02 20:03:34,546 <span class="o">[</span>INFO<span class="o">]</span> Running /path/to/software/PBSuite_15.8.24/bin/m4pie.py /path/to/workdir/04.genome_assembling/gap-filling/PBJelly/yourAssembly/mapping/AssemblyXXX.fastq.m4 /path/to/workdir/04.genome_assembling/gap-filling/PBJelly/yourAssembly/data/reads/AssemblyXXX.fastq /path/to/workdir/04.genome_assembling/gap-filling/PBJelly/yourAssembly/data/reference/scaffolds_FINAL.fasta --nproc <span class="m">4</span> -i
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">&#34;/path/to/software/PBSuite_15.8.24/bin/m4pie.py&#34;</span>, line 209, in &lt;module&gt;
+    run<span class="o">(</span>sys.argv<span class="o">[</span>1:<span class="o">])</span>
+  File <span class="s2">&#34;/path/to/software/PBSuite_15.8.24/bin/m4pie.py&#34;</span>, line 171, in run
+    <span class="nv">aligns</span> <span class="o">=</span> M4File<span class="o">(</span>args.m4<span class="o">)</span>
+  File <span class="s2">&#34;/path/to/software/PBSuite_15.8.24/pbsuite/utils/FileHandlers.py&#34;</span>, line 484, in __init__
+    <span class="nv">file</span> <span class="o">=</span> open<span class="o">(</span>file,<span class="s1">&#39;r&#39;</span><span class="o">)</span>
+IOError: <span class="o">[</span>Errno 2<span class="o">]</span> No such file or directory: <span class="err">&#39;</span>/path/to/workdir/04.genome_assembling/gap-filling/PBJelly/yourAssembly/mapping/AssemblyXXX.fastq.m4
+</code></pre></td></tr></table>
+</div>
+</div><p>搜索<code>PBSuite_15.8.24/bin/m4pie.py no such file</code>，能发现很多类似情况的报错</p>
+<blockquote>
+<p><a href="https://sourceforge.net/p/pb-jelly/discussion/pbjtiks/thread/0c780910/?limit=25">https://sourceforge.net/p/pb-jelly/discussion/pbjtiks/thread/0c780910/?limit=25</a></p>
+<p><a href="https://www.biostars.org/p/198519/">https://www.biostars.org/p/198519/</a></p>
+<p><a href="https://sourceforge.net/p/pb-jelly/discussion/pbjtiks/thread/e351eed7/#a608">https://sourceforge.net/p/pb-jelly/discussion/pbjtiks/thread/e351eed7/#a608</a></p>
+</blockquote>
+<p>原因不一，包括新旧版本<code>blasr</code>在参数输入中，使用<code>-</code>与<code>--</code>的不同。</p>
+<p>在<code>pbsuite/utils/CommandRunner.py</code>的第18行的<code>subprocess.Popen()</code>函数中<a href="https://sourceforge.net/p/pb-jelly/discussion/pbjtiks/thread/0c780910/#47df">添加</a><code>executable=&quot;/bin/bash&quot;</code></p>
+<p>但此次报错的可能原因在于<code>screen</code>后的环境配置与原环境不同，使<code>blasr</code>不能正常运行。</p>
+<h4 id="判断依据">判断依据</h4>
+<p>在screen屏幕中，<code>blasr</code>不可执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">blasr --help
+blasr: error <span class="k">while</span> loading shared libraries: libpbihdf.so: cannot open shared object file: No such file or directory
+</code></pre></td></tr></table>
+</div>
+</div><p>在原环境中执行<code>Jelly.py mapping &lt;jellyprotocol.xml&gt;</code>, <code>blasr</code>即可正常运行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">## 传递debug参数，帮助排查问题</span>
+Jelly.py mapping &lt;jellyprotocol.xml&gt; -x <span class="s2">&#34;--debug&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="小tips">小tips</h4>
+<p><code>Ctrl + C</code>手动终止<code>mapping</code>任务时，需注意，<code>blasr</code>不会相应终止，需要在任务管理器中终止。</p>
+<h2 id="总结">总结</h2>
+<p>运行PBJelly之前，需要依次激活下列环境</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">## pitchfork编译的legacy-blasr环境</span>
+<span class="nb">source</span> ~/opt/pitchfock/setup-env.sh
+<span class="c1">## 安装有networkx1.1的python2.7环境</span>
+<span class="nb">source</span> activate SALSA
+<span class="c1">## PBSuite环境</span>
+<span class="nb">source</span> ~/software/PBSuite_15.8.24/setup.sh
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="http://onsnetwork.org/kubu4/2017/10/30/software-installation-pb-jelly-suite-and-blasr-on-emu/">http://onsnetwork.org/kubu4/2017/10/30/software-installation-pb-jelly-suite-and-blasr-on-emu/</a></p>
+<p><a href="https://genefish.wordpress.com/2017/04/06/pbjelly-pt-2/">https://genefish.wordpress.com/2017/04/06/pbjelly-pt-2/</a></p>
+<p><a href="https://github.com/alvaralmstedt/Tutorials/wiki/Gap-closing-with-PBJelly">https://github.com/alvaralmstedt/Tutorials/wiki/Gap-closing-with-PBJelly</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-07-02
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/PBJelly/">PBJelly</a>
+          <a href="/tags/blasr/">blasr</a>
+          <a href="/tags/PacBio/">PacBio</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/07/19/StatQuest-PCA/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">StatQuest-PCA</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/06/20/RNA-seq-123/">
+            <span class="next-text nav-default">RNA-seq-123</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ggplot的字体设置 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="geom_text geom_text是直接向ggplot对象中添加绘制的文字 theme 在theme中以element_text()设置字体 element_text(family = NULL**,** face = NULL**,** colour = NULL**,** size = NULL**,** hjust" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/04/19/R-set-font/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="ggplot的字体设置" />
+<meta property="og:description" content="geom_text geom_text是直接向ggplot对象中添加绘制的文字 theme 在theme中以element_text()设置字体 element_text(family = NULL**,** face = NULL**,** colour = NULL**,** size = NULL**,** hjust" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/04/19/R-set-font/" />
+<meta property="article:published_time" content="2019-04-19T22:32:30+00:00" />
+<meta property="article:modified_time" content="2019-04-19T22:32:30+00:00" />
+<meta itemprop="name" content="ggplot的字体设置">
+<meta itemprop="description" content="geom_text geom_text是直接向ggplot对象中添加绘制的文字 theme 在theme中以element_text()设置字体 element_text(family = NULL**,** face = NULL**,** colour = NULL**,** size = NULL**,** hjust">
+<meta itemprop="datePublished" content="2019-04-19T22:32:30+00:00" />
+<meta itemprop="dateModified" content="2019-04-19T22:32:30+00:00" />
+<meta itemprop="wordCount" content="318">
+
+
+
+<meta itemprop="keywords" content="R,ggplot,font," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ggplot的字体设置"/>
+<meta name="twitter:description" content="geom_text geom_text是直接向ggplot对象中添加绘制的文字 theme 在theme中以element_text()设置字体 element_text(family = NULL**,** face = NULL**,** colour = NULL**,** size = NULL**,** hjust"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ggplot的字体设置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-04-19 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#geom_text">geom_text</a></li>
+    <li><a href="#theme">theme</a></li>
+    <li><a href="#theme_set">theme_set</a></li>
+    <li><a href="#yyplotset_font">yyplot::set_font</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="geom_text">geom_text</h2>
+<p><code>geom_text</code>是直接向ggplot对象中添加绘制的文字</p>
+<h2 id="theme">theme</h2>
+<p>在<code>theme</code>中以<code>element_text()</code>设置字体</p>
+<blockquote>
+<p>element_text(family = NULL**,** face = NULL**,** colour = NULL**,** size = NULL**,** hjust = NULL**,** vjust = NULL**,** angle = NULL**,** lineheight = NULL)</p>
+</blockquote>
+<p>其中，<code>title</code>设置图表的标题，坐标轴标题以及图例的文本样式。<code>axis.text</code>则对应坐标轴刻度标尺的字体。</p>
+<h2 id="theme_set">theme_set</h2>
+<p>使用<code>theme_set</code>函数可全局设置特定主题中的字体大小</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1"># 全局设置某个主题的默认字体大小</span>
+<span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_gray</span><span class="p">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="m">18</span><span class="p">))</span>
+<span class="nf">qplot</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+<span class="c1"># 或直接在主题中设置base_size</span>
+<span class="nf">qplot</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span> <span class="o">+</span> <span class="nf">theme_grey</span><span class="p">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="m">18</span><span class="p">)</span> 
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">mpg</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">cyl</span><span class="p">))</span> <span class="o">+</span> 
+<span class="nf">geom_point</span><span class="p">()</span> <span class="o">+</span>
+<span class="nf">theme_grey</span><span class="p">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="m">18</span><span class="p">)</span> 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="yyplotset_font">yyplot::set_font</h2>
+<p>使用Y叔提供<code>yyplot</code>中提供的<a href="https://guangchuangyu.github.io/cn/2017/09/ggplot2-set-font/"><code>set_font</code></a>函数可以在最后同一设置文字。（对于<code>geom_text</code>, 或<code>theme</code>中的<code>axis.text</code>, <code>text</code>均生效）</p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://www.cnblogs.com/wkslearner/p/5701207.html">https://www.cnblogs.com/wkslearner/p/5701207.html</a></p>
+<p><a href="https://stackoverflow.com/questions/25061822/ggplot-geom-text-font-size-control">https://stackoverflow.com/questions/25061822/ggplot-geom-text-font-size-control</a></p>
+<p><a href="https://cloud.tencent.com/developer/ask/65053">https://cloud.tencent.com/developer/ask/65053</a></p>
+<p><a href="https://guangchuangyu.github.io/cn/2017/09/ggplot2-set-font/">https://guangchuangyu.github.io/cn/2017/09/ggplot2-set-font/</a></p>
+<p><a href="https://cran.r-project.org/web/packages/svglite/vignettes/fonts.html">https://cran.r-project.org/web/packages/svglite/vignettes/fonts.html</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-04-19
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/R/">R</a>
+          <a href="/tags/ggplot/">ggplot</a>
+          <a href="/tags/font/">font</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/04/21/ggtree-quickstart/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ggtree-quickstart</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/03/31/debug-EOF-within-quoted-string/">
+            <span class="next-text nav-default">【debug】EOF within quoted string</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

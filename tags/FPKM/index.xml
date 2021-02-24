@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FPKM on SR-C</title>
+    <link>https://sr-c.github.io/tags/FPKM/</link>
+    <description>Recent content in FPKM on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 26 May 2020 10:57:43 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/FPKM/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RPKM-normilization</title>
+      <link>https://sr-c.github.io/2020/05/26/RPKM-normilization/</link>
+      <pubDate>Tue, 26 May 2020 10:57:43 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/05/26/RPKM-normilization/</guid>
+      <description>现已不推荐使用RPKM/FPKM对RNA-seq数据进行定量比较，详情可查看 计算原理 $$ RPKM = (10^9 * C) / (N * L) $$ C = Number of reads mapped to a gene N = Total mapped reads in the experiment</description>
+    </item>
+    
+  </channel>
+</rss>

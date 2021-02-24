@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>hexo的多端配置 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="想要多设备配置hexo，中间遇到了几个坑，记录下来，也帮助大家。 背景介绍 hexo会将个人写的文章经过编译在public/.deploy_gi" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/01/08/hexo-remote-configuration/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="hexo的多端配置" />
+<meta property="og:description" content="想要多设备配置hexo，中间遇到了几个坑，记录下来，也帮助大家。 背景介绍 hexo会将个人写的文章经过编译在public/.deploy_gi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/01/08/hexo-remote-configuration/" />
+<meta property="article:published_time" content="2018-01-08T21:59:17+00:00" />
+<meta property="article:modified_time" content="2018-01-08T21:59:17+00:00" />
+<meta itemprop="name" content="hexo的多端配置">
+<meta itemprop="description" content="想要多设备配置hexo，中间遇到了几个坑，记录下来，也帮助大家。 背景介绍 hexo会将个人写的文章经过编译在public/.deploy_gi">
+<meta itemprop="datePublished" content="2018-01-08T21:59:17+00:00" />
+<meta itemprop="dateModified" content="2018-01-08T21:59:17+00:00" />
+<meta itemprop="wordCount" content="856">
+
+
+
+<meta itemprop="keywords" content="Hexo,github," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="hexo的多端配置"/>
+<meta name="twitter:description" content="想要多设备配置hexo，中间遇到了几个坑，记录下来，也帮助大家。 背景介绍 hexo会将个人写的文章经过编译在public/.deploy_gi"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">hexo的多端配置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-01-08 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景介绍">背景介绍</a></li>
+    <li><a href="#中心思想">中心思想</a></li>
+    <li><a href="#具体步骤">具体步骤</a>
+      <ul>
+        <li><a href="#1-在github上新建分支hexo用于存储hexo的配置环境并将其设置为默认分支">1. 在github上新建分支hexo用于存储hexo的配置环境，并将其设置为默认分支。</a></li>
+        <li><a href="#2-在本地博客根目录下使用git命令将hexo配置环境上传到github上新建的hexo分支">2. 在本地博客根目录下使用git命令将hexo配置环境上传到github上新建的hexo分支</a></li>
+        <li><a href="#3-在另一设备上使用git命令下载hexo分支中的文件">3. 在另一设备上使用git命令下载hexo分支中的文件</a></li>
+        <li><a href="#4-在另一设备上已安装好git与hexo即可开始对站点的管理">4. 在另一设备上（已安装好git与hexo）即可开始对站点的管理</a></li>
+      </ul>
+    </li>
+    <li><a href="#注意事项">注意事项</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>想要多设备配置hexo，中间遇到了几个坑，记录下来，也帮助大家。</p>
+<h2 id="背景介绍">背景介绍</h2>
+<blockquote>
+<p>hexo会将个人写的文章经过编译在public/.deploy_git文件夹中，然后将编译好的静态站点文件上传到github。因此，github中默认只存在已编译好的静态站点文件，不存在hexo编译环境，使得作者不能够直接在异地发布文章。</p>
+</blockquote>
+<h2 id="中心思想">中心思想</h2>
+<blockquote>
+<p>在github库中另建立一个分支用于存储hexo的编译环境。作者在异地先通过git同步hexo编译环境，再通过hexo发布文章即可。</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<h2 id="具体步骤">具体步骤</h2>
+<blockquote>
+<p>前提：笔者已参照<a href="https://hexo.io/zh-cn/docs/index.html">官网说明</a>在github上配置好了个人站点。（设置好了主题，写了几篇文章）</p>
+</blockquote>
+<h3 id="1-在github上新建分支hexo用于存储hexo的配置环境并将其设置为默认分支">1. 在github上新建分支hexo用于存储hexo的配置环境，并将其设置为默认分支。</h3>
+<h3 id="2-在本地博客根目录下使用git命令将hexo配置环境上传到github上新建的hexo分支">2. 在本地博客根目录下使用git命令将hexo配置环境上传到github上新建的hexo分支</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git init  // git初始化
+git remote add origin https://github.com/用户名/仓库名.git  // 添加仓库地址
+git checkout -b hexo  // 新建分支hexo并切换到新建的分支hexo
+git add .  // 添加所有本地文件到git
+git commit -m <span class="s2">&#34;更新说明&#34;</span>  // git提交
+git push origin hexo  // 文件推送到hexo分支
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-在另一设备上使用git命令下载hexo分支中的文件">3. 在另一设备上使用git命令下载hexo分支中的文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">// 克隆文件到本地
+git clone -b 分支名 https://github.com/用户名/仓库名.git
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4-在另一设备上已安装好git与hexo即可开始对站点的管理">4. 在另一设备上（已安装好git与hexo）即可开始对站点的管理</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> &lt;folder&gt;
+npm install
+hexo s
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="注意事项">注意事项</h2>
+<blockquote>
+<ul>
+<li>在不同设备上配置github注意要先配置好ssh密钥</li>
+<li><code>themes</code>文件夹中的主题如果是直接<code>git clone</code>下来的，在上传前先删除相应主题目录下的<code>.git</code>文件夹，但仍不能取得相应主题文件夹的权限。<a href="http://blog.csdn.net/sinat_27088253/article/details/54314742">解决方案</a>是将相应文件夹剪切到别处，执行一遍<code>add commit push</code>(在github端删除了该文件夹)，再在本地粘帖回来，执行<code>add commit push</code>三连，重新上传，即可。</li>
+<li>新配置的设备上，安装好sshkey后仍然提示<code>Host key verification failed.  fatal: Could not read from remote repository.</code>，则需要手动连接一次<code>ssh git@github.com </code>即可。</li>
+</ul>
+</blockquote>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://www.zhihu.com/question/21193762">https://www.zhihu.com/question/21193762</a>
+<a href="http://blog.csdn.net/Monkey_LZL/article/details/60870891">http://blog.csdn.net/Monkey_LZL/article/details/60870891</a>
+<a href="http://blog.csdn.net/sinat_27088253/article/details/54314742">http://blog.csdn.net/sinat_27088253/article/details/54314742</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-01-08
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Hexo/">Hexo</a>
+          <a href="/tags/github/">github</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/04/30/TransDecoder-log/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用TransDecoder预测转录本的编码区域</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/01/04/blast-error-ncbireg/">
+            <span class="next-text nav-default">blast_error_ncbireg</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python练习5 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="计算肽链的分子量 http://rosalind.info/problems/prtm/ 值得注意的是，最后一个氨基酸中一个水分子的分子量18.01056 Da. 但我的结果中没有加上这个水，仍然提示我为正确答案，可见还" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/02/19/python-exercise-5/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python练习5" />
+<meta property="og:description" content="计算肽链的分子量 http://rosalind.info/problems/prtm/ 值得注意的是，最后一个氨基酸中一个水分子的分子量18.01056 Da. 但我的结果中没有加上这个水，仍然提示我为正确答案，可见还" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/02/19/python-exercise-5/" />
+<meta property="article:published_time" content="2019-02-19T16:20:13+00:00" />
+<meta property="article:modified_time" content="2019-02-19T16:20:13+00:00" />
+<meta itemprop="name" content="Python练习5">
+<meta itemprop="description" content="计算肽链的分子量 http://rosalind.info/problems/prtm/ 值得注意的是，最后一个氨基酸中一个水分子的分子量18.01056 Da. 但我的结果中没有加上这个水，仍然提示我为正确答案，可见还">
+<meta itemprop="datePublished" content="2019-02-19T16:20:13+00:00" />
+<meta itemprop="dateModified" content="2019-02-19T16:20:13+00:00" />
+<meta itemprop="wordCount" content="737">
+
+
+
+<meta itemprop="keywords" content="Python,Rosalind," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python练习5"/>
+<meta name="twitter:description" content="计算肽链的分子量 http://rosalind.info/problems/prtm/ 值得注意的是，最后一个氨基酸中一个水分子的分子量18.01056 Da. 但我的结果中没有加上这个水，仍然提示我为正确答案，可见还"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python练习5</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-02-19 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#计算肽链的分子量">计算肽链的分子量</a>
+      <ul>
+        <li><a href="#他山之石">他山之石</a></li>
+      </ul>
+    </li>
+    <li><a href="#孟德尔第二定律">孟德尔第二定律</a>
+      <ul>
+        <li><a href="#他山之石-1">他山之石</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="计算肽链的分子量">计算肽链的分子量</h2>
+<p><a href="http://rosalind.info/problems/prtm/">http://rosalind.info/problems/prtm/</a></p>
+<p>值得注意的是，最后一个氨基酸中一个水分子的分子量18.01056 Da. 但我的结果中没有加上这个水，仍然提示我为正确答案，可见还是比较宽松的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="n">mass_table</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">71.03711</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">103.00919</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mf">115.02694</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">129.04259</span><span class="p">,</span> <span class="n">F</span><span class="o">=</span><span class="mf">147.06841</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="mf">57.02146</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mf">137.05891</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mf">113.08406</span><span class="p">,</span>
+                  <span class="n">K</span><span class="o">=</span><span class="mf">128.09496</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mf">113.08406</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mf">131.04049</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mf">114.04293</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="mf">97.05276</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mf">128.05858</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mf">156.10111</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mf">87.03203</span><span class="p">,</span>
+                  <span class="n">T</span><span class="o">=</span><span class="mf">101.04768</span><span class="p">,</span> <span class="n">V</span><span class="o">=</span><span class="mf">99.06841</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mf">186.07931</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="mf">163.06333</span><span class="p">)</span>
+<span class="n">prot_mass</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;rosalind_prtm.txt&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">prot</span><span class="p">:</span>
+    <span class="n">pro_line</span> <span class="o">=</span> <span class="n">prot</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="c1">#    for i in range(len(pro_line)):</span>
+<span class="c1">#        prot_mass += mass_table[pro_line[i]]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pro_line</span><span class="p">:</span>
+        <span class="n">prot_mass</span> <span class="o">+=</span> <span class="n">mass_table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">prot_mass</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="他山之石">他山之石</h3>
+<p>快速输入字符串，并转换为字典的方式值得学习。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">mmt</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">A   71.03711
+</span><span class="s2">C   103.00919
+</span><span class="s2">D   115.02694
+</span><span class="s2">E   129.04259
+</span><span class="s2">F   147.06841
+</span><span class="s2">G   57.02146
+</span><span class="s2">H   137.05891
+</span><span class="s2">I   113.08406
+</span><span class="s2">K   128.09496
+</span><span class="s2">L   113.08406
+</span><span class="s2">M   131.04049
+</span><span class="s2">N   114.04293
+</span><span class="s2">P   97.05276
+</span><span class="s2">Q   128.05858
+</span><span class="s2">R   156.10111
+</span><span class="s2">S   87.03203
+</span><span class="s2">T   101.04768
+</span><span class="s2">V   99.06841
+</span><span class="s2">W   186.07931
+</span><span class="s2">Y   163.06333
+</span><span class="s2">&#34;&#34;&#34;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">mmt</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">mmt</span><span class="p">[::</span><span class="mi">2</span><span class="p">],</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span><span class="n">mmt</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])))</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;SKADYEK&#34;</span>
+<span class="k">print</span> <span class="s2">&#34;</span><span class="si">%.2f</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">mmt</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">s</span><span class="p">))</span><span class="o">+</span><span class="mf">18.01528</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="孟德尔第二定律">孟德尔第二定律</h2>
+<p><a href="http://rosalind.info/problems/lia/">http://rosalind.info/problems/lia/</a></p>
+<p>亲本(第0代)的基因型为<code>AaBb</code>，与基因型同为<code>AaBa</code>的个体产生2个后代。之后，每个个体产生2个后代，且均与<code>AaBa</code>基因型的个体婚配。求在第k代的所有个体中，至少有N个个体的基因型为<code>AaBb</code>的概率。</p>
+<blockquote>
+<p>题干中专门提示了不需要计算每一代中个体AaBb基因型婚配的具体情况。这是因为每代的个体都与AaBa婚配，因此种群中A/a,B/b基因型的频率保持不变，一直为1/2。因此每一代中个体为AaBb基因型的概率均为1/2*1/2=1/4。</p>
+<p>接下来就是一个高中概率论的排列组合问题。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;rosalind_lia.txt&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1">#计算排列数A(m, n)</span>
+<span class="k">def</span> <span class="nf">aR</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">be</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">be</span> <span class="o">*=</span> <span class="n">m</span> <span class="o">-</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">be</span>
+
+<span class="c1">#计算组合数C(m, n)</span>
+<span class="k">def</span> <span class="nf">cR</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;error input&#34;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">aR</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">aR</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="c1">#计算第k代(2^k个体)中至少含有N个0.25概率事件发生的总概率</span>
+<span class="n">rate</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">rate</span> <span class="o">+=</span> <span class="n">cR</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.25</span> <span class="o">**</span> <span class="n">i</span> <span class="o">*</span> <span class="mf">0.75</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">k</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">rate</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="他山之石-1">他山之石</h3>
+<p>其他人的答案中，使用R能够更方便地进行这个排列组合计算</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">pbinom</span><span class="p">(</span><span class="n">N</span><span class="m">-1</span><span class="p">,</span> <span class="m">2</span><span class="n">^k</span><span class="p">,</span> <span class="m">0.25</span><span class="p">,</span> <span class="n">lower.tail</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>python中使用scipy也可以计算排列组合</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;</span> <span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">comb</span><span class="p">,</span> <span class="n">perm</span>
+<span class="o">&gt;&gt;</span> <span class="n">perm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">6.0</span>
+<span class="o">&gt;&gt;</span> <span class="n">comb</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">3.0</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="http://rosalind.info/problems/prtm/solutions/">http://rosalind.info/problems/prtm/solutions/</a></p>
+<p><a href="http://rosalind.info/problems/lia/solutions/">http://rosalind.info/problems/lia/solutions/</a></p>
+<p><a href="https://blog.csdn.net/lanchunhui/article/details/51824602">https://blog.csdn.net/lanchunhui/article/details/51824602</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-02-19
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Python/">Python</a>
+          <a href="/tags/Rosalind/">Rosalind</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/02/20/HiC-pro-quickstart/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">HiC-Pro使用手册</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/02/16/Error-C-stack-usage-is-too-close-to-the-limit/">
+            <span class="next-text nav-default">【debug】C stack usage is too close to the limit</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>vim使用的小技巧 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="一、查找 查找命令 1 2 /pattern&amp;lt;Enter&amp;gt; ：向下查找pattern匹配字符串 ?pattern&amp;lt;Enter&amp;gt;：向上查找pattern匹配字符串 使用了查" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/07/06/vim-tips/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="vim使用的小技巧" />
+<meta property="og:description" content="一、查找 查找命令 1 2 /pattern&lt;Enter&gt; ：向下查找pattern匹配字符串 ?pattern&lt;Enter&gt;：向上查找pattern匹配字符串 使用了查" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/07/06/vim-tips/" />
+<meta property="article:published_time" content="2018-07-06T17:52:33+00:00" />
+<meta property="article:modified_time" content="2018-07-06T17:52:33+00:00" />
+<meta itemprop="name" content="vim使用的小技巧">
+<meta itemprop="description" content="一、查找 查找命令 1 2 /pattern&lt;Enter&gt; ：向下查找pattern匹配字符串 ?pattern&lt;Enter&gt;：向上查找pattern匹配字符串 使用了查">
+<meta itemprop="datePublished" content="2018-07-06T17:52:33+00:00" />
+<meta itemprop="dateModified" content="2018-07-06T17:52:33+00:00" />
+<meta itemprop="wordCount" content="1792">
+
+
+
+<meta itemprop="keywords" content="vim,vi,unix," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="vim使用的小技巧"/>
+<meta name="twitter:description" content="一、查找 查找命令 1 2 /pattern&lt;Enter&gt; ：向下查找pattern匹配字符串 ?pattern&lt;Enter&gt;：向上查找pattern匹配字符串 使用了查"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">vim使用的小技巧</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-06 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一查找">一、查找</a></li>
+    <li><a href="#二替换">二、替换</a></li>
+    <li><a href="#三简单的vim正则表达式规则">三、简单的vim正则表达式规则</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="一查找">一、查找</h2>
+<p><strong>查找命令</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">/pattern&lt;Enter&gt; ：向下查找pattern匹配字符串     
+?pattern&lt;Enter&gt;：向上查找pattern匹配字符串     
+</code></pre></td></tr></table>
+</div>
+</div><p>使用了查找命令之后，使用如下两个键快速查找：  <br>
+n：按照同一方向继续查找  <br>
+N：按照反方向查找  <br>
+<strong>字符串匹配</strong>       <br>
+<code>pattern</code>是需要匹配的字符串，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">/abc&lt;Enter&gt;      <span class="c1">#查找abc</span>
+/ abc &lt;Enter&gt;    <span class="c1">#查找abc单词（注意前后的空格）</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>除此之外，<code>pattern</code>还可以使用一些特殊字符，包括（/、^、$、*、.），其中前三个这两个是vi与vim通用的，<code>/</code>为转义字符。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">/^abc&lt;Enter&gt;    <span class="c1">#查找以abc开始的行</span> 
+/test$&lt;Enter&gt;    <span class="c1">#查找以abc结束的行</span> 
+//^test&lt;Enter&gt;    <span class="c1">#查找^tabc字符串</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="二替换">二、替换</h2>
+<p><strong>基本替换</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">:s/vivian/sky/         <span class="c1">#替换当前行第一个 vivian 为 sky</span>
+:s/vivian/sky/g     <span class="c1">#替换当前行所有 vivian 为 sky</span>
+:n,<span class="nv">$s</span>/vivian/sky/     <span class="c1">#替换第 n 行开始到最后一行中每一行的第一个 vivian 为 sky</span>
+:n,<span class="nv">$s</span>/vivian/sky/g     <span class="c1">#替换第 n 行开始到最后一行中每一行所有 vivian 为 sky</span>
+（n 为数字，若 n 为 .，表示从当前行开始到最后一行）
+:%s/vivian/sky/        <span class="c1">#（等同于 :g/vivian/s//sky/） 替换每一行的第一个 vivian 为 sky</span>
+:%s/vivian/sky/g    <span class="c1">#（等同于 :g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>可以使用 <code>#</code>或<code>+</code> 作为分隔符，此时中间出现的 <code>/</code>不会作为分隔符</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">:s#vivian/#sky/#         <span class="c1">##替换当前行第一个 vivian/ 为 sky/</span>
+:%s+/oradata/apras/+/user01/apras1+  <span class="c1">##（使用+替换/）/oradata/apras/替换成/user01/apras1/</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>删除文本中的<code>^M</code></strong></p>
+<blockquote>
+<p>问题描述：对于换行，window下用回车换行（0A0D）来表示，linux下是回车（0A）来表示。这样，将window上的文件拷到unix上用时，总会有个<code>^M</code>，请写个用在unix下的过滤windows文件的换行符（0D）的shell或c程序。</p>
+</blockquote>
+<p>使用命令：cat filename1 | tr -d “^V^M” &gt; newfile;  <br>
+使用命令：sed -e “s/^V^M//” filename &gt; outputfilename  <br>
+需要注意的是在1、2两种方法中，^V和^M指的是Ctrl+V和Ctrl+M。你必须要手工进行输入，而不是粘贴。  <br>
+在<code>vi</code>中处理：首先使用<code>vi</code>打开文件，然后按ESC键，接着输入命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">:%s/^V^M//
+:%s/^M$//g
+</code></pre></td></tr></table>
+</div>
+</div><p>如果上述方法无用，则正确的解决办法是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">tr -d “/r” &lt; src &gt;dest
+tr -d “/015″ dest
+
+strings A&gt;B
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>其他用法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">:s/str1/str2/          #用字符串 str2 替换行中首次出现的字符串 str1
+:s/str1/str2/g         #用字符串 str2 替换行中所有出现的字符串 str1
+:.,$ s/str1/str2/g     #用字符串 str2 替换正文当前行到末尾所有出现的字符串 str1
+:1,$ s/str1/str2/g     #用字符串 str2 替换正文中所有出现的字符串 str1
+:g/str1/s//str2/g      #功能同上
+</code></pre></td></tr></table>
+</div>
+</div><p>从上述替换命令可以看到：</p>
+<blockquote>
+<p>g 放在命令末尾，表示对指定行的搜索字符串的每次出现进行替换；不加 g，表示只对指定行的搜索字符串的首次出现进行替换；</p>
+<p>g 放在命令开头，表示对正文中所有包含搜索字符串的行进行替换操作。</p>
+</blockquote>
+<p>即：命令的开始可以添加影响的行，如果为g表示对所有行；命令的结尾可以使用g来表示是否对每一行的所有字符串都有影响。</p>
+<h2 id="三简单的vim正则表达式规则">三、简单的vim正则表达式规则</h2>
+<p>在<code>vim</code>中有四种表达式规则：</p>
+<blockquote>
+<p>magic(/m)：除了$.*^之外其他元字符都要加反斜杠</p>
+<p>nomagic(/M)：除了$^之外其他元字符都要加反斜杠</p>
+<p>/v（即 very magic 之意）：任何元字符都不用加反斜杠</p>
+<p>/V（即 very nomagic 之意）：任何元字符都必须加反斜杠</p>
+</blockquote>
+<p><code>vim</code>默认使用<code>magic</code>设置，这个设置也可以在正则表达式中通过 <code>/m</code> <code>/M</code> <code>/v</code> <code>/V</code>开关临时切换。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//m.*          # 查找任意字符串
+//M.*          # 查找字符串 .* （点号后面跟个星号）
+
+//v(a.c){3}$   # 查找行尾的abcaccadc
+//m(a.c){3}$   # 查找行尾的(abc){3}
+//M(a.c){3}$   # 查找行尾的(a.c){3}
+//V(a.c){3}$   # 查找任意位置的(a.c){3}$
+</code></pre></td></tr></table>
+</div>
+</div><p>推荐使用默认的<code>magic</code>设置，在这种情况下，常用的匹配有：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//&lt;abc          #查找以test开始的字符串
+/abc/&gt;          #查找以test结束的字符串
+
+$       匹配一行的结束
+^       匹配一行的开始
+//&lt;abc&lt;Enter&gt;:查找以abc开始的字符串
+/&gt;      匹配一个单词的结束，例如/abc/&gt;&lt;Enter&gt;:查找以abc结束的字符串
+
+*       匹配0或多次
+/+      匹配1或多次
+/=      匹配0或1次
+.       匹配除换行符以外任意字符
+/a      匹配一个字符
+/d      匹配任一数字
+/u      匹配任一大写字母
+[]      匹配范围，如t[abcd]s 匹配tas tbs tcs tds
+/{}     重复次数，如a/{3,5} 匹配3~5个a
+/( /)   定义重复组，如a/(xy/)b 匹配ab axyb axyxyb axyxyxyb ...
+/|      或，如：for/|bar 表示匹配for或者bar
+
+/%20c   匹配第20列
+/%20l   匹配第20行
+</code></pre></td></tr></table>
+</div>
+</div><p>关于正则表达式的详细信息，请参见参考文献。</p>
+<p><strong>参考文献：</strong></p>
+<p><a href="http://tech.idv2.com/2008/07/08/vim-regexp/">vi中的正则表达式</a>   <a href="http://blog.chinaunix.net/u1/34252/showart_1075923.html">vim运用正则表达式进行查找替换</a>   <a href="http://blog.csdn.net/aldenphy/archive/2009/03/24/4019486.aspx">vi替换字符串</a></p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://blog.csdn.net/lanxinju/article/details/5731843">https://blog.csdn.net/lanxinju/article/details/5731843</a></p>
+<p><a href="http://man.linuxde.net/vi">http://man.linuxde.net/vi</a></p>
+<p><a href="https://harttle.land/2016/08/08/vim-search-in-file.html">https://harttle.land/2016/08/08/vim-search-in-file.html</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-07-06
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/vim/">vim</a>
+          <a href="/tags/vi/">vi</a>
+          <a href="/tags/unix/">unix</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/07/10/googleplay-login/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Google Play出现登陆错误</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/07/04/aria2-baiduyun/">
+            <span class="next-text nav-default">百度云的aria2下载</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

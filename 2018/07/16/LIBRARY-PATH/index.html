@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>【转载】环境变量，include搜索路径，lib库搜索路径 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="环境变量 系统环境变量 我们知道，我们经常要设置一些环境变量，系统环境变量我们非常容易理解。其实我们在windows中经常容易接触。其实环境变量" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/07/16/LIBRARY-PATH/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="【转载】环境变量，include搜索路径，lib库搜索路径" />
+<meta property="og:description" content="环境变量 系统环境变量 我们知道，我们经常要设置一些环境变量，系统环境变量我们非常容易理解。其实我们在windows中经常容易接触。其实环境变量" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/07/16/LIBRARY-PATH/" />
+<meta property="article:published_time" content="2018-07-16T20:36:04+00:00" />
+<meta property="article:modified_time" content="2018-07-16T20:36:04+00:00" />
+<meta itemprop="name" content="【转载】环境变量，include搜索路径，lib库搜索路径">
+<meta itemprop="description" content="环境变量 系统环境变量 我们知道，我们经常要设置一些环境变量，系统环境变量我们非常容易理解。其实我们在windows中经常容易接触。其实环境变量">
+<meta itemprop="datePublished" content="2018-07-16T20:36:04+00:00" />
+<meta itemprop="dateModified" content="2018-07-16T20:36:04+00:00" />
+<meta itemprop="wordCount" content="2746">
+
+
+
+<meta itemprop="keywords" content="include,library,path,gcc,linux,环境变量," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【转载】环境变量，include搜索路径，lib库搜索路径"/>
+<meta name="twitter:description" content="环境变量 系统环境变量 我们知道，我们经常要设置一些环境变量，系统环境变量我们非常容易理解。其实我们在windows中经常容易接触。其实环境变量"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">【转载】环境变量，include搜索路径，lib库搜索路径</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-16 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境变量">环境变量</a>
+      <ul>
+        <li><a href="#系统环境变量">系统环境变量</a></li>
+        <li><a href="#程序环境变量">程序环境变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#include搜索路径">include搜索路径</a></li>
+    <li><a href="#库搜索路径">库搜索路径</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="环境变量">环境变量</h2>
+<h3 id="系统环境变量">系统环境变量</h3>
+<p>我们知道，我们经常要设置一些环境变量，系统环境变量我们非常容易理解。其实我们在windows中经常容易接触。其实环境变量是一个非常广泛的一个概念，它与web应用程序中的web.config所处的角色很像。什么意思呢？就是说，程序（系统或应用）要运行的时候，它的基本业务逻辑可能是一定的，但是实现业务逻辑的时候有些设置性的东西却可以改变程序很多。如web应用程序，编译之后他的业务逻辑基本不会发生改变，但是如果你更改一些web.config中的参数，程序的运行就会发生相应的改变。这些设置。就像电视机上面调制一样。改变了设置会得到某些不同。</p>
+<p>那么环境变量可以理解成设置的一种，为什么有不直接称为设置呢？因为它处于一种被动的境地。越多说越糊涂。</p>
+<p>最常见的环境变量莫过于PATH，和ClassPATH，这个在设置jdk的时候就需要设置，这里的PATH变量指的是，当系统的接口接收到一个程序启动命令的时候，除了默认在当前目录下寻找那个可执行文件意外，还需要到那些地方寻找。有了这个设置，你就不需要一定要进入那个目录才能执行那个程序了。ClassPATH变量也差不多，它设置的是那些类似于动态库的路径，也就是说，程序在执行的时候，发现要引入动态库，那样就要在这个变量指定的地方去找。</p>
+<p>在linux中，系统也有一个PATH变量。其实系统有一个文件是专门记录那些环境变量的。</p>
+<p>1）/etc/profile，系统登录会执行这个文件在当前环境中引入那些变量。</p>
+<p>2）还有  /home/ali/.bashrc这个文件，简单的来说，/etc/profile是对全局有效的，而./bashrc是对当前用户有效.</p>
+<p>3）还有一种设置方法，就是通过终端命令直接修改，我们知道前面两个文件其作用的方式就是当程序进入状态的时候，他们会被执行引入到当前空间，那么在当前状态下就会有这些变量，程序也就是可以使用它们。那么如果我们直接在内存中修改该他们，就可以起到暂时的作用。</p>
+<h3 id="程序环境变量">程序环境变量</h3>
+<p>根据前面我们说过环境变量的作用和意义，就很容易推出，普通的程序也可以有环境变量。按照前面系统的环境变量起作用的模式。应用程序，也可以有一些配置文件来持久保存这些环境变量，在程序执行的时候，这些变量会通过某种方式进入程序执行的空间，这样程序执行的时候就可以使用这些变量了。而同样，我们可以改变这些变量来“适量”的改变我们的程序。</p>
+<p>GCC就是这样一个程序。很多时候，应用程序需不需要环境变量机制，关键看他是否有很多的选择性，GCC就是一个这样的程序。</p>
+<p>最常用GCC环境变量的就是include搜索路径，以及库搜索路径。他们分别在编译和连接的时候使用。</p>
+<p>他们的使用背景是：</p>
+<h2 id="include搜索路径">include搜索路径</h2>
+<p>通常，使用C/C++进行开发程序的时候，会使用头文件，并且有头文件的实现文件，这个时候有三类文件，使用头文件的源文件，头文件，实现头文件的源文件。编译的时候，头文件和源文件一起就可以了。通常他们是在同一目录下的。所以不会有什么问题。</p>
+<p>但是，当你使用到了系统自身的一些头文件的时候，你需要引入一些头文件，而这些文件不在当前目录下，使用绝对地址是一个办法，但是是一个极差的办法。所以GCC就有一个搜索机制。就是在规定的那些文件夹下，搜索你所引入的那个头文件。这样解决了问题。这个环境变量叫着CPLUS_INCLUDE_PATH。属于GCC，与系统无关。我们看看GCC头文件搜索路径</p>
+<p><strong>头文件：</strong></p>
+<ol>
+<li>
+<pre><code> #include“headfile.h”
+</code></pre>
+</li>
+</ol>
+<p>搜索顺序为：</p>
+<p>①先搜索当前目录</p>
+<p>②然后搜索-I指定的目录</p>
+<p>③再搜索gcc的环境变量CPLUS_INCLUDE_PATH（C程序使用的是C_INCLUDE_PATH）</p>
+<p>④最后搜索gcc的内定目录</p>
+<p>/usr/include</p>
+<p>/usr/local/include</p>
+<p>/usr/lib/gcc/x86_64-redhat-linux/4.1.1/include</p>
+<p>各目录存在相同文件时，先找到哪个使用哪个。</p>
+<ol start="2">
+<li>
+<pre><code> #include&lt;headfile.h&gt;
+</code></pre>
+</li>
+</ol>
+<p>①先搜索-I指定的目录</p>
+<p>②然后搜索gcc的环境变量CPLUS_INCLUDE_PATH</p>
+<p>③最后搜索gcc的内定目录</p>
+<p>/usr/include</p>
+<p>/usr/local/include</p>
+<p>/usr/lib/gcc/x86_64-redhat-linux/4.1.1/include</p>
+<p>与上面的相同，各目录存在相同文件时，先找到哪个使用哪个。这里要注意，#include&lt;&gt;方式不会搜索当前目录！</p>
+<p>虽然搜索了GCC自定义的环境变量目录之后，下一个的内定目录，就应该是操作系统有关这种头文件的定义。这种推导很正确。事实上就算不是这样的。GCC头文件搜索模式，也是按照先“专”后“宽”的模式，也就是说，大部分都是使用自己的一套，所以基本都能找到，可能真有一些是那些大家共有的头文件。所以，这里的内定目录其实与继承操作系统的目录的意思没有多大区别。</p>
+<p>这里要说下include的内定目录，它不是由$PATH环境变量指定的，而是由g++的配置prefix指定的(知道它在安装g++时可以指定，不知安装后如何修改的，可能是修改配置文件，需要时再研究下)：</p>
+<p>-bash-3.2$ g++ -v</p>
+<p>Using built-inspecs.</p>
+<p>Target:x86_64-redhat-linux</p>
+<p>Configured with:../configure <strong>&ndash;prefix=/usr</strong>  &ndash;mandir=/usr/share/man&ndash;infodir=/usr/share/info &ndash;enable-shared  &ndash;enable-threads=posix&ndash;enable-checking=release &ndash;with-system-zlib  &ndash;enable-__cxa_atexit&ndash;disable-libunwind-exceptions   &ndash;enable-libgcj-multifile&ndash;enable-languages=c,c++,objc,obj-c++,java,fortran,ada&ndash;enable-java-awt=gtk  &ndash;disable-dssi  &ndash;enable-plugin&ndash;with-java-home=/usr/lib/jvm/java-1.4.2-gcj-1.4.2.0/jre&ndash;with-cpu=generic  &ndash;host=x86_64-redhat-linux</p>
+<p>Thread model:posix</p>
+<p>gcc version 4.1.2 20080704(Red Hat 4.1.2-46)</p>
+<p>在安装g++时，指定了prefix，那么内定搜索目录就是：</p>
+<p>Prefix/include</p>
+<p>Prefix/local/include</p>
+<p>Prefix/lib/gcc/&ndash;host/&ndash;version/include</p>
+<p>编译时可以通过-nostdinc++选项屏蔽对内定目录搜索头文件。</p>
+<h2 id="库搜索路径">库搜索路径</h2>
+<p>在编译之后，程序要进行链接操作，前面指出，链接不管是动态和是静态，GCC这个程序，必须确认“真的有”那些头文件的实现。于是就需要定位找到那些文件。与include的情景差不多。使用绝对目录是可以的，但不适于管理。于是就出现了lib搜索路径这个环境变量。LIBRARY_PATH。</p>
+<p>他们的搜索路径为：</p>
+<p><strong>库文件：</strong></p>
+<p>编译的时候：</p>
+<p>①gcc会去找-L</p>
+<p>②再找gcc的环境变量LIBRARY_PATH</p>
+<p>③再找内定目录/lib /usr/lib/usr/local/lib 这是当初compile gcc时写在程序内的（不可配置的？）</p>
+<p><strong>运行时动态库的搜索路径</strong></p>
+<p><strong>(不要把这个和库的搜索路径混淆了，这里程序执行的时候有linux系统/usr/bin/ld程序控制的过程，这里只是顺带介绍。以完整程序整个生命周期。编译、链接、启动，装载（包括动态装载)、执行）：</strong></p>
+<p>动态库的搜索路径搜索的先后顺序是：</p>
+<p>①编译目标代码时指定的动态库搜索路径（这是通过gcc 的参数&rdquo;-Wl,-rpath,&ldquo;指定。当指定多个动态库搜索路径时，路径之间用冒号&rdquo;：&ldquo;分隔）</p>
+<p>②环境变量LD_LIBRARY_PATH指定的动态库搜索路径（当通过该环境变量指定多个动态库搜索路径时，路径之间用冒号&rdquo;：&ldquo;分隔）</p>
+<p>③配置文件/etc/ld.so.conf中指定的动态库搜索路径；</p>
+<p>④默认的动态库搜索路径/lib；</p>
+<p>⑤默认的动态库搜索路径/usr/lib。</p>
+<p>我们在来对GCC这个命令的这一方面进行总结一下。</p>
+<p>编译的时候使用-I命令可以装入include搜索路径。</p>
+<p>连接的时候使用-l  -L命令可以装入连接搜索路径或文件</p>
+<p>执行的时候。在当初编译连接时候使用-Wl 这个可以装入动态库的搜索路径。</p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="http://blog.sina.com.cn/s/blog_93b45b0f01011nrz.html">http://blog.sina.com.cn/s/blog_93b45b0f01011nrz.html</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-07-16
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/include/">include</a>
+          <a href="/tags/library/">library</a>
+          <a href="/tags/path/">path</a>
+          <a href="/tags/gcc/">gcc</a>
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">环境变量</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/07/16/pilon/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Pilon的使用</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/07/15/pasa-install/">
+            <span class="next-text nav-default">PASA的安装</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

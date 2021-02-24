@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Assembly on SR-C</title>
+    <link>https://sr-c.github.io/categories/Assembly/</link>
+    <description>Recent content in Assembly on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 11 Sep 2020 09:35:51 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/categories/Assembly/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用GenomeScope2评估基因组</title>
+      <link>https://sr-c.github.io/2020/09/11/GenomeScope2/</link>
+      <pubDate>Fri, 11 Sep 2020 09:35:51 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/09/11/GenomeScope2/</guid>
+      <description>GenomeScope是基因组评估的有效工具，但是之前只能够预测二倍体基因组，现在使用GenomeScope2则可以预测多倍体（至多六倍体）</description>
+    </item>
+    
+    <item>
+      <title>Polish Pacbio Assembly</title>
+      <link>https://sr-c.github.io/2018/05/29/polish-pacbio-assembly/</link>
+      <pubDate>Tue, 29 May 2018 23:18:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/29/polish-pacbio-assembly/</guid>
+      <description>In the README of quickmerge, I got a advice.
+ Assembly polishing with Quiver and pilon before and after assembly merging is strongly recommended.
+ As for Sequal data, Pacbio updated the quiver to arrow.
+ Quiver is supported for PacBio RS data. Arrow is supported for PacBio Sequel data and RS data with the P6-C4 chemistry.
+ So, let&amp;rsquo;s do it !
+Step 0 Install SMRT Tools 1 2  SMRT_ROOT=/opt/pacbio/smrtlink .</description>
+    </item>
+    
+  </channel>
+</rss>

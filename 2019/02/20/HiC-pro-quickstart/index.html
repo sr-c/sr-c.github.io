@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>HiC-Pro使用手册 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="软件安装 软件默认提供了Singularity的镜像，可以直接使用 环境依赖 The bowtie2 mapper Python (&amp;gt;2.7) with pysam (&amp;gt;=0.8.3), bx-python(&amp;gt;=0.5.0), numpy(&amp;gt;=1.8.2), and scipy(&amp;gt;=0.15.1) libraries. Note that the current version does not support python 3 R with the RColorBrewer and ggplot2 (&amp;gt;2.2.1) packages g&#43;&#43; compiler samtools" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/02/20/HiC-pro-quickstart/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="HiC-Pro使用手册" />
+<meta property="og:description" content="软件安装 软件默认提供了Singularity的镜像，可以直接使用 环境依赖 The bowtie2 mapper Python (&gt;2.7) with pysam (&gt;=0.8.3), bx-python(&gt;=0.5.0), numpy(&gt;=1.8.2), and scipy(&gt;=0.15.1) libraries. Note that the current version does not support python 3 R with the RColorBrewer and ggplot2 (&gt;2.2.1) packages g&#43;&#43; compiler samtools" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/02/20/HiC-pro-quickstart/" />
+<meta property="article:published_time" content="2019-02-20T19:49:38+00:00" />
+<meta property="article:modified_time" content="2019-02-20T19:49:38+00:00" />
+<meta itemprop="name" content="HiC-Pro使用手册">
+<meta itemprop="description" content="软件安装 软件默认提供了Singularity的镜像，可以直接使用 环境依赖 The bowtie2 mapper Python (&gt;2.7) with pysam (&gt;=0.8.3), bx-python(&gt;=0.5.0), numpy(&gt;=1.8.2), and scipy(&gt;=0.15.1) libraries. Note that the current version does not support python 3 R with the RColorBrewer and ggplot2 (&gt;2.2.1) packages g&#43;&#43; compiler samtools">
+<meta itemprop="datePublished" content="2019-02-20T19:49:38+00:00" />
+<meta itemprop="dateModified" content="2019-02-20T19:49:38+00:00" />
+<meta itemprop="wordCount" content="525">
+
+
+
+<meta itemprop="keywords" content="Hi-C," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="HiC-Pro使用手册"/>
+<meta name="twitter:description" content="软件安装 软件默认提供了Singularity的镜像，可以直接使用 环境依赖 The bowtie2 mapper Python (&gt;2.7) with pysam (&gt;=0.8.3), bx-python(&gt;=0.5.0), numpy(&gt;=1.8.2), and scipy(&gt;=0.15.1) libraries. Note that the current version does not support python 3 R with the RColorBrewer and ggplot2 (&gt;2.2.1) packages g&#43;&#43; compiler samtools"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">HiC-Pro使用手册</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-02-20 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#软件安装">软件安装</a>
+      <ul>
+        <li><a href="#环境依赖">环境依赖</a></li>
+        <li><a href="#软件编译">软件编译</a></li>
+      </ul>
+    </li>
+    <li><a href="#测试使用">测试使用</a>
+      <ul>
+        <li><a href="#测试数据">测试数据</a></li>
+        <li><a href="#得到注释文件">得到注释文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="软件安装">软件安装</h2>
+<p>软件默认提供了<a href="http://singularity.lbl.gov/install-linux">Singularity</a>的镜像，可以直接使用</p>
+<h3 id="环境依赖">环境依赖</h3>
+<ul>
+<li>The <a href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">bowtie2</a> mapper</li>
+<li>Python (&gt;2.7) with <em>pysam (&gt;=0.8.3)</em>, <em>bx-python(&gt;=0.5.0)</em>, <em>numpy(&gt;=1.8.2)</em>, and <em>scipy(&gt;=0.15.1)</em> libraries.
+<strong>Note that the current version does not support python 3</strong></li>
+<li>R with the <em>RColorBrewer</em> and <em>ggplot2 (&gt;2.2.1)</em> packages</li>
+<li>g++ compiler</li>
+<li>samtools (&gt;1.1)</li>
+<li>Unix sort (<strong>which support -V option</strong>) is required ! For Mac OS user, please install the GNU core utilities !</li>
+</ul>
+<p>其中，python模块<code>pysam</code>与<code>bx-python</code>不太好安装，因此，还是使用conda来配置安装环境比较方便。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda create -n hicpro <span class="nv">python</span><span class="o">=</span>2.7
+<span class="nb">source</span> activate hicpro
+conda install -y samtools bowtie2 R
+conda install -y pysam bx-python numpy scipy
+
+R
+&gt;install.packages<span class="o">(</span>c<span class="o">(</span><span class="s1">&#39;ggplot2&#39;</span>,<span class="s1">&#39;RColorBrewer&#39;</span><span class="o">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是我们得到一条报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">Warning</span> <span class="n">messages</span><span class="o">:</span>
+<span class="m">1</span><span class="o">:</span> <span class="n">In</span> <span class="nf">download.file</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">destfile</span> <span class="o">=</span> <span class="n">f</span><span class="p">,</span> <span class="n">quiet</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">:</span>
+  <span class="n">unable</span> <span class="n">to</span> <span class="n">load</span> <span class="n">shared</span> <span class="n">object</span> <span class="s">&#39;/Storage/data002/shurh/miniconda3/envs/hicpro/lib/R/modules//internet.so&#39;</span><span class="o">:</span>
+  <span class="n">libssl.so.1.0.0</span><span class="o">:</span> <span class="n">cannot</span> <span class="n">open</span> <span class="n">shared</span> <span class="n">object</span> <span class="n">file</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+<span class="m">2</span><span class="o">:</span> <span class="n">packages</span> ‘<span class="n">ggplot2</span>’<span class="p">,</span> ‘<span class="n">RColorBrewer</span>’ <span class="n">are</span> <span class="n">not</span> <span class="nf">available </span><span class="p">(</span><span class="n">for</span> <span class="n">R</span> <span class="n">version</span> <span class="m">3.5.1</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>经过<a href="https://github.com/ContinuumIO/anaconda-issues/issues/8971">错误排查</a>，我们需要升级<code>curl</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda update curl
+</code></pre></td></tr></table>
+</div>
+</div><p>然后，我们就可以重新在R中安装<code>ggplot2</code>与<code>RColorBrewer</code>了</p>
+<h3 id="软件编译">软件编译</h3>
+<p>解决了环境依赖之后，编译安装就很容易了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/nservant/HiC-Pro.git
+<span class="nb">cd</span> HiC-Pro
+vi config-install.txt
+make configure
+make install
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="测试使用">测试使用</h2>
+<h3 id="测试数据">测试数据</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget https://zerkalo.curie.fr/partage/HiC-Pro/HiCPro_testdata.tar.gz <span class="o">&amp;&amp;</span> tar -zxvf HiCPro_testdata.tar.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/refseq/H_sapiens/annotation/GRCh38_latest/refseq_identifiers/GRCh38_latest_genomic.fna.gz
+</code></pre></td></tr></table>
+</div>
+</div><p>还可以使用其他已发表的数据来使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">prefetch SRR824846
+wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-40/fasta/bacteria_20_collection/caulobacter_crescentus_na1000/dna/Caulobacter_crescentus_na1000.ASM2200v1.dna.toplevel.fa.gz
+gunzip Caulobacter_crescentus_na1000.ASM2200v1.dna.toplevel.fa.gz
+bowtie2-build Caulobacter_crescentus_na1000.ASM2200v1.dna.toplevel.fa bacteria
+cat &gt;genome.size
+Chromosome <span class="m">4016942</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="得到注释文件">得到注释文件</h3>
+<p><code>HiC-Pro</code>需要两个注释文件，分别包含实验对基因组的酶切位点，以及基因组的染色体长度。</p>
+<h4 id="restricttion-fragments-file">restricttion fragments file</h4>
+<p>该文件可以由HiC-Pro提供的一支程序得到</p>
+<h4 id="染色体长度">染色体长度</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1">###</span>
+<span class="c1">## How to generate chromosome size files ?</span>
+<span class="c1">###</span>
+<span class="nf">require</span><span class="p">(</span><span class="n">Biostrings</span><span class="p">)</span>
+
+<span class="n">TargetGenome</span> <span class="o">&lt;-</span> <span class="nf">readDNAStringSet</span><span class="p">(</span><span class="s">&#34;genome.fasta&#34;</span><span class="p">,</span> <span class="n">format</span> <span class="o">=</span> <span class="s">&#34;fasta&#34;</span><span class="p">)</span>
+<span class="n">chrom.size</span> <span class="o">&lt;-</span> <span class="nf">seqlengths</span><span class="p">(</span><span class="n">TargetGenome</span><span class="p">)</span>
+<span class="nf">write.table</span><span class="p">(</span><span class="n">chrom.size</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s">&#34;genome.size&#34;</span><span class="p">,</span> <span class="n">quote</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">col.names</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#34;\t&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="http://nservant.github.io/HiC-Pro/">http://nservant.github.io/HiC-Pro/</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1178446">https://cloud.tencent.com/developer/article/1178446</a></p>
+<p><a href="https://github.com/JiFansen/Blog/issues/5">https://github.com/JiFansen/Blog/issues/5</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/48455671">https://zhuanlan.zhihu.com/p/48455671</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1178442">https://cloud.tencent.com/developer/article/1178442</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-02-20
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Hi-C/">Hi-C</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/02/22/python-exercise-6/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python练习6</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/02/19/python-exercise-5/">
+            <span class="next-text nav-default">Python练习5</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

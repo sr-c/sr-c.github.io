@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MCscan on SR-C</title>
+    <link>https://sr-c.github.io/tags/MCscan/</link>
+    <description>Recent content in MCscan on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 11 Jan 2019 19:19:34 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/MCscan/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用jcvi进行MCscan可视化</title>
+      <link>https://sr-c.github.io/2019/01/11/jcvi-MCscan/</link>
+      <pubDate>Fri, 11 Jan 2019 19:19:34 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/11/jcvi-MCscan/</guid>
+      <description>安装 软件推荐使用pip安装，但是作为普通用户，还是选择使用conda安装 1 2 3 4 5 conda create -n jcvi python=2.7 source activate jcvi # 安装前需要确认存在bioconda和r c</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>treemap on SR-C</title>
+    <link>https://sr-c.github.io/tags/treemap/</link>
+    <description>Recent content in treemap on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 31 Dec 2018 21:04:07 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/treemap/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>绘制treemap</title>
+      <link>https://sr-c.github.io/2018/12/31/R-treemap/</link>
+      <pubDate>Mon, 31 Dec 2018 21:04:07 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/31/R-treemap/</guid>
+      <description>treemap 安装 1 install.packages(&amp;#34;treemap&amp;#34;) 读取数据 1 contig_length &amp;lt;- read.table(&amp;#34;genome_length.txt&amp;#34;, header = FALSE, sep = &amp;#39;\t&amp;#39;) 画图 1 treemap(contig_length, index = &amp;#34;V1&amp;#34;, vSize = &amp;#34;V2&amp;#34;, palette = &amp;#34;Reds&amp;#34;, title = &amp;#34;Contig length of xxx genome&amp;#34;) 指定每格的颜色与边框宽度 1 2 3 4 #添加一列作为颜色列，为每一行</description>
+    </item>
+    
+  </channel>
+</rss>

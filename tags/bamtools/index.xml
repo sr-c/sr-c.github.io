@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bamtools on SR-C</title>
+    <link>https://sr-c.github.io/tags/bamtools/</link>
+    <description>Recent content in bamtools on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 04 Sep 2018 18:07:53 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/bamtools/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AUGUSTUS的普通用户安装</title>
+      <link>https://sr-c.github.io/2018/09/04/augustus-install/</link>
+      <pubDate>Tue, 04 Sep 2018 18:07:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/04/augustus-install/</guid>
+      <description>直接编译AUGUSTUS 1 2 3 4 5 6 7 8 9 10 11 12 make[2]: Entering directory `$HOME/software/augustus-3.3.1/auxprogs/bam2hints&amp;#39; make[2]: warning: jobserver unavailable: using -j1. Add `+&amp;#39; to parent make rule. g++ -Wall -O2 -c bam2hints.cc -o bam2hints.o -I/usr/include/bamtools bam2hints.cc:16:10: fatal error: api/BamReader.h: No such file or directory #include &amp;lt;api/BamReader.h&amp;gt; ^~~~~~~~~~~~~~~~~ compilation terminated. make[2]: *** [bam2hints.o] Error 1 make[2]: Leaving directory</description>
+    </item>
+    
+  </channel>
+</rss>

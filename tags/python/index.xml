@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on SR-C</title>
+    <link>https://sr-c.github.io/tags/python/</link>
+    <description>Recent content in python on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 22 Jul 2020 11:46:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>搜索简单基因组中的重复序列</title>
+      <link>https://sr-c.github.io/2020/07/22/repeat-region-search/</link>
+      <pubDate>Wed, 22 Jul 2020 11:46:46 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/22/repeat-region-search/</guid>
+      <description>分析原核/病毒基因组中的重复序列 寻找基因间区 首先，计算基因组中的基因编码区。然后，通过interval取反得到基因间区。若只为得到基因间区，</description>
+    </item>
+    
+    <item>
+      <title>DNA Features Viewer使用</title>
+      <link>https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/</link>
+      <pubDate>Tue, 21 Jul 2020 16:21:29 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/</guid>
+      <description>最近发表在Bioinformatics的DNA Features Viewer是一个可视化DNA序列特征的Python工具。此为尝鲜。 安装 官方文档目前只提供p</description>
+    </item>
+    
+    <item>
+      <title>在Vscode中配置Python环境</title>
+      <link>https://sr-c.github.io/2020/07/21/python-environment-in-vscode/</link>
+      <pubDate>Tue, 21 Jul 2020 15:15:47 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/21/python-environment-in-vscode/</guid>
+      <description>使用Anaconda配置python环境，在VScode中使用 安装 anaconda和VScode的安装都很方便，默认安装即可。Windows</description>
+    </item>
+    
+    <item>
+      <title>interval进行区间计算</title>
+      <link>https://sr-c.github.io/2020/07/17/interval-caculating/</link>
+      <pubDate>Fri, 17 Jul 2020 22:23:49 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/17/interval-caculating/</guid>
+      <description>环境配置 interval只有1.0.0一个版本，并不兼容于python3. 无法使用conda按照，因此直接使用pip安装。 1 pip install interval 测试 1 2 3</description>
+    </item>
+    
+    <item>
+      <title>计算基因组中CDS的覆盖度</title>
+      <link>https://sr-c.github.io/2020/06/07/cds-coverage/</link>
+      <pubDate>Sun, 07 Jun 2020 17:53:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/06/07/cds-coverage/</guid>
+      <description>已知基因组的注释信息，可以得到任一CDS的位置区间，求所有CDS在基因组中的覆盖度。 解决方案 根据feature table或gff/gtf注释</description>
+    </item>
+    
+    <item>
+      <title>Python练习6</title>
+      <link>https://sr-c.github.io/2019/02/22/python-exercise-6/</link>
+      <pubDate>Fri, 22 Feb 2019 11:17:06 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/22/python-exercise-6/</guid>
+      <description>Overlap Graphs http://rosalind.info/problems/grph/ 基于图论的基本设定，二代测序的组装就是基于kmer的延伸 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39</description>
+    </item>
+    
+    <item>
+      <title>Python练习5</title>
+      <link>https://sr-c.github.io/2019/02/19/python-exercise-5/</link>
+      <pubDate>Tue, 19 Feb 2019 16:20:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/19/python-exercise-5/</guid>
+      <description>计算肽链的分子量 http://rosalind.info/problems/prtm/ 值得注意的是，最后一个氨基酸中一个水分子的分子量18.01056 Da. 但我的结果中没有加上这个水，仍然提示我为正确答案，可见还</description>
+    </item>
+    
+    <item>
+      <title>Python练习4</title>
+      <link>https://sr-c.github.io/2018/11/07/python-exercise-4/</link>
+      <pubDate>Wed, 07 Nov 2018 20:45:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/07/python-exercise-4/</guid>
+      <description>计算后代显性表型的期望 http://rosalind.info/problems/iev/ 1 2 3 4 5 6 7 import os with open(&amp;#39;rosalind_iev.txt&amp;#39;,&amp;#39;r&amp;#39;) as f: couplesNumb = f.readline().strip() [p1, p2, p3, p4, p5, p6] = couplesNumb.split() dominantNumb = (int(p1)+ int(p2)+ int(p3))*2 + int(p4)*1.5 + int(p5) print(dominantNumb) 计算蛋白对应的mRNA序列数量 http://rosalind.info/problems/mrna/ 1 2 3 4 5 6 7 8</description>
+    </item>
+    
+    <item>
+      <title>读取文件UnicodeDecodeError编码错误</title>
+      <link>https://sr-c.github.io/2018/11/02/python-DecodeError/</link>
+      <pubDate>Fri, 02 Nov 2018 12:45:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/02/python-DecodeError/</guid>
+      <description>问题描述 1 UnicodeDecodeError: &amp;#39;utf-8&amp;#39; codec can&amp;#39;t decode byte 0x96 in position 4575: invalid start byte 解决方案 1 2 3 4 import codecs with open(&amp;#39;pepunit.idlist&amp;#39;,&amp;#39;r&amp;#39;,encoding=&amp;#39;unicode-escape&amp;#39;) as f: #或忽略错误 with open(&amp;#39;pepunit.idlist&amp;#39;,&amp;#39;r&amp;#39;, encoding=&amp;#39;utf-8&amp;#39;, errors=&amp;#39;ignore&amp;#39;) as f: 参考来源 https://www.crifan.com/summary_python_unicodedecode_error_possible_reasons_and_solutions/</description>
+    </item>
+    
+    <item>
+      <title>【Python】使用正则表达式搜索</title>
+      <link>https://sr-c.github.io/2018/10/31/python-regex/</link>
+      <pubDate>Wed, 31 Oct 2018 22:20:41 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/31/python-regex/</guid>
+      <description>使用re模块 在Python中使用正则表达式时，re模块内部会干两件事情： 编译正则表达式，如果正则表达式的字符串本身不合法，会报错； 用编译后的</description>
+    </item>
+    
+    <item>
+      <title>Python练习-3</title>
+      <link>https://sr-c.github.io/2018/10/31/python-exercise-3/</link>
+      <pubDate>Wed, 31 Oct 2018 21:59:15 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/31/python-exercise-3/</guid>
+      <description>斐波那契数列 http://rosalind.info/problems/fib/ 数列的循环数为n(≤40)，扩大级数为k(≤5) F~1~ = F~2~ = 1 Fn=Fn−1+Fn−2 1 2 3 4 5 6 7 8 9 10 11 12 13 14 def fib(i,k): i = int(i) if i in</description>
+    </item>
+    
+    <item>
+      <title>Python练习-2</title>
+      <link>https://sr-c.github.io/2018/10/30/python-exercise-2/</link>
+      <pubDate>Tue, 30 Oct 2018 17:58:54 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/30/python-exercise-2/</guid>
+      <description>查找核酸序列的子集 http://rosalind.info/problems/subs/ 1 2 3 4 5 6 7 8 9 10 11 12 with open(&amp;#39;rosalind_subs.txt&amp;#39;) as lines: string_1 = lines.readline().strip() string_2 = lines.readline().strip() note = [] length_2 = len(string_2) for i in range(0, len(string_1)+1): if string_1[i:i+length_2] == string_2: note.append(str(i+1)) notes = &amp;#39; &amp;#39;.join(note) print(notes) 计算两条序列间的汉明距离 http://rosalind.info/problems/hamm/ 1 2 3 4</description>
+    </item>
+    
+    <item>
+      <title>Python练习-1</title>
+      <link>https://sr-c.github.io/2018/10/29/python-exercise-1/</link>
+      <pubDate>Mon, 29 Oct 2018 21:41:24 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/29/python-exercise-1/</guid>
+      <description>获得一条序列的反义链 http://rosalind.info/problems/revc/ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 with open(&amp;#39;rosalind_revc.txt&amp;#39;) as string_dna: string_dna = string_dna.readline().strip() new_sting = [] for i in string_dna: if i == &amp;#39;A&amp;#39;: new_sting.append(&amp;#39;T&amp;#39;) elif i == &amp;#39;C&amp;#39;: new_sting.append(&amp;#39;G&amp;#39;) elif i == &amp;#39;T&amp;#39;: new_sting.append(&amp;#39;A&amp;#39;) elif i == &amp;#39;G&amp;#39;: new_sting.append(&amp;#39;C&amp;#39;) #将列表倒序</description>
+    </item>
+    
+    <item>
+      <title>【debug】local variable referenced before assignment</title>
+      <link>https://sr-c.github.io/2018/10/28/debug-python-UnboundLocalError/</link>
+      <pubDate>Sun, 28 Oct 2018 22:55:36 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/28/debug-python-UnboundLocalError/</guid>
+      <description>问题描述 在函数中调用了外部的变量，并改变变量的值，却不声明这是全局变量，会导致Python报错。因为一旦要在函数中改变这个变量的值，就会使得</description>
+    </item>
+    
+    <item>
+      <title>【Python】理解数据</title>
+      <link>https://sr-c.github.io/2018/10/28/python-learning-5/</link>
+      <pubDate>Sun, 28 Oct 2018 22:12:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/28/python-learning-5/</guid>
+      <description>方法串链与函数串链 方法串链从左向右读 1 f.readline().strip().split(&amp;#39;.&amp;#39;) 函数串链从右向左读 1 print(sorted(james)) 排序有两种方式 原地排序（In-place sorting）是指按照指定的顺序排列</description>
+    </item>
+    
+    <item>
+      <title>【Python】持久存储</title>
+      <link>https://sr-c.github.io/2018/10/28/python-learning-4/</link>
+      <pubDate>Sun, 28 Oct 2018 11:01:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/28/python-learning-4/</guid>
+      <description>用with处理文件 使用try/except处理文件时，若在文件处理过程出现错误，其后的代码都不会运行。此时，应当将关闭文件的语句加入fina</description>
+    </item>
+    
+    <item>
+      <title>【Python】文件与异常</title>
+      <link>https://sr-c.github.io/2018/10/26/python-learning-3/</link>
+      <pubDate>Fri, 26 Oct 2018 22:31:03 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/26/python-learning-3/</guid>
+      <description>输入 Python中的基本输入机制是基于行的：从文本文件向程序读入数据时，一次会到达一个数据行。 基本操作 使用open() BIF处理文件中的数据</description>
+    </item>
+    
+    <item>
+      <title>【Python】函数模块</title>
+      <link>https://sr-c.github.io/2018/10/26/python-learning-2/</link>
+      <pubDate>Fri, 26 Oct 2018 12:46:43 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/26/python-learning-2/</guid>
+      <description>命名空间 主Python程序中的代码与一个名为__main__的命名空间关联。将代码放在其单独的模块中时，Python会自动创建一个与模块同名</description>
+    </item>
+    
+    <item>
+      <title>Python语言基础</title>
+      <link>https://sr-c.github.io/2018/10/25/python-learning-1/</link>
+      <pubDate>Thu, 25 Oct 2018 22:33:08 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/25/python-learning-1/</guid>
+      <description>数据类型 变量 变量的动态类型：整型（int），浮点型（float），字符型（str） 基本运算 +，-，*，/，次方（**），整除（//），取余（</description>
+    </item>
+    
+    <item>
+      <title>blast结果格式转换</title>
+      <link>https://sr-c.github.io/2018/09/27/blastxml-to-tabular/</link>
+      <pubDate>Thu, 27 Sep 2018 21:49:48 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/27/blastxml-to-tabular/</guid>
+      <description>解决方案 目前找到最简便的解决方案 其他方案都依赖使用Bioperl, BioPython, BioRuby等解决方案，不够灵活 网页版解决方案，其中还有许多丰富功能，</description>
+    </item>
+    
+  </channel>
+</rss>

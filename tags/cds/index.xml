@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cds on SR-C</title>
+    <link>https://sr-c.github.io/tags/cds/</link>
+    <description>Recent content in cds on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Jun 2020 17:53:20 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/cds/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>计算基因组中CDS的覆盖度</title>
+      <link>https://sr-c.github.io/2020/06/07/cds-coverage/</link>
+      <pubDate>Sun, 07 Jun 2020 17:53:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/06/07/cds-coverage/</guid>
+      <description>已知基因组的注释信息，可以得到任一CDS的位置区间，求所有CDS在基因组中的覆盖度。 解决方案 根据feature table或gff/gtf注释</description>
+    </item>
+    
+  </channel>
+</rss>

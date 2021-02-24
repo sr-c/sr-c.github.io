@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用clusterProfiler进行富集分析 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="构建物种数据库 准备注释数据 GO注释 由功能注释得到的数据录入，主要分为两类方法： 序列相似性比对（BLAST, diamond） 结构域相似性比对（" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/12/01/clusterProfiler/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用clusterProfiler进行富集分析" />
+<meta property="og:description" content="构建物种数据库 准备注释数据 GO注释 由功能注释得到的数据录入，主要分为两类方法： 序列相似性比对（BLAST, diamond） 结构域相似性比对（" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/12/01/clusterProfiler/" />
+<meta property="article:published_time" content="2018-12-01T09:26:32+00:00" />
+<meta property="article:modified_time" content="2018-12-01T09:26:32+00:00" />
+<meta itemprop="name" content="使用clusterProfiler进行富集分析">
+<meta itemprop="description" content="构建物种数据库 准备注释数据 GO注释 由功能注释得到的数据录入，主要分为两类方法： 序列相似性比对（BLAST, diamond） 结构域相似性比对（">
+<meta itemprop="datePublished" content="2018-12-01T09:26:32+00:00" />
+<meta itemprop="dateModified" content="2018-12-01T09:26:32+00:00" />
+<meta itemprop="wordCount" content="1685">
+
+
+
+<meta itemprop="keywords" content="R,clusterProfiler,AnnotationForge,OrgDB," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用clusterProfiler进行富集分析"/>
+<meta name="twitter:description" content="构建物种数据库 准备注释数据 GO注释 由功能注释得到的数据录入，主要分为两类方法： 序列相似性比对（BLAST, diamond） 结构域相似性比对（"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用clusterProfiler进行富集分析</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-01 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#构建物种数据库">构建物种数据库</a>
+      <ul>
+        <li><a href="#准备注释数据">准备注释数据</a></li>
+        <li><a href="#清洗注释数据">清洗注释数据</a></li>
+        <li><a href="#构建orgdb">构建OrgDB</a></li>
+      </ul>
+    </li>
+    <li><a href="#富集分析">富集分析</a></li>
+    <li><a href="#可视化">可视化</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="构建物种数据库">构建物种数据库</h2>
+<h3 id="准备注释数据">准备注释数据</h3>
+<h4 id="go注释">GO注释</h4>
+<p>由功能注释得到的数据录入，主要分为两类方法：</p>
+<ol>
+<li>序列相似性比对（BLAST, diamond）</li>
+<li>结构域相似性比对（InterProScan）</li>
+</ol>
+<p>待注释序列经由比对，得到公共蛋白数据库（nr, swiss-prot , eggNOG或其他）的ID，而这些ID已经与GO编号相关联（ID对应关系可由<a href="ftp://ftp.pir.georgetown.edu/databases/idmapping/idmapping.tb.gz">idmapping.tb.gz</a>得到），由此可以得到待注释序列的GO注释。</p>
+<p>将基因序列与swiss-prot数据库进行blast/diamond比对（outfmt 6），将结果中的<code>UniProtKB ID</code>经由<code>idmapping.tb.gz</code>对应到GO编号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+ 
+<span class="n">USAGE</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">usage: python </span><span class="si">%s</span><span class="s2"> idmapping.tb.gz blastout outputfile</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+ 
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">USAGE</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+ 
+<span class="k">def</span> <span class="nf">parseIDmapping</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">UniProt_GO</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">lsplit</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">lsplit</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span>
+                <span class="n">UniProt_GO</span><span class="p">[</span><span class="n">lsplit</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">lsplit</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">UniProt_GO</span>
+ 
+<span class="k">def</span> <span class="nf">parseBlastOut</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">tab_res</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">lsplit</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">tab_res</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">lsplit</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">set</span><span class="p">())</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lsplit</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">tab_res</span>
+ 
+ 
+<span class="n">UniProtKB_GO</span> <span class="o">=</span> <span class="n">parseIDmapping</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">BlastOut</span> <span class="o">=</span> <span class="n">parseBlastOut</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">OUT</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+ 
+ 
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">BlastOut</span><span class="p">:</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">BlastOut</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">UniProtKB_GO</span><span class="p">:</span>
+            <span class="n">go</span> <span class="o">=</span> <span class="n">UniProtKB_GO</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;; &#34;</span><span class="p">)</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">go</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">continue</span>
+    <span class="k">if</span> <span class="n">temp</span><span class="p">:</span>
+        <span class="n">OUT</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span> <span class="o">+</span>  <span class="s2">&#34;,&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">temp</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+ 
+<span class="n">OUT</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="kegg注释">KEGG注释</h4>
+<p>KEGG注释可由官方提供的自动注释服务<a href="http://www.genome.jp/tools/kaas/">KAAS</a>进行，使用blast比对方法，在Gene data set中选择Eukaryotes（真核生物），再加上关注的门类，选择BBH(bi-directional best hit)打分方法，提交注释服务，30~60 分钟即可得到注释结果。</p>
+<h4 id="eggnog注释">eggNOG注释</h4>
+<p>使用eggNOG-mapper可以得到目标基因序列的注释信息，其中包括GO与KEGG注释，但其注释到的基因数目往往少于直接通过blast序列比对直接得到的结果。</p>
+<h3 id="清洗注释数据">清洗注释数据</h3>
+<h4 id="使用dplyr清洗数据">使用<code>dplyr</code>清洗数据</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
+
+<span class="c1">#读入数据</span>
+<span class="n">ko_anno</span> <span class="o">&lt;-</span> <span class="nf">read_delim</span><span class="p">(</span><span class="s">&#34;input/query.ko&#34;</span><span class="p">,</span><span class="s">&#34;\t&#34;</span><span class="p">,</span> <span class="n">escape_double</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">trim_ws</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">go_anno</span> <span class="o">&lt;-</span> <span class="nf">read_delim</span><span class="p">(</span><span class="s">&#34;input/go_anno.tsv&#34;</span><span class="p">,</span><span class="s">&#34;\t&#34;</span><span class="p">,</span> <span class="n">escape_double</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">trim_ws</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">emapper</span> <span class="o">&lt;-</span> <span class="nf">read_delim</span><span class="p">(</span><span class="s">&#34;input/sesame.modified.annotations&#34;</span><span class="p">,</span><span class="s">&#34;\t&#34;</span><span class="p">,</span> <span class="n">escape_double</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">trim_ws</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># extract gene name from emapper</span>
+<span class="n">gene_info</span> <span class="o">&lt;-</span> <span class="n">emapper</span> <span class="o">%&gt;%</span> <span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="n">query_name</span> <span class="o">=</span> <span class="n">query_name</span><span class="p">,</span> <span class="n">`eggNOG annot`</span> <span class="o">=</span> <span class="n">`eggNOG annot`</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">na.omit</span><span class="p">()</span>
+
+<span class="c1">#以KEGG注释列表为基础，合并GO注释与eggNOG注释数据</span>
+<span class="n">gene_anno</span> <span class="o">&lt;-</span> <span class="n">dplyr</span><span class="o">::</span><span class="nf">left_join</span><span class="p">(</span><span class="n">ko_anno</span><span class="p">,</span> <span class="n">go_anno</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#34;GID&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">dplyr</span><span class="o">::</span><span class="nf">left_join</span><span class="p">(</span><span class="n">go_info</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#34;GID&#34;</span><span class="p">)</span>
+<span class="c1">#重命名数据集的列名</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">gene_anno</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;query_name&#34;</span><span class="p">,</span><span class="s">&#34;GO_terms&#34;</span><span class="p">,</span><span class="s">&#34;KEGG_KOs&#34;</span><span class="p">,</span><span class="s">&#34;eggNOG annot&#34;</span><span class="p">)</span>
+<span class="c1">#输出数据集</span>
+<span class="nf">write.table</span><span class="p">(</span><span class="n">gene_anno</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s">&#34;input/sesame.modified.annotations&#34;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#34;\t&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="构建orgdb">构建OrgDB</h3>
+<p>使用<code>AnnotationForge</code>构建待注释物种的OrgDB</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">KEGGREST</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">AnnotationForge</span><span class="p">)</span>
+
+<span class="c1">#&#39; Title</span>
+<span class="c1">#&#39;</span>
+<span class="c1">#&#39; @param f_emapper_anno eggnog-mapper annotation result</span>
+<span class="c1">#&#39; @param author Who is the creator of this package? like &#34;xxx &lt;xxx@xxx.xx&gt;&#34;</span>
+<span class="c1">#&#39; @param tax_id The Taxonomy ID that represents your organism. (NCBI has a nice online browser for finding the one you need)</span>
+<span class="c1">#&#39; @param genus Single string indicating the genus</span>
+<span class="c1">#&#39; @param species Single string indicating the species</span>
+<span class="c1">#&#39;</span>
+<span class="c1">#&#39; @return OrgDb name</span>
+<span class="c1">#&#39; @export</span>
+<span class="c1">#&#39;</span>
+<span class="c1">#&#39; @examples</span>
+<span class="n">makeOrgPackageFromEmapper</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">f_emapper_anno</span><span class="p">,</span> 
+                                      <span class="n">author</span><span class="p">,</span> 
+                                      <span class="n">tax_id</span> <span class="o">=</span> <span class="s">&#34;0&#34;</span><span class="p">,</span> 
+                                      <span class="n">genus</span> <span class="o">=</span> <span class="s">&#34;default&#34;</span><span class="p">,</span> 
+                                      <span class="n">species</span> <span class="o">=</span> <span class="s">&#34;default&#34;</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="c1"># read emapper result</span>
+  <span class="n">emapper</span> <span class="o">&lt;-</span> <span class="nf">read_delim</span><span class="p">(</span><span class="n">f_emapper_anno</span><span class="p">,</span>
+                        <span class="s">&#34;\t&#34;</span><span class="p">,</span> <span class="n">escape_double</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">trim_ws</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+  
+  <span class="c1"># extract gene name from emapper</span>
+  <span class="n">gene_info</span> <span class="o">&lt;-</span> <span class="n">emapper</span> <span class="o">%&gt;%</span>
+    <span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="n">GID</span> <span class="o">=</span> <span class="n">query_name</span><span class="p">,</span> <span class="n">GENENAME</span> <span class="o">=</span> <span class="n">`eggNOG annot`</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">na.omit</span><span class="p">()</span>
+  
+  <span class="c1"># extract go annotation from emapper</span>
+  <span class="n">gos</span> <span class="o">&lt;-</span> <span class="n">emapper</span> <span class="o">%&gt;%</span>
+    <span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="n">query_name</span><span class="p">,</span> <span class="n">GO_terms</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">na.omit</span><span class="p">()</span>
+  
+  <span class="n">gene2go</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">GID</span> <span class="o">=</span> <span class="nf">character</span><span class="p">(),</span>
+                       <span class="n">GO</span> <span class="o">=</span> <span class="nf">character</span><span class="p">(),</span>
+                       <span class="n">EVIDENCE</span> <span class="o">=</span> <span class="nf">character</span><span class="p">())</span>
+  
+  <span class="nf">for </span><span class="p">(</span><span class="n">row</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">gos</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">the_gid</span> <span class="o">&lt;-</span> <span class="n">gos[row</span><span class="p">,</span> <span class="s">&#34;query_name&#34;</span><span class="n">][[1]]</span>
+    <span class="n">the_gos</span> <span class="o">&lt;-</span> <span class="nf">str_split</span><span class="p">(</span><span class="n">gos[row</span><span class="p">,</span><span class="s">&#34;GO_terms&#34;</span><span class="n">]</span><span class="p">,</span> <span class="s">&#34;,&#34;</span><span class="p">,</span> <span class="n">simplify</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span><span class="n">[[1]]</span>
+    
+    <span class="n">df_temp</span> <span class="o">&lt;-</span> <span class="nf">data_frame</span><span class="p">(</span><span class="n">GID</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="n">the_gid</span><span class="p">,</span> <span class="nf">length</span><span class="p">(</span><span class="n">the_gos</span><span class="p">)),</span>
+                          <span class="n">GO</span> <span class="o">=</span> <span class="n">the_gos</span><span class="p">,</span>
+                          <span class="n">EVIDENCE</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&#34;IEA&#34;</span><span class="p">,</span> <span class="nf">length</span><span class="p">(</span><span class="n">the_gos</span><span class="p">)))</span>
+    <span class="n">gene2go</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">gene2go</span><span class="p">,</span> <span class="n">df_temp</span><span class="p">)</span>
+  <span class="p">}</span>
+  
+  <span class="c1"># extract kegg pathway annotation from emapper</span>
+  <span class="n">gene2ko</span> <span class="o">&lt;-</span> <span class="n">emapper</span> <span class="o">%&gt;%</span>
+    <span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="n">GID</span> <span class="o">=</span> <span class="n">query_name</span><span class="p">,</span> <span class="n">Ko</span> <span class="o">=</span> <span class="n">KEGG_KOs</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">na.omit</span><span class="p">()</span>
+  
+  <span class="nf">load</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s">&#34;kegg_info.RData&#34;</span><span class="p">)</span>
+  <span class="n">gene2pathway</span> <span class="o">&lt;-</span> <span class="n">gene2ko</span> <span class="o">%&gt;%</span> <span class="nf">left_join</span><span class="p">(</span><span class="n">ko2pathway</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#34;Ko&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+    <span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="n">GID</span><span class="p">,</span> <span class="n">Pathway</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">na.omit</span><span class="p">()</span>
+
+  <span class="c1"># make OrgDb</span>
+  <span class="nf">makeOrgPackage</span><span class="p">(</span><span class="n">gene_info</span><span class="o">=</span><span class="n">gene_info</span><span class="p">,</span>
+                 <span class="n">go</span><span class="o">=</span><span class="n">gene2go</span><span class="p">,</span>
+                 <span class="n">ko</span><span class="o">=</span><span class="n">gene2ko</span><span class="p">,</span>
+                 <span class="n">pathway</span><span class="o">=</span><span class="n">gene2pathway</span><span class="p">,</span>
+                 <span class="c1"># gene2pathway=gene2pathway,</span>
+                 <span class="n">version</span><span class="o">=</span><span class="s">&#34;0.0.2&#34;</span><span class="p">,</span>
+                 <span class="n">maintainer</span><span class="o">=</span><span class="n">author</span><span class="p">,</span>
+                 <span class="n">author</span><span class="o">=</span><span class="n">author</span><span class="p">,</span>
+                 <span class="n">outputDir</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">,</span>
+                 <span class="n">tax_id</span><span class="o">=</span><span class="n">tax_id</span><span class="p">,</span>
+                 <span class="n">genus</span><span class="o">=</span><span class="n">genus</span><span class="p">,</span>
+                 <span class="n">species</span><span class="o">=</span><span class="n">species</span><span class="p">,</span>
+                 <span class="n">goTable</span><span class="o">=</span><span class="s">&#34;go&#34;</span><span class="p">)</span>
+  
+  <span class="n">my_orgdb</span> <span class="o">&lt;-</span> <span class="nf">str_c</span><span class="p">(</span><span class="s">&#34;org.&#34;</span><span class="p">,</span> <span class="nf">str_to_upper</span><span class="p">(</span><span class="nf">str_sub</span><span class="p">(</span><span class="n">genus</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span> <span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="s">&#34;.eg.db&#34;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">my_orgdb</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">my_orgdb</span> <span class="o">&lt;-</span> <span class="nf">makeOrgPackageFromEmapper</span><span class="p">(</span><span class="s">&#34;input/sesame.modified.annotations&#34;</span><span class="p">,</span> 
+                                      <span class="s">&#34;zhangxudong &lt;zhangxudong@genek.tv&gt;&#34;</span><span class="p">,</span> 
+                                      <span class="n">tax_id</span> <span class="o">=</span> <span class="s">&#34;4182&#34;</span><span class="p">,</span> 
+                                      <span class="n">genus</span> <span class="o">=</span> <span class="s">&#34;Sesamum&#34;</span><span class="p">,</span> 
+                                      <span class="n">species</span> <span class="o">=</span> <span class="s">&#34;indicum&#34;</span><span class="p">)</span>
+
+<span class="nf">if </span><span class="p">(</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="n">my_orgdb</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+  <span class="nf">remove.packages</span><span class="p">(</span><span class="n">my_orgdb</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="n">my_orgdb</span><span class="p">,</span> <span class="n">repos</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">org.Sindicum.eg.db</span><span class="p">)</span>
+<span class="nf">columns</span><span class="p">(</span><span class="n">org.Sindicum.eg.db</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="富集分析">富集分析</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">clusterProfiler</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">DOSE</span><span class="p">)</span>
+
+<span class="c1">#############################################################################</span>
+<span class="c1">#OrgDb 是 Bioconductor 中存储不同数据库基因ID之间对应关系，以及基因与GO等注释的对应关系的 R 软件包。</span>
+<span class="c1">#支持19个物种，可以到这里查询：</span>
+<span class="c1">#http://bioconductor.org/packages/release/BiocViews.html#___OrgDb</span>
+<span class="c1">#不支持的物种可以通过 AnnotationForge 自己构建。</span>
+<span class="c1">#############################################################################</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">org.Sindicum.eg.db</span><span class="p">)</span>
+<span class="nf">columns</span><span class="p">(</span><span class="n">org.Sindicum.eg.db</span><span class="p">)</span>
+
+<span class="c1">#############################################################################</span>
+<span class="c1"># 导入需要进行富集分析的基因列表，并转换为向量</span>
+<span class="c1">#############################################################################</span>
+<span class="n">gene_list</span> <span class="o">&lt;-</span> <span class="nf">read_csv</span><span class="p">(</span><span class="s">&#34;input/gene.list&#34;</span><span class="p">,</span> <span class="n">col_names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">gene_list</span> <span class="o">&lt;-</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">gene_list</span><span class="o">$</span><span class="n">X1</span><span class="p">)</span>
+
+<span class="c1">#############################################################################</span>
+<span class="c1">#clusterProfiler 可能是目前最优秀的富集分析软件，参考网站：</span>
+<span class="c1">#https://www.bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/clusterProfiler.html</span>
+<span class="c1">#############################################################################</span>
+
+<span class="c1">#GO 富集,基于基因数目</span>
+<span class="n">ego</span> <span class="o">&lt;-</span> <span class="nf">enrichGO</span><span class="p">(</span><span class="n">gene</span>          <span class="o">=</span> <span class="n">gene_list</span><span class="p">,</span> <span class="c1">#差异基因 vector</span>
+                <span class="n">keyType</span>       <span class="o">=</span> <span class="s">&#34;GID&#34;</span><span class="p">,</span>  <span class="c1">#差异基因的 ID 类型，需要是 OrgDb 支持的</span>
+                <span class="n">OrgDb</span>         <span class="o">=</span> <span class="n">org.Sindicum.eg.db</span><span class="p">,</span> <span class="c1">#对应的OrgDb</span>
+                <span class="n">ont</span>           <span class="o">=</span> <span class="s">&#34;CC&#34;</span><span class="p">,</span> <span class="c1">#GO 分类名称，CC BP MF, 也可选择all</span>
+                <span class="n">pvalueCutoff</span>  <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="c1">#Pvalue 阈值，默认值为0.05</span>
+                <span class="n">qvalueCutoff</span>  <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="c1">#qvalue 阈值，默认值为0.2</span>
+                <span class="n">pAdjustMethod</span> <span class="o">=</span> <span class="s">&#34;BH&#34;</span><span class="p">,</span> <span class="c1">#Pvalue 校正方法</span>
+                <span class="n">readable</span>      <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="c1">#TRUE 则展示SYMBOL，FALSE 则展示原来的ID</span>
+
+<span class="c1">#将 ego 对象转换为dataframe，新版本可以用as.data.frame(ego)</span>
+<span class="n">ego_results</span><span class="o">&lt;-</span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">ego</span><span class="p">)</span>
+<span class="nf">write.table</span><span class="p">(</span><span class="n">ego_results</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="s">&#34;ego_results.txt&#34;</span><span class="p">,</span> <span class="n">quote</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="可视化">可视化</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1">#以gplot2重新实现的clusterProfiler可视化工具</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">enrichplot</span><span class="p">)</span>
+
+<span class="nf">pdf</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s">&#34;ego_barplot.pdf&#34;</span><span class="p">)</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="n">ego</span><span class="p">,</span> <span class="n">showCategory</span><span class="o">=</span><span class="m">20</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&#34;GeneRatio&#34;</span><span class="p">)</span>
+<span class="nf">dev.off</span><span class="p">()</span>
+
+<span class="nf">dotplot</span><span class="p">(</span><span class="n">ego</span><span class="p">,</span> <span class="n">showCategory</span><span class="o">=</span><span class="m">30</span><span class="p">)</span>
+
+<span class="nf">emapplot</span><span class="p">(</span><span class="n">ego</span><span class="p">)</span>
+
+<span class="nf">goplot</span><span class="p">(</span><span class="n">ego</span><span class="p">)</span>
+
+<span class="c1">#分面绘图</span>
+<span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">enrichGO</span><span class="p">(</span><span class="n">de</span><span class="p">,</span> <span class="n">OrgDb</span> <span class="o">=</span> <span class="s">&#34;org.Sindicum.eg.db&#34;</span><span class="p">,</span> <span class="n">ont</span><span class="o">=</span><span class="s">&#34;all&#34;</span><span class="p">)</span>
+<span class="nf">dotplot</span><span class="p">(</span><span class="n">go</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s">&#34;ONTOLOGY&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="nf">facet_grid</span><span class="p">(</span><span class="n">ONTOLOGY</span><span class="o">~</span><span class="n">.,</span> <span class="n">scale</span><span class="o">=</span><span class="s">&#34;free&#34;</span><span class="p">)</span>
+<span class="c1">#Gene-Concept Network</span>
+<span class="c1">## remove redundent GO terms</span>
+<span class="n">ego2</span> <span class="o">&lt;-</span> <span class="nf">simplify</span><span class="p">(</span><span class="n">ego</span><span class="p">)</span>
+<span class="nf">cnetplot</span><span class="p">(</span><span class="n">ego2</span><span class="p">,</span> <span class="n">foldChange</span><span class="o">=</span><span class="n">geneList</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/43651419">https://zhuanlan.zhihu.com/p/43651419</a></p>
+<p><a href="http://www.genek.tv/course/223">http://www.genek.tv/course/223</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI1MjU5MjMzNA==&amp;mid=2247486147&amp;idx=1&amp;sn=081fa71939afc04965179d526a5ef018&amp;chksm=e9e02362de97aa7494b581bc33454f6d2cfdf30796fb70a15501b3fe3bcfe68e27b8cdedfc15">https://mp.weixin.qq.com/s?__biz=MzI1MjU5MjMzNA==&amp;mid=2247486147&amp;idx=1&amp;sn=081fa71939afc04965179d526a5ef018&amp;chksm=e9e02362de97aa7494b581bc33454f6d2cfdf30796fb70a15501b3fe3bcfe68e27b8cdedfc15</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NjMxOTA3OA==&amp;mid=2247484154&amp;idx=1&amp;sn=2a992ed151f0a746cdc6997bef9e29ce&amp;chksm=ebdf8a73dca80365ff29497dc73c78f9597e7b739241d15752b178e32b9e05c2ae916a2a3edb&amp;mpshare=1&amp;scene=23&amp;srcid=1113eHRotxw8k1JU2hZomTu7#rd">https://mp.weixin.qq.com/s?__biz=MzI4NjMxOTA3OA==&amp;mid=2247484154&amp;idx=1&amp;sn=2a992ed151f0a746cdc6997bef9e29ce&amp;chksm=ebdf8a73dca80365ff29497dc73c78f9597e7b739241d15752b178e32b9e05c2ae916a2a3edb&amp;mpshare=1&amp;scene=23&amp;srcid=1113eHRotxw8k1JU2hZomTu7#rd</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI5NjUyNzkxMg==&amp;mid=2247485611&amp;idx=1&amp;sn=69990a569c623730583b56e54d55b58b&amp;scene=21#wechat_redirect">https://mp.weixin.qq.com/s?__biz=MzI5NjUyNzkxMg==&amp;mid=2247485611&amp;idx=1&amp;sn=69990a569c623730583b56e54d55b58b&amp;scene=21#wechat_redirect</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-12-01
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/R/">R</a>
+          <a href="/tags/clusterProfiler/">clusterProfiler</a>
+          <a href="/tags/AnnotationForge/">AnnotationForge</a>
+          <a href="/tags/OrgDB/">OrgDB</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/12/06/arranging-graphs-into-a-grid-by-cowplot/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用cowplot完成图片排版</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/11/24/R-3-5-1-install/">
+            <span class="next-text nav-default">R-3.5.1安装</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

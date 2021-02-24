@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hexo与NexT升级 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="近来发现NexT主题升级到了6.2.0，主仓库由iissnan迁移到了theme-next，为了更新页面效果，合并站点与主题的配置文件，于是" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/05/13/update_Hexo_and_NexT/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Hexo与NexT升级" />
+<meta property="og:description" content="近来发现NexT主题升级到了6.2.0，主仓库由iissnan迁移到了theme-next，为了更新页面效果，合并站点与主题的配置文件，于是" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/05/13/update_Hexo_and_NexT/" />
+<meta property="article:published_time" content="2018-05-13T18:32:53+00:00" />
+<meta property="article:modified_time" content="2018-05-13T18:32:53+00:00" />
+<meta itemprop="name" content="Hexo与NexT升级">
+<meta itemprop="description" content="近来发现NexT主题升级到了6.2.0，主仓库由iissnan迁移到了theme-next，为了更新页面效果，合并站点与主题的配置文件，于是">
+<meta itemprop="datePublished" content="2018-05-13T18:32:53+00:00" />
+<meta itemprop="dateModified" content="2018-05-13T18:32:53+00:00" />
+<meta itemprop="wordCount" content="657">
+
+
+
+<meta itemprop="keywords" content="Hexo,Next," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hexo与NexT升级"/>
+<meta name="twitter:description" content="近来发现NexT主题升级到了6.2.0，主仓库由iissnan迁移到了theme-next，为了更新页面效果，合并站点与主题的配置文件，于是"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hexo与NexT升级</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-05-13 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#升级hexo">升级Hexo</a></li>
+    <li><a href="#升级next">升级NexT</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>近来发现NexT主题升级到了6.2.0，主仓库由<code>iissnan</code>迁移到了<code>theme-next</code>，为了更新页面效果，合并站点与主题的配置文件，于是计划升级一波。</p>
+<blockquote>
+<p>升级目标</p>
+</blockquote>
+<ul>
+<li>NexT版本由5.1.3升级至6.2.0</li>
+<li>Hexo版本由3.4.4升级至3.7.1</li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="升级hexo">升级Hexo</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ npm -version
+5.6.0
+</code></pre></td></tr></table>
+</div>
+</div><p>由于NexT6.2.0需求Hexo版本至少为3.5.0，因此首先升级Hexo，通过<code>hexo version</code> 查看当前版本（需在Hexo工作目录下进行）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ hexo version
+hexo: 3.4.4
+hexo-cli: 1.1.0
+os: Windows_NT 10.0.16299 win32 x64
+http_parser: 2.7.0
+node: 8.9.4
+v8: 6.1.534.50
+uv: 1.15.0
+zlib: 1.2.11
+ares: 1.10.1-DEV
+modules: 57
+nghttp2: 1.25.0
+openssl: 1.0.2n
+icu: 59.1
+unicode: 9.0
+cldr: 31.0.1
+tz: 2017b
+</code></pre></td></tr></table>
+</div>
+</div><p>然后查看可升级的组件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ npm outdated
+Package                 Current  Wanted  Latest  Location
+hexo                      3.4.4   3.7.1   3.7.1  hexo-site
+hexo-generator-archive    0.1.4   0.1.5   0.1.5  hexo-site
+hexo-renderer-marked      0.3.0   0.3.2   0.3.2  hexo-site
+hexo-server               0.2.2   0.2.2   0.3.2  hexo-site
+</code></pre></td></tr></table>
+</div>
+</div><p>以此修改<code>package.json</code>，将hexo和相关待更新组件的版本号更新。修改完成后通过npm更新<code>npm install --save</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span>
+<span class="nx">npm</span> <span class="nx">WARN</span> <span class="nx">deprecated</span> <span class="nx">titlecase</span><span class="err">@</span><span class="mf">1.1.2</span><span class="p">:</span> <span class="nx">no</span> <span class="nx">longer</span> <span class="nx">maintained</span>
+
+<span class="p">&gt;</span> <span class="nx">nunjucks</span><span class="err">@</span><span class="mf">3.1.2</span> <span class="nx">postinstall</span> <span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">Users</span><span class="err">\</span><span class="nx">Yaman</span><span class="err">\</span><span class="nx">sr</span><span class="o">-</span><span class="nx">c</span><span class="p">.</span><span class="nx">github</span><span class="p">.</span><span class="nx">io</span><span class="err">\</span><span class="nx">node_modules</span><span class="err">\</span><span class="nx">nunjucks</span>
+<span class="p">&gt;</span> <span class="nx">node</span> <span class="nx">postinstall</span><span class="o">-</span><span class="nx">build</span><span class="p">.</span><span class="nx">js</span> <span class="nx">src</span>
+
+<span class="nx">npm</span> <span class="nx">WARN</span> <span class="nx">optional</span> <span class="nx">SKIPPING</span> <span class="nx">OPTIONAL</span> <span class="nx">DEPENDENCY</span><span class="p">:</span> <span class="nx">fsevents</span><span class="err">@</span><span class="mf">1.2.3</span> <span class="p">(</span><span class="nx">node_modules</span><span class="err">\</span><span class="nx">fsevents</span><span class="p">):</span>
+<span class="nx">npm</span> <span class="nx">WARN</span> <span class="nx">notsup</span> <span class="nx">SKIPPING</span> <span class="nx">OPTIONAL</span> <span class="nx">DEPENDENCY</span><span class="p">:</span> <span class="nx">Unsupported</span> <span class="nx">platform</span> <span class="k">for</span> <span class="nx">fsevents</span><span class="err">@</span><span class="mf">1.2.3</span><span class="p">:</span> <span class="nx">wanted</span> <span class="p">{</span><span class="s">&#34;os&#34;</span><span class="p">:</span><span class="s">&#34;darwin&#34;</span><span class="p">,</span><span class="s">&#34;arch&#34;</span><span class="p">:</span><span class="s">&#34;any&#34;</span><span class="p">}</span> <span class="p">(</span><span class="nx">current</span><span class="p">:</span> <span class="p">{</span><span class="s">&#34;os&#34;</span><span class="p">:</span><span class="s">&#34;win32&#34;</span><span class="p">,</span><span class="s">&#34;arch&#34;</span><span class="p">:</span><span class="s">&#34;x64&#34;</span><span class="p">})</span>
+
+<span class="nx">added</span> <span class="mi">44</span> <span class="nx">packages</span><span class="p">,</span> <span class="nx">removed</span> <span class="mi">78</span> <span class="nx">packages</span><span class="p">,</span> <span class="nx">updated</span> <span class="mi">21</span> <span class="nx">packages</span> <span class="nx">and</span> <span class="nx">moved</span> <span class="mi">1</span> <span class="kn">package</span> <span class="nx">in</span> <span class="mf">12.845</span><span class="nx">s</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>再次通过<code>hexo version</code>查看版本，更新完成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ hexo version
+hexo: 3.7.1
+hexo-cli: 1.1.0
+os: Windows_NT 10.0.16299 win32 x64
+http_parser: 2.7.0
+node: 8.9.4
+v8: 6.1.534.50
+uv: 1.15.0
+zlib: 1.2.11
+ares: 1.10.1-DEV
+modules: 57
+nghttp2: 1.25.0
+openssl: 1.0.2n
+icu: 59.1
+unicode: 9.0
+cldr: 31.0.1
+tz: 2017b
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="升级next">升级NexT</h2>
+<p>参照<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/UPDATE-FROM-5.1.X.md">官方文档</a>，重新为新版本NexT配置一个目录，相当于重新安装一个新的主题。
+同时，参照NexT的建议，将配置文件放置在站点目录的<code>/source/_data/next.yml</code>中。</p>
+<blockquote>
+<p>注意——语言配置
+NexT新版本中将<code>zh-Hans</code>改为了更为通用的<code>zh-CN</code>，注意在配置文件中<a href="https://github.com/theme-next/hexo-theme-next/commit/7214c2c0fc0b441231df9fefc7190c5fb37d66f4">更正</a>，否则语言配置无效。</p>
+</blockquote>
+<p>参考来源：
+<a href="https://tommy.net.cn/2018/02/26/upgrade-hexo-to-v3-5-0/">https://tommy.net.cn/2018/02/26/upgrade-hexo-to-v3-5-0/</a>
+<a href="http://zerosoul.github.io/2016/06/15/upgrade-hexo-to-3-2/">http://zerosoul.github.io/2016/06/15/upgrade-hexo-to-3-2/</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-05-13
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Hexo/">Hexo</a>
+          <a href="/tags/Next/">Next</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/05/27/RepeatModeler-engine/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">RepeatModeler与RepeatMasker 重复序列分析</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/05/12/MECAT_install/">
+            <span class="next-text nav-default">MECAT安装</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

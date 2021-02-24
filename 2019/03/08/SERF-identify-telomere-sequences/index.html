@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用SERF鉴定端粒序列 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="端粒重复序列 端粒是染色体末端的一端核酸序列，起着保护染色体末端免于降解，防止与相邻的染色体错误融合的作用。其名称来源于希腊语 τέλος (en" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/03/08/SERF-identify-telomere-sequences/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用SERF鉴定端粒序列" />
+<meta property="og:description" content="端粒重复序列 端粒是染色体末端的一端核酸序列，起着保护染色体末端免于降解，防止与相邻的染色体错误融合的作用。其名称来源于希腊语 τέλος (en" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/03/08/SERF-identify-telomere-sequences/" />
+<meta property="article:published_time" content="2019-03-08T20:13:12+00:00" />
+<meta property="article:modified_time" content="2019-03-08T20:13:12+00:00" />
+<meta itemprop="name" content="使用SERF鉴定端粒序列">
+<meta itemprop="description" content="端粒重复序列 端粒是染色体末端的一端核酸序列，起着保护染色体末端免于降解，防止与相邻的染色体错误融合的作用。其名称来源于希腊语 τέλος (en">
+<meta itemprop="datePublished" content="2019-03-08T20:13:12+00:00" />
+<meta itemprop="dateModified" content="2019-03-08T20:13:12+00:00" />
+<meta itemprop="wordCount" content="813">
+
+
+
+<meta itemprop="keywords" content="telomere,端粒," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用SERF鉴定端粒序列"/>
+<meta name="twitter:description" content="端粒重复序列 端粒是染色体末端的一端核酸序列，起着保护染色体末端免于降解，防止与相邻的染色体错误融合的作用。其名称来源于希腊语 τέλος (en"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用SERF鉴定端粒序列</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-08 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#端粒重复序列">端粒重复序列</a></li>
+    <li><a href="#预测物种的端粒序列">预测物种的端粒序列</a>
+      <ul>
+        <li><a href="#输入参数">输入参数</a></li>
+        <li><a href="#输出结果">输出结果</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="端粒重复序列">端粒重复序列</h2>
+<p><a href="https://en.wikipedia.org/wiki/Telomere">端粒</a>是染色体末端的一端核酸序列，起着保护染色体末端免于降解，防止与相邻的染色体错误融合的作用。其名称来源于希腊语 <em>τέλος</em> (end)和<em>μέρος</em> (part) 。对于脊椎动物，端粒的序列是<code>AGGGTT</code>，其对应的互补序列就是<code>TCCCAA</code>，还有这一个单链的<code>TTAGGG</code>末尾。这段<code>TTAGGG</code>的序列在人类基因组中约重复2500次。人类的平均端粒长度由出生时的约11 kb，在老年时降至短于4 kb. 而男性端粒的平均缩短速度要快于女性。</p>
+<p>在染色体复制时，DNA复制酶在染色体末端不能继续复制，因此在每次复制时，染色体的末端都会缩短。这是由于冈崎片段需要RNA引物连接到后随链的前端。在细胞分裂时，端粒是染色体末端的缓冲区；防止基因被截短。端粒本身被端粒保护蛋白复合体，还有端粒DNA编码的RNA覆盖。</p>
+<p>不同物种的端粒序列不同，目前已知的端粒序列数据在<a href="http://telomerase.asu.edu/sequences_telomere.html">端粒数据库</a>中可以访问，目前的版本在2018年8月更新。</p>
+<h2 id="预测物种的端粒序列">预测物种的端粒序列</h2>
+<p>对于一个端粒序列仍然未知的物种，我们怎么发现其端粒的序列呢？</p>
+<p>在最近发表的一篇<a href="https://www.future-science.com/doi/full/10.2144/btn-2018-0057#">文章</a>指出，目前由bioserf.org提供的在线服务 sequence repeat finder (SERF) 可以进行。用户提供全基因组组装的结果（FASTA 格式）或二代测序的短读长数据（FASTQ 格式）即可。用户在注册后即可使用。</p>
+<h3 id="输入参数">输入参数</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Telomere Identification Protocol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FASTQ</td>
+<td>Input Reads from NGS</td>
+</tr>
+<tr>
+<td>FASTA</td>
+<td>Input Assembled Contigs.</td>
+</tr>
+<tr>
+<td>Contiguousall</td>
+<td>Analysis Type</td>
+</tr>
+<tr>
+<td>TG</td>
+<td>BaseType (must contain these base types in the identified repeats)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>BaseTypeMincount (must have atleast 2 of either type in the identified repeat)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>MinRepeats to treat as tandem</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MinBPSize of repeat motif</td>
+</tr>
+<tr>
+<td>15</td>
+<td>MaxBPSize of repeat motif</td>
+</tr>
+<tr>
+<td>90%</td>
+<td>MatchQuality (Tandem repeats to cover atleast 90% of the entire read. <strong>Iterate with lower figure until repeats are identified</strong>.)</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>Base count to split large assembled contigs in FASTA file for faster results. Defaults to 0 for FASTQ reads.</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>Permutate</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>Exclude Homopolymers</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>Exclude Supersets</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>List Cluster Totals</td>
+</tr>
+<tr>
+<td>Notes</td>
+<td>For large input  data (1GB+), analyze in smaller minbp-maxbp chunks 7-10, 11-20, 21-30  etc (instead of 7-60) to see incremental results</td>
+</tr>
+</tbody>
+</table>
+<h3 id="输出结果">输出结果</h3>
+<p>这是示例公共数据中洋葱的输出结果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Results file (last 20 lines):
+# ANALYSIS BEGIN Fri Mar 8 01:54:00 2019
+# Input = BSF1-AlliumCepa.fastq.gz
+# Output = Results-32188243-3-5-15-Q90-TG-2-contiguousall.txt
+
+# SEGMENT-WISE RESULTS
+# Motif, Repeats, Position, Size, Bases, Quality, Segment#, SegmentSize
+TGGGCTCGGTTA, 3, 1, 12, 36, 94.7, 304572, 38
+TCGGTTATGGGC, 3, 1, 12, 36, 92.3, 317960, 39
+
+
+# CLUSTER BY POSITION
+# Motif, Repeats, Repeats%, Bases, Bases%, Genome%, Position, Size
+TGGGCTCGGTTA, 3, 50.0, 36, 50.0, 0.0, 1, 12
+TGGGCTCGGTTA, 3, 50.0, 36, 50.0, 0.0, 1, 12
+
+
+# CLUSTER TOTALS
+# Motif, Repeats, Repeats%, Bases, Bases%, Genome%, Size
+TGGGCTCGGTTA, 6, 100.0, 72, 100.0, 0.0, 12
+# ANALYSIS END Fri Mar 8 02:28:54 2019
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://www.future-science.com/doi/full/10.2144/btn-2018-0057#">https://www.future-science.com/doi/full/10.2144/btn-2018-0057#</a></p>
+<p><a href="https://bioserf.org/r/p/swebserf">https://bioserf.org/r/p/swebserf</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-03-08
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/telomere/">telomere</a>
+          <a href="/tags/%E7%AB%AF%E7%B2%92/">端粒</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/03/11/R-exercise/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">R语言练习题</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/03/03/conda-channels-order/">
+            <span class="next-text nav-default">conda源的配置</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

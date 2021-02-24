@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ANOVA on SR-C</title>
+    <link>https://sr-c.github.io/tags/ANOVA/</link>
+    <description>Recent content in ANOVA on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 15 Nov 2019 20:47:57 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/ANOVA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ANOVA-in-R</title>
+      <link>https://sr-c.github.io/2019/11/15/ANOVA-in-R/</link>
+      <pubDate>Fri, 15 Nov 2019 20:47:57 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/11/15/ANOVA-in-R/</guid>
+      <description>安装 1 2 3 4 5 #安装一个田间实验设计方面的包，为我们提供LSD.test()等好用的函数 install.packages(&amp;#34;agricolae&amp;#34;) library(agricolae) ##读入数据 data(sweetpotato) 安装过程可能会报错，需要我们手动安</description>
+    </item>
+    
+  </channel>
+</rss>

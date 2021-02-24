@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>R-3.5.1安装 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="conda安装 1 conda create -n R-3.5.1 R=3.5.1 但在安装完成后，运行R出现如下报错： 1 2 (R-3.5.1) [shurh@cluster EggNOG]$ R /Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/bin/exec/R: error while loading shared libraries: libbz2.so.1.0: cannot open shared object file: No such file or directory 此时，覆盖安装bzip2可解决问" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/11/24/R-3-5-1-install/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="R-3.5.1安装" />
+<meta property="og:description" content="conda安装 1 conda create -n R-3.5.1 R=3.5.1 但在安装完成后，运行R出现如下报错： 1 2 (R-3.5.1) [shurh@cluster EggNOG]$ R /Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/bin/exec/R: error while loading shared libraries: libbz2.so.1.0: cannot open shared object file: No such file or directory 此时，覆盖安装bzip2可解决问" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/11/24/R-3-5-1-install/" />
+<meta property="article:published_time" content="2018-11-24T16:35:20+00:00" />
+<meta property="article:modified_time" content="2018-11-24T16:35:20+00:00" />
+<meta itemprop="name" content="R-3.5.1安装">
+<meta itemprop="description" content="conda安装 1 conda create -n R-3.5.1 R=3.5.1 但在安装完成后，运行R出现如下报错： 1 2 (R-3.5.1) [shurh@cluster EggNOG]$ R /Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/bin/exec/R: error while loading shared libraries: libbz2.so.1.0: cannot open shared object file: No such file or directory 此时，覆盖安装bzip2可解决问">
+<meta itemprop="datePublished" content="2018-11-24T16:35:20+00:00" />
+<meta itemprop="dateModified" content="2018-11-24T16:35:20+00:00" />
+<meta itemprop="wordCount" content="1040">
+
+
+
+<meta itemprop="keywords" content="R,clusterProfiler," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="R-3.5.1安装"/>
+<meta name="twitter:description" content="conda安装 1 conda create -n R-3.5.1 R=3.5.1 但在安装完成后，运行R出现如下报错： 1 2 (R-3.5.1) [shurh@cluster EggNOG]$ R /Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/bin/exec/R: error while loading shared libraries: libbz2.so.1.0: cannot open shared object file: No such file or directory 此时，覆盖安装bzip2可解决问"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">R-3.5.1安装</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-24 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#conda安装">conda安装</a></li>
+    <li><a href="#安装软件包">安装软件包</a>
+      <ul>
+        <li><a href="#安装clusterprofiler">安装clusterProfiler</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="conda安装">conda安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda create -n R-3.5.1 <span class="nv">R</span><span class="o">=</span>3.5.1
+</code></pre></td></tr></table>
+</div>
+</div><p>但在安装完成后，运行R出现如下报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>R-3.5.1<span class="o">)</span> <span class="o">[</span>shurh@cluster EggNOG<span class="o">]</span>$ R
+/Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/bin/exec/R: error <span class="k">while</span> loading shared libraries: libbz2.so.1.0: cannot open shared object file: No such file or directory
+</code></pre></td></tr></table>
+</div>
+</div><p>此时，覆盖安装bzip2可解决问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda install -c conda-forge -c bioconda bzip2
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装软件包">安装软件包</h2>
+<h3 id="安装clusterprofiler">安装clusterProfiler</h3>
+<p>在R 3.5版本后，bioconductor采用了新的安装方法，直接调用BioManager中的intall进行安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+    <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">)</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;clusterProfiler&#34;</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s">&#34;3.8&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但在编译结果提示，部分包没有编译完成。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="o">*</span> <span class="n">installing</span> <span class="o">*</span><span class="n">source</span><span class="o">*</span> <span class="n">package</span> ‘<span class="n">units</span>’ <span class="kc">...</span>
+<span class="o">**</span> <span class="n">package</span> ‘<span class="n">units</span>’ <span class="n">successfully</span> <span class="n">unpacked</span> <span class="n">and</span> <span class="n">MD5</span> <span class="n">sums</span> <span class="n">checked</span>
+<span class="n">configure</span><span class="o">:</span> <span class="n">units</span><span class="o">:</span> <span class="m">0.6-1</span>
+<span class="n">checking</span> <span class="n">whether</span> <span class="n">the</span> <span class="n">C</span><span class="o">++</span> <span class="n">compiler</span> <span class="n">works...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">C</span><span class="o">++</span> <span class="n">compiler</span> <span class="n">default</span> <span class="n">output</span> <span class="n">file</span> <span class="n">name...</span> <span class="n">a.out</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">suffix</span> <span class="n">of</span> <span class="n">executables...</span>
+<span class="n">checking</span> <span class="n">whether</span> <span class="n">we</span> <span class="n">are</span> <span class="n">cross</span> <span class="n">compiling...</span> <span class="n">no</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">suffix</span> <span class="n">of</span> <span class="n">object</span> <span class="n">files...</span> <span class="n">o</span>
+<span class="n">checking</span> <span class="n">whether</span> <span class="n">we</span> <span class="n">are</span> <span class="n">using</span> <span class="n">the</span> <span class="n">GNU</span> <span class="n">C</span><span class="o">++</span> <span class="n">compiler...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">whether</span> <span class="n">g</span><span class="o">++</span> <span class="n">accepts</span> <span class="o">-</span><span class="n">g...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">how</span> <span class="n">to</span> <span class="n">run</span> <span class="n">the</span> <span class="n">C</span><span class="o">++</span> <span class="n">preprocessor...</span> <span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">E</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">grep</span> <span class="n">that</span> <span class="n">handles</span> <span class="n">long</span> <span class="n">lines</span> <span class="n">and</span> <span class="o">-</span><span class="n">e...</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">grep</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">egrep...</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">grep</span> <span class="o">-</span><span class="n">E</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">ANSI</span> <span class="n">C</span> <span class="n">header</span> <span class="n">files...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">sys</span><span class="o">/</span><span class="n">types.h...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">sys</span><span class="o">/</span><span class="n">stat.h...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">stdlib.h...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">string.h...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">memory.h...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">strings.h...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">inttypes.h...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">stdint.h...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">unistd.h...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">stdbool.h</span> <span class="n">that</span> <span class="n">conforms</span> <span class="n">to</span> <span class="n">C99...</span> <span class="n">no</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">_Bool...</span> <span class="n">no</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">error_at_line...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">gcc...</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu99</span>
+<span class="n">checking</span> <span class="n">whether</span> <span class="n">we</span> <span class="n">are</span> <span class="n">using</span> <span class="n">the</span> <span class="n">GNU</span> <span class="n">C</span> <span class="n">compiler...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">whether</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu99</span> <span class="n">accepts</span> <span class="o">-</span><span class="n">g...</span> <span class="n">yes</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu99</span> <span class="n">option</span> <span class="n">to</span> <span class="n">accept</span> <span class="n">ISO</span> <span class="n">C89...</span> <span class="n">none</span> <span class="n">needed</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">XML_ParserCreate</span> <span class="n">in</span> <span class="o">-</span><span class="n">lexpat...</span> <span class="n">no</span>
+<span class="n">checking</span> <span class="n">udunits2.h</span> <span class="n">usability...</span> <span class="n">no</span>
+<span class="n">checking</span> <span class="n">udunits2.h</span> <span class="n">presence...</span> <span class="n">no</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">udunits2.h...</span> <span class="n">no</span>
+<span class="n">checking</span> <span class="n">udunits2</span><span class="o">/</span><span class="n">udunits2.h</span> <span class="n">usability...</span> <span class="n">no</span>
+<span class="n">checking</span> <span class="n">udunits2</span><span class="o">/</span><span class="n">udunits2.h</span> <span class="n">presence...</span> <span class="n">no</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">udunits2</span><span class="o">/</span><span class="n">udunits2.h...</span> <span class="n">no</span>
+<span class="n">checking</span> <span class="n">for</span> <span class="n">ut_read_xml</span> <span class="n">in</span> <span class="o">-</span><span class="n">ludunits2...</span> <span class="n">no</span>
+<span class="n">configure</span><span class="o">:</span> <span class="n">error</span><span class="o">:</span> <span class="n">in</span> <span class="n">`/tmp/RtmpmHkkL2/R.INSTALLf29a648ed03a/units&#39;:
+</span><span class="n">configure: error:
+</span><span class="n">--------------------------------------------------------------------------------
+</span><span class="n">  Configuration failed because libudunits2.so was not found. Try installing:
+</span><span class="n">    * deb: libudunits2-dev (Debian, Ubuntu, ...)
+</span><span class="n">    * rpm: udunits2-devel (Fedora, EPEL, ...)
+</span><span class="n">    * brew: udunits (OSX)
+</span><span class="n">  If udunits2 is already installed in a non-standard location, use:
+</span><span class="n">    --configure-args=&#39;--with-udunits2-lib=/usr/local/lib&#39;
+</span><span class="n">  if the library was not found, and/or:
+</span><span class="n">    --configure-args=&#39;--with-udunits2-include=/usr/include/udunits2&#39;
+</span><span class="n">  if the header was not found, replacing paths with appropriate values.
+</span><span class="n">  You can alternatively set UDUNITS2_INCLUDE and UDUNITS2_LIBS manually.
+</span><span class="n">--------------------------------------------------------------------------------
+</span><span class="n">
+</span><span class="n">See `config.log</span><span class="s">&#39; for more details
+</span><span class="s">ERROR: configuration failed for package ‘units’
+</span><span class="s">* removing ‘/Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/library/units’
+</span><span class="s">ERROR: dependency ‘units’ is not available for package ‘ggforce’
+</span><span class="s">* removing ‘/Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/library/ggforce’
+</span><span class="s">ERROR: dependency ‘ggforce’ is not available for package ‘ggraph’
+</span><span class="s">* removing ‘/Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/library/ggraph’
+</span><span class="s">
+</span><span class="s">The downloaded source packages are in
+</span><span class="s">        ‘/tmp/RtmpYqu9Z7/downloaded_packages’
+</span><span class="s">Updating HTML index of packages in &#39;</span><span class="n">.Library</span><span class="s">&#39;
+</span><span class="s">Making &#39;</span><span class="n">packages.html</span><span class="s">&#39;</span><span class="err"> ... done</span>
+<span class="n">Warning</span> <span class="n">messages</span><span class="o">:</span>
+<span class="m">1</span><span class="o">:</span> <span class="n">In</span> <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;ggraph&#34;</span><span class="p">)</span> <span class="o">:</span>
+  <span class="n">installation</span> <span class="n">of</span> <span class="n">package</span> ‘<span class="n">units</span>’ <span class="n">had</span> <span class="n">non</span><span class="o">-</span><span class="n">zero</span> <span class="n">exit</span> <span class="n">status</span>
+<span class="m">2</span><span class="o">:</span> <span class="n">In</span> <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;ggraph&#34;</span><span class="p">)</span> <span class="o">:</span>
+  <span class="n">installation</span> <span class="n">of</span> <span class="n">package</span> ‘<span class="n">ggforce</span>’ <span class="n">had</span> <span class="n">non</span><span class="o">-</span><span class="n">zero</span> <span class="n">exit</span> <span class="n">status</span>
+<span class="m">3</span><span class="o">:</span> <span class="n">In</span> <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;ggraph&#34;</span><span class="p">)</span> <span class="o">:</span>
+  <span class="n">installation</span> <span class="n">of</span> <span class="n">package</span> ‘<span class="n">ggraph</span>’ <span class="n">had</span> <span class="n">non</span><span class="o">-</span><span class="n">zero</span> <span class="n">exit</span> <span class="n">status</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>此时选择先安装ggraph</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;graph&#34;</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s">&#34;3.8&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>出现提示，需要安装<code>udunits2</code>，此时同样选择conda安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda install -c conda-forge udunits2 
+</code></pre></td></tr></table>
+</div>
+</div><p>完成后，即可重新安装clusterProfiler</p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://stackoverflow.com/questions/27893230/installation-of-package-file-path-had-non-zero-exit-status-in-r">https://stackoverflow.com/questions/27893230/installation-of-package-file-path-had-non-zero-exit-status-in-r</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-11-24
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/R/">R</a>
+          <a href="/tags/clusterProfiler/">clusterProfiler</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/12/01/clusterProfiler/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用clusterProfiler进行富集分析</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/11/12/debug-maker3/">
+            <span class="next-text nav-default">【debug】maker3</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

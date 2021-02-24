@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tidyverse on SR-C</title>
+    <link>https://sr-c.github.io/tags/tidyverse/</link>
+    <description>Recent content in tidyverse on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 15 Feb 2019 22:37:01 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>长短数据格式转换</title>
+      <link>https://sr-c.github.io/2019/02/15/using-tidyverse-to-go-between-wide-and-long/</link>
+      <pubDate>Fri, 15 Feb 2019 22:37:01 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/15/using-tidyverse-to-go-between-wide-and-long/</guid>
+      <description>Wide to long 1 gather(data, key, value, ..., na.rm = FALSE, convert = FALSE) data: The dataset to be modified (in our case, seps) key: the name of the new “naming” variable (year) value: the name of the new “result” variable (value) na.rm: whether missing values are removed (this dataset doesn’</description>
+    </item>
+    
+  </channel>
+</rss>

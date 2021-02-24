@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visualization on SR-C</title>
+    <link>https://sr-c.github.io/categories/Visualization/</link>
+    <description>Recent content in Visualization on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 11 Sep 2020 16:17:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/categories/Visualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Bacsnp可视化病毒基因组中的SNP位点</title>
+      <link>https://sr-c.github.io/2020/09/11/bacsnp/</link>
+      <pubDate>Fri, 11 Sep 2020 16:17:11 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/09/11/bacsnp/</guid>
+      <description>Bacsnp是用来分析杆状病毒毒株之间遗传多样性（判断SNP的种群特异性）的下游工具。 安装 新建R环境 环境需求R 3.6.3, 严格限制在此版本，其他版本均</description>
+    </item>
+    
+    <item>
+      <title>DNA Features Viewer使用</title>
+      <link>https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/</link>
+      <pubDate>Tue, 21 Jul 2020 16:21:29 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/</guid>
+      <description>最近发表在Bioinformatics的DNA Features Viewer是一个可视化DNA序列特征的Python工具。此为尝鲜。 安装 官方文档目前只提供p</description>
+    </item>
+    
+  </channel>
+</rss>

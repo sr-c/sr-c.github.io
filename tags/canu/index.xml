@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>canu on SR-C</title>
+    <link>https://sr-c.github.io/tags/canu/</link>
+    <description>Recent content in canu on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 04 Jul 2018 13:05:17 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/canu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>canu的使用</title>
+      <link>https://sr-c.github.io/2018/07/04/canu/</link>
+      <pubDate>Wed, 04 Jul 2018 13:05:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/04/canu/</guid>
+      <description>下载测试数据 1 2 curl -L -o pacbio.fastq http://gembox.cbcb.umd.edu/mhap/raw/ecoli_p6_25x.filtered.fastq curl -L -o oxford.fasta http://nanopore.s3.climb.ac.uk/MAP006-PCR-1_2D_pass.fasta 一步执行 1 2 3 4 canu \ -p ecoli -d ecoli-pacbio \ genomeSize=4.8m \ -pacbio-raw pacbio.fastq canu可分步骤执行 Correct 1 2 3 4 canu -correct \ -p ecoli -d ecoli \ genomeSize=4.8m \ -pacbio-raw pacbio.fastq Trim 1 2 3 4 canu</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>本地blast - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="安装 从ncbi下载已编译好的版本，解压缩后即可使用。 使用 Building a BLAST database with local sequences 1 2 3 4 5 6 7 8 9 10 11 $ makeblastdb -in mydb.fsa -parse_seqids -dbtype nucl Building a new DB, current time: 01/28/2011 13:39:37 New DB name: mydb.fsa New DB title: mydb.fsa Sequence" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/06/23/local-blast/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="本地blast" />
+<meta property="og:description" content="安装 从ncbi下载已编译好的版本，解压缩后即可使用。 使用 Building a BLAST database with local sequences 1 2 3 4 5 6 7 8 9 10 11 $ makeblastdb -in mydb.fsa -parse_seqids -dbtype nucl Building a new DB, current time: 01/28/2011 13:39:37 New DB name: mydb.fsa New DB title: mydb.fsa Sequence" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/06/23/local-blast/" />
+<meta property="article:published_time" content="2018-06-23T14:35:06+00:00" />
+<meta property="article:modified_time" content="2018-06-23T14:35:06+00:00" />
+<meta itemprop="name" content="本地blast">
+<meta itemprop="description" content="安装 从ncbi下载已编译好的版本，解压缩后即可使用。 使用 Building a BLAST database with local sequences 1 2 3 4 5 6 7 8 9 10 11 $ makeblastdb -in mydb.fsa -parse_seqids -dbtype nucl Building a new DB, current time: 01/28/2011 13:39:37 New DB name: mydb.fsa New DB title: mydb.fsa Sequence">
+<meta itemprop="datePublished" content="2018-06-23T14:35:06+00:00" />
+<meta itemprop="dateModified" content="2018-06-23T14:35:06+00:00" />
+<meta itemprop="wordCount" content="593">
+
+
+
+<meta itemprop="keywords" content="blast," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="本地blast"/>
+<meta name="twitter:description" content="安装 从ncbi下载已编译好的版本，解压缩后即可使用。 使用 Building a BLAST database with local sequences 1 2 3 4 5 6 7 8 9 10 11 $ makeblastdb -in mydb.fsa -parse_seqids -dbtype nucl Building a new DB, current time: 01/28/2011 13:39:37 New DB name: mydb.fsa New DB title: mydb.fsa Sequence"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">本地blast</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-06-23 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#building-a-blast-database-with-local-sequences">Building a BLAST database with local sequences</a></li>
+        <li><a href="#use-windowmasker-to-filter-the-query-sequences-in-a-blast-search">Use Windowmasker to filter the query sequence(s) in a BLAST search</a></li>
+        <li><a href="#quick-start">Quick start</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="安装">安装</h2>
+<p>从ncbi<a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/">下载</a>已编译好的版本，解压缩后即可使用。</p>
+<h2 id="使用">使用</h2>
+<h3 id="building-a-blast-database-with-local-sequences">Building a BLAST database with local sequences</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ makeblastdb -in mydb.fsa -parse_seqids -dbtype nucl
+
+Building a new DB, current time: 01/28/2011 13:39:37
+New DB name:   mydb.fsa
+New DB title:  mydb.fsa
+Sequence type: Nucleotide
+Keep Linkouts: T
+Keep MBits: T
+Maximum file size: 1073741824B
+Adding sequences from FASTA<span class="p">;</span> added <span class="m">3</span> sequences in 0.00206995 seconds.
+$ 
+</code></pre></td></tr></table>
+</div>
+</div><p>参数说明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">-in 需要建库的fasta序列
+-dbtype 如果是蛋白库则用prot，核酸库用nucl
+-out 所建数据库的名称
+-parse_seqids <span class="o">=</span>&gt; Parse Seq-ids in FASTA input         
+</code></pre></td></tr></table>
+</div>
+</div><p><code>-parse_seqids</code> 和<code>-out uniprot</code> 一般都加上，使用<code>-parse_seqids</code>需求数据库中每条序列都有唯一的标识，使得blast能够根据序列标识来提取序列。</p>
+<h3 id="use-windowmasker-to-filter-the-query-sequences-in-a-blast-search">Use Windowmasker to filter the query sequence(s) in a BLAST search</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">1. Run BLAST search using Windowmasker for sequence filtering based upon taxid 
+(9606 is the taxid for human).
+$ blastn -query input -db database -window_masker_taxid 9606 -out results.txt
+
+2. Run BLAST search using Windowmasker for sequence filtering based upon the windowmasker file name.
+$ blastn –query input –db database –window_masker_db 9606/wmasker.obinary
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="quick-start">Quick start</h3>
+<p>A BLAST search against a database requires at least a –query and –db option. The command:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">blastn –db nt –query nt.fsa –out results.out  
+</code></pre></td></tr></table>
+</div>
+</div><p>参数说明</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">-query 输入文件名，也就是需要比对的序列文件
+-db 格式化后的数据库名称
+-evalue 设定输出结果中的e-value阈值
+-out 输出文件名
+-num_alignments 输出比对上的序列的最大值条目数
+-num_threads 线程数
+此外还有：
+-num_descriptions 对比对上序列的描述信息，一般跟tabular格式连用
+-outfmt      
+ 0 = pairwise,
+ 1 = query-anchored showing identities,
+ 2 = query-anchored no identities,
+ 3 = flat query-anchored, show identities,
+ 4 = flat query-anchored, no identities,
+ 5 = XML Blast output,
+ 6 = tabular,
+ 7 = tabular with comment lines,
+ 8 = Text ASN.1,
+ 9 = Binary ASN.1
+ 10 = Comma-separated values
+格式5，输出的内容最丰富，以标记语言写入，方便根据需要提取信息；
+格式6，以表格形式输出，易于阅读。
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://www.ncbi.nlm.nih.gov/books/NBK279688/">https://www.ncbi.nlm.nih.gov/books/NBK279688/</a></p>
+<p><a href="http://www.bioinfo-scrounger.com/archives/77">http://www.bioinfo-scrounger.com/archives/77</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-06-23
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/blast/">blast</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/06/30/pheatmap/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用pheatmap绘制热图</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/06/19/libstdc-so-6-GLIBCXX-not-found/">
+            <span class="next-text nav-default">libstdc&#43;&#43;.so.6 GLIBCXX_not_found问题的解决方案</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

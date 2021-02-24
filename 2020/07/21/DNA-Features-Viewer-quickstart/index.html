@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>DNA Features Viewer使用 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="最近发表在Bioinformatics的DNA Features Viewer是一个可视化DNA序列特征的Python工具。此为尝鲜。 安装 官方文档目前只提供p" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="DNA Features Viewer使用" />
+<meta property="og:description" content="最近发表在Bioinformatics的DNA Features Viewer是一个可视化DNA序列特征的Python工具。此为尝鲜。 安装 官方文档目前只提供p" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/" />
+<meta property="article:published_time" content="2020-07-21T16:21:29+08:00" />
+<meta property="article:modified_time" content="2020-07-21T16:21:29+08:00" />
+<meta itemprop="name" content="DNA Features Viewer使用">
+<meta itemprop="description" content="最近发表在Bioinformatics的DNA Features Viewer是一个可视化DNA序列特征的Python工具。此为尝鲜。 安装 官方文档目前只提供p">
+<meta itemprop="datePublished" content="2020-07-21T16:21:29+08:00" />
+<meta itemprop="dateModified" content="2020-07-21T16:21:29+08:00" />
+<meta itemprop="wordCount" content="1298">
+
+
+
+<meta itemprop="keywords" content="python,conda,biopython," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DNA Features Viewer使用"/>
+<meta name="twitter:description" content="最近发表在Bioinformatics的DNA Features Viewer是一个可视化DNA序列特征的Python工具。此为尝鲜。 安装 官方文档目前只提供p"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">DNA Features Viewer使用</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-07-21 </span>
+        <div class="post-category">
+            <a href="/categories/Visualization/"> Visualization </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#自定义序列特征绘图">自定义序列特征绘图</a></li>
+    <li><a href="#读取genbank数据绘图">读取genbank数据绘图</a>
+      <ul>
+        <li><a href="#自定义特征解释器">自定义特征解释器</a></li>
+        <li><a href="#biopython默认特征解释器">Biopython默认特征解释器</a></li>
+        <li><a href="#显示gc比例的线性图">显示GC比例的线性图</a></li>
+        <li><a href="#氨基酸编码序列">氨基酸编码序列</a></li>
+        <li><a href="#gif">GIF</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>最近发表在<em>Bioinformatics</em>的<a href="https://doi.org/10.1093/bioinformatics/btaa213">DNA Features Viewer</a>是一个可视化DNA序列特征的Python工具。此为尝鲜。</p>
+<!-- raw HTML omitted -->
+<h1 id="安装">安装</h1>
+<p>官方文档目前只提供pip安装方式。issue中有反映要求conda安装方式，<a href="https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer/issues/11#issuecomment-656485115">评论</a>中有个人提供的linux conda版本，但我没有安装成功。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda create -n biopython biopython -y <span class="c1">## create a biopython env</span>
+pip install dna_features_viewer <span class="c1">## install via pip</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="使用">使用</h1>
+<h2 id="自定义序列特征绘图">自定义序列特征绘图</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;Simple example where a few features are defined &#34;by hand&#34; and are displayed
+</span><span class="s2">and exported as PNG, first with a linear view, then with a circular
+</span><span class="s2">view.
+</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="kn">from</span> <span class="nn">dna_features_viewer</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GraphicFeature</span><span class="p">,</span>
+    <span class="n">GraphicRecord</span><span class="p">,</span>
+    <span class="n">CircularGraphicRecord</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">GraphicFeature</span><span class="p">(</span>
+        <span class="n">start</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">strand</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;#ffd700&#34;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Small feature&#34;</span>
+    <span class="p">),</span>
+    <span class="n">GraphicFeature</span><span class="p">(</span>
+        <span class="n">start</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">end</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+        <span class="n">strand</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&#34;#ffcccc&#34;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Gene 1 with a very long name&#34;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">GraphicFeature</span><span class="p">(</span>
+        <span class="n">start</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">strand</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;#cffccc&#34;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Gene 2&#34;</span>
+    <span class="p">),</span>
+    <span class="n">GraphicFeature</span><span class="p">(</span>
+        <span class="n">start</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span> <span class="n">strand</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;#ccccff&#34;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Gene 3&#34;</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+
+
+<span class="c1"># PLOT AND EXPORT A LINEAR VIEW OF THE CONSTRUCT</span>
+<span class="n">record</span> <span class="o">=</span> <span class="n">GraphicRecord</span><span class="p">(</span><span class="n">sequence_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure_width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;graphic_record_defined_by_hand.png&#34;</span><span class="p">)</span>
+
+
+<span class="c1"># PLOT AND EXPORT A CIRCULAR VIEW OF THE CONSTRUCT</span>
+<span class="n">circular_rec</span> <span class="o">=</span> <span class="n">CircularGraphicRecord</span><span class="p">(</span><span class="n">sequence_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">)</span>
+<span class="n">ax2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">circular_rec</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure_width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+    <span class="s2">&#34;graphic_record_defined_by_hand_circular.png&#34;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&#34;tight&#34;</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="读取genbank数据绘图">读取genbank数据绘图</h2>
+<p><code>dna_features_viewer</code>中含有<code>translate_record</code>函数可读取<code>GenBank</code>格式的数据。但是，将读取到的这些特征解释为绘图内容就可以使用其提供的<code>BiopythonTranslator</code>或自定义<code>MyCustomTranslator</code>.</p>
+<h3 id="自定义特征解释器">自定义特征解释器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">dna_features_viewer</span> <span class="kn">import</span> <span class="n">BiopythonTranslator</span>
+
+<span class="k">class</span> <span class="nc">MyCustomTranslator</span><span class="p">(</span><span class="n">BiopythonTranslator</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Custom translator implementing the following theme:
+</span><span class="s2">
+</span><span class="s2">    - Color terminators in green, CDS in blue, all other features in gold.
+</span><span class="s2">    - Do not display features that are restriction sites unless they are BamHI
+</span><span class="s2">    - Do not display labels for restriction sites.
+</span><span class="s2">    - For CDS labels just write &#34;CDS here&#34; instead of the name of the gene.
+</span><span class="s2">
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="k">def</span> <span class="nf">compute_feature_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">feature</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&#34;CDS&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&#34;blue&#34;</span>
+        <span class="k">elif</span> <span class="n">feature</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&#34;terminator&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&#34;green&#34;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&#34;gold&#34;</span>
+
+    <span class="k">def</span> <span class="nf">compute_feature_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">feature</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;restriction_site&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">elif</span> <span class="n">feature</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&#34;CDS&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&#34;CDS here&#34;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">BiopythonTranslator</span><span class="o">.</span><span class="n">compute_feature_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compute_filtered_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+        <span class="s2">&#34;&#34;&#34;Do not display promoters. Just because.&#34;&#34;&#34;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">feature</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&#34;restriction_site&#34;</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="s2">&#34;BamHI&#34;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">qualifiers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;label&#34;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)))</span>
+        <span class="p">]</span>
+
+
+<span class="n">graphic_record</span> <span class="o">=</span> <span class="n">MyCustomTranslator</span><span class="p">()</span><span class="o">.</span><span class="n">translate_record</span><span class="p">(</span><span class="s2">&#34;example_sequence.gb&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">graphic_record</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure_width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;custom_biopython_translator.png&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://edinburgh-genome-foundry.github.io/DnaFeaturesViewer/_images/custom_biopython_translator.png" alt="custom_biopython_translator.png"></p>
+<h3 id="biopython默认特征解释器">Biopython默认特征解释器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">dna_features_viewer</span> <span class="kn">import</span> <span class="n">BiopythonTranslator</span>
+
+<span class="n">graphic_record</span> <span class="o">=</span> <span class="n">BiopythonTranslator</span><span class="p">()</span><span class="o">.</span><span class="n">translate_record</span><span class="p">(</span><span class="s2">&#34;example_sequence.gb&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">graphic_record</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure_width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">strand_in_label_threshold</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;from_genbank.png&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://edinburgh-genome-foundry.github.io/DnaFeaturesViewer/_images/from_genbank.png" alt="from_genbank"></p>
+<p>可以绘制圈图，但是所有的注释信息都只能标注在图像上方，而不是像一般的Snapgene之类的工具紧密地随特征标注。</p>
+<h3 id="显示gc比例的线性图">显示GC比例的线性图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;In this example we plot a record&#39;s annotations on top of the curve of the
+</span><span class="s2">local GC content in the record&#39;s sequence.
+</span><span class="s2">&#34;&#34;&#34;</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">dna_features_viewer</span> <span class="kn">import</span> <span class="n">BiopythonTranslator</span>
+<span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">SeqIO</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">plot_local_gc_content</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Plot windowed GC content on a designated Matplotlib ax.&#34;&#34;&#34;</span>
+    <span class="k">def</span> <span class="nf">gc_content</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="nb">len</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="s2">&#34;GC&#34;</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+    <span class="n">yy</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">gc_content</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">window_size</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">)</span> <span class="o">+</span> <span class="mi">25</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;GC(%)&#34;</span><span class="p">)</span>
+
+
+<span class="n">record</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&#34;example_sequence.gb&#34;</span><span class="p">,</span> <span class="s2">&#34;genbank&#34;</span><span class="p">)</span>
+<span class="n">translator</span> <span class="o">=</span> <span class="n">BiopythonTranslator</span><span class="p">()</span>
+<span class="n">graphic_record</span> <span class="o">=</span> <span class="n">translator</span><span class="o">.</span><span class="n">translate_record</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;height_ratios&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]}</span>
+<span class="p">)</span>
+<span class="n">graphic_record</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">with_ruler</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">strand_in_label_threshold</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plot_local_gc_content</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># Resize the figure to the right height</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;with_gc_plot.png&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://edinburgh-genome-foundry.github.io/DnaFeaturesViewer/_images/with_gc_plot.png" alt="with_gc_plot"></p>
+<h3 id="氨基酸编码序列">氨基酸编码序列</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">dna_features_viewer</span> <span class="kn">import</span> <span class="n">GraphicFeature</span><span class="p">,</span> <span class="n">GraphicRecord</span>
+
+<span class="n">record</span> <span class="o">=</span> <span class="n">GraphicRecord</span><span class="p">(</span><span class="n">sequence</span><span class="o">=</span><span class="s2">&#34;ATGCATGCATGCATGCATGCATGCATGC&#34;</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">GraphicFeature</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">strand</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#ffcccc&#39;</span><span class="p">),</span>
+    <span class="n">GraphicFeature</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">strand</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#ccccff&#39;</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">ax</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure_width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">record</span><span class="o">.</span><span class="n">plot_sequence</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">guides_intensity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">fontdict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
+<span class="n">record</span><span class="o">.</span><span class="n">plot_translation</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="n">fontdict</span><span class="o">=</span><span class="n">fontdict</span><span class="p">,</span> <span class="n">guides_intensity</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;sequence_and_translation.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://edinburgh-genome-foundry.github.io/DnaFeaturesViewer/_images/sequence_and_translation.png" alt="sequence_and_translation"></p>
+<h3 id="gif">GIF</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;An example with GIF generation at the end. How cool is that!
+</span><span class="s2">
+</span><span class="s2">This example requires the Moviepy library  installed (pip install moviepy).
+</span><span class="s2">
+</span><span class="s2">&#34;&#34;&#34;</span>
+<span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">Entrez</span><span class="p">,</span> <span class="n">SeqIO</span>
+<span class="kn">import</span> <span class="nn">moviepy.editor</span> <span class="kn">as</span> <span class="nn">mpe</span>
+<span class="kn">from</span> <span class="nn">moviepy.video.io.bindings</span> <span class="kn">import</span> <span class="n">mplfig_to_npimage</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">dna_features_viewer</span> <span class="kn">import</span> <span class="n">BiopythonTranslator</span><span class="p">,</span> <span class="n">CircularGraphicRecord</span>
+
+<span class="c1"># DOWNLOAD THE PLASMID&#39;s RECORD FROM NCBI</span>
+
+<span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">efetch</span><span class="p">(</span>
+    <span class="n">db</span><span class="o">=</span><span class="s2">&#34;nucleotide&#34;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="mi">1473096477</span><span class="p">,</span> <span class="n">rettype</span><span class="o">=</span><span class="s2">&#34;gb&#34;</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="s2">&#34;text&#34;</span>
+<span class="p">)</span>
+<span class="n">record</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="s2">&#34;genbank&#34;</span><span class="p">)</span>
+
+<span class="c1"># CREATE THE GRAPHIC RECORD WITH DNA_FEATURES_VIEWER</span>
+
+<span class="n">color_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&#34;rep_origin&#34;</span><span class="p">:</span> <span class="s2">&#34;yellow&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;CDS&#34;</span><span class="p">:</span> <span class="s2">&#34;orange&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;regulatory&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;misc_recomb&#34;</span><span class="p">:</span> <span class="s2">&#34;darkblue&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;misc_feature&#34;</span><span class="p">:</span> <span class="s2">&#34;lightblue&#34;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">translator</span> <span class="o">=</span> <span class="n">BiopythonTranslator</span><span class="p">(</span>
+    <span class="n">features_filters</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&#34;gene&#34;</span><span class="p">,</span> <span class="s2">&#34;source&#34;</span><span class="p">],),</span>
+    <span class="n">features_properties</span><span class="o">=</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="p">{</span><span class="s2">&#34;color&#34;</span><span class="p">:</span> <span class="n">color_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="s2">&#34;white&#34;</span><span class="p">)},</span>
+<span class="p">)</span>
+<span class="n">translator</span><span class="o">.</span><span class="n">max_line_length</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">graphic_record</span> <span class="o">=</span> <span class="n">translator</span><span class="o">.</span><span class="n">translate_record</span><span class="p">(</span>
+    <span class="n">record</span><span class="p">,</span> <span class="n">record_class</span><span class="o">=</span><span class="n">CircularGraphicRecord</span>
+<span class="p">)</span>
+<span class="n">graphic_record</span><span class="o">.</span><span class="n">labels_spacing</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="c1"># ANIMATE INTO A GIF WITH MOVIEPY</span>
+
+<span class="n">duration</span> <span class="o">=</span> <span class="mi">5</span>
+
+
+<span class="k">def</span> <span class="nf">make_frame</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">top_nucleotide_index</span> <span class="o">=</span> <span class="n">t</span> <span class="o">*</span> <span class="n">graphic_record</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">/</span> <span class="n">duration</span>
+    <span class="n">graphic_record</span><span class="o">.</span><span class="n">top_position</span> <span class="o">=</span> <span class="n">top_nucleotide_index</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">graphic_record</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure_width</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">figure_height</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">np_image</span> <span class="o">=</span> <span class="n">mplfig_to_npimage</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np_image</span>
+
+
+<span class="n">clip</span> <span class="o">=</span> <span class="n">mpe</span><span class="o">.</span><span class="n">VideoClip</span><span class="p">(</span><span class="n">make_frame</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
+<span class="n">small_clip</span> <span class="o">=</span> <span class="n">clip</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">x1</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">x2</span><span class="o">=-</span><span class="mi">60</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y2</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">small_clip</span><span class="o">.</span><span class="n">write_gif</span><span class="p">(</span><span class="s2">&#34;example_with_gif.gif&#34;</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://edinburgh-genome-foundry.github.io/DnaFeaturesViewer/_images/example_with_gif.gif" alt="example_with_gif"></p>
+<h1 id="其他">其他</h1>
+<p><a href="https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer/issues/28">issues #28</a>中表示希望圈图的注释信息只能位于上方，不能够自定义位置。作者表示可以通过调整<a href="https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer/blob/master/dna_features_viewer/CircularGraphicRecord/CircularGraphicRecord.py">CircularGraphicRecord.py</a>实现在上下两个区域标注信息，完整地自定义注释位置目前实现起来还比较困难。</p>
+<h1 id="参考来源">参考来源</h1>
+<p><a href="https://edinburgh-genome-foundry.github.io/DnaFeaturesViewer/examples.html">https://edinburgh-genome-foundry.github.io/DnaFeaturesViewer/examples.html</a></p>
+<p><a href="https://edinburgh-genome-foundry.github.io/DnaFeaturesViewer/">https://edinburgh-genome-foundry.github.io/DnaFeaturesViewer/</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-07-21
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/conda/">conda</a>
+          <a href="/tags/biopython/">biopython</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2020/07/21/Hugo-custom/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">自定义Hugo主题样式</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2020/07/21/python-environment-in-vscode/">
+            <span class="next-text nav-default">在Vscode中配置Python环境</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

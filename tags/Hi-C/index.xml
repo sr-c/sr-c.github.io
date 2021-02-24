@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hi-C on SR-C</title>
+    <link>https://sr-c.github.io/tags/Hi-C/</link>
+    <description>Recent content in Hi-C on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 19 Mar 2019 21:12:12 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Hi-C/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LACHESIS安装</title>
+      <link>https://sr-c.github.io/2019/03/19/LACHESIS-install/</link>
+      <pubDate>Tue, 19 Mar 2019 21:12:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/19/LACHESIS-install/</guid>
+      <description>系统依赖 LACHESIS的系统依赖有 gcc, the C++ compiler (http://gcc.gnu.org/) The zlib compression library (http://www.zlib.net/) The boost C++ libraries (http://www.boost.org/) The SAMtools toolkit for handling SAM/BAM files (http://samtools.sourceforge.net/) (make sure to use version 0.1.19 or older) 其中，boost的版本应该高于1.52.0</description>
+    </item>
+    
+    <item>
+      <title>SALSA安装</title>
+      <link>https://sr-c.github.io/2019/02/28/SALSA-install/</link>
+      <pubDate>Thu, 28 Feb 2019 22:16:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/28/SALSA-install/</guid>
+      <description>安装 1 2 3 4 5 6 7 8 git clone https://github.com/machinegun/SALSA.git conda create -n SALSA python=2.7 source activate SALSA conda install boost networkx==1.11 cd SALSA make debug 1 2 3 4 5 g++ -O3 -Wall -Wextra -std=c++11 -o correct_links correct_links.cpp correct_links.cpp:12:10: fatal error: boost/config.hpp: No such file or directory #include &amp;lt;boost/config.hpp&amp;gt; ^~~~~~~~~~~~~~~~~~ compilation terminated. 这表明，编译过程中未配置好之</description>
+    </item>
+    
+    <item>
+      <title>HiC-Pro使用手册</title>
+      <link>https://sr-c.github.io/2019/02/20/HiC-pro-quickstart/</link>
+      <pubDate>Wed, 20 Feb 2019 19:49:38 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/20/HiC-pro-quickstart/</guid>
+      <description>软件安装 软件默认提供了Singularity的镜像，可以直接使用 环境依赖 The bowtie2 mapper Python (&amp;gt;2.7) with pysam (&amp;gt;=0.8.3), bx-python(&amp;gt;=0.5.0), numpy(&amp;gt;=1.8.2), and scipy(&amp;gt;=0.15.1) libraries. Note that the current version does not support python 3 R with the RColorBrewer and ggplot2 (&amp;gt;2.2.1) packages g++ compiler samtools</description>
+    </item>
+    
+  </channel>
+</rss>
