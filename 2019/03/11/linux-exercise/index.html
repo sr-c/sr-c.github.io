@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>linux练习题 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="http://www.bio-info-trainee.com/2900.html 在任意文件夹下面创建形如 1/2/3/4/5/6/7/8/9 格式的文件夹系列。 1 mkdir -p 1/2/3/4/5/6/7/8/9 在创建好的文件夹下面，比如我的是 /Users/jimmy/tmp/1/2/3/4/5/6/7/8/9 ，里面创建文本文件 me.txt 1 touch me.txt 在文本文件 me.txt 里面输入内容:" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/03/11/linux-exercise/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="linux练习题" />
+<meta property="og:description" content="http://www.bio-info-trainee.com/2900.html 在任意文件夹下面创建形如 1/2/3/4/5/6/7/8/9 格式的文件夹系列。 1 mkdir -p 1/2/3/4/5/6/7/8/9 在创建好的文件夹下面，比如我的是 /Users/jimmy/tmp/1/2/3/4/5/6/7/8/9 ，里面创建文本文件 me.txt 1 touch me.txt 在文本文件 me.txt 里面输入内容:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/03/11/linux-exercise/" />
+<meta property="article:published_time" content="2019-03-11T20:48:07+00:00" />
+<meta property="article:modified_time" content="2019-03-11T20:48:07+00:00" />
+<meta itemprop="name" content="linux练习题">
+<meta itemprop="description" content="http://www.bio-info-trainee.com/2900.html 在任意文件夹下面创建形如 1/2/3/4/5/6/7/8/9 格式的文件夹系列。 1 mkdir -p 1/2/3/4/5/6/7/8/9 在创建好的文件夹下面，比如我的是 /Users/jimmy/tmp/1/2/3/4/5/6/7/8/9 ，里面创建文本文件 me.txt 1 touch me.txt 在文本文件 me.txt 里面输入内容:">
+<meta itemprop="datePublished" content="2019-03-11T20:48:07+00:00" />
+<meta itemprop="dateModified" content="2019-03-11T20:48:07+00:00" />
+<meta itemprop="wordCount" content="932">
+
+
+
+<meta itemprop="keywords" content="linux,生信技能树,biotrainee," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux练习题"/>
+<meta name="twitter:description" content="http://www.bio-info-trainee.com/2900.html 在任意文件夹下面创建形如 1/2/3/4/5/6/7/8/9 格式的文件夹系列。 1 mkdir -p 1/2/3/4/5/6/7/8/9 在创建好的文件夹下面，比如我的是 /Users/jimmy/tmp/1/2/3/4/5/6/7/8/9 ，里面创建文本文件 me.txt 1 touch me.txt 在文本文件 me.txt 里面输入内容:"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">linux练习题</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-11 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://www.bio-info-trainee.com/2900.html">http://www.bio-info-trainee.com/2900.html</a></p>
+<ol>
+<li>在任意文件夹下面创建形如 1/2/3/4/5/6/7/8/9 格式的文件夹系列。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">mkdir -p 1/2/3/4/5/6/7/8/9
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>在创建好的文件夹下面，比如我的是 /Users/jimmy/tmp/1/2/3/4/5/6/7/8/9 ，里面创建文本文件 me.txt</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">touch me.txt
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>在文本文件 me.txt 里面输入内容:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt; me.txt
+Go to: http://www.biotrainee.com/
+I love bioinfomatics.
+And you ?
+<span class="c1">#Ctrl + D</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>删除上面创建的文件夹 1/2/3/4/5/6/7/8/9 及文本文件 me.txt</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/tmp/
+rm -rf tmp/
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>在任意文件夹下面创建 folder1~5这5个文件夹，然后每个文件夹下面继续创建 folder1~5这5个文件夹</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">for</span> m in <span class="o">{</span>1..5<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+<span class="k">for</span> n in <span class="o">{</span>1..5<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+mkdir -p folder<span class="si">${</span><span class="nv">m</span><span class="si">}</span>/folder<span class="si">${</span><span class="nv">n</span><span class="si">}</span>
+<span class="k">done</span>
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>在第五题创建的每一个文件夹下面都 创建第二题文本文件 me.txt ，内容也要一样。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt; me.txt
+Go to: http://www.biotrainee.com/
+I love bioinfomatics.
+And you ?
+<span class="c1">#Ctrl + D</span>
+<span class="k">for</span> m in <span class="o">{</span>1..5<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+<span class="k">for</span> n in <span class="o">{</span>1..5<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+cp me.txt folder<span class="si">${</span><span class="nv">m</span><span class="si">}</span>/folder<span class="si">${</span><span class="nv">n</span><span class="si">}</span>
+<span class="k">done</span>
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="7">
+<li>再次删除掉前面几个步骤建立的文件夹及文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">rm -rf ~/temp
+</code></pre></td></tr></table>
+</div>
+</div><ol start="8">
+<li>下载 <a href="http://www.biotrainee.com/jmzeng/igv/test.bed">http://www.biotrainee.com/jmzeng/igv/test.bed</a> 文件，后在里面选择含有 H3K4me3 的那一行是第几行，该文件总共有几行。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget http://www.biotrainee.com/jmzeng/igv/test.bed
+<span class="c1"># 结果为第8行</span>
+grep -n H3K4me3 test.bed
+<span class="c1"># 结果为10行</span>
+wc -l test.bed
+</code></pre></td></tr></table>
+</div>
+</div><ol start="9">
+<li>下载 <a href="http://www.biotrainee.com/jmzeng/rmDuplicate.zip">http://www.biotrainee.com/jmzeng/rmDuplicate.zip</a> 文件，并且解压，查看里面的文件夹结构</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget http://www.biotrainee.com/jmzeng/rmDuplicate.zip
+unzip rmDuplicate.zip
+tree rmDuplicate
+</code></pre></td></tr></table>
+</div>
+</div><ol start="10">
+<li>打开第九题解压的文件，进入 rmDuplicate/samtools/single 文件夹里面，查看后缀为 .sam 的文件，搞清楚 生物信息学里面的SAM/BAM 定义是什么</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> rmDuplicate/samtools/single
+less -S tmp.sam
+</code></pre></td></tr></table>
+</div>
+</div><ol start="11">
+<li>安装 samtools 软件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2
+tar Jxf samtools-1.9.tar.bz2
+</code></pre></td></tr></table>
+</div>
+</div><ol start="12">
+<li>打开 后缀为BAM 的文件，找到产生该文件的命令。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">samtools view tmp.rmdup.bam <span class="p">|</span> less -S
+cat readme.txt
+</code></pre></td></tr></table>
+</div>
+</div><ol start="14">
+<li>上面的后缀为BAM 的文件的第二列，只有 0 和 16 两个数字，用 cut/sort/uniq等命令统计它们的个数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">samtools view tmp.rmdup.bam <span class="p">|</span> cut -f <span class="m">2</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c
+     <span class="m">16</span> <span class="m">0</span>
+     <span class="m">12</span> <span class="m">16</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="15">
+<li>重新打开 rmDuplicate/samtools/paired 文件夹下面的后缀为BAM 的文件，再次查看第二列，并且统计</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ../paired
+samtools view tmp.rmdup.bam <span class="p">|</span> cut -f 2<span class="p">|</span> sort <span class="p">|</span> uniq -uc
+      <span class="m">7</span> <span class="m">147</span>
+      <span class="m">2</span> <span class="m">163</span>
+      <span class="m">1</span> <span class="m">323</span>
+      <span class="m">1</span> <span class="m">353</span>
+      <span class="m">1</span> <span class="m">371</span>
+      <span class="m">1</span> <span class="m">387</span>
+      <span class="m">1</span> <span class="m">433</span>
+      <span class="m">2</span> <span class="m">83</span>
+      <span class="m">2</span> <span class="m">97</span>
+      <span class="m">8</span> <span class="m">99</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="16">
+<li>下载 <a href="http://www.biotrainee.com/jmzeng/sickle/sickle-results.zip">http://www.biotrainee.com/jmzeng/sickle/sickle-results.zip</a> 文件，并且解压，查看里面的文件夹结构， 这个文件有2.3M，注意留心下载时间及下载速度。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/temp
+wget http://www.biotrainee.com/jmzeng/sickle/sickle-results.zip
+unzip sickle-results.zip
+</code></pre></td></tr></table>
+</div>
+</div><ol start="17">
+<li>解压 sickle-results/single_tmp_fastqc.zip 文件，并且进入解压后的文件夹，找到 fastqc_data.txt 文件，并且搜索该文本文件以 &raquo;开头的有多少行？</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> sickle-results
+unzip single_tmp_fastqc.zip
+grep -c <span class="s1">&#39;&gt;&gt;&#39;</span> fastqc_data.txt
+</code></pre></td></tr></table>
+</div>
+</div><ol start="18">
+<li>下载 <a href="http://www.biotrainee.com/jmzeng/tmp/hg38.tss">http://www.biotrainee.com/jmzeng/tmp/hg38.tss</a> 文件，去NCBI找到TP53/BRCA1等自己感兴趣的基因对应的 refseq数据库 ID，然后找到它们的hg38.tss 文件的哪一行。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget http://www.biotrainee.com/jmzeng/tmp/hg38.tss
+grep NM_000546 hg38.tss
+</code></pre></td></tr></table>
+</div>
+</div><ol start="19">
+<li>解析hg38.tss 文件，统计每条染色体的基因个数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cut -f <span class="m">2</span> hg38.tss <span class="p">|</span> sort <span class="p">|</span> uniq -c
+</code></pre></td></tr></table>
+</div>
+</div><ol start="20">
+<li>解析hg38.tss 文件，统计NM和NR开头的熟练，了解NM和NR开头的含义。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cut -f <span class="m">1</span> hg38.tss <span class="p">|</span> grep -c <span class="s1">&#39;NM&#39;</span>
+<span class="m">51064</span>
+ cut -f <span class="m">1</span> hg38.tss <span class="p">|</span> grep -c <span class="s1">&#39;NR&#39;</span>
+<span class="m">15954</span>
+<span class="c1"># https://en.wikipedia.org/wiki/RefSeq</span>
+<span class="c1"># NM, mRNA. NR, ncRNA</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-03-11
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/%E7%94%9F%E4%BF%A1%E6%8A%80%E8%83%BD%E6%A0%91/">生信技能树</a>
+          <a href="/tags/biotrainee/">biotrainee</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/03/11/RNA-seq-exercise/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">RNA-seq小考核</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/03/11/R-exercise/">
+            <span class="next-text nav-default">R语言练习题</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

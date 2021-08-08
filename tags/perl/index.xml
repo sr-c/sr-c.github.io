@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>perl on SR-C</title>
+    <link>https://sr-c.github.io/tags/perl/</link>
+    <description>Recent content in perl on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 28 Aug 2020 14:45:13 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/perl/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AGAT使用</title>
+      <link>https://sr-c.github.io/2020/08/28/AGAT-usage/</link>
+      <pubDate>Fri, 28 Aug 2020 14:45:13 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/08/28/AGAT-usage/</guid>
+      <description>AGAT是Another Gff Analysis Toolkit的缩写, 是一个用于操作GTF/GFF文件的工具。它集合了一系列perl脚本，并且可以通过conda</description>
+    </item>
+    
+    <item>
+      <title>PASA的安装</title>
+      <link>https://sr-c.github.io/2018/07/15/pasa-install/</link>
+      <pubDate>Sun, 15 Jul 2018 11:59:02 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/15/pasa-install/</guid>
+      <description>安装PASA 1 2 3 4 5 6 7 8 cd ~/software/ wget https://github.com/PASApipeline/PASApipeline/releases/download/pasa-v2.3.3/PASApipeline-v2.3.3.tar.gz tar zxf PASApipeline-v2.3.3.tar.gz -C ~/opt/ mv ~/opt/PASApipeline-pasa-v2.3.3 ~/opt/pasa-v2.3.3 cd ~/opt/pasa-v2.3.3 make echo &amp;#39;$PASAHOME=~/opt/pasa-v2.3.3/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc source ~/.bashrc 安装perl模块 安装PASA最大的困难就在于perl模块的配置。本文参</description>
+    </item>
+    
+    <item>
+      <title>配置perl模块</title>
+      <link>https://sr-c.github.io/2018/05/27/perl-modules/</link>
+      <pubDate>Sun, 27 May 2018 22:50:40 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/27/perl-modules/</guid>
+      <description>安装Perlberw 1 \curl -L https://install.perlbrew.pl | bash 安装完成后即可不需sudo安装模块，尝试不同版本的perl 使用cpanminus管理模块 使用perlberw</description>
+    </item>
+    
+  </channel>
+</rss>

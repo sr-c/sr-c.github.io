@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>LACHESIS安装 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="系统依赖 LACHESIS的系统依赖有 gcc, the C&#43;&#43; compiler (http://gcc.gnu.org/) The zlib compression library (http://www.zlib.net/) The boost C&#43;&#43; libraries (http://www.boost.org/) The SAMtools toolkit for handling SAM/BAM files (http://samtools.sourceforge.net/) (make sure to use version 0.1.19 or older) 其中，boost的版本应该高于1.52.0" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/03/19/LACHESIS-install/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="LACHESIS安装" />
+<meta property="og:description" content="系统依赖 LACHESIS的系统依赖有 gcc, the C&#43;&#43; compiler (http://gcc.gnu.org/) The zlib compression library (http://www.zlib.net/) The boost C&#43;&#43; libraries (http://www.boost.org/) The SAMtools toolkit for handling SAM/BAM files (http://samtools.sourceforge.net/) (make sure to use version 0.1.19 or older) 其中，boost的版本应该高于1.52.0" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/03/19/LACHESIS-install/" />
+<meta property="article:published_time" content="2019-03-19T21:12:12+00:00" />
+<meta property="article:modified_time" content="2019-03-19T21:12:12+00:00" />
+<meta itemprop="name" content="LACHESIS安装">
+<meta itemprop="description" content="系统依赖 LACHESIS的系统依赖有 gcc, the C&#43;&#43; compiler (http://gcc.gnu.org/) The zlib compression library (http://www.zlib.net/) The boost C&#43;&#43; libraries (http://www.boost.org/) The SAMtools toolkit for handling SAM/BAM files (http://samtools.sourceforge.net/) (make sure to use version 0.1.19 or older) 其中，boost的版本应该高于1.52.0">
+<meta itemprop="datePublished" content="2019-03-19T21:12:12+00:00" />
+<meta itemprop="dateModified" content="2019-03-19T21:12:12+00:00" />
+<meta itemprop="wordCount" content="1033">
+
+
+
+<meta itemprop="keywords" content="LACHESIS,Hi-C," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LACHESIS安装"/>
+<meta name="twitter:description" content="系统依赖 LACHESIS的系统依赖有 gcc, the C&#43;&#43; compiler (http://gcc.gnu.org/) The zlib compression library (http://www.zlib.net/) The boost C&#43;&#43; libraries (http://www.boost.org/) The SAMtools toolkit for handling SAM/BAM files (http://samtools.sourceforge.net/) (make sure to use version 0.1.19 or older) 其中，boost的版本应该高于1.52.0"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">LACHESIS安装</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-19 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#系统依赖">系统依赖</a>
+      <ul>
+        <li><a href="#编译安装boost">编译安装boost</a></li>
+        <li><a href="#编译安装samtools">编译安装samtools</a></li>
+        <li><a href="#编译lachesis">编译LACHESIS</a></li>
+      </ul>
+    </li>
+    <li><a href="#自行使用conda配置boost环境">自行使用conda配置boost环境</a>
+      <ul>
+        <li><a href="#zlib错误">zlib错误</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="系统依赖">系统依赖</h2>
+<p><code>LACHESIS</code>的系统依赖有</p>
+<ul>
+<li>gcc, the C++ compiler (<a href="http://gcc.gnu.org/">http://gcc.gnu.org/</a>)</li>
+<li>The zlib compression library (<a href="http://www.zlib.net/">http://www.zlib.net/</a>)</li>
+<li>The boost C++ libraries (<a href="http://www.boost.org/">http://www.boost.org/</a>)</li>
+<li>The SAMtools toolkit for handling SAM/BAM files (<a href="http://samtools.sourceforge.net/">http://samtools.sourceforge.net/</a>) (make sure to use version 0.1.19 or older)</li>
+</ul>
+<p>其中，<code>boost</code>的版本应该高于<code>1.52.0</code>，低于<code>1.67.0</code>，<code>samtools</code>的版本不高于<code>0.1.19</code></p>
+<p>此外，LACHESIS需要系统的堆栈大小最小为10 MB. 可使用<code>ulimit -s</code>查看，若小于10240，可使用<code>ulimit -s 10240</code>设定。</p>
+<h3 id="编译安装boost">编译安装boost</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">tar zxf boost_1_53_0.tar.gz
+./bootstrap.sh --with-libraries<span class="o">=</span>all --with-toolset<span class="o">=</span>gcc
+./b2 <span class="nv">toolset</span><span class="o">=</span>gcc <span class="c1">#此步骤过程较长</span>
+./b2 install --prefix<span class="o">=</span>/path/to/istall/boost_1_53_0
+./bjam install --prefix<span class="o">=</span>/path/to/istall/boost_1_53_0
+</code></pre></td></tr></table>
+</div>
+</div><p>此过程中会得到许多failed，error如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">...failed gcc.compile.c++ bin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi/cpplexer/re2clex/cpp_re.o...
+...skipped &lt;pbin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi&gt;libboost_wave.a(clean) for lack of &lt;pbin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi&gt;cpplexer/re2clex/cpp_re.o...
+...skipped &lt;pbin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi&gt;libboost_wave.a for lack of &lt;pbin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi&gt;cpplexer/re2clex/cpp_re.o...
+...skipped &lt;pstage/lib&gt;libboost_wave.a for lack of &lt;pbin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi&gt;libboost_wave.a...
+...failed updating 88 targets...
+...skipped 78 targets...
+...updated 802 targets...
+
+...failed gcc.compile.c++ bin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi/cpplexer/re2clex/cpp_re.o...
+...skipped &lt;pbin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi&gt;libboost_wave.a(clean) for lack of &lt;pbin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi&gt;cpplexer/re2clex/cpp_re.o...
+...skipped &lt;pbin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi&gt;libboost_wave.a for lack of &lt;pbin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi&gt;cpplexer/re2clex/cpp_re.o...
+...skipped &lt;p/Storage/data002/shurh/opt/boost_1_53_0/lib&gt;libboost_wave.a for lack of &lt;pbin.v2/libs/wave/build/gcc-7.3.0/release/link-static/threading-multi&gt;libboost_wave.a...
+...failed updating 88 targets...
+...skipped 78 targets...
+...updated 10108 targets...
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="编译安装samtools">编译安装samtools</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">./Makefile
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="编译lachesis">编译LACHESIS</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">LACHESIS_BOOST_DIR</span><span class="o">=</span>/path/to/boost_1_53_0
+<span class="nb">export</span> <span class="nv">LACHESIS_SAMTOOLS_DIR</span><span class="o">=</span>/path/to/samtools-0.1.19
+./configure --with-samtools<span class="o">=</span>/path/to/samtools-0.1.19 --with-boost<span class="o">=</span>/path/to/boost_1_53_0/
+</code></pre></td></tr></table>
+</div>
+</div><p>报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">checking <span class="k">for</span> Boost headers version &gt;<span class="o">=</span> 1.52.0... /Storage/data002/shurh/opt/boost_1_53_0//include
+checking <span class="k">for</span> Boost<span class="err">&#39;</span>s header version... 1_53
+checking <span class="k">for</span> the toolset name used by Boost <span class="k">for</span> g++... configure: WARNING: could not figure out which toolset name to use <span class="k">for</span> g++
+
+checking boost/system/error_code.hpp usability... yes
+checking boost/system/error_code.hpp presence... yes
+checking <span class="k">for</span> boost/system/error_code.hpp... yes
+checking <span class="k">for</span> the Boost system library... no
+configure: error: cannot find the flags to link with Boost system
+</code></pre></td></tr></table>
+</div>
+</div><p>提示boost缺少system库文件，查看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ls ~/opt/boost_1_53_0/lib/
+libboost_chrono.a             libboost_math_c99f.so.1.53.0  libboost_prg_exec_monitor.a
+libboost_context.a            libboost_math_c99l.a          libboost_prg_exec_monitor.so
+libboost_context.so           libboost_math_c99l.so         libboost_prg_exec_monitor.so.1.53.0
+libboost_context.so.1.53.0    libboost_math_c99l.so.1.53.0  libboost_python.a
+libboost_date_time.a          libboost_math_c99.so          libboost_python.so
+libboost_date_time.so         libboost_math_c99.so.1.53.0   libboost_python.so.1.53.0
+libboost_date_time.so.1.53.0  libboost_math_tr1.a           libboost_random.a
+libboost_exception.a          libboost_math_tr1f.a          libboost_random.so
+libboost_graph.a              libboost_math_tr1f.so         libboost_random.so.1.53.0
+libboost_iostreams.a          libboost_math_tr1f.so.1.53.0  libboost_signals.a
+libboost_iostreams.so         libboost_math_tr1l.a          libboost_signals.so
+libboost_iostreams.so.1.53.0  libboost_math_tr1l.so         libboost_signals.so.1.53.0
+libboost_math_c99.a           libboost_math_tr1l.so.1.53.0  libboost_timer.a
+libboost_math_c99f.a          libboost_math_tr1.so
+libboost_math_c99f.so         libboost_math_tr1.so.1.53.0
+</code></pre></td></tr></table>
+</div>
+</div><p>确实缺少<code>libboost_system.so</code>, 而这在<code>./bjam install</code>过程中的报错信息中存在</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">...failed gcc.compile.c++ bin.v2/libs/system/build/gcc-7.3.0/release/link-static/threading-multi/error_code.o...
+...skipped &lt;pbin.v2/libs/system/build/gcc-7.3.0/release/link-static/threading-multi&gt;libboost_system.a<span class="o">(</span>clean<span class="o">)</span> <span class="k">for</span> lack of &lt;pbin.v2/libs/system/build/gcc-7.3.0/release/link-static/threading-multi&gt;error_code.o...
+...skipped &lt;pbin.v2/libs/system/build/gcc-7.3.0/release/link-static/threading-multi&gt;libboost_system.a <span class="k">for</span> lack of &lt;pbin.v2/libs/system/build/gcc-7.3.0/release/link-static/threading-multi&gt;error_code.o...
+...skipped &lt;p/usr/local/lib&gt;libboost_system.a <span class="k">for</span> lack of &lt;pbin.v2/libs/system/build/gcc-7.3.0/release/link-static/threading-multi&gt;libboost_system.a...
+</code></pre></td></tr></table>
+</div>
+</div><p>说明在编译过程中，<code>libboost_system</code>由于某些错误被滤过了，没有被编译。</p>
+<h2 id="自行使用conda配置boost环境">自行使用conda配置boost环境</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda create -n LACHESIS <span class="nv">python</span><span class="o">=</span>2.7
+<span class="nb">source</span> activate LACHESIS
+conda install <span class="nv">boost</span><span class="o">=</span>1.57 -y
+<span class="nb">export</span> <span class="nv">LACHESIS_BOOST_DIR</span><span class="o">=</span>/path/miniconda/envs/LACHESIS
+<span class="nb">export</span> <span class="nv">LACHESIS_SAMTOOLS_DIR</span><span class="o">=</span>/path/to/samtools-0.1.19
+./configure --with-samtools<span class="o">=</span>/path/to/samtools-0.1.19 --with-boost<span class="o">=</span>/path/to/boost_1_53_0/
+</code></pre></td></tr></table>
+</div>
+</div><p>Boost system library通过，但得到后续报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">checking <span class="k">for</span> boost/program_options.hpp... yes
+checking <span class="k">for</span> the Boost program_options library... no
+configure: error: cannot find the flags to link with Boost program_options
+</code></pre></td></tr></table>
+</div>
+</div><p>但是<code>/path/miniconda/envs/LACHESIS/lib</code>中是存在<code>libboost_program_options.so</code>的</p>
+<p>查看<code>./configure</code>中的<code>deflate</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">for ac_header in zlib.h
+do :
+  ac_fn_cxx_check_header_mongrel &#34;$LINENO&#34; &#34;zlib.h&#34; &#34;ac_cv_header_zlib_h&#34; &#34;$ac_include
+if test &#34;x$ac_cv_header_zlib_h&#34; = xyes; then :
+  cat &gt;&gt;confdefs.h &lt;&lt;_ACEOF
+#define HAVE_ZLIB_H 1
+_ACEOF
+
+else
+  as_fn_error $? &#34;libz is required.&#34; &#34;$LINENO&#34; 5
+fi
+
+done
+
+{ $as_echo &#34;$as_me:${as_lineno-$LINENO}: checking for library containing deflate&#34; &gt;&amp;5
+$as_echo_n &#34;checking for library containing deflate... &#34; &gt;&amp;6; }
+if ${ac_cv_search_deflate+:} false; then :
+  $as_echo_n &#34;(cached) &#34; &gt;&amp;6
+else
+  ac_func_search_save_LIBS=$LIBS
+cat confdefs.h - &lt;&lt;_ACEOF &gt;conftest.$ac_ext
+/* end confdefs.h.  */
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="zlib错误">zlib错误</h3>
+<p><a href="https://daler.github.io/bioconda-docs/troubleshooting.html#zlib-errors">https://daler.github.io/bioconda-docs/troubleshooting.html#zlib-errors</a></p>
+<p>有时即使已经安装了zlib, 但在编译程序时仍然报错缺少<code>zlib.h</code>, 这常常时因为zlib的位置常常在编译文件中定义了，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">unset</span> LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE
+</code></pre></td></tr></table>
+</div>
+</div><p>手动修改<code>src/include/gtools</code>文件夹中<code>SAMStepper.h</code>和<code>SAMStepper.cc</code>的samtools头文件</p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://github.com/shendurelab/LACHESIS/issues/30#issuecomment-299240018">https://github.com/shendurelab/LACHESIS/issues/30#issuecomment-299240018</a></p>
+<p><a href="https://github.com/shendurelab/LACHESIS/issues/23">https://github.com/shendurelab/LACHESIS/issues/23</a></p>
+<p><a href="https://blog.csdn.net/yzf279533105/article/details/77658367">https://blog.csdn.net/yzf279533105/article/details/77658367</a></p>
+<p><a href="https://daler.github.io/bioconda-docs/troubleshooting.html#zlib-errors">https://daler.github.io/bioconda-docs/troubleshooting.html#zlib-errors</a></p>
+<p><a href="https://www.tecmint.com/set-unset-environment-variables-in-linux/">https://www.tecmint.com/set-unset-environment-variables-in-linux/</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-03-19
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/LACHESIS/">LACHESIS</a>
+          <a href="/tags/Hi-C/">Hi-C</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/03/23/KinFin-quickstart/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用KinFin进行比较基因组分析</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/03/16/R-setup/">
+            <span class="next-text nav-default">Windows中R的配置</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

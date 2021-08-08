@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gtf on SR-C</title>
+    <link>https://sr-c.github.io/tags/gtf/</link>
+    <description>Recent content in gtf on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 28 Aug 2020 14:45:13 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/gtf/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AGAT使用</title>
+      <link>https://sr-c.github.io/2020/08/28/AGAT-usage/</link>
+      <pubDate>Fri, 28 Aug 2020 14:45:13 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/08/28/AGAT-usage/</guid>
+      <description>AGAT是Another Gff Analysis Toolkit的缩写, 是一个用于操作GTF/GFF文件的工具。它集合了一系列perl脚本，并且可以通过conda</description>
+    </item>
+    
+    <item>
+      <title>bed格式转换</title>
+      <link>https://sr-c.github.io/2018/10/12/convert-gff-to-bed/</link>
+      <pubDate>Fri, 12 Oct 2018 18:21:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/12/convert-gff-to-bed/</guid>
+      <description>在线工具 The Galaxy Project提供了这方面的在线工具，可以方便地将gff格式文件转换为bed格式。 但是由于gff格式文件标签太多，导致输出的be</description>
+    </item>
+    
+  </channel>
+</rss>

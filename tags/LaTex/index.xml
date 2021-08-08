@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LaTex on SR-C</title>
+    <link>https://sr-c.github.io/tags/LaTex/</link>
+    <description>Recent content in LaTex on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 19 Jun 2020 21:49:12 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/LaTex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LaTeX-beginer</title>
+      <link>https://sr-c.github.io/2020/06/19/LaTeX-beginer/</link>
+      <pubDate>Fri, 19 Jun 2020 21:49:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/06/19/LaTeX-beginer/</guid>
+      <description>环境配置 安装TexLive与vscode, 具体流程参考其他说明。 文献管理格式BibTeX 使用BibTex管理参考文献。 规范格式 1 2 3 4 5 6 @article{mrx05,</description>
+    </item>
+    
+  </channel>
+</rss>

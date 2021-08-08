@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>在manjaro上配置工作环境 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="最近看老莱视频，了解到用户友好的manjaro(竟然内置steam), 再加上强大的AUG, 忍不住来尝试一下。 安装 使用dd将安装镜像写入到u盘" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/05/11/manjaro-quickstart/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="在manjaro上配置工作环境" />
+<meta property="og:description" content="最近看老莱视频，了解到用户友好的manjaro(竟然内置steam), 再加上强大的AUG, 忍不住来尝试一下。 安装 使用dd将安装镜像写入到u盘" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/05/11/manjaro-quickstart/" />
+<meta property="article:published_time" content="2019-05-11T19:48:51+00:00" />
+<meta property="article:modified_time" content="2019-05-11T19:48:51+00:00" />
+<meta itemprop="name" content="在manjaro上配置工作环境">
+<meta itemprop="description" content="最近看老莱视频，了解到用户友好的manjaro(竟然内置steam), 再加上强大的AUG, 忍不住来尝试一下。 安装 使用dd将安装镜像写入到u盘">
+<meta itemprop="datePublished" content="2019-05-11T19:48:51+00:00" />
+<meta itemprop="dateModified" content="2019-05-11T19:48:51+00:00" />
+<meta itemprop="wordCount" content="1305">
+
+
+
+<meta itemprop="keywords" content="manjaro,arch,linux," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在manjaro上配置工作环境"/>
+<meta name="twitter:description" content="最近看老莱视频，了解到用户友好的manjaro(竟然内置steam), 再加上强大的AUG, 忍不住来尝试一下。 安装 使用dd将安装镜像写入到u盘"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">在manjaro上配置工作环境</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-05-11 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#软件源配置">软件源配置</a>
+      <ul>
+        <li><a href="#软件源">软件源</a></li>
+        <li><a href="#添加archlinuxcn源">添加ArchLinuxCN源</a></li>
+      </ul>
+    </li>
+    <li><a href="#时间设置">时间设置</a>
+      <ul>
+        <li><a href="#问题原因">问题原因</a></li>
+        <li><a href="#解决方案">解决方案</a></li>
+      </ul>
+    </li>
+    <li><a href="#常用软件">常用软件</a>
+      <ul>
+        <li><a href="#安装fcitx">安装fcitx</a></li>
+        <li><a href="#安装yay">安装yay</a></li>
+        <li><a href="#其他软件">其他软件</a></li>
+      </ul>
+    </li>
+    <li><a href="#其他设置">其他设置</a>
+      <ul>
+        <li><a href="#字体配置">字体配置</a></li>
+        <li><a href="#自启动配置">自启动配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>最近看老莱视频，了解到用户友好的<code>manjaro</code>(竟然内置steam), 再加上强大的AUG, 忍不住来尝试一下。</p>
+<h2 id="安装">安装</h2>
+<p>使用<code>dd</code>将安装镜像写入到u盘</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#确认u盘的挂载位置，写入前取消挂载</span>
+df -h
+umount /dev/sdx
+<span class="c1">#使用dd命令写入</span>
+dd <span class="k">if</span><span class="o">=</span>path/to/manjaro.iso <span class="nv">of</span><span class="o">=</span>/dev/sdx <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</code></pre></td></tr></table>
+</div>
+</div><p>系统安装过程非常方便，<code>manjaro</code>的安装引导非常友好，在分区过程的提示很细致，还会提示每个磁盘的分区表类型。</p>
+<p>最简单安装只需指定efi的引导分区<code>/boot/efi</code>和<code>/</code>挂载点即可</p>
+<blockquote>
+<p>由于 Windows10 本身的引导分区就是 ESP 分区，所以到分区的界面，只需要将 /boot/efi 挂载到 ESP 分区即可。</p>
+</blockquote>
+<h2 id="软件源配置">软件源配置</h2>
+<p>安装时语言设置为en.utf-8, 时区设置为上海，默认就安装了中文支持。</p>
+<h3 id="软件源">软件源</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#选择最快的镜像源</span>
+sudo pacman-mirrors -i -c China -m rank
+<span class="c1">#刷新缓存</span>
+sudo pacman -Syy
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="添加archlinuxcn源">添加ArchLinuxCN源</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#在文件/etc/pacman.conf末尾添加如下内容</span>
+sudo <span class="nb">echo</span> <span class="s1">&#39;[archlinuxcn]\nSigLevel = Optional TrustedOnly\nServer = https://mirrors.ustc.edu.cn/archlinuxcn/$arch&#39;</span> &gt;&gt; /etc/pacman.conf
+<span class="c1">#导入archlinuxcn-keyring</span>
+sudo pacman -Syy <span class="o">&amp;&amp;</span> sudo pacman -S archlinuxcn-keyring
+<span class="c1">#再次刷新缓存，下载速度应该就比较令人满意了</span>
+sudo panman -Syy
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="时间设置">时间设置</h2>
+<p>对于<code>Windows</code>与<code>linux</code>双系统的用户，系统时间的设置往往是一个比较头疼的问题。</p>
+<h3 id="问题原因">问题原因</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">timedatectl
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到，系统时间实际分为<code>Local time</code>,<code>Universal time</code>与<code>RTC time</code></p>
+<p>Windows使用的是本地时间<code>Local time</code>, 而UNIX使用的是UTC时间<code>Universal time</code>.</p>
+<p>Windows会认为主板BIOS上的硬件时间就是本地时间，同步时间后也会将时间写入BIOS. UNIX则认为硬件时间是UTC时间，同步时间后会将本地时间按照时区计算后得到的UTC时间写入主板。</p>
+<p>这样，在一个已有Windows的电脑上，BIOS的硬件时间就会被写为本地时间。之后安装的UNIX会将BIOS上的硬件时间识别为UTC时间，再根据时区信息计算出本地时间，显示在系统上。因此，我们会看到UNIX默认显示的时间与实际本地时间相差8个小时。</p>
+<h3 id="解决方案">解决方案</h3>
+<p>因此，该问题就存在两种解决方案。一是让Linux使用本地时间<code>local time</code>, 或是让Windows使用UTC时间。以下方案择一即可。</p>
+<h4 id="linux方案">Linux方案</h4>
+<p>修改为本地时间（目前使用此方案）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">timedatectl set-local-rtc <span class="m">1</span> --adjust-system-clock
+timedatectl set-ntp <span class="m">0</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="https://alexiachen.github.io/blog/2018/08/11/manjaro-hello/">使用NTP同步时间</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo ntpdate cn.ntp.org.cn <span class="c1">#可以换成任何一个公开的NTP Server地址</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="windows方案">Windows方案</h4>
+<p>修改注册表，且需关闭时间同步。（未执行）</p>
+<blockquote>
+<p>[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation]</p>
+<p>&ldquo;RealTimeIsUniversal&quot;=dword:00000001</p>
+</blockquote>
+<h2 id="常用软件">常用软件</h2>
+<h3 id="安装fcitx">安装fcitx</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo pacman -S fcitx-googlepinyin
+sudo pacman -S fcitx-im
+sudo pacman -S fcitx-configtool
+
+<span class="c1">#在桌面环境配置文件中写入相关设置</span>
+<span class="nb">echo</span> <span class="s2">&#34;export GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexport XMODIFIERS=@im=fcitx&#34;</span> &gt;&gt; ~/.xprofile
+</code></pre></td></tr></table>
+</div>
+</div><p>注销后即可正常使用fcitx</p>
+<blockquote>
+<p>若初始选择安装的英文系统，再安装fcitx可能会使得fcitx中的中文输入法不能正常调用，此时应修改本地化设定中的语言</p>
+</blockquote>
+<h3 id="安装yay">安装yay</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo panman -S yay
+</code></pre></td></tr></table>
+</div>
+</div><p>由于<code>yaourt</code>目前已停止开发，存在安全问题，故选择<code>yay</code>进行包管理</p>
+<h3 id="其他软件">其他软件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">yay -S wps-office nutstore typora sublime-text-imfix visual-studio-code-bin
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="其他设置">其他设置</h2>
+<h3 id="字体配置">字体配置</h3>
+<p><code>XFCE</code>桌面默认的字体配置在<code>外观</code>中设置。默认字体为<code>Noto Sans Regular</code>, 默认等宽字体为<code>Monospace Regular</code>, 已有不错的显示效果。</p>
+<p>字体大小默认为10号字，根据屏幕情况可自行调整至12或14号字。</p>
+<h3 id="自启动配置">自启动配置</h3>
+<p>配置文件位于<code>～/.config/autostart/</code>目录下，也可通过<code>会话和启动</code>进行设置。</p>
+<p>参考坚果云写入的自启动方式，可自行将启动项写入为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sh -c <span class="s2">&#34;(sleep 30 &amp;&amp; nohup /opt/nutstore/bin/nutstore-pydaemon.py &gt;/dev/null 2&gt;&amp;1) &amp;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://wenqixiang.com/manjaro-guide/">https://wenqixiang.com/manjaro-guide/</a></p>
+<p><a href="https://www.lanbu.net/d/52/11">https://www.lanbu.net/d/52/11</a></p>
+<p><a href="http://blog.sina.com.cn/s/blog_18373c26b0102xo4g.html">http://blog.sina.com.cn/s/blog_18373c26b0102xo4g.html</a></p>
+<p><a href="https://blog.csdn.net/aaazz47/article/details/78696899">https://blog.csdn.net/aaazz47/article/details/78696899</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-05-11
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/manjaro/">manjaro</a>
+          <a href="/tags/arch/">arch</a>
+          <a href="/tags/linux/">linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/05/27/RNA-seq-expression-units/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">RNA-seq的表达量计算单元</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/04/30/how-heatmaps-work/">
+            <span class="next-text nav-default">如何绘制一张热图</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ssh on SR-C</title>
+    <link>https://sr-c.github.io/tags/ssh/</link>
+    <description>Recent content in ssh on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 14 Aug 2018 11:51:50 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SCP遇到&#34;Write failed Broken pipe&#34;</title>
+      <link>https://sr-c.github.io/2018/08/14/Write-failed-Broken-pipe/</link>
+      <pubDate>Tue, 14 Aug 2018 11:51:50 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/08/14/Write-failed-Broken-pipe/</guid>
+      <description>解决方案 无管理员权限则修改客户端的ssh配置 1 2 3 4 ##编辑ssh配置文件，无此文件则新建 vi ~/.ssh/config ##在其中添加如下语句 ServerAliveInterval 60 使得客户端在ssh连</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GenomeScope on SR-C</title>
+    <link>https://sr-c.github.io/tags/GenomeScope/</link>
+    <description>Recent content in GenomeScope on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 30 Aug 2018 20:32:53 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/GenomeScope/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用GenomeScope进行基因组评估</title>
+      <link>https://sr-c.github.io/2018/08/30/genome-scope/</link>
+      <pubDate>Thu, 30 Aug 2018 20:32:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/08/30/genome-scope/</guid>
+      <description>使用Jellyfish 统计k-mer 下载并安装: http://www.genome.umd.edu/jellyfish.html#Release 准备数据 参照陈连福的方法，提前将paired-end数据整合。将read2数据的序列反向重</description>
+    </item>
+    
+  </channel>
+</rss>

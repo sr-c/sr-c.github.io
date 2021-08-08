@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>GeneWise的安装 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="软件下载 1 2 wget http://www.ebi.ac.uk/~birney/wise2/wise2.4.1.tar.gz tar zxf ~/software/wise2.4.1.tar.gz -C ~/opt/ 软件编译 1 2 3 4 5 6 7 8 cd /opt/biosoft/wise2.4.1/src/ cd HMMer2 sed &amp;#39;s/getline/getline_new/&amp;#39; sqio.c &amp;gt; a &amp;amp;&amp;amp; mv a sqio.c cd .. perl -p -i -e &amp;#39;s/isnumber/isdigit/&amp;#39; models/phasemodel.c make all echo &amp;#39;PATH=$PATH:~/opt/wise2.4.1/src/bin/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc echo &amp;#39;WISECONFIGDIR=~/opt/wise2.4.1/wisecfg/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc 这里修改了两个文件HMMer" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/09/01/genewise-install/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="GeneWise的安装" />
+<meta property="og:description" content="软件下载 1 2 wget http://www.ebi.ac.uk/~birney/wise2/wise2.4.1.tar.gz tar zxf ~/software/wise2.4.1.tar.gz -C ~/opt/ 软件编译 1 2 3 4 5 6 7 8 cd /opt/biosoft/wise2.4.1/src/ cd HMMer2 sed &#39;s/getline/getline_new/&#39; sqio.c &gt; a &amp;&amp; mv a sqio.c cd .. perl -p -i -e &#39;s/isnumber/isdigit/&#39; models/phasemodel.c make all echo &#39;PATH=$PATH:~/opt/wise2.4.1/src/bin/&#39; &gt;&gt; ~/.bashrc echo &#39;WISECONFIGDIR=~/opt/wise2.4.1/wisecfg/&#39; &gt;&gt; ~/.bashrc 这里修改了两个文件HMMer" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/09/01/genewise-install/" />
+<meta property="article:published_time" content="2018-09-01T23:01:17+00:00" />
+<meta property="article:modified_time" content="2018-09-01T23:01:17+00:00" />
+<meta itemprop="name" content="GeneWise的安装">
+<meta itemprop="description" content="软件下载 1 2 wget http://www.ebi.ac.uk/~birney/wise2/wise2.4.1.tar.gz tar zxf ~/software/wise2.4.1.tar.gz -C ~/opt/ 软件编译 1 2 3 4 5 6 7 8 cd /opt/biosoft/wise2.4.1/src/ cd HMMer2 sed &#39;s/getline/getline_new/&#39; sqio.c &gt; a &amp;&amp; mv a sqio.c cd .. perl -p -i -e &#39;s/isnumber/isdigit/&#39; models/phasemodel.c make all echo &#39;PATH=$PATH:~/opt/wise2.4.1/src/bin/&#39; &gt;&gt; ~/.bashrc echo &#39;WISECONFIGDIR=~/opt/wise2.4.1/wisecfg/&#39; &gt;&gt; ~/.bashrc 这里修改了两个文件HMMer">
+<meta itemprop="datePublished" content="2018-09-01T23:01:17+00:00" />
+<meta itemprop="dateModified" content="2018-09-01T23:01:17+00:00" />
+<meta itemprop="wordCount" content="323">
+
+
+
+<meta itemprop="keywords" content="debug,install,GeneWise," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GeneWise的安装"/>
+<meta name="twitter:description" content="软件下载 1 2 wget http://www.ebi.ac.uk/~birney/wise2/wise2.4.1.tar.gz tar zxf ~/software/wise2.4.1.tar.gz -C ~/opt/ 软件编译 1 2 3 4 5 6 7 8 cd /opt/biosoft/wise2.4.1/src/ cd HMMer2 sed &#39;s/getline/getline_new/&#39; sqio.c &gt; a &amp;&amp; mv a sqio.c cd .. perl -p -i -e &#39;s/isnumber/isdigit/&#39; models/phasemodel.c make all echo &#39;PATH=$PATH:~/opt/wise2.4.1/src/bin/&#39; &gt;&gt; ~/.bashrc echo &#39;WISECONFIGDIR=~/opt/wise2.4.1/wisecfg/&#39; &gt;&gt; ~/.bashrc 这里修改了两个文件HMMer"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">GeneWise的安装</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-01 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#软件下载">软件下载</a></li>
+    <li><a href="#软件编译">软件编译</a></li>
+    <li><a href="#注意事项">注意事项</a></li>
+    <li><a href="#系统版本">系统版本</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="软件下载">软件下载</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget http://www.ebi.ac.uk/~birney/wise2/wise2.4.1.tar.gz
+tar zxf ~/software/wise2.4.1.tar.gz -C ~/opt/
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="软件编译">软件编译</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bashrc" data-lang="bashrc"><span class="nb">cd</span> /opt/biosoft/wise2.4.1/src/
+<span class="nb">cd</span> HMMer2
+sed <span class="s1">&#39;s/getline/getline_new/&#39;</span> sqio.c &gt; a <span class="o">&amp;&amp;</span> mv a sqio.c
+<span class="nb">cd</span> ..
+perl -p -i -e <span class="s1">&#39;s/isnumber/isdigit/&#39;</span> models/phasemodel.c
+make all
+<span class="nb">echo</span> <span class="s1">&#39;PATH=$PATH:~/opt/wise2.4.1/src/bin/&#39;</span> &gt;&gt; ~/.bashrc
+<span class="nb">echo</span> <span class="s1">&#39;WISECONFIGDIR=~/opt/wise2.4.1/wisecfg/&#39;</span> &gt;&gt; ~/.bashrc
+</code></pre></td></tr></table>
+</div>
+</div><p>这里修改了两个文件<code>HMMer2/sqio.c</code>与<code>models/phasemodel.c</code>，否则在编译过程中会有相应报错。</p>
+<h2 id="注意事项">注意事项</h2>
+<p>安装前应判断环境中是否存在<code>glib</code>或<code>glib-2.0</code>。</p>
+<p>若环境中存在glib，则直接按照上述步骤即可完成安装。</p>
+<p>若现环境中使用的不是glib，而是glib2，我们可以不安装glib库，修改软件的makefile文件，直接使用glib2编译。但Genewise不止含有一个makefile文件，故通过如下方法进行批量修改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">find ./ -name makefile <span class="p">|</span> xargs sed -i <span class="s1">&#39;s/glib-config/pkg-config --libs glib-2.0/&#39;</span>
+<span class="nb">export</span> <span class="nv">C_INCLUDE_PATH</span><span class="o">=</span>/usr/include/glib-2.0/:/usr/lib64/glib-2.0/include/:<span class="nv">$C_INCLUDE_PATH</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="系统版本">系统版本</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">Linux version 2.6.32-696.16.1.el6.centos.plus.x86_64 <span class="o">(</span>mockbuild@c1bl.rdu2.centos.org<span class="o">)</span> <span class="o">(</span>gcc version 4.4.7 <span class="m">20120313</span> <span class="o">(</span>Red Hat 4.4.7-18<span class="o">)</span> <span class="o">(</span>GCC<span class="o">)</span> <span class="o">)</span> <span class="c1">#1 SMP Wed Nov 15 18:52:54 UTC 2017</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://jingyan.baidu.com/article/e2284b2b5947e7e2e7118d54.html">https://jingyan.baidu.com/article/e2284b2b5947e7e2e7118d54.html</a></p>
+<p><a href="http://blog.51cto.com/wjpinrain/1077147">http://blog.51cto.com/wjpinrain/1077147</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-09-01
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/debug/">debug</a>
+          <a href="/tags/install/">install</a>
+          <a href="/tags/GeneWise/">GeneWise</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/09/02/SNAP-install/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SNAP软件安装</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/08/31/xargs-tips/">
+            <span class="next-text nav-default">xargs-tips</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

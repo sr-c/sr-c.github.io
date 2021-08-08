@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fastq on SR-C</title>
+    <link>https://sr-c.github.io/tags/fastq/</link>
+    <description>Recent content in fastq on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 30 Aug 2018 16:17:04 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/fastq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>快速了解fastq.gz文件中的reads数目</title>
+      <link>https://sr-c.github.io/2018/08/30/count-reads-number/</link>
+      <pubDate>Thu, 30 Aug 2018 16:17:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/08/30/count-reads-number/</guid>
+      <description>查看单个fq.gz文件中的reads数目 使用zcat命令即可直接查看fq.gz文件的内容。而fastq文件中，每一条read记录占用4行。因</description>
+    </item>
+    
+  </channel>
+</rss>

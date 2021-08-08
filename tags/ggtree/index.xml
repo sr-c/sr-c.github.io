@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ggtree on SR-C</title>
+    <link>https://sr-c.github.io/tags/ggtree/</link>
+    <description>Recent content in ggtree on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 21 Apr 2019 23:44:55 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/ggtree/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ggtree-quickstart</title>
+      <link>https://sr-c.github.io/2019/04/21/ggtree-quickstart/</link>
+      <pubDate>Sun, 21 Apr 2019 23:44:55 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/04/21/ggtree-quickstart/</guid>
+      <description>安装 1 2 3 4 if (!requireNamespace(&amp;#34;BiocManager&amp;#34;, quietly = TRUE)) install.packages(&amp;#34;BiocManager&amp;#34;) BiocManager::install(&amp;#34;treeio&amp;#34;, version = &amp;#34;3.8&amp;#34;) BiocManager::install(&amp;#34;ggtree&amp;#34;, version = &amp;#34;3.8&amp;#34;) 输入 ggtree可以直接文本输入Newick tree 1 2 3 4 library(ggtree) tree_text &amp;lt;- &amp;#34;(((((cow, (whale, dolphin)), (pig2, boar)), camel), fish), seedling);&amp;#34; x &amp;lt;- read.tree(text=tree_text) 也可使用treei</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>assembly on SR-C</title>
+    <link>https://sr-c.github.io/tags/assembly/</link>
+    <description>Recent content in assembly on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 26 Oct 2019 21:57:04 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/assembly/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Viral-genome-assembly</title>
+      <link>https://sr-c.github.io/2019/10/26/Virus-genome-assembly/</link>
+      <pubDate>Sat, 26 Oct 2019 21:57:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/10/26/Virus-genome-assembly/</guid>
+      <description>目前一般的方法有VICUNA, PRICE, IVA, 因此，我们尝试使用这3种方法进行组装。 本地工具 VICUNA VICUNA出自大名鼎鼎的borad研究所，但在2012年</description>
+    </item>
+    
+    <item>
+      <title>使用BUSCO评价基因组组装质量</title>
+      <link>https://sr-c.github.io/2018/06/04/BUSCO/</link>
+      <pubDate>Mon, 04 Jun 2018 22:48:08 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/04/BUSCO/</guid>
+      <description>软件安装 BUSCO的手动安装并不困难，但是BUSCO依赖tblastn与augustus，而augustus的安装比较复杂，因此选择使用co</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>include on SR-C</title>
+    <link>https://sr-c.github.io/tags/include/</link>
+    <description>Recent content in include on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 16 Jul 2018 20:36:04 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/include/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【转载】环境变量，include搜索路径，lib库搜索路径</title>
+      <link>https://sr-c.github.io/2018/07/16/LIBRARY-PATH/</link>
+      <pubDate>Mon, 16 Jul 2018 20:36:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/16/LIBRARY-PATH/</guid>
+      <description>环境变量 系统环境变量 我们知道，我们经常要设置一些环境变量，系统环境变量我们非常容易理解。其实我们在windows中经常容易接触。其实环境变量</description>
+    </item>
+    
+  </channel>
+</rss>

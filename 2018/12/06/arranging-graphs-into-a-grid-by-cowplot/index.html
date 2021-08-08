@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用cowplot完成图片排版 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="默认方案 使用cowplot提供的draw_image函数读入图片 1 2 library(cowplot) p1 &amp;lt;- ggdraw() &#43; draw_image(&amp;#34;myFirstAlignment.pdf&amp;#34;) 存在问题 读入的图片存在太多的空白，需要手动切割，或者使用pa" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/12/06/arranging-graphs-into-a-grid-by-cowplot/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用cowplot完成图片排版" />
+<meta property="og:description" content="默认方案 使用cowplot提供的draw_image函数读入图片 1 2 library(cowplot) p1 &lt;- ggdraw() &#43; draw_image(&#34;myFirstAlignment.pdf&#34;) 存在问题 读入的图片存在太多的空白，需要手动切割，或者使用pa" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/12/06/arranging-graphs-into-a-grid-by-cowplot/" />
+<meta property="article:published_time" content="2018-12-06T15:18:16+00:00" />
+<meta property="article:modified_time" content="2018-12-06T15:18:16+00:00" />
+<meta itemprop="name" content="使用cowplot完成图片排版">
+<meta itemprop="description" content="默认方案 使用cowplot提供的draw_image函数读入图片 1 2 library(cowplot) p1 &lt;- ggdraw() &#43; draw_image(&#34;myFirstAlignment.pdf&#34;) 存在问题 读入的图片存在太多的空白，需要手动切割，或者使用pa">
+<meta itemprop="datePublished" content="2018-12-06T15:18:16+00:00" />
+<meta itemprop="dateModified" content="2018-12-06T15:18:16+00:00" />
+<meta itemprop="wordCount" content="998">
+
+
+
+<meta itemprop="keywords" content="R,cowplot,ggimage," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用cowplot完成图片排版"/>
+<meta name="twitter:description" content="默认方案 使用cowplot提供的draw_image函数读入图片 1 2 library(cowplot) p1 &lt;- ggdraw() &#43; draw_image(&#34;myFirstAlignment.pdf&#34;) 存在问题 读入的图片存在太多的空白，需要手动切割，或者使用pa"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用cowplot完成图片排版</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-06 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#默认方案">默认方案</a></li>
+    <li><a href="#存在问题">存在问题</a></li>
+    <li><a href="#解决方案">解决方案</a>
+      <ul>
+        <li><a href="#安装依赖">安装依赖</a></li>
+      </ul>
+    </li>
+    <li><a href="#实例演示">实例演示</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="默认方案">默认方案</h2>
+<p>使用<code>cowplot</code>提供的<code>draw_image</code>函数读入图片</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">cowplot</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">ggdraw</span><span class="p">()</span> <span class="o">+</span> <span class="nf">draw_image</span><span class="p">(</span><span class="s">&#34;myFirstAlignment.pdf&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="存在问题">存在问题</h2>
+<p>读入的图片存在太多的空白，需要手动切割，或者使用<code>paperWidth</code>和<code>paperHeight</code>来调整，此外，<code>draw_image</code>不指出指定分辨率，读图出来的分辨率太低。</p>
+<h2 id="解决方案">解决方案</h2>
+<p>使用<code>ggimage::image_read2</code>函数导入外部图片，保证图片分辨率并使用<code>ggplotify::as.ggplot</code>转化为<code>ggplot</code>对象，再使用<code>cowplot</code>组图。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1">#安装ggimage最新版</span>
+<span class="nf">setRepositories</span><span class="p">(</span><span class="n">ind</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">)</span>
+<span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;GuangchuangYu/ggimage&#34;</span><span class="p">)</span>
+<span class="c1">#安装ggplotify</span>
+<span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;GuangchuangYu/ggplotify&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="安装依赖">安装依赖</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">Package</span> <span class="n">Magick</span><span class="o">++</span> <span class="n">was</span> <span class="n">not</span> <span class="n">found</span> <span class="n">in</span> <span class="n">the</span> <span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="n">search</span> <span class="n">path.</span>
+<span class="n">Perhaps</span> <span class="n">you</span> <span class="n">should</span> <span class="n">add</span> <span class="n">the</span> <span class="n">directory</span> <span class="n">containing</span> <span class="n">`Magick</span><span class="o">+</span><span class="m">+.</span><span class="n">pc</span><span class="s">&#39;
+</span><span class="s">to the PKG_CONFIG_PATH environment variable
+</span><span class="s">No package &#39;</span><span class="n">Magick</span><span class="o">++</span><span class="s">&#39; found
+</span><span class="s">Using PKG_CFLAGS=
+</span><span class="s">Using PKG_LIBS=-lMagick++-6.Q16
+</span><span class="s">------------------------- ANTICONF ERROR ---------------------------
+</span><span class="s">Configuration failed because Magick++ was not found. Try installing:
+</span><span class="s"> - deb: &#39;</span><span class="n">libmagick</span><span class="o">++-</span><span class="n">dev</span><span class="s">&#39; (Debian, Ubuntu)
+</span><span class="s"> - rpm: &#39;</span><span class="n">ImageMagick</span><span class="o">-</span><span class="n">c</span><span class="o">++-</span><span class="n">devel</span><span class="s">&#39; (Fedora, CentOS, RHEL)
+</span><span class="s"> - csw: &#39;</span><span class="n">imagemagick_dev</span><span class="s">&#39; (Solaris)
+</span><span class="s">On MacOS it is recommended to use install ImageMagick-6 from homebrew
+</span><span class="s">with extra support for fontconfig and rsvg rendering:
+</span><span class="s">   brew reinstall imagemagick@6 --with-fontconfig --with-librsvg
+</span><span class="s">For older Ubuntu versions Trusty (14.04) and Xenial (16.04) use our PPA:
+</span><span class="s">   sudo add-apt-repository -y ppa:opencpu/imagemagick
+</span><span class="s">   sudo apt-get update
+</span><span class="s">   sudo apt-get install -y libmagick++-dev
+</span><span class="s">If Magick++ is already installed, check that &#39;</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span><span class="s">&#39; is in your
+</span><span class="s">PATH and PKG_CONFIG_PATH contains a Magick++.pc file. If pkg-config
+</span><span class="s">is unavailable you can set INCLUDE_DIR and LIB_DIR manually via:
+</span><span class="s">R CMD INSTALL --configure-vars=&#39;</span><span class="n">INCLUDE_DIR</span><span class="o">=</span><span class="kc">...</span> <span class="n">LIB_DIR</span><span class="o">=</span><span class="kc">...</span><span class="s">&#39;</span>
+<span class="o">--------------------------------------------------------------------</span>
+<span class="n">ERROR</span><span class="o">:</span> <span class="n">configuration</span> <span class="n">failed</span> <span class="n">for</span> <span class="n">package</span> ‘<span class="n">magick</span>’
+<span class="o">*</span> <span class="n">removing</span> ‘<span class="o">/</span><span class="n">Storage</span><span class="o">/</span><span class="n">data002</span><span class="o">/</span><span class="n">shurh</span><span class="o">/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">R</span><span class="m">-3.5.1</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">library</span><span class="o">/</span><span class="n">magick</span>’
+<span class="n">Error</span> <span class="n">in</span> <span class="nf">i.p</span><span class="p">(</span><span class="kc">...</span><span class="p">)</span> <span class="o">:</span>
+  <span class="p">(</span><span class="n">converted</span> <span class="n">from</span> <span class="n">warning</span><span class="p">)</span> <span class="n">installation</span> <span class="n">of</span> <span class="n">package</span> ‘<span class="n">magick</span>’ <span class="n">had</span> <span class="n">non</span><span class="o">-</span><span class="n">zero</span> <span class="n">exit</span> <span class="n">status</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>根据报错信息，环境中缺少安装需求的<code>Magick++.pc</code>，此时可通过yum查找哪些软件包可以提供</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#yum查找提供Magick++.pc的软件包</span>
+yum provides <span class="s1">&#39;*/Magick++.pc&#39;</span>
+
+<span class="c1">#结果发现所需的两个包</span>
+ImageMagick-c++-devel-6.7.2.7-6.el6.x86_64 : C++ bindings <span class="k">for</span> the ImageMagick library
+Repo        : base
+Matched from:
+Filename    : /usr/lib64/pkgconfig/Magick++.pc
+
+ImageMagick-c++-devel-6.7.2.7-6.el6.i686 : C++ bindings <span class="k">for</span> the ImageMagick library
+Repo        : base
+Matched from:
+Filename    : /usr/lib/pkgconfig/Magick++.pc
+
+</code></pre></td></tr></table>
+</div>
+</div><p>安装完成后仍然报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">Error</span><span class="o">:</span> <span class="n">package</span> <span class="n">or</span> <span class="n">namespace</span> <span class="n">load</span> <span class="n">failed</span> <span class="n">for</span> ‘<span class="n">magick</span>’ <span class="n">in</span> <span class="nf">dyn.load</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">DLLpath</span> <span class="o">=</span> <span class="n">DLLpath</span><span class="p">,</span> <span class="kc">...</span><span class="p">)</span><span class="o">:</span>
+ <span class="n">unable</span> <span class="n">to</span> <span class="n">load</span> <span class="n">shared</span> <span class="n">object</span> <span class="s">&#39;/Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/library/magick/libs/magick.so&#39;</span><span class="o">:</span>
+  <span class="o">/</span><span class="n">Storage</span><span class="o">/</span><span class="n">data002</span><span class="o">/</span><span class="n">shurh</span><span class="o">/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">R</span><span class="m">-3.5.1</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">library</span><span class="o">/</span><span class="n">magick</span><span class="o">/</span><span class="n">libs</span><span class="o">/</span><span class="n">magick.so</span><span class="o">:</span> <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">_ZN6Magick5Image5writeEPNS_4BlobERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm</span>
+<span class="n">Error</span><span class="o">:</span> <span class="n">loading</span> <span class="n">failed</span>
+<span class="n">Execution</span> <span class="n">halted</span>
+<span class="n">ERROR</span><span class="o">:</span> <span class="n">loading</span> <span class="n">failed</span>
+<span class="o">*</span> <span class="n">removing</span> ‘<span class="o">/</span><span class="n">Storage</span><span class="o">/</span><span class="n">data002</span><span class="o">/</span><span class="n">shurh</span><span class="o">/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">R</span><span class="m">-3.5.1</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">library</span><span class="o">/</span><span class="n">magick</span>’
+<span class="n">Error</span> <span class="n">in</span> <span class="nf">i.p</span><span class="p">(</span><span class="kc">...</span><span class="p">)</span> <span class="o">:</span>
+  <span class="p">(</span><span class="n">converted</span> <span class="n">from</span> <span class="n">warning</span><span class="p">)</span> <span class="n">installation</span> <span class="n">of</span> <span class="n">package</span> ‘<span class="n">magick</span>’ <span class="n">had</span> <span class="n">non</span><span class="o">-</span><span class="n">zero</span> <span class="n">exit</span> <span class="n">status</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>一阵搜索后无果，但明显是<code>magick</code>仍然未能安装完成。最终，通过<code>conda</code>安装<code>r-magick</code>从而完成<code>magick</code>的安装。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda install -c conda-forge r-magick
+</code></pre></td></tr></table>
+</div>
+</div><p>此时安装的<code>r-magick</code>为1.9版本，而<code>ggimage</code>要求从源码安装的<code>magick</code>则为2.0版本，若按要求升级则同样会报错，此时可选择不升级，保持1.9版本仍然可完成<code>ggimage</code>的安装</p>
+<h2 id="实例演示">实例演示</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">plot_grid</span><span class="p">(</span>
+  <span class="nf">plot_grid</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="o">$</span><span class="n">gtable</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">rel_widths</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">.6</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">2</span><span class="n">]</span><span class="p">),</span>
+  <span class="n">p3</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;C&#34;</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html">https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html</a></p>
+<p><a href="https://cran.r-project.org/web/packages/ggimage/vignettes/ggimage.html">https://cran.r-project.org/web/packages/ggimage/vignettes/ggimage.html</a></p>
+<p><a href="https://guangchuangyu.github.io/cn/2017/04/ggimage/">https://guangchuangyu.github.io/cn/2017/04/ggimage/</a></p>
+<p><a href="https://stackoverflow.com/questions/20416857/how-do-i-install-imagemagick-devel-libraries-on-fedora">https://stackoverflow.com/questions/20416857/how-do-i-install-imagemagick-devel-libraries-on-fedora</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-12-06
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/R/">R</a>
+          <a href="/tags/cowplot/">cowplot</a>
+          <a href="/tags/ggimage/">ggimage</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/12/07/Transition-vs-Transversion/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Transition vs Transversion</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/12/01/clusterProfiler/">
+            <span class="next-text nav-default">使用clusterProfiler进行富集分析</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

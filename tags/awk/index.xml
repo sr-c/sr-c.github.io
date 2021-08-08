@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>awk on SR-C</title>
+    <link>https://sr-c.github.io/tags/awk/</link>
+    <description>Recent content in awk on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 31 Aug 2018 22:19:13 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/awk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>xargs-tips</title>
+      <link>https://sr-c.github.io/2018/08/31/xargs-tips/</link>
+      <pubDate>Fri, 31 Aug 2018 22:19:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/08/31/xargs-tips/</guid>
+      <description>批量化生成trimmomatic运行脚本 对于paired-end数据，trimmomatic官方推荐的运行方式如下 java -jar trimmomatic-0.35.jar PE -phred33 input_forward.fq.gz input_reverse.fq.gz output_forward_paired.fq.gz output_forward_unpaired.fq.gz output_reverse_paired.fq.gz output_reverse_unpaired.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3</description>
+    </item>
+    
+    <item>
+      <title>使用awk提取文件内容</title>
+      <link>https://sr-c.github.io/2018/06/30/awk/</link>
+      <pubDate>Sat, 30 Jun 2018 13:11:16 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/30/awk/</guid>
+      <description>语法 1 2 awk &amp;#39;program&amp;#39; input files awk -f progfile optional list of files 简单的单行awk命令格式如下，其命令由一个单独的 模式–动作 语句 (pattern-action statement) 组成 1 awk &amp;#39;[pattern] {action}&amp;#39; {filenames} # 行匹配语句 awk &amp;#39;&amp;#39; 只能用单引号 A</description>
+    </item>
+    
+  </channel>
+</rss>

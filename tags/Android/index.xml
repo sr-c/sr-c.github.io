@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on SR-C</title>
+    <link>https://sr-c.github.io/tags/Android/</link>
+    <description>Recent content in Android on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 01 Jul 2021 19:10:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>同文输入法(Trime)在Android上使用自然码双拼</title>
+      <link>https://sr-c.github.io/2021/07/01/trime-zrm-shuangpin/</link>
+      <pubDate>Thu, 01 Jul 2021 19:10:49 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2021/07/01/trime-zrm-shuangpin/</guid>
+      <description>在Android上使用双拼输入法，那么trime可能是你最佳的选择。 近年来，许多大厂的输入法都存在这样或那样的隐私数据收集记录。6月11日，</description>
+    </item>
+    
+  </channel>
+</rss>

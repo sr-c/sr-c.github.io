@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VScode on SR-C</title>
+    <link>https://sr-c.github.io/tags/VScode/</link>
+    <description>Recent content in VScode on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 21 Jul 2020 15:15:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/VScode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在Vscode中配置Python环境</title>
+      <link>https://sr-c.github.io/2020/07/21/python-environment-in-vscode/</link>
+      <pubDate>Tue, 21 Jul 2020 15:15:47 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/21/python-environment-in-vscode/</guid>
+      <description>使用Anaconda配置python环境，在VScode中使用 安装 anaconda和VScode的安装都很方便，默认安装即可。Windows</description>
+    </item>
+    
+  </channel>
+</rss>

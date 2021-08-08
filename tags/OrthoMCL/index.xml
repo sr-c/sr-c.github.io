@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OrthoMCL on SR-C</title>
+    <link>https://sr-c.github.io/tags/OrthoMCL/</link>
+    <description>Recent content in OrthoMCL on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 18 Sep 2018 17:11:46 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/OrthoMCL/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>自动化运行OrthoMCL</title>
+      <link>https://sr-c.github.io/2018/09/18/OrthoMCL-Pipeline/</link>
+      <pubDate>Tue, 18 Sep 2018 17:11:46 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/18/OrthoMCL-Pipeline/</guid>
+      <description>安装 1 git clone https://github.com/apetkau/orthomcl-pipeline.git Perl模块 通过cpanm安装 1 cpanm BioPerl DBD::mysql DBI Parallel::ForkManager YAML::Tiny Set::Scalar Text::Table Exception::Class Test::Most Test::Warn Test::Exception Test::Deep Moose SVG Algorithm::Combinatorics 依赖软件 OrthoMCL 或 OrthoMCL Custom （能够自定义序列识别符的修改版本） BLAST (blastall, formatdb) 注意不是</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>AUGUSTUS的普通用户安装 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="直接编译AUGUSTUS 1 2 3 4 5 6 7 8 9 10 11 12 make[2]: Entering directory `$HOME/software/augustus-3.3.1/auxprogs/bam2hints&amp;#39; make[2]: warning: jobserver unavailable: using -j1. Add `&#43;&amp;#39; to parent make rule. g&#43;&#43; -Wall -O2 -c bam2hints.cc -o bam2hints.o -I/usr/include/bamtools bam2hints.cc:16:10: fatal error: api/BamReader.h: No such file or directory #include &amp;lt;api/BamReader.h&amp;gt; ^~~~~~~~~~~~~~~~~ compilation terminated. make[2]: *** [bam2hints.o] Error 1 make[2]: Leaving directory" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/09/04/augustus-install/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="AUGUSTUS的普通用户安装" />
+<meta property="og:description" content="直接编译AUGUSTUS 1 2 3 4 5 6 7 8 9 10 11 12 make[2]: Entering directory `$HOME/software/augustus-3.3.1/auxprogs/bam2hints&#39; make[2]: warning: jobserver unavailable: using -j1. Add `&#43;&#39; to parent make rule. g&#43;&#43; -Wall -O2 -c bam2hints.cc -o bam2hints.o -I/usr/include/bamtools bam2hints.cc:16:10: fatal error: api/BamReader.h: No such file or directory #include &lt;api/BamReader.h&gt; ^~~~~~~~~~~~~~~~~ compilation terminated. make[2]: *** [bam2hints.o] Error 1 make[2]: Leaving directory" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/09/04/augustus-install/" />
+<meta property="article:published_time" content="2018-09-04T18:07:53+00:00" />
+<meta property="article:modified_time" content="2018-09-04T18:07:53+00:00" />
+<meta itemprop="name" content="AUGUSTUS的普通用户安装">
+<meta itemprop="description" content="直接编译AUGUSTUS 1 2 3 4 5 6 7 8 9 10 11 12 make[2]: Entering directory `$HOME/software/augustus-3.3.1/auxprogs/bam2hints&#39; make[2]: warning: jobserver unavailable: using -j1. Add `&#43;&#39; to parent make rule. g&#43;&#43; -Wall -O2 -c bam2hints.cc -o bam2hints.o -I/usr/include/bamtools bam2hints.cc:16:10: fatal error: api/BamReader.h: No such file or directory #include &lt;api/BamReader.h&gt; ^~~~~~~~~~~~~~~~~ compilation terminated. make[2]: *** [bam2hints.o] Error 1 make[2]: Leaving directory">
+<meta itemprop="datePublished" content="2018-09-04T18:07:53+00:00" />
+<meta itemprop="dateModified" content="2018-09-04T18:07:53+00:00" />
+<meta itemprop="wordCount" content="1499">
+
+
+
+<meta itemprop="keywords" content="AUGUSTUS,bamtools,debug," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="AUGUSTUS的普通用户安装"/>
+<meta name="twitter:description" content="直接编译AUGUSTUS 1 2 3 4 5 6 7 8 9 10 11 12 make[2]: Entering directory `$HOME/software/augustus-3.3.1/auxprogs/bam2hints&#39; make[2]: warning: jobserver unavailable: using -j1. Add `&#43;&#39; to parent make rule. g&#43;&#43; -Wall -O2 -c bam2hints.cc -o bam2hints.o -I/usr/include/bamtools bam2hints.cc:16:10: fatal error: api/BamReader.h: No such file or directory #include &lt;api/BamReader.h&gt; ^~~~~~~~~~~~~~~~~ compilation terminated. make[2]: *** [bam2hints.o] Error 1 make[2]: Leaving directory"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">AUGUSTUS的普通用户安装</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-04 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#直接编译augustus">直接编译AUGUSTUS</a></li>
+    <li><a href="#安装bamtools">安装bamtools</a>
+      <ul>
+        <li><a href="#一键解决方案">一键解决方案</a></li>
+        <li><a href="#普通用户安装bamtools需要指定安装目录">普通用户安装bamtools需要指定安装目录</a></li>
+        <li><a href="#编译bamtools-241">编译bamtools-2.4.1</a></li>
+        <li><a href="#修改bam2hints-与filterbam的makefile使其与手动编译的bamtools配合">修改bam2hints 与filterBam的Makefile，使其与手动编译的bamtools配合</a></li>
+      </ul>
+    </li>
+    <li><a href="#编译bam2wig">编译bam2wig</a>
+      <ul>
+        <li><a href="#编译bam2wig依赖bcftools-htslib-samtools-tabix四款软件">编译bam2wig依赖bcftools, htslib, samtools, tabix四款软件</a></li>
+        <li><a href="#修改bam2wig的makefile使其与上述软件配合">修改bam2wig的Makefile，使其与上述软件配合</a></li>
+        <li><a href="#编译bam2wig过程中报错">编译bam2wig过程中报错</a></li>
+      </ul>
+    </li>
+    <li><a href="#再次编译augustus">再次编译AUGUSTUS</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="直接编译augustus">直接编译AUGUSTUS</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">make<span class="o">[</span>2<span class="o">]</span>: Entering directory <span class="sb">`</span><span class="nv">$HOME</span>/software/augustus-3.3.1/auxprogs/bam2hints<span class="s1">&#39;
+</span><span class="s1">make[2]: warning: jobserver unavailable: using -j1.  Add `+&#39;</span> to parent make rule.
+g++ -Wall -O2    -c bam2hints.cc -o bam2hints.o -I/usr/include/bamtools
+bam2hints.cc:16:10: fatal error: api/BamReader.h: No such file or directory
+ <span class="c1">#include &lt;api/BamReader.h&gt;</span>
+          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+make<span class="o">[</span>2<span class="o">]</span>: *** <span class="o">[</span>bam2hints.o<span class="o">]</span> Error <span class="m">1</span>
+make<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span class="sb">`</span><span class="nv">$HOME</span>/software/augustus-3.3.1/auxprogs/bam2hints<span class="s1">&#39;
+</span><span class="s1">make[1]: *** [all] Error 2
+</span><span class="s1">make[1]: Leaving directory `$HOME/software/augustus-3.3.1/auxprogs&#39;</span>
+make: *** <span class="o">[</span>all<span class="o">]</span> Error <span class="m">2</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>直接编译<code>AUGUSTUS</code>会在编译<code>bam2hints</code>时出错。因此，我们需要安装<code>bamtools</code>。</p>
+<h2 id="安装bamtools">安装bamtools</h2>
+<h3 id="一键解决方案">一键解决方案</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install bamtools libbamtools-dev
+</code></pre></td></tr></table>
+</div>
+</div><p>但是，我们没有root权限，只能手动编译。</p>
+<h3 id="普通用户安装bamtools需要指定安装目录">普通用户安装bamtools需要指定安装目录</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget https://github.com/pezmaster31/bamtools/archive/v2.4.1.tar.gz -O bamtools-2.4.1.tar.gz
+tar zxf bamtools-2.4.1.tar.gz
+<span class="nb">cd</span> bamtools-2.4.1
+mkdir build
+<span class="nb">cd</span> build
+cmake -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/your/path/to/bamtools ..
+make
+make install
+</code></pre></td></tr></table>
+</div>
+</div><p>我目前的服务器环境比较复杂。CentOS 6.9，其默认的GCC版本是4.4.7，在编译很多软件时版本过低。目前将其升级到了7.3.0，但未保留原本的4.4.7环境。因此，在编译bamtools过程中有些<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=811856">挑剔软件版本</a>。</p>
+<p>对于≤2.4.0版本的bamtools，编译时都会出现如下报错。≥2.4.2版本的bamtools则要求cmake版本高于3.0，而本机的cmake版本是2.8.12.2。因此，在尽量少折腾的原则下，我们选择2.4.1版本。</p>
+<!-- raw HTML omitted -->
+<h3 id="编译bamtools-241">编译bamtools-2.4.1</h3>
+<p>安装完成后，运行bamtools程序，提示缺少<code>libbamtools.so.2.4.1</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ~/opt/bamtools-2.4.1/bin/bamtools
+<span class="nv">$HOME</span>/opt/bamtools-2.4.1/bin/bamtools: error <span class="k">while</span>                                                 loading shared libraries: libbamtools.so.2.4.1: cannot open shared                                                 object file: No such file or directory
+</code></pre></td></tr></table>
+</div>
+</div><p><code>find ~/opt -name libbamtools.so.2.4.1</code>搜寻该文件。然后将<code>libbamtools.so.2.4.1</code>软链接到~/opt/bamtools-2.4.1/lib/目录下，即可正常启动<code>bamtools</code></p>
+<h3 id="修改bam2hints-与filterbam的makefile使其与手动编译的bamtools配合">修改bam2hints 与filterBam的Makefile，使其与手动编译的bamtools配合</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">First, go to the “./auxprogs/bam2hints” directory and make the following changes <span class="k">for</span> the Makefile:
+
+Add:
+<span class="nv">BAMTOOLS</span> <span class="o">=</span> <span class="nv">$HOME</span>/opt/bamtools-2.4.1
+
+Replace:
+<span class="nv">INCLUDES</span> <span class="o">=</span> /usr/include/bamtools
+By:
+<span class="nv">INCLUDES</span> <span class="o">=</span> <span class="k">$(</span>BAMTOOLS<span class="k">)</span>/include
+
+Replace:
+<span class="nv">LIBS</span> <span class="o">=</span> -lbamtools -lz
+By:
+<span class="nv">LIBS</span> <span class="o">=</span> <span class="k">$(</span>BAMTOOLS<span class="k">)</span>/lib/bamtools/libbamtools.a -lz
+
+Then, go to the “augustus-3.2.3/auxprogs/filterBam/src” directory and make the following changes <span class="k">for</span> the Makefile:
+Replace:
+
+<span class="nv">BAMTOOLS</span> <span class="o">=</span> /usr/include/bamtools
+By:
+<span class="nv">BAMTOOLS</span> <span class="o">=</span> <span class="nv">$HOME</span>/opt/bamtools-2.4.1
+
+Replace:
+<span class="nv">INCLUDES</span> <span class="o">=</span> -I<span class="k">$(</span>BAMTOOLS<span class="k">)</span> -Iheaders -I./bamtools
+By:
+<span class="nv">INCLUDES</span> <span class="o">=</span> -I<span class="k">$(</span>BAMTOOLS<span class="k">)</span>/include -Iheaders -I./bamtools
+
+Replace:
+<span class="nv">LIBS</span> <span class="o">=</span> -lbamtools -lz
+By:
+<span class="nv">LIBS</span> <span class="o">=</span> <span class="k">$(</span>BAMTOOLS<span class="k">)</span>/lib64/libbamtools.a -lz
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="编译bam2wig">编译bam2wig</h2>
+<p>编译好bamtools后，应当向系统目录拷贝一些库文件，但限于我们没有root权限，只能修改Makefile，手动指向这些库文件。</p>
+<h3 id="编译bam2wig依赖bcftools-htslib-samtools-tabix四款软件">编译bam2wig依赖bcftools, htslib, samtools, tabix四款软件</h3>
+<p>从其github站点，或<a href="http://www.htslib.org/download/">官网</a>下载，解压后直接编译。其中，tabix已经并入了htslib</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">./configure --prefix<span class="o">=</span>/where/to/install
+make
+make install
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="修改bam2wig的makefile使其与上述软件配合">修改bam2wig的Makefile，使其与上述软件配合</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># SAMTOOLS=$(TOOLDIR)/samtools/</span>
+<span class="nv">SAMTOOLS</span><span class="o">=</span><span class="nv">$HOME</span>/software/samtools-1.9
+
+<span class="c1">#HTSLIB=$(TOOLDIR)/htslib/</span>
+<span class="nv">HTSLIB</span><span class="o">=</span><span class="nv">$HOME</span>/software/htslib-1.9
+
+<span class="c1"># BCFTOOLS=$(TOOLDIR)/bcftools/</span>
+<span class="nv">BCFTOOLS</span><span class="o">=</span><span class="nv">$HOME</span>/software/bcftools-1.9
+
+<span class="c1"># TABIX=$(TOOLDIR)/tabix/</span>
+<span class="nv">TABIX</span><span class="o">=</span><span class="nv">$HOME</span>/software/htslib-1.9
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意，此处的路径<code>$HOME/software/</code>其实是解压后的软件包编译的路径，并不是软件最终安装的路径。否则，会出现如下报错。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">make<span class="o">[</span>2<span class="o">]</span>: Entering directory <span class="sb">`</span><span class="nv">$HOME</span>/software/augustus-3.3.1/auxprogs/bam2wig<span class="s1">&#39;
+</span><span class="s1">make[2]: warning: jobserver unavailable: using -j1.  Add `+&#39;</span> to parent make rule.
+gcc -Wall -O2 -I<span class="nv">$HOME</span>/opt/samtools-1.8/ -I. -I<span class="nv">$HOME</span>/opt/htslib-1.9/ -I<span class="nv">$HOME</span>/opt/bcftools-1.9/ -I<span class="nv">$HOME</span>/opt/htslib-1.9/ -c bam2wig.c -o bam2wig.o
+bam2wig.c:18:10: fatal error: sam.h: No such file or directory
+ <span class="c1">#include &#34;sam.h&#34;</span>
+          ^~~~~~~
+compilation terminated.
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="编译bam2wig过程中报错">编译bam2wig过程中报错</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">hfile_s3.c:<span class="o">(</span>.text+0x8d7<span class="o">)</span>: undefined reference to <span class="sb">`</span>EVP_sha1<span class="s1">&#39;
+</span><span class="s1">hfile_s3.c:(.text+0x8fd): undefined reference to `HMAC&#39;</span>
+collect2: error: ld returned <span class="m">1</span> <span class="nb">exit</span> status
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="https://stackoverflow.com/questions/36033980/undefined-reference-evp-sha1-hmac-id-returned-1-exit-status">解决方案</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">hfile_libcurl.c:<span class="o">(</span>.text+0x12aa<span class="o">)</span>: undefined reference to <span class="sb">`</span>curl_global_cleanup<span class="err">&#39;</span>
+collect2: error: ld returned <span class="m">1</span> <span class="nb">exit</span> status
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="https://stackoverflow.com/questions/11884525/cant-compile-in-linux-with-curl-undefined-reference">解决方案</a></p>
+<p>因此，我们还需修改bam2wig路径中的Makefile，向其中的<code>LIBS</code>项末尾添加<code>-lcrypto</code> <code>-lcurl</code>两个字段补充缺少的库文件。</p>
+<h2 id="再次编译augustus">再次编译AUGUSTUS</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">##清除之前未成功编译的中间文件，回复初始状态</span>
+make clean
+<span class="c1">##多线程编译缩短时间</span>
+make -j <span class="m">8</span>
+<span class="nb">echo</span> <span class="s1">&#39;PATH=$PATH:~/opt/augustus/bin:~/opt/augustus/scripts&#39;</span> &gt;&gt; ~/.bashrc
+<span class="c1">##可选步骤，手动设置配置文件夹的路径。如未设置，默认会搜寻可执行文件相对路径../config中的文件。</span>
+<span class="nb">echo</span> <span class="s1">&#39;AUGUSTUS_CONFIG_PATH=/my_path_to_AUGUSTUS/augustus/config/&#39;</span> &gt;&gt; ~/.bashrc
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<p>经过上述步骤，在普通用户权限下解决好<code>bam2hints</code>与<code>bam2wig</code>的依赖，并修改其Makefile其实适应手动安装的配置环境，从而完成普通用户的AUGUSTUS安装。</p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://github.com/Gaius-Augustus/Augustus">https://github.com/Gaius-Augustus/Augustus</a></p>
+<p><a href="https://genehub.wordpress.com/2018/05/16/augustus-3-3%E7%9A%84%E5%AE%89%E8%A3%85/">https://genehub.wordpress.com/2018/05/16/augustus-3-3%E7%9A%84%E5%AE%89%E8%A3%85/</a></p>
+<p><a href="https://iamphioxus.org/2017/05/08/installing-augustus-with-manual-bamtools-installation/">https://iamphioxus.org/2017/05/08/installing-augustus-with-manual-bamtools-installation/</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-09-04
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/AUGUSTUS/">AUGUSTUS</a>
+          <a href="/tags/bamtools/">bamtools</a>
+          <a href="/tags/debug/">debug</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/09/06/study-notes-PH525x-Chapter0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">PH525x学习笔记Ⅰ</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/09/02/SNAP-install/">
+            <span class="next-text nav-default">SNAP软件安装</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

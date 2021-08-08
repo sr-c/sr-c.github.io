@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zotero on SR-C</title>
+    <link>https://sr-c.github.io/tags/Zotero/</link>
+    <description>Recent content in Zotero on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 24 Feb 2021 20:15:21 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Zotero/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>自定义Zotero Style</title>
+      <link>https://sr-c.github.io/2021/02/24/zotero-style-for-ucas-dissertation/</link>
+      <pubDate>Wed, 24 Feb 2021 20:15:21 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2021/02/24/zotero-style-for-ucas-dissertation/</guid>
+      <description>自定义Zotero的参考文献style 常规的Zotero Style是.csl文件，使用xml语法。不同于Endnote, 这一格式开源，通用于</description>
+    </item>
+    
+  </channel>
+</rss>

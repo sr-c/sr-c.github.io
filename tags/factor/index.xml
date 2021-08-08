@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>factor on SR-C</title>
+    <link>https://sr-c.github.io/tags/factor/</link>
+    <description>Recent content in factor on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 15 Feb 2019 22:18:52 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/factor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>将factor转为numeric</title>
+      <link>https://sr-c.github.io/2019/02/15/convert-factor-to-numeric/</link>
+      <pubDate>Fri, 15 Feb 2019 22:18:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/15/convert-factor-to-numeric/</guid>
+      <description>预防方法 在数据处理过程中，时常会自动将字符串转变为因子，这对于后续的操作可能会带来困难。为避免此类麻烦，可以在程序中声明禁止chr转为fac</description>
+    </item>
+    
+  </channel>
+</rss>

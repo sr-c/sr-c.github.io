@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Polish Pacbio Assembly - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="In the README of quickmerge, I got a advice.
+ Assembly polishing with Quiver and pilon before and after assembly merging is strongly recommended.
+ As for Sequal data, Pacbio updated the quiver to arrow.
+ Quiver is supported for PacBio RS data. Arrow is supported for PacBio Sequel data and RS data with the P6-C4 chemistry.
+ So, let&amp;rsquo;s do it !
+Step 0 Install SMRT Tools 1 2  SMRT_ROOT=/opt/pacbio/smrtlink ." /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/05/29/polish-pacbio-assembly/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Polish Pacbio Assembly" />
+<meta property="og:description" content="In the README of quickmerge, I got a advice.
+ Assembly polishing with Quiver and pilon before and after assembly merging is strongly recommended.
+ As for Sequal data, Pacbio updated the quiver to arrow.
+ Quiver is supported for PacBio RS data. Arrow is supported for PacBio Sequel data and RS data with the P6-C4 chemistry.
+ So, let&rsquo;s do it !
+Step 0 Install SMRT Tools 1 2  SMRT_ROOT=/opt/pacbio/smrtlink ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/05/29/polish-pacbio-assembly/" />
+<meta property="article:published_time" content="2018-05-29T23:18:05+00:00" />
+<meta property="article:modified_time" content="2018-05-29T23:18:05+00:00" />
+<meta itemprop="name" content="Polish Pacbio Assembly">
+<meta itemprop="description" content="In the README of quickmerge, I got a advice.
+ Assembly polishing with Quiver and pilon before and after assembly merging is strongly recommended.
+ As for Sequal data, Pacbio updated the quiver to arrow.
+ Quiver is supported for PacBio RS data. Arrow is supported for PacBio Sequel data and RS data with the P6-C4 chemistry.
+ So, let&rsquo;s do it !
+Step 0 Install SMRT Tools 1 2  SMRT_ROOT=/opt/pacbio/smrtlink .">
+<meta itemprop="datePublished" content="2018-05-29T23:18:05+00:00" />
+<meta itemprop="dateModified" content="2018-05-29T23:18:05+00:00" />
+<meta itemprop="wordCount" content="237">
+
+
+
+<meta itemprop="keywords" content="PacBio," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Polish Pacbio Assembly"/>
+<meta name="twitter:description" content="In the README of quickmerge, I got a advice.
+ Assembly polishing with Quiver and pilon before and after assembly merging is strongly recommended.
+ As for Sequal data, Pacbio updated the quiver to arrow.
+ Quiver is supported for PacBio RS data. Arrow is supported for PacBio Sequel data and RS data with the P6-C4 chemistry.
+ So, let&rsquo;s do it !
+Step 0 Install SMRT Tools 1 2  SMRT_ROOT=/opt/pacbio/smrtlink ."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Polish Pacbio Assembly</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-05-29 </span>
+        <div class="post-category">
+            <a href="/categories/Assembly/"> Assembly </a>
+            <a href="/categories/Genomics/"> Genomics </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-0-install-smrt-tools">Step 0 Install SMRT Tools</a></li>
+    <li><a href="#step-05-convert-row-bax-file-into-scrapsbam-rs-data">Step 0.5 Convert row <code>bax</code> file into <code>scraps.bam</code> (RS data)</a></li>
+    <li><a href="#step-08-convert-scrapsbam-to-subreadsbam">Step 0.8 Convert <code>scraps.bam</code> to <code>subreads.bam</code></a></li>
+    <li><a href="#step-1-align-subreadsbam">Step 1 Align subreads.bam</a></li>
+    <li><a href="#step-2-sort-bam-files">Step 2 Sort bam files</a></li>
+    <li><a href="#step-3-merge-all-the-produced-bam-files">Step 3 Merge all the produced bam files</a></li>
+    <li><a href="#step-4-index-the-input-files">Step 4 Index the input files</a></li>
+    <li><a href="#step-5-variantcaller-arrow">Step 5 VariantCaller: arrow</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>In the README of <a href="https://github.com/mahulchak/quickmerge">quickmerge</a>, I got a advice.</p>
+<blockquote>
+<p>Assembly polishing with <a href="https://github.com/PacificBiosciences/GenomicConsensus">Quiver</a> and <a href="https://github.com/broadinstitute/pilon/wiki">pilon</a> before and after assembly merging is strongly recommended.</p>
+</blockquote>
+<p>As for <code>Sequal</code> data, Pacbio updated the <code>quiver</code> to <code>arrow</code>.</p>
+<blockquote>
+<p>Quiver is supported for PacBio RS data. Arrow is supported for PacBio Sequel data and RS data with the P6-C4 chemistry.</p>
+</blockquote>
+<p>So, let&rsquo;s do it !</p>
+<h2 id="step-0-install-smrt-tools">Step 0 Install SMRT Tools</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">SMRT_ROOT</span><span class="o">=</span>/opt/pacbio/smrtlink
+./smrtlink_5.1.0.26412.run --rootdir <span class="nv">$SMRT_ROOT</span> --smrttools-only
+</code></pre></td></tr></table>
+</div>
+</div><p>SMRT tools will be installed in <code>/opt/pacbio/smrtlink/smrtcmds/bin</code> , add this directory into your PATH bash variable.</p>
+<h2 id="step-05-convert-row-bax-file-into-scrapsbam-rs-data">Step 0.5 Convert row <code>bax</code> file into <code>scraps.bam</code> (RS data)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">bax2bam -f <span class="nv">$FOFN</span> -o <span class="nv">$BAM_DIR</span><span class="s2">&#34;/SMRT-cell-&#34;</span><span class="nv">$COMPT</span> --subread  --pulsefeatures<span class="o">=</span>DeletionQV,DeletionTag,InsertionQV,IPD,MergeQV,SubstitutionQV,PulseWidth,SubstitutionTag
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="step-08-convert-scrapsbam-to-subreadsbam">Step 0.8 Convert <code>scraps.bam</code> to <code>subreads.bam</code></h2>
+<h2 id="step-1-align-subreadsbam">Step 1 Align subreads.bam</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">pbalign --nproc <span class="m">16</span> xxx.bam reference.fasta align_xxx.bam
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="step-2-sort-bam-files">Step 2 Sort bam files</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">## Sort alignments by leftmost coordinates, or by read name when -n is used.</span>
+samtools sort <span class="o">[</span>-@ threads<span class="o">]</span> <span class="o">[</span>-m max memory per threads<span class="o">]</span> align_xxx.bam -o align_xxx.sort.bam
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="step-3-merge-all-the-produced-bam-files">Step 3 Merge all the produced bam files</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">samtools merge &lt;align_xxx.merge.sort.bam&gt; &lt;in1.bam&gt; &lt;in2.bam&gt; <span class="o">[</span>...<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="step-4-index-the-input-files">Step 4 Index the input files</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">## Index a coordinate-sorted BAM or CRAM file for fast random access</span>
+samtools index align_xxx.merge.sort.bam
+pbindex align_xxx.merge.sort.bam
+<span class="c1">## Index reference sequence in the FASTA format</span> 
+samtools faidx reference.fasta
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="step-5-variantcaller-arrow">Step 5 VariantCaller: arrow</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">arrow -j <span class="m">16</span> --maskRadius <span class="m">3</span> <span class="se">\
+</span><span class="se"></span>aligned_xxx.merge.sort.bam <span class="se">\
+</span><span class="se"></span>-r reference.fasta <span class="se">\
+</span><span class="se"></span>-o variants.gff -o myConsesus.fasta -o myConsesus.fastq
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>Reference</strong></p>
+<p><a href="https://www.biostars.org/p/273447">https://www.biostars.org/p/273447</a></p>
+<p><a href="https://www.pacb.com/wp-content/uploads/SMRT-Tools-Reference-Guide-v4.0.0.pdf">https://www.pacb.com/wp-content/uploads/SMRT-Tools-Reference-Guide-v4.0.0.pdf</a></p>
+</blockquote>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-05-29
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/PacBio/">PacBio</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/06/04/quickmerge/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">quickmerge的使用</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/05/27/perl-modules/">
+            <span class="next-text nav-default">配置perl模块</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

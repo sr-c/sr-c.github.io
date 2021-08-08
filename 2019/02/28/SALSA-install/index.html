@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SALSA安装 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="安装 1 2 3 4 5 6 7 8 git clone https://github.com/machinegun/SALSA.git conda create -n SALSA python=2.7 source activate SALSA conda install boost networkx==1.11 cd SALSA make debug 1 2 3 4 5 g&#43;&#43; -O3 -Wall -Wextra -std=c&#43;&#43;11 -o correct_links correct_links.cpp correct_links.cpp:12:10: fatal error: boost/config.hpp: No such file or directory #include &amp;lt;boost/config.hpp&amp;gt; ^~~~~~~~~~~~~~~~~~ compilation terminated. 这表明，编译过程中未配置好之" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/02/28/SALSA-install/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SALSA安装" />
+<meta property="og:description" content="安装 1 2 3 4 5 6 7 8 git clone https://github.com/machinegun/SALSA.git conda create -n SALSA python=2.7 source activate SALSA conda install boost networkx==1.11 cd SALSA make debug 1 2 3 4 5 g&#43;&#43; -O3 -Wall -Wextra -std=c&#43;&#43;11 -o correct_links correct_links.cpp correct_links.cpp:12:10: fatal error: boost/config.hpp: No such file or directory #include &lt;boost/config.hpp&gt; ^~~~~~~~~~~~~~~~~~ compilation terminated. 这表明，编译过程中未配置好之" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/02/28/SALSA-install/" />
+<meta property="article:published_time" content="2019-02-28T22:16:51+00:00" />
+<meta property="article:modified_time" content="2019-02-28T22:16:51+00:00" />
+<meta itemprop="name" content="SALSA安装">
+<meta itemprop="description" content="安装 1 2 3 4 5 6 7 8 git clone https://github.com/machinegun/SALSA.git conda create -n SALSA python=2.7 source activate SALSA conda install boost networkx==1.11 cd SALSA make debug 1 2 3 4 5 g&#43;&#43; -O3 -Wall -Wextra -std=c&#43;&#43;11 -o correct_links correct_links.cpp correct_links.cpp:12:10: fatal error: boost/config.hpp: No such file or directory #include &lt;boost/config.hpp&gt; ^~~~~~~~~~~~~~~~~~ compilation terminated. 这表明，编译过程中未配置好之">
+<meta itemprop="datePublished" content="2019-02-28T22:16:51+00:00" />
+<meta itemprop="dateModified" content="2019-02-28T22:16:51+00:00" />
+<meta itemprop="wordCount" content="372">
+
+
+
+<meta itemprop="keywords" content="SALSA,debug,Hi-C," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SALSA安装"/>
+<meta name="twitter:description" content="安装 1 2 3 4 5 6 7 8 git clone https://github.com/machinegun/SALSA.git conda create -n SALSA python=2.7 source activate SALSA conda install boost networkx==1.11 cd SALSA make debug 1 2 3 4 5 g&#43;&#43; -O3 -Wall -Wextra -std=c&#43;&#43;11 -o correct_links correct_links.cpp correct_links.cpp:12:10: fatal error: boost/config.hpp: No such file or directory #include &lt;boost/config.hpp&gt; ^~~~~~~~~~~~~~~~~~ compilation terminated. 这表明，编译过程中未配置好之"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SALSA安装</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-02-28 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#debug">debug</a>
+      <ul>
+        <li><a href="#查看环境中boost的版本">查看环境中boost的版本</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="安装">安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/machinegun/SALSA.git
+
+conda create -n SALSA <span class="nv">python</span><span class="o">=</span>2.7
+<span class="nb">source</span> activate SALSA
+conda install boost <span class="nv">networkx</span><span class="o">==</span>1.11
+
+<span class="nb">cd</span> SALSA
+make
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="debug">debug</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">g++ -O3 -Wall -Wextra -std<span class="o">=</span>c++11 -o correct_links correct_links.cpp
+correct_links.cpp:12:10: fatal error: boost/config.hpp: No such file or directory
+ <span class="c1">#include &lt;boost/config.hpp&gt;</span>
+          ^~~~~~~~~~~~~~~~~~
+compilation terminated.
+</code></pre></td></tr></table>
+</div>
+</div><p>这表明，编译过程中未配置好之前的boost环境，于是我们查看发现原来已经安装了boost，因此，我们卸载conda环境中的boost直接使用原环境中的boost进行编译，但是仍然得到报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">/usr/include/boost/graph/graph_concepts.hpp:92:18: error: using invalid field <span class="s1">&#39;boost::concepts::IncidenceGraph&lt;G&gt;::p&#39;</span>
+             <span class="nv">e</span> <span class="o">=</span> *p.first<span class="p">;</span>
+                  ^
+make: *** <span class="o">[</span>correct_links<span class="o">]</span> Error <span class="m">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>经过查询似乎是原来环境中的boost版本过低导致，因此，还是需要手动指定conda环境中的boost</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">CPLUS_INCLUDE_PATH</span><span class="o">=</span>~/miniconda3/envs/SALSA/include:<span class="nv">$CPLUS_INCLUDE_PATH</span>
+<span class="nb">export</span> <span class="nv">BOOST_INCLUDE</span><span class="o">=</span>~/miniconda3/envs/SALSA/include
+</code></pre></td></tr></table>
+</div>
+</div><p>之后可完成编译</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">&gt; <span class="nb">source</span> ~/.bashrc
+&gt; make clean
+&gt; make
+g++ -O3 -Wall -Wextra -std<span class="o">=</span>c++11 -o correct_links correct_links.cpp
+correct_links.cpp: In <span class="k">function</span> <span class="s1">&#39;std::vector&lt;std::__cxx11::basic_string&lt;char&gt; &gt; split(const string&amp;, size_t)&#39;</span>:
+correct_links.cpp:46:19: warning: comparison between signed and unsigned integer expressions <span class="o">[</span>-Wsign-compare<span class="o">]</span>
+   <span class="k">for</span><span class="o">(</span>int <span class="nv">i</span> <span class="o">=</span> 0<span class="p">;</span>i &lt; s.length<span class="o">()</span><span class="p">;</span><span class="nv">i</span><span class="o">+=</span>count<span class="o">)</span>
+                 ~~^~~~~~~~~~~~
+correct_links.cpp: In <span class="k">function</span> <span class="s1">&#39;int main(int, char**)&#39;</span>:
+correct_links.cpp:237:25: warning: comparison between signed and unsigned integer expressions <span class="o">[</span>-Wsign-compare<span class="o">]</span>
+         <span class="k">for</span><span class="o">(</span>int <span class="nv">i</span> <span class="o">=</span> 0<span class="p">;</span>i &lt; orientations.size<span class="o">()</span><span class="p">;</span>i++<span class="o">)</span>
+                       ~~^~~~~~~~~~~~~~~~~~~~~
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="查看环境中boost的版本">查看环境中boost的版本</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat /usr/include/boost/version.hpp <span class="p">|</span> grep <span class="s2">&#34;BOOST_LIB_VERSION&#34;</span>
+//  BOOST_LIB_VERSION must be defined to be the same as BOOST_VERSION
+<span class="c1">#define BOOST_LIB_VERSION &#34;1_41&#34;</span>
+cat ~/miniconda3/envs/SALSA/include/boost/version.hpp <span class="p">|</span> grep <span class="s2">&#34;BOOST_LIB_VERSION&#34;</span>
+//  BOOST_LIB_VERSION must be defined to be the same as BOOST_VERSION
+<span class="c1">#define BOOST_LIB_VERSION &#34;1_69&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://blog.csdn.net/lijingpengchina/article/details/9100775">https://blog.csdn.net/lijingpengchina/article/details/9100775</a></p>
+<p><a href="https://blog.csdn.net/dongchongyang/article/details/72718687">https://blog.csdn.net/dongchongyang/article/details/72718687</a></p>
+<p><a href="https://blog.csdn.net/Doubao93/article/details/80176537">https://blog.csdn.net/Doubao93/article/details/80176537</a></p>
+<p><a href="https://askubuntu.com/questions/147474/how-can-i-find-boost-version">https://askubuntu.com/questions/147474/how-can-i-find-boost-version</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-02-28
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/SALSA/">SALSA</a>
+          <a href="/tags/debug/">debug</a>
+          <a href="/tags/Hi-C/">Hi-C</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/03/03/conda-channels-order/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">conda源的配置</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/02/22/convert-Bootstrap-to-Integer/">
+            <span class="next-text nav-default">将Bootstrap值转化为百分数</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>简易计算RNA-seq差异表达基因 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="使用nf-core，能够很方便地进行RNA-seq的上游分析，得到表达矩阵。但是，大多数时候，我们更关心的是筛选差异表达基因。别担心，Tri" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2020/05/25/RNA-seq-DiffExp-analysis/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="简易计算RNA-seq差异表达基因" />
+<meta property="og:description" content="使用nf-core，能够很方便地进行RNA-seq的上游分析，得到表达矩阵。但是，大多数时候，我们更关心的是筛选差异表达基因。别担心，Tri" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2020/05/25/RNA-seq-DiffExp-analysis/" />
+<meta property="article:published_time" content="2020-05-25T20:50:18+00:00" />
+<meta property="article:modified_time" content="2020-05-25T20:50:18+00:00" />
+<meta itemprop="name" content="简易计算RNA-seq差异表达基因">
+<meta itemprop="description" content="使用nf-core，能够很方便地进行RNA-seq的上游分析，得到表达矩阵。但是，大多数时候，我们更关心的是筛选差异表达基因。别担心，Tri">
+<meta itemprop="datePublished" content="2020-05-25T20:50:18+00:00" />
+<meta itemprop="dateModified" content="2020-05-25T20:50:18+00:00" />
+<meta itemprop="wordCount" content="848">
+
+
+
+<meta itemprop="keywords" content="nf-core,RNA-seq,Trinity," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="简易计算RNA-seq差异表达基因"/>
+<meta name="twitter:description" content="使用nf-core，能够很方便地进行RNA-seq的上游分析，得到表达矩阵。但是，大多数时候，我们更关心的是筛选差异表达基因。别担心，Tri"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">简易计算RNA-seq差异表达基因</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-05-25 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#整理上游数据">整理上游数据</a>
+      <ul>
+        <li><a href="#表达矩阵">表达矩阵</a></li>
+        <li><a href="#分组信息">分组信息</a></li>
+      </ul>
+    </li>
+    <li><a href="#简便差异分析">简便差异分析</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>使用<code>nf-core</code>，能够很方便地进行RNA-seq的上游分析，得到表达矩阵。但是，大多数时候，我们更关心的是筛选差异表达基因。别担心，<code>Trinity</code>提供了一些简便的分析脚本供我们使用。</p>
+<h2 id="整理上游数据">整理上游数据</h2>
+<h3 id="表达矩阵">表达矩阵</h3>
+<p>在<code>nf-core</code>的结果目录中，<code>featureCounts</code>目录下的<code>merged_gene_counts.txt</code>为相应工具计算得到的表达矩阵。</p>
+<blockquote>
+<p>如果在<code>nf-core</code>流程中还通过<code>--pseudo_aligner salmon</code>参数引入了<code>salmon</code>作为比对工具的话。在结果目录的<code>salmon</code>路径下的<code>salmon_merged_gene_counts.csv</code>为基因水平的表达矩阵，<code>salmon_merged_transcript_counts.csv</code>为转录本水平的表达矩阵。</p>
+</blockquote>
+<p>经过简单的文本处理后，可以得到供后续分析的表达矩阵。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat merged_gene_counts.txt <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>  cut -f 1,3-23 <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>  sed <span class="s1">&#39;s/_1.cleanAligned.sortedByCoord.out.bam//g&#39;</span> <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>  sed <span class="s1">&#39;s/Geneid//&#39;</span> &gt; featureCounts_merged_gene_counts.tab
+</code></pre></td></tr></table>
+</div>
+</div><p><code>featureCounts_merged_gene_counts.tab</code>的内容形式如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">        GroupD3   GroupA5   GroupC1   GroupC2   GroupA2   GroupA1   GroupC5   GroupB6   GroupB1   GroupD2   GroupC3   GroupA3   GroupA6   GroupA4   GroupC4   GroupB5   GroupD1   GroupB2   GroupB4
+IOZ07G0001      <span class="m">6005</span>    <span class="m">8108</span>    <span class="m">5144</span>    <span class="m">6331</span>    <span class="m">6539</span>    <span class="m">10535</span>   <span class="m">4612</span>    <span class="m">7234</span>    <span class="m">5743</span>    <span class="m">5152</span>    <span class="m">9328</span>    <span class="m">5992</span>    <span class="m">6663</span>    <span class="m">9983</span>    <span class="m">3619</span>    <span class="m">7062</span>    <span class="m">5809</span>    <span class="m">8536</span>
+IOZ07G0002      <span class="m">2970</span>    <span class="m">3090</span>    <span class="m">3035</span>    <span class="m">3306</span>    <span class="m">1924</span>    <span class="m">2709</span>    <span class="m">3816</span>    <span class="m">4076</span>    <span class="m">4293</span>    <span class="m">2196</span>    <span class="m">4437</span>    <span class="m">1816</span>    <span class="m">1862</span>    <span class="m">3397</span>    <span class="m">3354</span>    <span class="m">2791</span>    <span class="m">2657</span>    <span class="m">4181</span>
+IOZ07G0003      <span class="m">1380</span>    <span class="m">2109</span>    <span class="m">2057</span>    <span class="m">2247</span>    <span class="m">1966</span>    <span class="m">2718</span>    <span class="m">1941</span>    <span class="m">1969</span>    <span class="m">2012</span>    <span class="m">1526</span>    <span class="m">1860</span>    <span class="m">1682</span>    <span class="m">1735</span>    <span class="m">2338</span>    <span class="m">1899</span>    <span class="m">1408</span>    <span class="m">1613</span>    <span class="m">1942</span>
+IOZ07G0004      <span class="m">6778</span>    <span class="m">4952</span>    <span class="m">9068</span>    <span class="m">7378</span>    <span class="m">4473</span>    <span class="m">6409</span>    <span class="m">6472</span>    <span class="m">5752</span>    <span class="m">6326</span>    <span class="m">6779</span>    <span class="m">6370</span>    <span class="m">3759</span>    <span class="m">3337</span>    <span class="m">6875</span>    <span class="m">5866</span>    <span class="m">5574</span>    <span class="m">6853</span>    <span class="m">6540</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="分组信息">分组信息</h3>
+<p>如果分组不太复杂的话，可手动编辑一个以换行符分隔的分组矩阵<code>samples.txt</code>，形式如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">GroupA     GroupA1
+GroupA     GroupA2
+GroupA     GroupA3
+GroupA     GroupA4
+GroupA     GroupA5
+GroupA     GroupA6
+GroupB     GroupB1
+GroupB     GroupB2
+GroupB     GroupB3
+GroupB     GroupB4
+GroupB     GroupB5
+GroupB     GroupB6
+GroupC     GroupC1
+GroupC     GroupC2
+GroupC     GroupC3
+GroupC     GroupC4
+GroupC     GroupC5
+GroupC     GroupC6
+GroupD     GroupD1
+GroupD     GroupD2
+GroupD     GroupD3
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="简便差异分析">简便差异分析</h2>
+<p>通过<code>Trinity</code>提供的脚本<code>Analysis/DifferentialExpression/run_DE_analysis.pl</code>可快速地调用<code>DESeq2</code>或<code>voom</code>进行差异表达分析。因此，运行前提要求当前的<code>R</code>环境中已安装好相应的软件包。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">matrix</span><span class="o">=[</span>featureCounts_merged_gene_counts.tab, salmon_merged_gene_counts.tab<span class="o">]</span>
+<span class="nv">method</span><span class="o">=[</span>DESeq2, voom<span class="o">]</span>
+~/software/trinityrnaseq-Trinity-v2.8.5/Analysis/DifferentialExpression/run_DE_analysis.pl <span class="se">\
+</span><span class="se"></span>  --matrix featureCounts_merged_gene_counts.tab <span class="se">\
+</span><span class="se"></span>  --samples_file samples.txt <span class="se">\
+</span><span class="se"></span>  --method DESeq2 <span class="se">\
+</span><span class="se"></span>  --output DESeq2.featureCounts.Organism.dir
+</code></pre></td></tr></table>
+</div>
+</div><p>通过<code>--output</code>指定输出路径，即可得到分析结果。</p>
+<p>一般来说，还需要通过FDR &lt; 0.05 和 log2|FC| &gt; 1的阈值筛选得到目标差异基因。</p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://bioconductor.org/packages/3.7/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">https://bioconductor.org/packages/3.7/bioc/vignettes/DESeq2/inst/doc/DESeq2.html</a></p>
+<p><a href="https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/">https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/</a></p>
+<p><a href="http://xuchunhui.top/2020/03/28/%E4%BD%BF%E7%94%A8DEseq2%E5%88%86%E6%9E%90RNA-seq%E6%95%B0%E6%8D%AE/">http://xuchunhui.top/2020/03/28/%E4%BD%BF%E7%94%A8DEseq2%E5%88%86%E6%9E%90RNA-seq%E6%95%B0%E6%8D%AE/</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-05-25
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/nf-core/">nf-core</a>
+          <a href="/tags/RNA-seq/">RNA-seq</a>
+          <a href="/tags/Trinity/">Trinity</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2020/05/26/RPKM-normilization/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">RPKM-normilization</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2020/03/01/tutorials-Multiple-Sequence-Alignment/">
+            <span class="next-text nav-default">tutorials-Multiple-Sequence-Alignment</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>stringi on SR-C</title>
+    <link>https://sr-c.github.io/tags/stringi/</link>
+    <description>Recent content in stringi on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 20 Jan 2021 15:45:30 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/stringi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【debug】Unable to Load Shared Object Stringi</title>
+      <link>https://sr-c.github.io/2021/01/20/unable-to-load-shared-object-stringi.so/</link>
+      <pubDate>Wed, 20 Jan 2021 15:45:30 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2021/01/20/unable-to-load-shared-object-stringi.so/</guid>
+      <description>在Manjaro桌面环境在安装reshape2或加载tidyverse之中。 在安装reshape2时出现如下报错 1 2 3 Error in dyn.load(file, DLLpath = DLLpath, ...) : unable to load</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>自定义Zotero Style - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="自定义Zotero的参考文献style 常规的Zotero Style是.csl文件，使用xml语法。不同于Endnote, 这一格式开源，通用于" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2021/02/24/zotero-style-for-ucas-dissertation/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="自定义Zotero Style" />
+<meta property="og:description" content="自定义Zotero的参考文献style 常规的Zotero Style是.csl文件，使用xml语法。不同于Endnote, 这一格式开源，通用于" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2021/02/24/zotero-style-for-ucas-dissertation/" />
+<meta property="article:published_time" content="2021-02-24T20:15:21+08:00" />
+<meta property="article:modified_time" content="2021-02-24T20:15:21+08:00" />
+<meta itemprop="name" content="自定义Zotero Style">
+<meta itemprop="description" content="自定义Zotero的参考文献style 常规的Zotero Style是.csl文件，使用xml语法。不同于Endnote, 这一格式开源，通用于">
+<meta itemprop="datePublished" content="2021-02-24T20:15:21+08:00" />
+<meta itemprop="dateModified" content="2021-02-24T20:15:21+08:00" />
+<meta itemprop="wordCount" content="944">
+
+
+
+<meta itemprop="keywords" content="Zotero,style," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="自定义Zotero Style"/>
+<meta name="twitter:description" content="自定义Zotero的参考文献style 常规的Zotero Style是.csl文件，使用xml语法。不同于Endnote, 这一格式开源，通用于"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">自定义Zotero Style</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-02-24 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#引文citation">引文/citation</a>
+      <ul>
+        <li><a href="#同时生成et-al-与等">同时生成et al. 与等</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考文献bibliography">参考文献/bibliography</a>
+      <ul>
+        <li><a href="#参考文献中著录全部作者">参考文献中著录全部作者</a></li>
+        <li><a href="#去掉引文最后的doi编号">去掉引文最后的DOI编号</a></li>
+        <li><a href="#按照作者姓名-出版年排序参考文献">按照作者姓名-出版年排序参考文献</a></li>
+      </ul>
+    </li>
+    <li><a href="#后记">后记</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>自定义Zotero的参考文献style</p>
+<!-- raw HTML omitted -->
+<p>常规的Zotero Style是<code>.csl</code>文件，使用<code>xml</code>语法。不同于Endnote, 这一<a href="https://github.com/citation-style-language/styles/blob/master/CONTRIBUTING.md">格式</a>开源，通用于Zotero, Mendeley等工具。Zotero提供自身的<a href="https://www.zotero.org/styles">Style仓库</a>，包括了国家标准<code>GB/T 7714-2015 </code>或<code>GB/T 7714-2005 </code>.</p>
+<p>中科院学位论文的参考文献要求同样衍生自国标<code>GB/T 7714-2015 </code>的<code>作者-日期</code>格式。实际上，在使用时还是有一些特殊的要求需要自行修改<code>.csl</code>文件。</p>
+<h2 id="引文citation">引文/citation</h2>
+<h3 id="同时生成et-al-与等">同时生成et al. 与等</h3>
+<p>在Style仓库中提供的国家标准<code>GB/T 7714-2015</code>对于既引用了中文文献，又有英文文献引用的情况，在文章存在多个作者需要省略时会统一使用“等”。这可能是由于笔者的系统语言设置为了中文。但是，这在引用英文文献时就不理想了。</p>
+<p><a href="https://juris-m.github.io/">Jurism</a>提供了一个解决方案。它是一个在法律文献，多语言方面提供了增强的Zotero修改版。在其<a href="https://juris-m.github.io/styles/">Style仓库</a>中提供了一个<a href="https://our.law.nagoya-u.ac.jp/updater/styles/jm-chinese-gb7714-2005-numeric.csl?install=1"><strong>JM Chinese Std GB/T 7714-2005 (numeric, Chinese)</strong></a>，可以根据文献的<code>Language</code>字段判断使用&quot;et al.&ldquo;还是“等”。默认的方式是英文文献需要在其<code>Language/语言</code>字段声明为<code>en</code>，否则默认视作中文文献使用“等”。</p>
+<h2 id="参考文献bibliography">参考文献/bibliography</h2>
+<h3 id="参考文献中著录全部作者">参考文献中著录全部作者</h3>
+<p>找到定义参考文献的<code>&lt;bibliography&gt;</code>词段（通常位于最后的位置），将其中的<code>et-al-min</code>定义设置为<code>0</code>即可。<code>&lt;bibliography&gt;</code>词段的设置如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bibliography</span> <span class="na">et-al-min=</span><span class="s">&#34;0&#34;</span> <span class="na">et-al-use-first=</span><span class="s">&#34;3&#34;</span> <span class="na">hanging-indent=</span><span class="s">&#34;true&#34;</span> <span class="na">line-spacing=</span><span class="s">&#34;1.5&#34;</span> <span class="na">entry-spacing=</span><span class="s">&#34;0&#34;</span><span class="nt">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>代表触发<code>et-al</code>的最小作者数是0（即不生效），使用前3个作者用于et-al之前，悬挂缩进（没找到设置缩进值的字段），1.5倍行距，entry-spacing是否指代段前段后间距不明。</p>
+<h3 id="去掉引文最后的doi编号">去掉引文最后的DOI编号</h3>
+<p>在<code>&lt;bibliography&gt;</code>词段内，删去如下使用URL和DOI的部分。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;group</span> <span class="na">delimiter=</span><span class="s">&#34;. &#34;</span> <span class="na">prefix=</span><span class="s">&#34;. &#34;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;URL&#34;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;DOI&#34;</span> <span class="na">prefix=</span><span class="s">&#34;DOI:&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/group&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="按照作者姓名-出版年排序参考文献">按照作者姓名-出版年排序参考文献</h3>
+<p>在<code>&lt;bibliography&gt;</code>词段内，保证插入如下部分。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;sort&gt;</span>
+  <span class="nt">&lt;key</span> <span class="na">macro=</span><span class="s">&#34;author-intext&#34;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;key</span> <span class="na">macro=</span><span class="s">&#34;issue-date-year&#34;</span> <span class="na">sort=</span><span class="s">&#34;ascending&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/sort&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="后记">后记</h2>
+<blockquote>
+<p>自行修改的style文件导入Zotero时可能会提示为不符合CLS 1.0.1 style的文件，询问是否继续，点击OK即可。</p>
+</blockquote>
+<p>热心的<a href="https://www.zhihu.com/people/johnmy-89">johnmy</a>提供了修改后的版本，详情可见其<a href="https://github.com/redleafnew/Chinese-std-GB-T-7714-related-csl">github</a>.</p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/320253145">https://zhuanlan.zhihu.com/p/320253145</a></p>
+<p><a href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=331295&amp;do=blog&amp;id=1265232">http://blog.sciencenet.cn/home.php?mod=space&amp;uid=331295&amp;do=blog&amp;id=1265232</a></p>
+<p><a href="https://github.com/redleafnew/Chinese-std-GB-T-7714-related-csl">https://github.com/redleafnew/Chinese-std-GB-T-7714-related-csl</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-02-24
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Zotero/">Zotero</a>
+          <a href="/tags/style/">style</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2021/07/01/trime-zrm-shuangpin/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">同文输入法(Trime)在Android上使用自然码双拼</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2021/01/20/unable-to-load-shared-object-stringi.so/">
+            <span class="next-text nav-default">【debug】Unable to Load Shared Object Stringi</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

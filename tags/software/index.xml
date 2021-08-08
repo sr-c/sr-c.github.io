@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>software on SR-C</title>
+    <link>https://sr-c.github.io/tags/software/</link>
+    <description>Recent content in software on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 27 May 2018 13:23:17 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/software/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RepeatModeler与RepeatMasker 重复序列分析</title>
+      <link>https://sr-c.github.io/2018/05/27/RepeatModeler-engine/</link>
+      <pubDate>Sun, 27 May 2018 13:23:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/27/RepeatModeler-engine/</guid>
+      <description>建立数据库 1 ${RepeatModelerPath}/BuildDatabase -name ${database_name} ${fasta} 但是对于ABBlast来说，BuildDatabase建立的索引还缺少nt_db.xni文件，出现提示 1 2 3 4 FATAL: xdf_db_fopen failed code 22</description>
+    </item>
+    
+  </channel>
+</rss>

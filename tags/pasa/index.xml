@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pasa on SR-C</title>
+    <link>https://sr-c.github.io/tags/pasa/</link>
+    <description>Recent content in pasa on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 15 Jul 2018 11:59:02 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/pasa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PASA的安装</title>
+      <link>https://sr-c.github.io/2018/07/15/pasa-install/</link>
+      <pubDate>Sun, 15 Jul 2018 11:59:02 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/15/pasa-install/</guid>
+      <description>安装PASA 1 2 3 4 5 6 7 8 cd ~/software/ wget https://github.com/PASApipeline/PASApipeline/releases/download/pasa-v2.3.3/PASApipeline-v2.3.3.tar.gz tar zxf PASApipeline-v2.3.3.tar.gz -C ~/opt/ mv ~/opt/PASApipeline-pasa-v2.3.3 ~/opt/pasa-v2.3.3 cd ~/opt/pasa-v2.3.3 make echo &amp;#39;$PASAHOME=~/opt/pasa-v2.3.3/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc source ~/.bashrc 安装perl模块 安装PASA最大的困难就在于perl模块的配置。本文参</description>
+    </item>
+    
+  </channel>
+</rss>

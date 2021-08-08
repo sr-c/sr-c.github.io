@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blast on SR-C</title>
+    <link>https://sr-c.github.io/tags/blast/</link>
+    <description>Recent content in blast on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 02 Oct 2018 12:19:26 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/blast/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>本地化nr数据库</title>
+      <link>https://sr-c.github.io/2018/10/02/local-nr-database/</link>
+      <pubDate>Tue, 02 Oct 2018 12:19:26 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/02/local-nr-database/</guid>
+      <description>数据库下载 nr数据库下载前应确认其序列ID中包含有gi信息。推荐通过NCBI提供的脚本进行下载。 1 perl update_blastdb.pl nr 下载完成后解压 1 tar -zxvf *.tar.gz 建库 由于下载的</description>
+    </item>
+    
+    <item>
+      <title>blast结果格式转换</title>
+      <link>https://sr-c.github.io/2018/09/27/blastxml-to-tabular/</link>
+      <pubDate>Thu, 27 Sep 2018 21:49:48 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/27/blastxml-to-tabular/</guid>
+      <description>解决方案 目前找到最简便的解决方案 其他方案都依赖使用Bioperl, BioPython, BioRuby等解决方案，不够灵活 网页版解决方案，其中还有许多丰富功能，</description>
+    </item>
+    
+    <item>
+      <title>makeblastdb-fails</title>
+      <link>https://sr-c.github.io/2018/09/25/makeblastdb-fails/</link>
+      <pubDate>Tue, 25 Sep 2018 22:33:45 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/25/makeblastdb-fails/</guid>
+      <description>问题描述 对某个特定下载的数据库使用makeblastdb建库时，出现No volumes were created because no sequences were found.报错 使用环境 BLAST 2.2.28+ 需要建库的fasta文件内</description>
+    </item>
+    
+    <item>
+      <title>本地blast</title>
+      <link>https://sr-c.github.io/2018/06/23/local-blast/</link>
+      <pubDate>Sat, 23 Jun 2018 14:35:06 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/23/local-blast/</guid>
+      <description>安装 从ncbi下载已编译好的版本，解压缩后即可使用。 使用 Building a BLAST database with local sequences 1 2 3 4 5 6 7 8 9 10 11 $ makeblastdb -in mydb.fsa -parse_seqids -dbtype nucl Building a new DB, current time: 01/28/2011 13:39:37 New DB name: mydb.fsa New DB title: mydb.fsa Sequence</description>
+    </item>
+    
+  </channel>
+</rss>

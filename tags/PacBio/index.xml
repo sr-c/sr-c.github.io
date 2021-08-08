@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PacBio on SR-C</title>
+    <link>https://sr-c.github.io/tags/PacBio/</link>
+    <description>Recent content in PacBio on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 02 Jul 2019 14:12:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/PacBio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用PBJelly与blasr进行补洞</title>
+      <link>https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/</link>
+      <pubDate>Tue, 02 Jul 2019 14:12:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/</guid>
+      <description>PBJelly在2012年发表于PLoS ONE, 其设计目的是使用PacBio RS Ⅱ 数据来提升assembly的连续性。目前版本停滞在2015年9月1</description>
+    </item>
+    
+    <item>
+      <title>quickmerge的使用</title>
+      <link>https://sr-c.github.io/2018/06/04/quickmerge/</link>
+      <pubDate>Mon, 04 Jun 2018 22:44:59 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/04/quickmerge/</guid>
+      <description>install 1 2 3 wget https://github.com/mahulchak/quickmerge/archive/v0.2.tar.gz tar zxf v0.2.tar.gz bash make_merger.sh Running The simplest way to run &amp;lsquo;merger&amp;rsquo; is to use the python wrapper &amp;lsquo;merge_wrapper_v2.py&amp;rsquo;: 1 merge_wrapper.py hybrid_assembly.fasta self_assembly.fasta Which of my assemblies should I use as query and reference? There is no golden rule for this. Quickmerge was developed with the idea that every genome is different and that you know best about the genome you are assembling. All</description>
+    </item>
+    
+    <item>
+      <title>Polish Pacbio Assembly</title>
+      <link>https://sr-c.github.io/2018/05/29/polish-pacbio-assembly/</link>
+      <pubDate>Tue, 29 May 2018 23:18:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/29/polish-pacbio-assembly/</guid>
+      <description>In the README of quickmerge, I got a advice.
+ Assembly polishing with Quiver and pilon before and after assembly merging is strongly recommended.
+ As for Sequal data, Pacbio updated the quiver to arrow.
+ Quiver is supported for PacBio RS data. Arrow is supported for PacBio Sequel data and RS data with the P6-C4 chemistry.
+ So, let&amp;rsquo;s do it !
+Step 0 Install SMRT Tools 1 2  SMRT_ROOT=/opt/pacbio/smrtlink .</description>
+    </item>
+    
+  </channel>
+</rss>

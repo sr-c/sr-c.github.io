@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on SR-C</title>
+    <link>https://sr-c.github.io/categories/Blog/</link>
+    <description>Recent content in Blog on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 21 Jul 2020 23:16:03 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/categories/Blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>自定义Hugo主题样式</title>
+      <link>https://sr-c.github.io/2020/07/21/Hugo-custom/</link>
+      <pubDate>Tue, 21 Jul 2020 23:16:03 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/21/Hugo-custom/</guid>
+      <description>参照其他的优秀方案对even主题进行部分自定义修改。 修改主题配色 even主题的样式文件位于${Hugo-Site}/themes/even/</description>
+    </item>
+    
+    <item>
+      <title>将博客从Hexo迁移至Hugo</title>
+      <link>https://sr-c.github.io/2020/07/18/Hexo-to-Hugo/</link>
+      <pubDate>Sat, 18 Jul 2020 12:07:50 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/18/Hexo-to-Hugo/</guid>
+      <description>Github最近总是邮件提醒我有些插件过时了，存在安全问题。随着文章数量增多，Hexo的速度越来越慢。因此决定切换到Hugo 安装 安装 Git 和 Go H</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blasr on SR-C</title>
+    <link>https://sr-c.github.io/tags/blasr/</link>
+    <description>Recent content in blasr on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 02 Jul 2019 14:12:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/blasr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用PBJelly与blasr进行补洞</title>
+      <link>https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/</link>
+      <pubDate>Tue, 02 Jul 2019 14:12:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/</guid>
+      <description>PBJelly在2012年发表于PLoS ONE, 其设计目的是使用PacBio RS Ⅱ 数据来提升assembly的连续性。目前版本停滞在2015年9月1</description>
+    </item>
+    
+  </channel>
+</rss>

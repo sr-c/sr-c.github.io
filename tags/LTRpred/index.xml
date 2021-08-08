@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LTRpred on SR-C</title>
+    <link>https://sr-c.github.io/tags/LTRpred/</link>
+    <description>Recent content in LTRpred on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 22 Dec 2018 14:52:20 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/LTRpred/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LTRpred</title>
+      <link>https://sr-c.github.io/2018/12/22/LTRpred/</link>
+      <pubDate>Sat, 22 Dec 2018 14:52:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/22/LTRpred/</guid>
+      <description>LTRpred实际是调用GenomeTools中封装的LTRharvest对基因组序列进行de novo 预测，并使用LTRdigest开展分析，并包</description>
+    </item>
+    
+  </channel>
+</rss>

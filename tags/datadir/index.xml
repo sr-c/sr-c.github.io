@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>datadir on SR-C</title>
+    <link>https://sr-c.github.io/tags/datadir/</link>
+    <description>Recent content in datadir on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 11 Sep 2018 22:35:20 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/datadir/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>更改mysql数据库路径</title>
+      <link>https://sr-c.github.io/2018/09/11/change-mysql-datadir/</link>
+      <pubDate>Tue, 11 Sep 2018 22:35:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/11/change-mysql-datadir/</guid>
+      <description>查看mysql文件存放目录 1 show variables like &amp;#39;%dir%&amp;#39;; 能够查看到目前的数据库文件配置信息，其中的datadir值为/var/lib/mysql/ 停止mysql</description>
+    </item>
+    
+  </channel>
+</rss>

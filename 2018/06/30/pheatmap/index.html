@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用pheatmap绘制热图 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="安装 1 2 install.package(&amp;#34;pheatmap&amp;#34;) library(pheatmap) 读入数据 1 2 setwd(&amp;#34;path/to/my/workdir/&amp;#34;) data &amp;lt;- read.delim(&amp;#34;mydata.txt&amp;#34;, header = T, sep = &amp;#34;\t&amp;#34;, row.names = 1) 开始绘制 1 pheatmap(as.matrix(data), color=colorRampPalette(c(&amp;#34;green&amp;#34;,&amp;#34;black&amp;#34;,&amp;#34;red&amp;#34;))(100), scale=&amp;#39;row&amp;#39;, border_color=NA, width=9, height=18, fontsize=9, fontsize_row=6, filename=&amp;#34;heatmap.pdf&amp;#34; ) 参数设置 1 2 3 4 5 6 scale=&amp;#39;row&amp;#39; #对矩阵进行标准化，以row或colu" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/06/30/pheatmap/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用pheatmap绘制热图" />
+<meta property="og:description" content="安装 1 2 install.package(&#34;pheatmap&#34;) library(pheatmap) 读入数据 1 2 setwd(&#34;path/to/my/workdir/&#34;) data &lt;- read.delim(&#34;mydata.txt&#34;, header = T, sep = &#34;\t&#34;, row.names = 1) 开始绘制 1 pheatmap(as.matrix(data), color=colorRampPalette(c(&#34;green&#34;,&#34;black&#34;,&#34;red&#34;))(100), scale=&#39;row&#39;, border_color=NA, width=9, height=18, fontsize=9, fontsize_row=6, filename=&#34;heatmap.pdf&#34; ) 参数设置 1 2 3 4 5 6 scale=&#39;row&#39; #对矩阵进行标准化，以row或colu" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/06/30/pheatmap/" />
+<meta property="article:published_time" content="2018-06-30T11:23:27+00:00" />
+<meta property="article:modified_time" content="2018-06-30T11:23:27+00:00" />
+<meta itemprop="name" content="使用pheatmap绘制热图">
+<meta itemprop="description" content="安装 1 2 install.package(&#34;pheatmap&#34;) library(pheatmap) 读入数据 1 2 setwd(&#34;path/to/my/workdir/&#34;) data &lt;- read.delim(&#34;mydata.txt&#34;, header = T, sep = &#34;\t&#34;, row.names = 1) 开始绘制 1 pheatmap(as.matrix(data), color=colorRampPalette(c(&#34;green&#34;,&#34;black&#34;,&#34;red&#34;))(100), scale=&#39;row&#39;, border_color=NA, width=9, height=18, fontsize=9, fontsize_row=6, filename=&#34;heatmap.pdf&#34; ) 参数设置 1 2 3 4 5 6 scale=&#39;row&#39; #对矩阵进行标准化，以row或colu">
+<meta itemprop="datePublished" content="2018-06-30T11:23:27+00:00" />
+<meta itemprop="dateModified" content="2018-06-30T11:23:27+00:00" />
+<meta itemprop="wordCount" content="1139">
+
+
+
+<meta itemprop="keywords" content="heatmap," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用pheatmap绘制热图"/>
+<meta name="twitter:description" content="安装 1 2 install.package(&#34;pheatmap&#34;) library(pheatmap) 读入数据 1 2 setwd(&#34;path/to/my/workdir/&#34;) data &lt;- read.delim(&#34;mydata.txt&#34;, header = T, sep = &#34;\t&#34;, row.names = 1) 开始绘制 1 pheatmap(as.matrix(data), color=colorRampPalette(c(&#34;green&#34;,&#34;black&#34;,&#34;red&#34;))(100), scale=&#39;row&#39;, border_color=NA, width=9, height=18, fontsize=9, fontsize_row=6, filename=&#34;heatmap.pdf&#34; ) 参数设置 1 2 3 4 5 6 scale=&#39;row&#39; #对矩阵进行标准化，以row或colu"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用pheatmap绘制热图</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-06-30 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#读入数据">读入数据</a></li>
+    <li><a href="#开始绘制">开始绘制</a></li>
+    <li><a href="#参数设置">参数设置</a>
+      <ul>
+        <li><a href="#将数值显示在热图的格子中">将数值显示在热图的格子中</a></li>
+        <li><a href="#改变每个格子的大小">改变每个格子的大小</a></li>
+        <li><a href="#根据特定条件将热图分隔开">根据特定条件将热图分隔开</a></li>
+        <li><a href="#指定取色范围">指定取色范围</a></li>
+        <li><a href="#设置legend的大小">设置legend的大小</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<h2 id="安装">安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">install.package</span><span class="p">(</span><span class="s">&#34;pheatmap&#34;</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">pheatmap</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="读入数据">读入数据</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">setwd</span><span class="p">(</span><span class="s">&#34;path/to/my/workdir/&#34;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">&lt;-</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&#34;mydata.txt&#34;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;\t&#34;</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="开始绘制">开始绘制</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">pheatmap</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="nf">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;green&#34;</span><span class="p">,</span><span class="s">&#34;black&#34;</span><span class="p">,</span><span class="s">&#34;red&#34;</span><span class="p">))(</span><span class="m">100</span><span class="p">),</span> <span class="n">scale</span><span class="o">=</span><span class="s">&#39;row&#39;</span><span class="p">,</span> <span class="n">border_color</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">9</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">18</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="m">9</span><span class="p">,</span> <span class="n">fontsize_row</span><span class="o">=</span><span class="m">6</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s">&#34;heatmap.pdf&#34;</span> <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参数设置">参数设置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">scale=&#39;row&#39; #对矩阵进行标准化，以row或column方向进行标准化，默认参数为none
+cluster_row, cluster_col #默认对行列方向均进行聚类，设置为FALSE可不进行相应方向的聚类
+treeheight_row=0, treeheight_col=0 #不显示dendrogram
+border_color=NA #热图的每个小块间默认以灰色隔开，设置NA去掉border
+legend=FALSE #不显示legend
+color=colorRampPalette(rev(c(&#34;red&#34;,&#34;black&#34;,&#34;green&#34;)))(102) #设定cell的颜色
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="将数值显示在热图的格子中">将数值显示在热图的格子中</h3>
+<p><code>number_format</code>设置数值的格式，较常用的有 &ldquo;%.2f&rdquo;（保留小数点后两位），&quot;%.1e&rdquo;（科学计数法显示，保留小数点后一位）</p>
+<p><code>number_color</code>设置显示内容的颜色</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">pheatmap(test, display_numbers = TRUE, number_format = &#34;%.2f&#34;, number_color=&#34;purple&#34;) #&#34;%.2f&#34;表示保留小数点后两位
+# 在热图格子中展示文本
+pheatmap(test, display_numbers = TRUE)
+pheatmap(test, display_numbers = TRUE, number_format = &#34;\%.1e&#34;)
+pheatmap(test, display_numbers = matrix(ifelse(test &gt; 5, &#34;*&#34;, &#34;&#34;), nrow(test)))#还可以自己设定要显示的内容
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="改变每个格子的大小">改变每个格子的大小</h3>
+<p>pheatmap(test, cellwidth = 15, cellheight = 12, main = &ldquo;Example  heatmap&rdquo;, fontsize = 8, filename = &ldquo;test.pdf&rdquo;)</p>
+<p><code>main</code>可设置热图的标题，<code>fontsize</code>设置字体大小，<code>filename</code>可直接将热图存出，支持格式png, pdf, tiff, bmp,  jpeg，并且可以通过<code>width</code>, <code>height</code>设置图片的大小</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#pheatmap还可以显示行或列的分组信息，支持多种分组；
+annotation_col = data.frame(CellType = factor(rep(c(&#34;CT1&#34;, &#34;CT2&#34;), 5)), Time = 1:5)
+rownames(annotation_col) = paste(&#34;Test&#34;, 1:10, sep = &#34;&#34;)
+ 
+annotation_row = data.frame(GeneClass = factor(rep(c(&#34;Path1&#34;, &#34;Path2&#34;, &#34;Path3&#34;), c(10, 4, 6))))
+rownames(annotation_row) = paste(&#34;Gene&#34;, 1:20, sep = &#34;&#34;)
+ 
+pheatmap(test, annotation_col = annotation_col, annotation_row = annotation_row)
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#设定各个分组的颜色
+ann_colors = list(Time = c(&#34;white&#34;, &#34;firebrick&#34;), #连续数值型分组可设置成渐变
+    CellType = c(CT1 = &#34;#1B9E77&#34;, CT2 = &#34;#D95F02&#34;),
+    GeneClass = c(Path1 = &#34;#7570B3&#34;, Path2 = &#34;#E7298A&#34;, Path3 = &#34;#66A61E&#34;))
+pheatmap(test, annotation_col = annotation_col, annotation_row = annotation_row,
+         annotation_colors = ann_colors)
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="根据特定条件将热图分隔开">根据特定条件将热图分隔开</h3>
+<p><code>cutree_rows</code>, <code>cutree_cols</code> 根据行列的聚类数将热图分隔开
+pheatmap(test, cutree_rows=3, cutree_cols=2)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#还可以自己设定各个分组的颜色
+ann_colors = list(Time = c(&#34;white&#34;, &#34;firebrick&#34;), #连续数值型分组可设置成渐变
+    CellType = c(CT1 = &#34;#1B9E77&#34;, CT2 = &#34;#D95F02&#34;),
+    GeneClass = c(Path1 = &#34;#7570B3&#34;, Path2 = &#34;#E7298A&#34;, Path3 = &#34;#66A61E&#34;))
+pheatmap(test, annotation_col = annotation_col, annotation_row = annotation_row, annotation_colors = ann_colors)
+#还可以利用gaps_row, gaps_col自己设定要分隔开的位置
+pheatmap(test, annotation_col = annotation_col, cluster_rows = FALSE, gaps_row = c(10, 14), cutree_col = 2)
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="指定取色范围">指定取色范围</h3>
+<p>默认的取色范围就是数据的取值范围<code>range(data)</code>，而常常我们会需求特定的取值范围，或者指定中间特定值（如0）的颜色。那么就需要使用<code>breaks</code>参数指定取色范围，并根据break范围设定颜色范围。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1">#breaks</span>
+<span class="n">bk</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">-9</span><span class="p">,</span><span class="m">-0.1</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="m">0.01</span><span class="p">),</span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">9</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="m">0.01</span><span class="p">))</span>
+<span class="c1">#pheatmap</span>
+<span class="nf">pheatmap</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span>
+         <span class="n">scale</span> <span class="o">=</span> <span class="s">&#34;none&#34;</span><span class="p">,</span>
+         <span class="n">color</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">colorRampPalette</span><span class="p">(</span><span class="n">colors</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;blue&#34;</span><span class="p">,</span><span class="s">&#34;white&#34;</span><span class="p">))(</span><span class="nf">length</span><span class="p">(</span><span class="n">bk</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">),</span><span class="nf">colorRampPalette</span><span class="p">(</span><span class="n">colors</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;white&#34;</span><span class="p">,</span><span class="s">&#34;red&#34;</span><span class="p">))(</span><span class="nf">length</span><span class="p">(</span><span class="n">bk</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">)),</span>
+         <span class="n">legend_breaks</span><span class="o">=</span><span class="nf">seq</span><span class="p">(</span><span class="m">-8</span><span class="p">,</span><span class="m">8</span><span class="p">,</span><span class="m">2</span><span class="p">),</span>
+         <span class="n">breaks</span><span class="o">=</span><span class="n">bk</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://upload-images.jianshu.io/upload_images/903467-20ef5aee33fa32ab.png" alt="break_color"></p>
+<h3 id="设置legend的大小">设置legend的大小</h3>
+<p><code>pheatmap</code>关于<code>legend</code>仅提供了3个参数，而如何设定legend的大小并不方便。</p>
+<ul>
+<li>legend 是否显示legend</li>
+<li>legend_breaks 以向量方式设定breakpoint</li>
+<li>legend_labels 以向量方式提供breakpoint的标签</li>
+</ul>
+<p>一个讨巧的<a href="https://stackoverflow.com/questions/25495965/pheatmap-formatting-in-r-legend-size-and-creating-a-square-plot?answertab=active#tab-top">方法</a>是通过设定字体的方式来调整，增大字体可以改变legend的大小。而文本的字体可以使用<code>fontsize_row</code>和<code>fontsize_col</code>来分别限定。</p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://blog.csdn.net/sinat_38163598/article/details/72770404">https://blog.csdn.net/sinat_38163598/article/details/72770404</a></p>
+<p><a href="https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf">https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf</a></p>
+<p><a href="https://www.jianshu.com/p/6b765e83d723">https://www.jianshu.com/p/6b765e83d723</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-06-30
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/heatmap/">heatmap</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/06/30/awk/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用awk提取文件内容</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/06/23/local-blast/">
+            <span class="next-text nav-default">本地blast</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

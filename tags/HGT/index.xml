@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HGT on SR-C</title>
+    <link>https://sr-c.github.io/tags/HGT/</link>
+    <description>Recent content in HGT on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 27 Sep 2018 22:27:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/HGT/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用alienness识别基因水平转移</title>
+      <link>https://sr-c.github.io/2018/09/27/HGT-alienness/</link>
+      <pubDate>Thu, 27 Sep 2018 22:27:27 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/27/HGT-alienness/</guid>
+      <description>官方描述 alienness需要输入蛋白序列比对到nr数据库的结果文件作为输入 其对blastp的需求如下 -option value Description -outfmt 7 7 = tabular with comment lines !MANDATORY -db nr BLAST database name For a</description>
+    </item>
+    
+  </channel>
+</rss>

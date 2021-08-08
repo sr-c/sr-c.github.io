@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>AGAT使用 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="AGAT是Another Gff Analysis Toolkit的缩写, 是一个用于操作GTF/GFF文件的工具。它集合了一系列perl脚本，并且可以通过conda" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2020/08/28/AGAT-usage/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="AGAT使用" />
+<meta property="og:description" content="AGAT是Another Gff Analysis Toolkit的缩写, 是一个用于操作GTF/GFF文件的工具。它集合了一系列perl脚本，并且可以通过conda" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2020/08/28/AGAT-usage/" />
+<meta property="article:published_time" content="2020-08-28T14:45:13+08:00" />
+<meta property="article:modified_time" content="2020-08-28T14:45:13+08:00" />
+<meta itemprop="name" content="AGAT使用">
+<meta itemprop="description" content="AGAT是Another Gff Analysis Toolkit的缩写, 是一个用于操作GTF/GFF文件的工具。它集合了一系列perl脚本，并且可以通过conda">
+<meta itemprop="datePublished" content="2020-08-28T14:45:13+08:00" />
+<meta itemprop="dateModified" content="2020-08-28T14:45:13+08:00" />
+<meta itemprop="wordCount" content="2047">
+
+
+
+<meta itemprop="keywords" content="gff,gtf,perl," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="AGAT使用"/>
+<meta name="twitter:description" content="AGAT是Another Gff Analysis Toolkit的缩写, 是一个用于操作GTF/GFF文件的工具。它集合了一系列perl脚本，并且可以通过conda"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">AGAT使用</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-08-28 </span>
+        <div class="post-category">
+            <a href="/categories/Genomics/"> Genomics </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境配置">环境配置</a></li>
+    <li><a href="#说明事项">说明事项</a></li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#example-8---只含有cds信息">example 8 - 只含有CDS信息</a></li>
+        <li><a href="#example-9---第二级-mrna-与第三级utrs特征信息缺失">example 9 - 第二级 (mRNA) 与第三级(UTRs)特征信息缺失:</a></li>
+        <li><a href="#example-18---特定基因的相关特征信息未经排序零散地分布在文件中">example 18 - 特定基因的相关特征信息未经排序，零散地分布在文件中</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>AGAT是<code>Another Gff Analysis Toolkit</code>的缩写, 是一个用于操作<code>GTF/GFF</code>文件的工具。它集合了一系列perl<a href="https://github.com/NBISweden/AGAT/wiki#list-of-agat-tools-v021">脚本</a>，并且可以通过<code>conda</code>安装。</p>
+<!-- raw HTML omitted -->
+<h2 id="环境配置">环境配置</h2>
+<p>为了最小化对conda的<code>base</code>环境的影响，推荐新建一个<code>agatEnv</code>环境用于AGAT的安装。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda create -n agatEnv
+conda activate agatEnv
+conda install -c bioconda agat
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="说明事项">说明事项</h2>
+<p>其中包含的部分脚本如下</p>
+<table>
+<thead>
+<tr>
+<th>task</th>
+<th>tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>check, fix, pad</strong> missing information into sorted and standardised gff3</td>
+<td><code>agat_convert_sp_gxf2gxf.pl</code></td>
+</tr>
+<tr>
+<td>make feature <strong>statistics</strong></td>
+<td><code>agat_sp_statistics.pl</code></td>
+</tr>
+<tr>
+<td>make <strong>function statistics</strong></td>
+<td><code>agat_sp_functional_statistics.pl</code></td>
+</tr>
+<tr>
+<td><strong>extract</strong> any type of sequence</td>
+<td><code>agat_sp_extract_sequences.pl</code></td>
+</tr>
+<tr>
+<td><strong>extract</strong> attributes</td>
+<td><code>agat_sp_extract_attributes.pl</code></td>
+</tr>
+<tr>
+<td><strong>complement</strong> annotations (non-overlapping loci)</td>
+<td><code>agat_sp_complement_annotations.pl</code></td>
+</tr>
+<tr>
+<td><strong>merge</strong> annotations</td>
+<td><code>agat_sp_merge_annotations.pl</code></td>
+</tr>
+<tr>
+<td><strong>filter</strong> gene models by ORF size</td>
+<td><code>agat_sp_filter_by_ORF_size.pl</code></td>
+</tr>
+<tr>
+<td><strong>filter</strong> to keep only longest isoforms</td>
+<td><code>agat_sp_keep_longest_isoform.pl</code></td>
+</tr>
+<tr>
+<td><strong>create</strong> introns features</td>
+<td><code>agat_sp_add_introns.pl</code></td>
+</tr>
+<tr>
+<td><strong>fix</strong> cds phases</td>
+<td><code>agat_sp_fix_cds_phases.pl</code></td>
+</tr>
+<tr>
+<td><strong>manage</strong> IDs</td>
+<td><code>agat_sp_manage_IDs.pl</code></td>
+</tr>
+<tr>
+<td><strong>manage</strong> UTRs</td>
+<td><code>agat_sp_manage_UTRs.pl</code></td>
+</tr>
+<tr>
+<td><strong>manage</strong> introns</td>
+<td><code>agat_sp_manage_introns.pl</code></td>
+</tr>
+<tr>
+<td><strong>manage</strong> functional annotation</td>
+<td><code>agat_sp_manage_functional_annotation.pl</code></td>
+</tr>
+<tr>
+<td><strong>specificity sensitivity</strong></td>
+<td><code>agat_sp_sensitivity_specificity.pl</code></td>
+</tr>
+<tr>
+<td><strong>fusion / split</strong> analysis between two annotations</td>
+<td><code>agat_sp_compare_two_annotations.pl</code></td>
+</tr>
+<tr>
+<td>analyze differences between <strong>BUSCO</strong> results</td>
+<td><code>agat_sp_compare_two_BUSCOs.pl</code></td>
+</tr>
+<tr>
+<td>convert any <strong>GTF/GFF</strong> into <strong>tabulated format</strong></td>
+<td><code>agat_sp_to_tabulated.pl</code></td>
+</tr>
+<tr>
+<td>convert any <strong>GTF/GFF</strong> into <strong>BED</strong> format</td>
+<td><code>agat_convert_sp_gff2bed.pl</code></td>
+</tr>
+<tr>
+<td>convert any <strong>GTF/GFF</strong> into <strong>GTF</strong> format</td>
+<td><code>agat_convert_sp_gff2gtf.pl</code></td>
+</tr>
+<tr>
+<td>convert any <strong>GTF/GFF</strong> into any <strong>GTF/GFF</strong> (bioperl) format</td>
+<td><code>agat_convert_sp_gxf2gxf.pl</code></td>
+</tr>
+<tr>
+<td>convert <strong>BED</strong> format into <strong>GFF3</strong> format</td>
+<td><code>agat_convert_bed2gff.pl</code></td>
+</tr>
+<tr>
+<td>convert <strong>EMBL</strong> format into <strong>GFF3</strong> format</td>
+<td><code>agat_convert_embl2gff.pl</code></td>
+</tr>
+<tr>
+<td>convert <strong>genscan</strong> format into <strong>GFF3</strong> format</td>
+<td><code>agat_convert_genscan2gff.pl</code></td>
+</tr>
+<tr>
+<td>convert <strong>mfannot</strong> format into <strong>GFF3</strong> format</td>
+<td><code>agat_convert_mfannot2gff.pl</code></td>
+</tr>
+<tr>
+<td>&hellip; and much more &hellip;</td>
+<td>&hellip; see <a href="https://github.com/NBISweden/AGAT/wiki#list-of-agat-tools-v021">here</a> &hellip;</td>
+</tr>
+</tbody>
+</table>
+<p>其中脚本名称中的<code>_sp_</code>与<code>_sq_</code>具有特殊含义。</p>
+<p><code>_sp_</code>代表<code>SLURP</code>, 即脚本会一次性全部读入<code>gff</code>文件至内存。这样虽然消耗的内存更多，但处理效率更高，也能够修复整个文本中的一些错误。</p>
+<p><code>_sq_</code>代表<code>SEQUENTIAL</code>, 即脚本会从头至尾逐行读入<code>gff</code>文件，而不经过完整性检验。这样的脚本具有相对更高的内存效率。</p>
+<h2 id="使用">使用</h2>
+<p>以<code>agat_convert_sp_gxf2gxf.pl</code>为例，它能够检测并修复<code>gtf/gff</code>文件中的错误与缺失信息，得到排序后符合标准的<code>gff3</code>文件。</p>
+<h3 id="example-8---只含有cds信息">example 8 - 只含有CDS信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">##gff-version 3
+Tob1_contig1	Prodigal:2.60	CDS	476	670	.	-	0	ID=Tob1_00001;locus_tag=Tob1_00001;product=hypothetical protein
+Tob1_contig1	Prodigal:2.60	CDS	34266	35222	.	+	0	ID=Tob1_00024;locus_tag=Tob1_00024;product=hypothetical protein
+Tob1_contig1	SignalP:4.1	sig_peptide	34266	34298	.	+	0	inference=ab initio prediction:SignalP:4.1;note=predicted cleavage at residue 33;product=putative signal peptide
+Tob1_contig1	Prodigal:2.60	CDS	35267	37444	.	-	0	ID=Tob1_00025;locus_tag=Tob1_00025;
+Tob1_contig1	SignalP:4.1	sig_peptide	37420	37444	.	-	0	inference=ab initio prediction:SignalP:4.1;note=predicted cleavage at residue 25;product=putative signal peptide
+Tob1_contig1	Prodigal:2.60	CDS	38304	39338	.	-	0	ID=Tob1_00026;locus_tag=Tob1_00026;
+</code></pre></td></tr></table>
+</div>
+</div><p>补足第一级(gene)和第二级(mRNA)信息。<code>agat_convert_sp_gxf2gxf.pl --gff 8_test.gff</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">##gff-version 3
+Tob1_contig1	Prodigal:2.60	gene	476	670	.	-	0	ID=nbis_NEW-gene-1;locus_tag=Tob1_00001;product=hypothetical protein
+Tob1_contig1	Prodigal:2.60	mRNA	476	670	.	-	0	ID=nbis_nol2id-cds-1;Parent=nbis_NEW-gene-1;locus_tag=Tob1_00001;product=hypothetical protein
+Tob1_contig1	Prodigal:2.60	exon	476	670	.	-	.	ID=nbis_NEW-exon-1;Parent=nbis_nol2id-cds-1;locus_tag=Tob1_00001;product=hypothetical protein
+Tob1_contig1	Prodigal:2.60	CDS	476	670	.	-	0	ID=Tob1_00001;Parent=nbis_nol2id-cds-1;locus_tag=Tob1_00001;product=hypothetical protein
+Tob1_contig1	Prodigal:2.60	gene	34266	35222	.	+	0	ID=nbis_NEW-gene-2;locus_tag=Tob1_00024;product=hypothetical protein
+Tob1_contig1	Prodigal:2.60	mRNA	34266	35222	.	+	0	ID=nbis_nol2id-cds-2;Parent=nbis_NEW-gene-2;locus_tag=Tob1_00024;product=hypothetical protein
+Tob1_contig1	Prodigal:2.60	exon	34266	35222	.	+	.	ID=nbis_NEW-exon-2;Parent=nbis_nol2id-cds-2;locus_tag=Tob1_00024;product=hypothetical protein
+Tob1_contig1	Prodigal:2.60	CDS	34266	35222	.	+	0	ID=Tob1_00024;Parent=nbis_nol2id-cds-2;locus_tag=Tob1_00024;product=hypothetical protein
+Tob1_contig1	SignalP:4.1	sig_peptide	34266	34298	.	+	0	ID=sig_peptide-1;Parent=nbis_nol2id-cds-2;inference=ab initio prediction:SignalP:4.1;note=predicted cleavage at residue 33;product=putative signal peptide
+Tob1_contig1	Prodigal:2.60	gene	35267	37444	.	-	0	ID=nbis_NEW-gene-3;locus_tag=Tob1_00025
+Tob1_contig1	Prodigal:2.60	mRNA	35267	37444	.	-	0	ID=nbis_nol2id-cds-3;Parent=nbis_NEW-gene-3;locus_tag=Tob1_00025
+Tob1_contig1	Prodigal:2.60	exon	35267	37444	.	-	.	ID=nbis_NEW-exon-3;Parent=nbis_nol2id-cds-3;locus_tag=Tob1_00025
+Tob1_contig1	Prodigal:2.60	CDS	35267	37444	.	-	0	ID=Tob1_00025;Parent=nbis_nol2id-cds-3;locus_tag=Tob1_00025
+Tob1_contig1	SignalP:4.1	sig_peptide	37420	37444	.	-	0	ID=sig_peptide-2;Parent=nbis_nol2id-cds-3;inference=ab initio prediction:SignalP:4.1;note=predicted cleavage at residue 25;product=putative signal peptide
+Tob1_contig1	Prodigal:2.60	gene	38304	39338	.	-	0	ID=nbis_NEW-gene-4;locus_tag=Tob1_00026
+Tob1_contig1	Prodigal:2.60	mRNA	38304	39338	.	-	0	ID=nbis_nol2id-cds-4;Parent=nbis_NEW-gene-4;locus_tag=Tob1_00026
+Tob1_contig1	Prodigal:2.60	exon	38304	39338	.	-	.	ID=nbis_NEW-exon-4;Parent=nbis_nol2id-cds-4;locus_tag=Tob1_00026
+Tob1_contig1	Prodigal:2.60	CDS	38304	39338	.	-	0	ID=Tob1_00026;Parent=nbis_nol2id-cds-4;locus_tag=Tob1_00026
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="example-9---第二级-mrna-与第三级utrs特征信息缺失">example 9 - 第二级 (mRNA) 与第三级(UTRs)特征信息缺失:</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">##gff-version 3
+#!gff-spec-version 1.14
+#!source-version NCBI C++ formatter 0.2
+##Type DNA NC_003070.9
+NC_003070.9	RefSeq	source	1	30427671	.	+	.	organism=Arabidopsis thaliana;mol_type=genomic DNA;db_xref=taxon:3702;chromosome=1;ecotype=Columbia
+NC_003070.9	RefSeq	gene	3631	5899	.	+	.	ID=NC_003070.9:NAC001;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	exon	3631	3913	.	+	.	ID=NM_099983.2;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	exon	3996	4276	.	+	.	ID=NM_099983.2;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	exon	4486	4605	.	+	.	ID=NM_099983.2;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	exon	4706	5095	.	+	.	ID=NM_099983.2;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	exon	5174	5326	.	+	.	ID=NM_099983.2;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	exon	5439	5899	.	+	.	ID=NM_099983.2;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	CDS	3760	3913	.	+	0	ID=NM_099983.2;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	CDS	3996	4276	.	+	2	ID=NM_099983.2;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	CDS	4486	4605	.	+	0	ID=NM_099983.2;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	CDS	4706	5095	.	+	0	ID=NM_099983.2;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	CDS	5174	5326	.	+	0	ID=NM_099983.2;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	CDS	5439	5627	.	+	0	ID=NM_099983.2;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	start_codon	3760	3762	.	+	0	ID=NM_099983.2;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010;
+NC_003070.9	RefSeq	stop_codon	5628	5630	.	+	0	ID=NM_099983.2;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010;
+</code></pre></td></tr></table>
+</div>
+</div><p><code>agat_convert_sp_gxf2gxf.pl --gff 8_test.gff</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">##gff-version 3
+#!gff-spec-version 1.14
+#!source-version NCBI C++ formatter 0.2
+##Type DNA NC_003070.9
+NC_003070.9	RefSeq	source	1	30427671	.	+	.	ID=source-1;chromosome=1;db_xref=taxon:3702;ecotype=Columbia;mol_type=genomic DNA;organism=Arabidopsis thaliana
+NC_003070.9	RefSeq	gene	3631	5899	.	+	.	ID=nbis_NEW-gene-1;locus_tag=AT1G01010
+NC_003070.9	RefSeq	mRNA	3631	5899	.	+	.	ID=NC_003070.9:NAC001;Parent=nbis_NEW-gene-1;locus_tag=AT1G01010
+NC_003070.9	RefSeq	exon	3631	3913	.	+	.	ID=NM_099983.2;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010
+NC_003070.9	RefSeq	exon	3996	4276	.	+	.	ID=nbis_NEW-exon-1;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010
+NC_003070.9	RefSeq	exon	4486	4605	.	+	.	ID=nbis_NEW-exon-2;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010
+NC_003070.9	RefSeq	exon	4706	5095	.	+	.	ID=nbis_NEW-exon-3;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010
+NC_003070.9	RefSeq	exon	5174	5326	.	+	.	ID=nbis_NEW-exon-4;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010
+NC_003070.9	RefSeq	exon	5439	5899	.	+	.	ID=nbis_NEW-exon-5;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010
+NC_003070.9	RefSeq	CDS	3760	3913	.	+	0	ID=nbis_NEW-cds-1;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010
+NC_003070.9	RefSeq	CDS	3996	4276	.	+	2	ID=nbis_NEW-cds-1;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010
+NC_003070.9	RefSeq	CDS	4486	4605	.	+	0	ID=nbis_NEW-cds-1;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010
+NC_003070.9	RefSeq	CDS	4706	5095	.	+	0	ID=nbis_NEW-cds-1;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010
+NC_003070.9	RefSeq	CDS	5174	5326	.	+	0	ID=nbis_NEW-cds-1;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010
+NC_003070.9	RefSeq	CDS	5439	5627	.	+	0	ID=nbis_NEW-cds-1;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010
+NC_003070.9	RefSeq	five_prime_UTR	3631	3759	.	+	.	ID=nbis_NEW-five_prime_utr-1;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010
+NC_003070.9	RefSeq	start_codon	3760	3762	.	+	0	ID=nbis_NEW-start_codon-1;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010
+NC_003070.9	RefSeq	stop_codon	5628	5630	.	+	0	ID=nbis_NEW-stop_codon-1;Parent=NC_003070.9:NAC001;locus_tag=AT1G01010
+NC_003070.9	RefSeq	three_prime_UTR	5628	5899	.	+	.	ID=nbis_NEW-three_prime_utr-1;Parent=NC_003070.9:NAC001;gbkey=mRNA;locus_tag=AT1G01010
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="example-18---特定基因的相关特征信息未经排序零散地分布在文件中">example 18 - 特定基因的相关特征信息未经排序，零散地分布在文件中</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">##gff-version 3
+scaffold625	maker	gene	337818	343277	.	+	.	ID=CLUHARG00000005458;Name=TUBB3_2
+scaffold625	maker	mRNA	337818	343277	.	+	.	ID=CLUHART00000008717;Parent=CLUHARG00000005458
+scaffold625	maker	exon	337818	337971	.	+	.	ID=CLUHART00000008717:exon:1404;Parent=CLUHART00000008717
+scaffold625	maker	exon	340733	340841	.	+	.	ID=CLUHART00000008717:exon:1405;Parent=CLUHART00000008717
+scaffold789	maker	three_prime_UTR	564589	564780	.	+	.	ID=CLUHART00000006146:three_prime_utr;Parent=CLUHART00000006146
+scaffold789	maker	mRNA	558184	564780	.	+	.	ID=CLUHART00000006147;Parent=CLUHARG00000003852
+scaffold625	maker	CDS	337915	337971	.	+	0	ID=CLUHART00000008717:cds;Parent=CLUHART00000008717
+scaffold625	maker	CDS	340733	340841	.	+	0	ID=CLUHART00000008717:cds;Parent=CLUHART00000008717
+scaffold625	maker	CDS	341518	341628	.	+	2	ID=CLUHART00000008717:cds;Parent=CLUHART00000008717
+scaffold625	maker	CDS	341964	343033	.	+	2	ID=CLUHART00000008717:cds;Parent=CLUHART00000008717
+scaffold625	maker	five_prime_UTR	337818	337914	.	+	.	ID=CLUHART00000008717:five_prime_utr;Parent=CLUHART00000008717
+scaffold625	maker	three_prime_UTR	343034	343277	.	+	.	ID=CLUHART00000008717:three_prime_utr;Parent=CLUHART00000008717
+scaffold789	maker	gene	558184	564780	.	+	.	ID=CLUHARG00000003852;Name=PF11_0240
+scaffold789	maker	mRNA	558184	564780	.	+	.	ID=CLUHART00000006146;Parent=CLUHARG00000003852
+scaffold789	maker	exon	558184	560123	.	+	.	ID=CLUHART00000006146:exon:995;Parent=CLUHART00000006146
+scaffold789	maker	exon	561401	561519	.	+	.	ID=CLUHART00000006146:exon:996;Parent=CLUHART00000006146
+scaffold789	maker	exon	564171	564235	.	+	.	ID=CLUHART00000006146:exon:997;Parent=CLUHART00000006146
+scaffold789	maker	exon	564372	564780	.	+	.	ID=CLUHART00000006146:exon:998;Parent=CLUHART00000006146
+scaffold789	maker	CDS	558191	560123	.	+	0	ID=CLUHART00000006146:cds;Parent=CLUHART00000006146
+scaffold789	maker	CDS	561401	561519	.	+	2	ID=CLUHART00000006146:cds;Parent=CLUHART00000006146
+scaffold625	maker	exon	341518	341628	.	+	.	ID=CLUHART00000008717:exon:1406;Parent=CLUHART00000008717
+scaffold625	maker	exon	341964	343277	.	+	.	ID=CLUHART00000008717:exon:1407;Parent=CLUHART00000008717
+scaffold789	maker	CDS	564171	564235	.	+	0	ID=CLUHART00000006146:cds;Parent=CLUHART00000006146
+scaffold789	maker	CDS	564372	564588	.	+	1	ID=CLUHART00000006146:cds;Parent=CLUHART00000006146
+scaffold789	maker	five_prime_UTR	558184	558190	.	+	.	ID=CLUHART00000006146:five_prime_utr;Parent=CLUHART00000006146
+scaffold789	maker	exon	558184	560123	.	+	.	ID=CLUHART00000006147:exon:997;Parent=CLUHART00000006147
+scaffold789	maker	exon	561401	561519	.	+	.	ID=CLUHART00000006147:exon:998;Parent=CLUHART00000006147
+scaffold789	maker	exon	562057	562121	.	+	.	ID=CLUHART00000006147:exon:999;Parent=CLUHART00000006147
+scaffold789	maker	exon	564372	564780	.	+	.	ID=CLUHART00000006147:exon:1000;Parent=CLUHART00000006147
+scaffold789	maker	CDS	558191	560123	.	+	0	ID=CLUHART00000006147:cds;Parent=CLUHART00000006147
+scaffold789	maker	CDS	561401	561519	.	+	2	ID=CLUHART00000006147:cds;Parent=CLUHART00000006147
+scaffold789	maker	CDS	562057	562121	.	+	0	ID=CLUHART00000006147:cds;Parent=CLUHART00000006147
+scaffold789	maker	CDS	564372	564588	.	+	1	ID=CLUHART00000006147:cds;Parent=CLUHART00000006147
+scaffold789	maker	five_prime_UTR	558184	558190	.	+	.	ID=CLUHART00000006147:five_prime_utr;Parent=CLUHART00000006147
+scaffold789	maker	three_prime_UTR	564589	564780	.	+	.	ID=CLUHART00000006147:three_prime_utr;Parent=CLUHART00000006147
+</code></pre></td></tr></table>
+</div>
+</div><p><code>agat_convert_sp_gxf2gxf.pl --gff 18_test.gff</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">##gff-version 3
+scaffold625	maker	gene	337818	343277	.	+	.	ID=CLUHARG00000005458;Name=TUBB3_2
+scaffold625	maker	mRNA	337818	343277	.	+	.	ID=CLUHART00000008717;Parent=CLUHARG00000005458
+scaffold625	maker	exon	337818	337971	.	+	.	ID=CLUHART00000008717:exon:1404;Parent=CLUHART00000008717
+scaffold625	maker	exon	340733	340841	.	+	.	ID=CLUHART00000008717:exon:1405;Parent=CLUHART00000008717
+scaffold625	maker	exon	341518	341628	.	+	.	ID=CLUHART00000008717:exon:1406;Parent=CLUHART00000008717
+scaffold625	maker	exon	341964	343277	.	+	.	ID=CLUHART00000008717:exon:1407;Parent=CLUHART00000008717
+scaffold625	maker	CDS	337915	337971	.	+	0	ID=CLUHART00000008717:cds;Parent=CLUHART00000008717
+scaffold625	maker	CDS	340733	340841	.	+	0	ID=CLUHART00000008717:cds;Parent=CLUHART00000008717
+scaffold625	maker	CDS	341518	341628	.	+	2	ID=CLUHART00000008717:cds;Parent=CLUHART00000008717
+scaffold625	maker	CDS	341964	343033	.	+	2	ID=CLUHART00000008717:cds;Parent=CLUHART00000008717
+scaffold625	maker	five_prime_UTR	337818	337914	.	+	.	ID=CLUHART00000008717:five_prime_utr;Parent=CLUHART00000008717
+scaffold625	maker	three_prime_UTR	343034	343277	.	+	.	ID=CLUHART00000008717:three_prime_utr;Parent=CLUHART00000008717
+scaffold789	maker	gene	558184	564780	.	+	.	ID=CLUHARG00000003852;Name=PF11_0240
+scaffold789	maker	mRNA	558184	564780	.	+	.	ID=CLUHART00000006146;Parent=CLUHARG00000003852
+scaffold789	maker	exon	558184	560123	.	+	.	ID=CLUHART00000006146:exon:995;Parent=CLUHART00000006146
+scaffold789	maker	exon	561401	561519	.	+	.	ID=CLUHART00000006146:exon:996;Parent=CLUHART00000006146
+scaffold789	maker	exon	564171	564235	.	+	.	ID=CLUHART00000006146:exon:997;Parent=CLUHART00000006146
+scaffold789	maker	exon	564372	564780	.	+	.	ID=CLUHART00000006146:exon:998;Parent=CLUHART00000006146
+scaffold789	maker	CDS	558191	560123	.	+	0	ID=CLUHART00000006146:cds;Parent=CLUHART00000006146
+scaffold789	maker	CDS	561401	561519	.	+	2	ID=CLUHART00000006146:cds;Parent=CLUHART00000006146
+scaffold789	maker	CDS	564171	564235	.	+	0	ID=CLUHART00000006146:cds;Parent=CLUHART00000006146
+scaffold789	maker	CDS	564372	564588	.	+	1	ID=CLUHART00000006146:cds;Parent=CLUHART00000006146
+scaffold789	maker	five_prime_UTR	558184	558190	.	+	.	ID=CLUHART00000006146:five_prime_utr;Parent=CLUHART00000006146
+scaffold789	maker	three_prime_UTR	564589	564780	.	+	.	ID=CLUHART00000006146:three_prime_utr;Parent=CLUHART00000006146
+scaffold789	maker	mRNA	558184	564780	.	+	.	ID=CLUHART00000006147;Parent=CLUHARG00000003852
+scaffold789	maker	exon	558184	560123	.	+	.	ID=CLUHART00000006147:exon:997;Parent=CLUHART00000006147
+scaffold789	maker	exon	561401	561519	.	+	.	ID=CLUHART00000006147:exon:998;Parent=CLUHART00000006147
+scaffold789	maker	exon	562057	562121	.	+	.	ID=CLUHART00000006147:exon:999;Parent=CLUHART00000006147
+scaffold789	maker	exon	564372	564780	.	+	.	ID=CLUHART00000006147:exon:1000;Parent=CLUHART00000006147
+scaffold789	maker	CDS	558191	560123	.	+	0	ID=CLUHART00000006147:cds;Parent=CLUHART00000006147
+scaffold789	maker	CDS	561401	561519	.	+	2	ID=CLUHART00000006147:cds;Parent=CLUHART00000006147
+scaffold789	maker	CDS	562057	562121	.	+	0	ID=CLUHART00000006147:cds;Parent=CLUHART00000006147
+scaffold789	maker	CDS	564372	564588	.	+	1	ID=CLUHART00000006147:cds;Parent=CLUHART00000006147
+scaffold789	maker	five_prime_UTR	558184	558190	.	+	.	ID=CLUHART00000006147:five_prime_utr;Parent=CLUHART00000006147
+scaffold789	maker	three_prime_UTR	564589	564780	.	+	.	ID=CLUHART00000006147:three_prime_utr;Parent=CLUHART00000006147
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://github.com/NBISweden/AGAT">https://github.com/NBISweden/AGAT</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-08-28
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/gff/">gff</a>
+          <a href="/tags/gtf/">gtf</a>
+          <a href="/tags/perl/">perl</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2020/09/02/kill-task-in-batch/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">批量中止进程</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2020/08/09/False-Discovery-Rates-StatQuest/">
+            <span class="next-text nav-default">【StatQuest】错误发现率(FDR)</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

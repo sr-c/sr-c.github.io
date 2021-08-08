@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Genomics on SR-C</title>
+    <link>https://sr-c.github.io/categories/Genomics/</link>
+    <description>Recent content in Genomics on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 11 Sep 2020 16:17:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/categories/Genomics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Bacsnp可视化病毒基因组中的SNP位点</title>
+      <link>https://sr-c.github.io/2020/09/11/bacsnp/</link>
+      <pubDate>Fri, 11 Sep 2020 16:17:11 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/09/11/bacsnp/</guid>
+      <description>Bacsnp是用来分析杆状病毒毒株之间遗传多样性（判断SNP的种群特异性）的下游工具。 安装 新建R环境 环境需求R 3.6.3, 严格限制在此版本，其他版本均</description>
+    </item>
+    
+    <item>
+      <title>使用GenomeScope2评估基因组</title>
+      <link>https://sr-c.github.io/2020/09/11/GenomeScope2/</link>
+      <pubDate>Fri, 11 Sep 2020 09:35:51 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/09/11/GenomeScope2/</guid>
+      <description>GenomeScope是基因组评估的有效工具，但是之前只能够预测二倍体基因组，现在使用GenomeScope2则可以预测多倍体（至多六倍体）</description>
+    </item>
+    
+    <item>
+      <title>AGAT使用</title>
+      <link>https://sr-c.github.io/2020/08/28/AGAT-usage/</link>
+      <pubDate>Fri, 28 Aug 2020 14:45:13 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/08/28/AGAT-usage/</guid>
+      <description>AGAT是Another Gff Analysis Toolkit的缩写, 是一个用于操作GTF/GFF文件的工具。它集合了一系列perl脚本，并且可以通过conda</description>
+    </item>
+    
+    <item>
+      <title>搜索简单基因组中的重复序列</title>
+      <link>https://sr-c.github.io/2020/07/22/repeat-region-search/</link>
+      <pubDate>Wed, 22 Jul 2020 11:46:46 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/22/repeat-region-search/</guid>
+      <description>分析原核/病毒基因组中的重复序列 寻找基因间区 首先，计算基因组中的基因编码区。然后，通过interval取反得到基因间区。若只为得到基因间区，</description>
+    </item>
+    
+    <item>
+      <title>Circos共线性比较</title>
+      <link>https://sr-c.github.io/2020/06/03/Circo-Synteny-Panel/</link>
+      <pubDate>Wed, 03 Jun 2020 21:37:09 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/06/03/Circo-Synteny-Panel/</guid>
+      <description>数据准备 获取区域关联关系 Mummer匹配 获取已硬屏蔽了重复序列的基因组序列，使用nucmer(Mummer)对其进行匹配 1 2 3 4 5 6 7 8 9 10</description>
+    </item>
+    
+    <item>
+      <title>向GenBank提交基因组数据</title>
+      <link>https://sr-c.github.io/2020/02/25/submit-genome-to-NCBI/</link>
+      <pubDate>Tue, 25 Feb 2020 23:31:22 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/02/25/submit-genome-to-NCBI/</guid>
+      <description>向NCBI提交基因组数据的关键在于提供符合NCBI规范的注释信息。NCBI要求其专门的5列的注释形式，以.tbl文件提供。当时该文件的生成比</description>
+    </item>
+    
+    <item>
+      <title>Polish Pacbio Assembly</title>
+      <link>https://sr-c.github.io/2018/05/29/polish-pacbio-assembly/</link>
+      <pubDate>Tue, 29 May 2018 23:18:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/29/polish-pacbio-assembly/</guid>
+      <description>In the README of quickmerge, I got a advice.
+ Assembly polishing with Quiver and pilon before and after assembly merging is strongly recommended.
+ As for Sequal data, Pacbio updated the quiver to arrow.
+ Quiver is supported for PacBio RS data. Arrow is supported for PacBio Sequel data and RS data with the P6-C4 chemistry.
+ So, let&amp;rsquo;s do it !
+Step 0 Install SMRT Tools 1 2  SMRT_ROOT=/opt/pacbio/smrtlink .</description>
+    </item>
+    
+  </channel>
+</rss>

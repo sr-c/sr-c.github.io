@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用Bacsnp可视化病毒基因组中的SNP位点 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="Bacsnp是用来分析杆状病毒毒株之间遗传多样性（判断SNP的种群特异性）的下游工具。 安装 新建R环境 环境需求R 3.6.3, 严格限制在此版本，其他版本均" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2020/09/11/bacsnp/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用Bacsnp可视化病毒基因组中的SNP位点" />
+<meta property="og:description" content="Bacsnp是用来分析杆状病毒毒株之间遗传多样性（判断SNP的种群特异性）的下游工具。 安装 新建R环境 环境需求R 3.6.3, 严格限制在此版本，其他版本均" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2020/09/11/bacsnp/" />
+<meta property="article:published_time" content="2020-09-11T16:17:11+08:00" />
+<meta property="article:modified_time" content="2020-09-11T16:17:11+08:00" />
+<meta itemprop="name" content="使用Bacsnp可视化病毒基因组中的SNP位点">
+<meta itemprop="description" content="Bacsnp是用来分析杆状病毒毒株之间遗传多样性（判断SNP的种群特异性）的下游工具。 安装 新建R环境 环境需求R 3.6.3, 严格限制在此版本，其他版本均">
+<meta itemprop="datePublished" content="2020-09-11T16:17:11+08:00" />
+<meta itemprop="dateModified" content="2020-09-11T16:17:11+08:00" />
+<meta itemprop="wordCount" content="1700">
+
+
+
+<meta itemprop="keywords" content="R,github," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用Bacsnp可视化病毒基因组中的SNP位点"/>
+<meta name="twitter:description" content="Bacsnp是用来分析杆状病毒毒株之间遗传多样性（判断SNP的种群特异性）的下游工具。 安装 新建R环境 环境需求R 3.6.3, 严格限制在此版本，其他版本均"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用Bacsnp可视化病毒基因组中的SNP位点</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-09-11 </span>
+        <div class="post-category">
+            <a href="/categories/Genomics/"> Genomics </a>
+            <a href="/categories/Visualization/"> Visualization </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#新建r环境">新建R环境</a></li>
+        <li><a href="#配置r软件源可选">配置R软件源（可选）</a></li>
+        <li><a href="#安装依赖">安装依赖</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据预处理">数据预处理</a></li>
+    <li><a href="#bacsnp分析">bacsnp分析</a></li>
+    <li><a href="#结果">结果</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>Bacsnp是用来分析杆状病毒毒株之间遗传多样性（判断SNP的种群特异性）的下游工具。</p>
+<!-- raw HTML omitted -->
+<h2 id="安装">安装</h2>
+<h3 id="新建r环境">新建R环境</h3>
+<p>环境需求R 3.6.3, 严格限制在此版本，其他版本均存在依赖限制的问题。</p>
+<p>因此，参照anaconda官方<a href="https://docs.anaconda.com/anaconda/user-guide/tasks/using-r-language/">推荐</a>，新建一个R 3.6.3的环境。</p>
+<blockquote>
+<p>目前，官方conda源中的R似乎还没有更新到<code>4.0.2</code>, 最近的版本正是<code>3.6.3</code>. <code>conda-forge</code>或<code>R</code>的源中已更新至<code>4.0.2</code></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda create -n R-3.6.3 r-essentials r-base
+conda activate R-3.6.3
+<span class="c1">##如果你不小心将事实为R-3.6.3的环境命名成了R-4.0.2, 那么如下命令可以帮你将环境改回合适的名称</span>
+<span class="c1">##conda create --name R-3.6.3 --copy --clone R-4.0.2</span>
+<span class="c1">##conda remove --name R-4.0.2 --all # or its alias: `conda env remove --name R-4.0.2`</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="配置r软件源可选">配置R软件源（可选）</h3>
+<blockquote>
+<p>目前官方源的范围速度还不错，因此也可直接使用官方源。</p>
+</blockquote>
+<p>新建<code>~/.Rprofile</code>, 在其中添加如下语句。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">options</span><span class="p">(</span><span class="n">repos</span><span class="o">=</span><span class="nf">structure</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">CRAN</span><span class="o">=</span>“<span class="n">https</span><span class="o">://</span><span class="n">mirrors.tuna.tsinghua.edu.cn</span><span class="o">/</span><span class="n">CRAN</span><span class="o">/</span>”<span class="p">)))</span>
+
+<span class="nf">source</span><span class="p">(</span>“<span class="n">http</span><span class="o">://</span><span class="n">bioconductor.org</span><span class="o">/</span><span class="n">biocLite.R</span>”<span class="p">)</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">BioC_mirror</span><span class="o">=</span>“<span class="n">http</span><span class="o">://</span><span class="n">mirrors.ustc.edu.cn</span><span class="o">/</span><span class="n">bioc</span><span class="o">/</span>”<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="安装依赖">安装依赖</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;devtools&#34;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;ggplot2&#34;</span><span class="p">)</span>
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+    <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">)</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;VariantAnnotation&#34;</span><span class="p">)</span>
+
+<span class="c1">## 确认这3个包成功安装后</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">devtools</span><span class="p">)</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>但在编译<code>vignettes</code>过程中报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">Error</span><span class="o">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">install</span> <span class="s">&#39;unknown package&#39;</span> <span class="n">from</span> <span class="n">GitHub</span><span class="o">:</span>
+  <span class="n">System</span> <span class="n">command</span> <span class="s">&#39;Rcmd.exe&#39;</span> <span class="n">failed</span><span class="p">,</span> <span class="n">exit</span> <span class="n">status</span><span class="o">:</span> <span class="m">1</span><span class="p">,</span> <span class="n">stdout</span> <span class="o">+</span> <span class="nf">stderr </span><span class="p">(</span><span class="n">last</span> <span class="m">10</span> <span class="n">lines</span><span class="p">)</span><span class="o">:</span>
+<span class="n">E</span><span class="o">&gt;</span> <span class="n">Quitting</span> <span class="n">from</span> <span class="n">lines</span> <span class="m">107-108</span> <span class="p">(</span><span class="n">bacsnp.Rmd</span><span class="p">)</span> 
+<span class="n">E</span><span class="o">&gt;</span> <span class="n">Error</span><span class="o">:</span> <span class="n">processing</span> <span class="n">vignette</span> <span class="s">&#39;bacsnp.Rmd&#39;</span> <span class="n">failed</span> <span class="n">with</span> <span class="n">diagnostics</span><span class="o">:</span>
+<span class="n">E</span><span class="o">&gt;</span> <span class="n">more</span> <span class="n">cluster</span> <span class="n">centers</span> <span class="n">than</span> <span class="n">distinct</span> <span class="n">data</span> <span class="n">points.</span>
+<span class="n">E</span><span class="o">&gt;</span> <span class="o">---</span> <span class="n">failed</span> <span class="n">re</span><span class="o">-</span><span class="n">building</span> <span class="s">&#39;bacsnp.Rmd&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>需要修改源文件，在<code>bacsnp.Rmd</code>中的数据导入之前加入一行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">options</span><span class="p">(</span><span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>防止读入数据转化为<code>data.frame</code>时将字符串自动转化为因子。</p>
+<p>然后，下载源码后手动本地安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">install_local</span><span class="p">(</span><span class="s">&#34;bacsnp-master.zip&#34;</span><span class="p">,</span> <span class="n">build_vignettes</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>其实，不编译<code>vignettes</code>也是解决方案，<code>install_github(&quot;wennj/bacsnp&quot;, build_vignettes = FALSE)</code>即可。</p>
+</blockquote>
+<h2 id="数据预处理">数据预处理</h2>
+<p>bacsnp推荐的数据预处理模式如下。</p>
+<p><img src="https://www.mdpi.com/viruses/viruses-12-00625/article_deploy/html/images/viruses-12-00625-g001.png" alt="Viruses 12 00625 g001"></p>
+<p>根据其<code>vignettes</code>中的<code>bacsnp.Rmd</code>文件中的详细说明和提供的<code>bac.vcf</code>示例，其详细要求如下：</p>
+<ul>
+<li>只接受Illunima数据。（长读长的测序数据通过合适的比对工具也能够用于后续分析 ）</li>
+<li>测序数据应使用BWA比对至参考基因组，每个数据组要具有相应的标记。（经测试，bowtie2等其他工具也能够完成）</li>
+<li>每个样品的数据都应当比对至同一个参考基因组序列</li>
+<li>使用samtool/bcftool mpileup来分析BAM文件（不进行indel分析）</li>
+<li>bcftools只用来获取变异位点</li>
+<li>bcftool的输出文件为非压缩的VCF格式</li>
+</ul>
+<p>观察示例的<code>bac.vcf</code>文件，发现其<code>Galaxy</code>服务端的环境配置如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">##samtoolsVersion=1.8+htslib-1.8
+##samtoolsCommand=samtools mpileup -f /CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540916.dat -C 0 -d 328 -q 0 -Q 13 --VCF --uncompressed --output-tags DP,DPR -I --output /CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540952.dat /CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540935.dat /CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540936.dat /CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540937.dat /CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540949.dat /CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540950.dat /CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540951.dat
+##reference=file:///CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540916.dat
+......
+##bcftools_callVersion=1.2+htslib-1.2.1
+##bcftools_callCommand=call -O v -A -v -f GQ -m -o /CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540976.dat /CLUSTER-FS/galaxy-dist/database/files/000/540/dataset_540952.dat
+</code></pre></td></tr></table>
+</div>
+</div><p>即使用<code>samtool 1.8</code>与<code>bcftool 1.2</code>的组合。作者强调<code>samtool mpileup</code>的输出文件需要有<code>DP,DPR</code>两个tag。但是，samtool在1.9之后的版本用<code>AD</code>替换了<code>DPR</code>，所以除非手动修改结果VCF文件，那么还是按照作者的环境配置来进行更省事。</p>
+<h2 id="bacsnp分析">bacsnp分析</h2>
+<p>将<code>bac.rmd</code>的内容摘录如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">VariantAnnotation</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">IRanges</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">bacsnp</span><span class="p">)</span>
+
+<span class="c1">## Loading VCF file data</span>
+
+<span class="n">bacdata</span> <span class="o">&lt;-</span> <span class="nf">readVcf</span><span class="p">(</span><span class="s">&#34;bac.vcf&#34;</span><span class="p">)</span>
+
+<span class="c1">## Transforming VCF file data</span>
+<span class="n">bac.df</span> <span class="o">&lt;-</span> <span class="nf">bacsnp.transformation</span><span class="p">(</span><span class="n">bacdata</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">bac.df</span><span class="p">)</span>
+
+<span class="c1">## Accessing basic SNP information</span>
+
+<span class="nf">unique</span><span class="p">(</span><span class="n">bac.df</span><span class="o">$</span><span class="n">ISO</span><span class="p">)</span>
+<span class="nf">length</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="n">bac.df</span><span class="o">$</span><span class="n">POS</span><span class="p">))</span>
+<span class="nf">unique</span><span class="p">(</span><span class="n">bac.df</span><span class="o">$</span><span class="n">POS</span><span class="p">)</span>
+
+<span class="c1">## Filtering SNP data frame</span>
+<span class="n">bac.f</span> <span class="o">&lt;-</span> <span class="nf">bacsnp.filter</span><span class="p">(</span><span class="n">bac.df</span><span class="p">,</span> <span class="n">min.abs.cov</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span> <span class="n">min.abs.alt</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">min.rel.alt</span> <span class="o">=</span> <span class="m">0.05</span><span class="p">)</span>
+
+<span class="c1">## Determination of SNP specificity</span>
+<span class="n">bac.spec</span> <span class="o">&lt;-</span> <span class="nf">bacsnp.specificity</span><span class="p">(</span><span class="n">bac.f</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;iIso1&#34;</span><span class="p">,</span> <span class="s">&#34;iIso2&#34;</span><span class="p">),</span> <span class="n">which.rel</span> <span class="o">=</span> <span class="s">&#34;REL.ALT1&#34;</span><span class="p">)</span>
+
+<span class="n">bac.spec</span><span class="o">$</span><span class="n">combinations</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">bac.spec</span><span class="o">$</span><span class="n">data[</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;POS&#34;</span><span class="p">,</span> <span class="s">&#34;REF&#34;</span><span class="p">,</span> <span class="s">&#34;ALT&#34;</span><span class="p">,</span><span class="s">&#34;REL.ALT1&#34;</span><span class="p">,</span> <span class="s">&#34;SPEC&#34;</span><span class="p">,</span> <span class="s">&#34;GROUP.ID&#34;</span><span class="p">,</span> <span class="s">&#34;NT.SPEC&#34;</span><span class="p">)</span><span class="n">]</span><span class="p">)</span> 
+
+<span class="c1">## Visualization of SNP frequencies with bacsnp.plot</span>
+<span class="n">i1</span> <span class="o">&lt;-</span> <span class="n">bac.spec</span><span class="o">$</span><span class="n">data[bac.spec</span><span class="o">$</span><span class="n">data</span><span class="o">$</span><span class="n">ISO</span> <span class="o">==</span> <span class="s">&#34;iIso1&#34;</span><span class="p">,</span><span class="n">]</span>
+<span class="n">i2</span> <span class="o">&lt;-</span> <span class="n">bac.spec</span><span class="o">$</span><span class="n">data[bac.spec</span><span class="o">$</span><span class="n">data</span><span class="o">$</span><span class="n">ISO</span> <span class="o">==</span> <span class="s">&#34;iIso2&#34;</span><span class="p">,</span><span class="n">]</span>
+<span class="nf">bacsnp.plot</span><span class="p">(</span><span class="n">i1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;SPEC&#34;</span><span class="p">,</span> <span class="n">genome.length</span> <span class="o">=</span> <span class="m">123193</span><span class="p">,</span> <span class="n">mark.repeats</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span><span class="c1">#, mark.lowGQ = 120, mark.lowQUAL = 400)</span>
+<span class="nf">bacsnp.plot</span><span class="p">(</span><span class="n">i2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;SPEC&#34;</span><span class="p">,</span> <span class="n">genome.length</span> <span class="o">=</span> <span class="m">123193</span><span class="p">,</span> <span class="n">mark.repeats</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span><span class="c1">#, mark.lowGQ = 120, mark.lowQUAL = 400)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="结果">结果</h2>
+<p>这个工具以多个毒株（种群）的二代重测序数据作为输入，能够分析得到种群特有的（或多个种群共有的）SNP位点，并进行可视化。</p>
+<p>可视化过程实际是从第一个SNP位点（基于基因组位置）开始。如果样本总体的SNP位点不多，在基因组起始5 kb的位置内又没有SNP位点，那么结果图中就不是从0 bp开始展示整个基因组的情况。作者在<code>bacsnp.plot()</code>中加入了<code>genome.length</code>参数输入基因组总长度，保证能够绘制到基因组的末尾，却忘了不一定会有开头。</p>
+<h2 id="参考来源">参考来源</h2>
+<p><em>Wennmann, Jörg T.; Fan, Jiangbin; Jehle, Johannes A. <strong>2020</strong>. <a href="https://www.mdpi.com/1999-4915/12/6/625">&ldquo;Bacsnp: Using Single Nucleotide Polymorphism (SNP) Specificities and Frequencies to Identify Genotype Composition in Baculoviruses.&quot;</a> Viruses 12, no. 6: 625.</em></p>
+<p><a href="http://samtools.github.io/bcftools/howtos/variant-calling.html">http://samtools.github.io/bcftools/howtos/variant-calling.html</a></p>
+<p><a href="https://github.com/wennj/bacsnp/blob/master/vignettes/bacsnp.Rmd">https://github.com/wennj/bacsnp/blob/master/vignettes/bacsnp.Rmd</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-09-11
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/R/">R</a>
+          <a href="/tags/github/">github</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2021/01/20/unable-to-load-shared-object-stringi.so/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">【debug】Unable to Load Shared Object Stringi</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2020/09/11/GenomeScope2/">
+            <span class="next-text nav-default">使用GenomeScope2评估基因组</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

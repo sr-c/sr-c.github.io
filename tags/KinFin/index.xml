@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KinFin on SR-C</title>
+    <link>https://sr-c.github.io/tags/KinFin/</link>
+    <description>Recent content in KinFin on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 23 Mar 2019 18:31:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/KinFin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用KinFin进行比较基因组分析</title>
+      <link>https://sr-c.github.io/2019/03/23/KinFin-quickstart/</link>
+      <pubDate>Sat, 23 Mar 2019 18:31:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/23/KinFin-quickstart/</guid>
+      <description>安装 1 2 3 git clone https://github.com/DRL/kinfin.git cd kinfin ./install 安装程序会下载一些数据，并使用pip安装相应的模块。但若是没有管理员权限，还是使用conda来配置环境比较方便。 软件的</description>
+    </item>
+    
+  </channel>
+</rss>

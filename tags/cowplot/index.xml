@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cowplot on SR-C</title>
+    <link>https://sr-c.github.io/tags/cowplot/</link>
+    <description>Recent content in cowplot on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 06 Dec 2018 15:18:16 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/cowplot/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用cowplot完成图片排版</title>
+      <link>https://sr-c.github.io/2018/12/06/arranging-graphs-into-a-grid-by-cowplot/</link>
+      <pubDate>Thu, 06 Dec 2018 15:18:16 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/06/arranging-graphs-into-a-grid-by-cowplot/</guid>
+      <description>默认方案 使用cowplot提供的draw_image函数读入图片 1 2 library(cowplot) p1 &amp;lt;- ggdraw() + draw_image(&amp;#34;myFirstAlignment.pdf&amp;#34;) 存在问题 读入的图片存在太多的空白，需要手动切割，或者使用pa</description>
+    </item>
+    
+  </channel>
+</rss>

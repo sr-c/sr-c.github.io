@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rime on SR-C</title>
+    <link>https://sr-c.github.io/tags/rime/</link>
+    <description>Recent content in rime on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 01 Jul 2021 19:10:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/rime/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>同文输入法(Trime)在Android上使用自然码双拼</title>
+      <link>https://sr-c.github.io/2021/07/01/trime-zrm-shuangpin/</link>
+      <pubDate>Thu, 01 Jul 2021 19:10:49 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2021/07/01/trime-zrm-shuangpin/</guid>
+      <description>在Android上使用双拼输入法，那么trime可能是你最佳的选择。 近年来，许多大厂的输入法都存在这样或那样的隐私数据收集记录。6月11日，</description>
+    </item>
+    
+    <item>
+      <title>使用ibus输入法</title>
+      <link>https://sr-c.github.io/2019/12/21/ibus-rime/</link>
+      <pubDate>Sat, 21 Dec 2019 19:21:39 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/12/21/ibus-rime/</guid>
+      <description>在manjaro中替换fcitx输入法为ibus, 设置启动项，并配置环境调用。 安装 1 2 yay -S ibus yay -S ibus-rime 配置启动项 添加ibus启动项 在/etc/x</description>
+    </item>
+    
+  </channel>
+</rss>

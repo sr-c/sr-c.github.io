@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>telomere on SR-C</title>
+    <link>https://sr-c.github.io/tags/telomere/</link>
+    <description>Recent content in telomere on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 08 Mar 2019 20:13:12 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/telomere/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用SERF鉴定端粒序列</title>
+      <link>https://sr-c.github.io/2019/03/08/SERF-identify-telomere-sequences/</link>
+      <pubDate>Fri, 08 Mar 2019 20:13:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/08/SERF-identify-telomere-sequences/</guid>
+      <description>端粒重复序列 端粒是染色体末端的一端核酸序列，起着保护染色体末端免于降解，防止与相邻的染色体错误融合的作用。其名称来源于希腊语 τέλος (en</description>
+    </item>
+    
+  </channel>
+</rss>

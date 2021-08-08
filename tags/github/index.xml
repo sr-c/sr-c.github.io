@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>github on SR-C</title>
+    <link>https://sr-c.github.io/tags/github/</link>
+    <description>Recent content in github on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 11 Sep 2020 16:17:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Bacsnp可视化病毒基因组中的SNP位点</title>
+      <link>https://sr-c.github.io/2020/09/11/bacsnp/</link>
+      <pubDate>Fri, 11 Sep 2020 16:17:11 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/09/11/bacsnp/</guid>
+      <description>Bacsnp是用来分析杆状病毒毒株之间遗传多样性（判断SNP的种群特异性）的下游工具。 安装 新建R环境 环境需求R 3.6.3, 严格限制在此版本，其他版本均</description>
+    </item>
+    
+    <item>
+      <title>hexo的多端配置</title>
+      <link>https://sr-c.github.io/2018/01/08/hexo-remote-configuration/</link>
+      <pubDate>Mon, 08 Jan 2018 21:59:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/01/08/hexo-remote-configuration/</guid>
+      <description>想要多设备配置hexo，中间遇到了几个坑，记录下来，也帮助大家。 背景介绍 hexo会将个人写的文章经过编译在public/.deploy_gi</description>
+    </item>
+    
+  </channel>
+</rss>

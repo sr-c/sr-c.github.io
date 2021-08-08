@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>install on SR-C</title>
+    <link>https://sr-c.github.io/tags/install/</link>
+    <description>Recent content in install on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 01 Sep 2018 23:01:17 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/install/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GeneWise的安装</title>
+      <link>https://sr-c.github.io/2018/09/01/genewise-install/</link>
+      <pubDate>Sat, 01 Sep 2018 23:01:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/01/genewise-install/</guid>
+      <description>软件下载 1 2 wget http://www.ebi.ac.uk/~birney/wise2/wise2.4.1.tar.gz tar zxf ~/software/wise2.4.1.tar.gz -C ~/opt/ 软件编译 1 2 3 4 5 6 7 8 cd /opt/biosoft/wise2.4.1/src/ cd HMMer2 sed &amp;#39;s/getline/getline_new/&amp;#39; sqio.c &amp;gt; a &amp;amp;&amp;amp; mv a sqio.c cd .. perl -p -i -e &amp;#39;s/isnumber/isdigit/&amp;#39; models/phasemodel.c make all echo &amp;#39;PATH=$PATH:~/opt/wise2.4.1/src/bin/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc echo &amp;#39;WISECONFIGDIR=~/opt/wise2.4.1/wisecfg/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc 这里修改了两个文件HMMer</description>
+    </item>
+    
+  </channel>
+</rss>

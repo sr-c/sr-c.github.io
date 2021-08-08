@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>R语言练习题 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="初级 http://www.bio-info-trainee.com/3793.html 1. 打开 Rstudio 告诉我它的工作目录。 1 getwd() 2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值） 1 2 3 4 5 6 7 8 9 10 11 12 # Character v_char &amp;lt;- c(&amp;#34;www&amp;#34;,&amp;#34;biotrainee&amp;#34;,&amp;#34;com&amp;#34;) #" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/03/11/R-exercise/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="R语言练习题" />
+<meta property="og:description" content="初级 http://www.bio-info-trainee.com/3793.html 1. 打开 Rstudio 告诉我它的工作目录。 1 getwd() 2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值） 1 2 3 4 5 6 7 8 9 10 11 12 # Character v_char &lt;- c(&#34;www&#34;,&#34;biotrainee&#34;,&#34;com&#34;) #" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/03/11/R-exercise/" />
+<meta property="article:published_time" content="2019-03-11T15:52:28+00:00" />
+<meta property="article:modified_time" content="2019-03-11T15:52:28+00:00" />
+<meta itemprop="name" content="R语言练习题">
+<meta itemprop="description" content="初级 http://www.bio-info-trainee.com/3793.html 1. 打开 Rstudio 告诉我它的工作目录。 1 getwd() 2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值） 1 2 3 4 5 6 7 8 9 10 11 12 # Character v_char &lt;- c(&#34;www&#34;,&#34;biotrainee&#34;,&#34;com&#34;) #">
+<meta itemprop="datePublished" content="2019-03-11T15:52:28+00:00" />
+<meta itemprop="dateModified" content="2019-03-11T15:52:28+00:00" />
+<meta itemprop="wordCount" content="4338">
+
+
+
+<meta itemprop="keywords" content="R,生信技能树,biotrainee," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="R语言练习题"/>
+<meta name="twitter:description" content="初级 http://www.bio-info-trainee.com/3793.html 1. 打开 Rstudio 告诉我它的工作目录。 1 getwd() 2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值） 1 2 3 4 5 6 7 8 9 10 11 12 # Character v_char &lt;- c(&#34;www&#34;,&#34;biotrainee&#34;,&#34;com&#34;) #"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">R语言练习题</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-11 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#初级">初级</a>
+      <ul>
+        <li><a href="#1-打开-rstudio-告诉我它的工作目录">1. 打开 Rstudio 告诉我它的工作目录。</a></li>
+        <li><a href="#2-新建6个向量基于不同的原子类型重点是字符串数值逻辑值">2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值）</a></li>
+        <li><a href="#3-告诉我-getwd-返回的是什么">3. 告诉我 getwd() 返回的是什么？</a></li>
+        <li><a href="#4-新建5个其它数据结构矩阵数组数据框列表因子重点是数据框矩阵">4. 新建5个其它数据结构，矩阵，数组，数据框，列表，因子（重点是数据框，矩阵）</a></li>
+        <li><a href="#5-在你新建的数据框进行切片操作比如首先取第13行-然后取第46列">5. 在你新建的数据框进行切片操作，比如首先取第1，3行， 然后取第4，6列</a></li>
+        <li><a href="#6-使用data函数来加载r内置数据集-rivers-描述它并且可以查看更多的r语言内置的数据集">6. 使用data函数来加载R内置数据集 rivers 描述它。并且可以查看更多的R语言内置的数据集：</a></li>
+        <li><a href="#7-下载-httpswwwncbinlmnihgovsratermsrp133642-里面的-runinfo-table-文件读入到r里面了解这个数据框多少列每一列都是什么属性的元素">7. 下载 <a href="https://www.ncbi.nlm.nih.gov/sra?term=SRP133642">https://www.ncbi.nlm.nih.gov/sra?term=SRP133642</a> 里面的 RunInfo Table 文件读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。</a></li>
+        <li><a href="#8-下载-httpswwwncbinlmnihgovgeoqueryacccgiaccgse111229-里面的样本信息读入到r里面了解这个数据框多少列每一列都是什么属性的元素">8. 下载 <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111229">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111229</a> 里面的样本信息读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。</a></li>
+        <li><a href="#9-把两个表关联起来使用merge函数">9. 把两个表关联起来，使用merge函数。</a></li>
+        <li><a href="#10-对前面读取的-runinfo-table-文件在r里面探索其mbases列包括-箱线图boxplot和五分位数fivenum还有频数图hist以及密度图density-">10. 对前面读取的 RunInfo Table 文件在R里面探索其MBases列，包括 箱线图(boxplot)和五分位数(fivenum)，还有频数图(hist)，以及密度图(density) 。</a></li>
+        <li><a href="#11-把前面读取的样本信息表格的样本名字根据下划线分割看第3列元素的统计情况第三列代表该样本所在的plate">11. 把前面读取的样本信息表格的样本名字根据下划线分割看第3列元素的统计情况。第三列代表该样本所在的plate</a></li>
+      </ul>
+    </li>
+    <li><a href="#中级">中级</a>
+      <ul>
+        <li><a href="#1-请根据r包orghsegdb找到下面ensembl-基因id-对应的基因名symbol">1. 请根据R包org.Hs.eg.db找到下面ensembl 基因ID 对应的基因名(symbol)</a></li>
+        <li><a href="#2-根据r包hgu133adb找到下面探针对应的基因名symbol">2. 根据R包hgu133a.db找到下面探针对应的基因名(symbol)</a></li>
+        <li><a href="#3-找到r包cll内置的数据集的表达矩阵里面的tp53基因的表达量并且绘制在-progres-stable分组的boxplot图">3. 找到R包CLL内置的数据集的表达矩阵里面的TP53基因的表达量，并且绘制在 progres.-stable分组的boxplot图</a></li>
+        <li><a href="#4-找到brca1基因在tcga数据库的乳腺癌数据集breast-invasive-carcinoma-tcga-pancancer-atlas的表达情况">4. 找到BRCA1基因在TCGA数据库的乳腺癌数据集(Breast Invasive Carcinoma (TCGA, PanCancer Atlas))的表达情况</a></li>
+        <li><a href="#5-找到tp53基因在tcga数据库的乳腺癌数据集的表达量分组看其是否影响生存">5. 找到TP53基因在TCGA数据库的乳腺癌数据集的表达量分组看其是否影响生存</a></li>
+        <li><a href="#6-下载数据集gse17215的表达矩阵并且提取下面的基因画热图">6. 下载数据集GSE17215的表达矩阵并且提取下面的基因画热图</a></li>
+        <li><a href="#7-下载数据集gse24673的表达矩阵计算样本的相关性并且绘制热图需要标记上样本分组信息">7. 下载数据集GSE24673的表达矩阵计算样本的相关性并且绘制热图，需要标记上样本分组信息</a></li>
+        <li><a href="#8-找到-gpl6244-platform-of-affymetrix-human-gene-10-st-array-对应的r的bioconductor注释包并且安装它">8. 找到 GPL6244 platform of Affymetrix Human Gene 1.0 ST Array 对应的R的bioconductor注释包，并且安装它！</a></li>
+        <li><a href="#9-下载数据集gse42872的表达矩阵并且分别挑选出-所有样本的平均表达量sdmad最大的探针并且找到它们对应的基因">9. 下载数据集GSE42872的表达矩阵，并且分别挑选出 所有样本的(平均表达量/sd/mad/)最大的探针，并且找到它们对应的基因。</a></li>
+        <li><a href="#10-下载数据集gse42872的表达矩阵并且根据分组使用limma做差异分析得到差异结果矩阵">10. 下载数据集GSE42872的表达矩阵，并且根据分组使用limma做差异分析，得到差异结果矩阵</a></li>
+      </ul>
+    </li>
+    <li><a href="#高级">高级</a>
+      <ul>
+        <li><a href="#1安装一些r包">1.安装一些R包：</a></li>
+        <li><a href="#2-了解expressionset对象比如cll包里面就有datascllex-找到它包含的元素提取其表达矩阵使用exprs函数查看其大小">2. 了解ExpressionSet对象，比如<code>CLL</code>包里面就有<code>data(sCLLex)</code> ，找到它包含的元素，提取其表达矩阵(使用exprs函数)，查看其大小</a></li>
+        <li><a href="#3-了解-strheadhelp函数作用于第二步提取到的表达矩阵">3. 了解 str,head,help函数，作用于第二步提取到的表达矩阵</a></li>
+        <li><a href="#4-安装并了解-hgu95av2db-包看看-lspackagehgu95av2db-后-显示的那些变量">4. 安装并了解 <code>hgu95av2.db</code> 包,看看 <code>ls(&quot;package:hgu95av2.db&quot;)</code> 后 显示的那些变量</a></li>
+        <li><a href="#5-理解-headtotablehgu95av2symbol-的用法找到-tp53-基因对应的探针id">5. 理解 <code>head(toTable(hgu95av2SYMBOL))</code> 的用法，找到 TP53 基因对应的探针ID</a></li>
+        <li><a href="#6-理解探针与基因的对应关系总共多少个基因基因最多对应多少个探针是哪些基因是不是因为这些基因很长所以在其上面设计多个探针呢">6. 理解探针与基因的对应关系，总共多少个基因，基因最多对应多少个探针，是哪些基因，是不是因为这些基因很长，所以在其上面设计多个探针呢？</a></li>
+        <li><a href="#7-第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵找到那些不在-hgu95av2db-包收录的对应着symbol的探针">7. 第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵，找到那些不在 <code>hgu95av2.db</code> 包收录的对应着SYMBOL的探针。</a></li>
+        <li><a href="#8-过滤表达矩阵删除那1165个没有对应基因名字的探针">8. 过滤表达矩阵，删除那1165个没有对应基因名字的探针。</a></li>
+        <li><a href="#9-整合表达矩阵多个探针对应一个基因的情况下只保留在所有样本里面平均表达量最大的那个探针">9. 整合表达矩阵，多个探针对应一个基因的情况下，只保留在所有样本里面平均表达量最大的那个探针。</a></li>
+        <li><a href="#10-把过滤后的表达矩阵更改行名为基因的symbol因为这个时候探针和基因是一对一关系了">10. 把过滤后的表达矩阵更改行名为基因的symbol，因为这个时候探针和基因是一对一关系了。</a></li>
+        <li><a href="#11-对第10步得到的表达矩阵进行探索先画第一个样本的所有基因的表达量的boxplothistdensity--然后画所有样本的-这些图">11. 对第10步得到的表达矩阵进行探索，先画第一个样本的所有基因的表达量的boxplot,hist,density ， 然后画所有样本的 这些图</a></li>
+        <li><a href="#12-理解统计学指标meanmedianmaxminsdvarmad并计算出每个基因在所有样本的这些统计学指标最后按照mad值排序取top-50-mad值的基因得到列表">12. 理解统计学指标mean,median,max,min,sd,var,mad并计算出每个基因在所有样本的这些统计学指标，最后按照mad值排序，取top 50 mad值的基因，得到列表。</a></li>
+        <li><a href="#13-根据第12步骤得到top-50-mad值的基因列表来取表达矩阵的子集并且热图可视化子表达矩阵试试看其它5种热图的包的不同效果">13. 根据第12步骤得到top 50 mad值的基因列表来取表达矩阵的子集，并且热图可视化子表达矩阵。试试看其它5种热图的包的不同效果。</a></li>
+        <li><a href="#14-取不同统计学指标meanmedianmaxmeansdvarmad的各top50基因列表使用upsetr包来看他们之间的overlap情况">14. 取不同统计学指标mean,median,max,mean,sd,var,mad的各top50基因列表，使用UpSetR包来看他们之间的overlap情况。</a></li>
+        <li><a href="#15-在第二步的基础上面提取cll包里面的datascllex-数据对象的样本的表型数据">15. 在第二步的基础上面提取<code>CLL</code>包里面的<code>data(sCLLex)</code> 数据对象的样本的表型数据。</a></li>
+        <li><a href="#16-对所有样本的表达矩阵进行聚类并且绘图然后添加样本的临床表型数据信息更改样本名">16. 对所有样本的表达矩阵进行聚类并且绘图，然后添加样本的临床表型数据信息(更改样本名)</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="初级">初级</h2>
+<p><a href="http://www.bio-info-trainee.com/3793.html">http://www.bio-info-trainee.com/3793.html</a></p>
+<h3 id="1-打开-rstudio-告诉我它的工作目录">1. 打开 Rstudio 告诉我它的工作目录。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">getwd</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2-新建6个向量基于不同的原子类型重点是字符串数值逻辑值">2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1"># Character</span>
+<span class="n">v_char</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;www&#34;</span><span class="p">,</span><span class="s">&#34;biotrainee&#34;</span><span class="p">,</span><span class="s">&#34;com&#34;</span><span class="p">)</span>
+<span class="c1"># Numeric</span>
+<span class="n">v_num</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">10</span><span class="p">)</span>
+<span class="c1"># Logical</span>
+<span class="n">v_logical</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="c1"># Interger</span>
+<span class="n">v_inter</span> <span class="o">&lt;-</span> <span class="m">2L</span>
+<span class="c1"># Complex</span>
+<span class="n">v_complex</span> <span class="o">&lt;-</span> <span class="m">2+5i</span>
+<span class="c1"># Raw</span>
+<span class="n">v_raw</span> <span class="o">&lt;-</span> <span class="nf">charToRaw</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-告诉我-getwd-返回的是什么">3. 告诉我 getwd() 返回的是什么？</h3>
+<blockquote>
+<p>当前工作目录</p>
+</blockquote>
+<h3 id="4-新建5个其它数据结构矩阵数组数据框列表因子重点是数据框矩阵">4. 新建5个其它数据结构，矩阵，数组，数据框，列表，因子（重点是数据框，矩阵）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1"># Matrix</span>
+<span class="n">matrix1</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">10</span><span class="p">),</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">byrow</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="c1"># Array</span>
+<span class="n">array1</span> <span class="o">&lt;-</span> <span class="nf">array</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span> <span class="n">dim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+<span class="c1"># data frame</span>
+<span class="n">data_frame1</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+    <span class="n">gender</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;male&#34;</span><span class="p">,</span> <span class="s">&#34;female&#34;</span><span class="p">,</span> <span class="s">&#34;male&#34;</span><span class="p">),</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">130</span><span class="p">,</span> <span class="m">142</span><span class="p">,</span> <span class="m">137</span><span class="p">),</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">7</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">6</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="c1"># List</span>
+<span class="n">list1</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">v_char</span><span class="p">,</span> <span class="n">v_num</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+<span class="c1"># Factor</span>
+<span class="n">factor1</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">v_char</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5-在你新建的数据框进行切片操作比如首先取第13行-然后取第46列">5. 在你新建的数据框进行切片操作，比如首先取第1，3行， 然后取第4，6列</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">data_frame1[</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="n">]</span>
+<span class="n">data_frame1[4</span><span class="p">,</span><span class="m">6</span><span class="o">:</span><span class="n">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="6-使用data函数来加载r内置数据集-rivers-描述它并且可以查看更多的r语言内置的数据集">6. 使用data函数来加载R内置数据集 rivers 描述它。并且可以查看更多的R语言内置的数据集：</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">data</span><span class="p">(</span><span class="n">rivers</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="7-下载-httpswwwncbinlmnihgovsratermsrp133642-里面的-runinfo-table-文件读入到r里面了解这个数据框多少列每一列都是什么属性的元素">7. 下载 <a href="https://www.ncbi.nlm.nih.gov/sra?term=SRP133642">https://www.ncbi.nlm.nih.gov/sra?term=SRP133642</a> 里面的 RunInfo Table 文件读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">a</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;SraRunTable.txt&#34;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#39;\t&#39;</span><span class="p">)</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="8-下载-httpswwwncbinlmnihgovgeoqueryacccgiaccgse111229-里面的样本信息读入到r里面了解这个数据框多少列每一列都是什么属性的元素">8. 下载 <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111229">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111229</a> 里面的样本信息读入到R里面，了解这个数据框，多少列，每一列都是什么属性的元素。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">b</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;GSE111229_series_matrix.txt.gz&#34;</span><span class="p">,</span> <span class="n">comment.char</span> <span class="o">=</span> <span class="s">&#39;!&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="9-把两个表关联起来使用merge函数">9. 把两个表关联起来，使用merge函数。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">c</span> <span class="o">&lt;-</span> <span class="nf">merge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#34;Sample_Name&#34;</span><span class="p">,</span> <span class="n">all.x</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="10-对前面读取的-runinfo-table-文件在r里面探索其mbases列包括-箱线图boxplot和五分位数fivenum还有频数图hist以及密度图density-">10. 对前面读取的 RunInfo Table 文件在R里面探索其MBases列，包括 箱线图(boxplot)和五分位数(fivenum)，还有频数图(hist)，以及密度图(density) 。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="o">&gt;</span> <span class="nf">boxplot</span><span class="p">(</span><span class="n">sra_table</span><span class="o">$</span><span class="n">MBases</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">fivenum</span><span class="p">(</span><span class="n">sra_table</span><span class="o">$</span><span class="n">MBases</span><span class="p">)</span>
+<span class="n">[1]</span>  <span class="m">0</span>  <span class="m">8</span> <span class="m">12</span> <span class="m">16</span> <span class="m">74</span>
+<span class="o">&gt;</span> <span class="nf">hist</span><span class="p">(</span><span class="n">sra_table</span><span class="o">$</span><span class="n">MBases</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">density</span><span class="p">(</span><span class="n">sra_table</span><span class="o">$</span><span class="n">MBases</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="11-把前面读取的样本信息表格的样本名字根据下划线分割看第3列元素的统计情况第三列代表该样本所在的plate">11. 把前面读取的样本信息表格的样本名字根据下划线分割看第3列元素的统计情况。第三列代表该样本所在的plate</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">plate</span><span class="o">=</span><span class="nf">unlist</span><span class="p">(</span><span class="nf">lapply</span><span class="p">(</span><span class="n">e[</span><span class="p">,</span><span class="m">2</span><span class="n">]</span><span class="p">,</span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+ <span class="n">x</span>
+ <span class="nf">strsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s">&#39;_&#39;</span><span class="p">)</span><span class="n">[[1]][3]</span>
+<span class="p">}))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="中级">中级</h2>
+<p><a href="http://www.bio-info-trainee.com/3750.html">http://www.bio-info-trainee.com/3750.html</a></p>
+<h3 id="1-请根据r包orghsegdb找到下面ensembl-基因id-对应的基因名symbol">1. 请根据R包org.Hs.eg.db找到下面ensembl 基因ID 对应的基因名(symbol)</h3>
+<blockquote>
+<p>ENSG00000000003.13
+ENSG00000000005.5
+ENSG00000000419.11
+ENSG00000000457.12
+ENSG00000000460.15
+ENSG00000000938.11</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">org.Hs.eg.db</span><span class="p">)</span>
+<span class="n">g2s</span><span class="o">=</span><span class="nf">toTable</span><span class="p">(</span><span class="n">org.Hs.egSYMBOL</span><span class="p">)</span>
+<span class="n">g2e</span><span class="o">=</span><span class="nf">toTable</span><span class="p">(</span><span class="n">org.Hs.egENSEMBL</span><span class="p">)</span>
+<span class="n">g2s_e</span> <span class="o">&lt;-</span> <span class="nf">merge</span><span class="p">(</span><span class="n">g2s</span><span class="p">,</span> <span class="n">g2e</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#39;gene_id&#39;</span><span class="p">,</span> <span class="n">all</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">esbID</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;ENSG00000000003.13&#34;</span><span class="p">,</span>
+<span class="o">+</span>             <span class="s">&#34;ENSG00000000005.5&#34;</span><span class="p">,</span>
+<span class="o">+</span>             <span class="s">&#34;ENSG00000000419.11&#34;</span><span class="p">,</span>
+<span class="o">+</span>             <span class="s">&#34;ENSG00000000457.12&#34;</span><span class="p">,</span>
+<span class="o">+</span>             <span class="s">&#34;ENSG00000000460.15&#34;</span><span class="p">,</span>
+<span class="o">+</span>             <span class="s">&#34;ENSG00000000938.11&#34;</span><span class="p">)</span>
+<span class="c1"># 使用strsplit处理文本ID，取.前的部分</span>
+<span class="n">ID6</span> <span class="o">&lt;-</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">lapply</span><span class="p">(</span><span class="n">esbID</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+ <span class="nf">strsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="n">fixed</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span><span class="n">[[1]][1]</span>
+ <span class="p">})</span>
+<span class="p">)</span>
+<span class="n">ID6</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">ensembl_id</span> <span class="o">=</span> <span class="n">ID6</span><span class="p">)</span>
+<span class="nf">merge</span><span class="p">(</span><span class="n">ID6</span><span class="p">,</span> <span class="n">g2s_e</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#34;ensembl_id&#34;</span><span class="p">,</span> <span class="n">all.x</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2-根据r包hgu133adb找到下面探针对应的基因名symbol">2. 根据R包hgu133a.db找到下面探针对应的基因名(symbol)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">rm</span><span class="p">(</span><span class="n">list</span> <span class="o">=</span> <span class="nf">ls</span><span class="p">())</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">hgu133a.db</span><span class="p">)</span>
+<span class="n">ids</span><span class="o">=</span><span class="nf">toTable</span><span class="p">(</span><span class="n">hgu133aSYMBOL</span><span class="p">)</span>
+<span class="n">pr_id</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;R_test2.txt&#34;</span><span class="p">,</span> <span class="n">col.names</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;probe_id&#34;</span><span class="p">))</span>
+<span class="nf">merge</span><span class="p">(</span><span class="n">pr_id</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#34;probe_id&#34;</span><span class="p">,</span> <span class="n">all.x</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-找到r包cll内置的数据集的表达矩阵里面的tp53基因的表达量并且绘制在-progres-stable分组的boxplot图">3. 找到R包CLL内置的数据集的表达矩阵里面的TP53基因的表达量，并且绘制在 progres.-stable分组的boxplot图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">rm</span><span class="p">(</span><span class="n">list</span> <span class="o">=</span> <span class="nf">ls</span><span class="p">())</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="n">CLL</span><span class="p">))</span>
+<span class="nf">data</span><span class="p">(</span><span class="n">sCLLex</span><span class="p">)</span>
+<span class="n">exprSet</span><span class="o">=</span><span class="nf">exprs</span><span class="p">(</span><span class="n">sCLLex</span><span class="p">)</span> 
+<span class="nf">library</span><span class="p">(</span><span class="n">hgu95av2.db</span><span class="p">)</span>
+<span class="nf">columns</span><span class="p">(</span><span class="n">hgu95av2.db</span><span class="p">)</span>
+<span class="n">TP53_prob</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">hgu95av2.db</span><span class="p">,</span> 
+       <span class="n">keys</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;TP53&#34;</span><span class="p">),</span>
+       <span class="n">columns</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;ALIAS&#34;</span><span class="p">,</span><span class="s">&#34;PROBEID&#34;</span><span class="p">),</span>
+       <span class="n">keytype</span> <span class="o">=</span> <span class="s">&#34;ALIAS&#34;</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">exprSet[TP53_prob</span><span class="o">$</span><span class="n">PROBEID</span><span class="p">,</span><span class="n">]</span><span class="p">))</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">exprSet[1</span><span class="p">,</span><span class="n">]</span><span class="o">~</span><span class="n">gourp_list</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4-找到brca1基因在tcga数据库的乳腺癌数据集breast-invasive-carcinoma-tcga-pancancer-atlas的表达情况">4. 找到BRCA1基因在TCGA数据库的乳腺癌数据集(Breast Invasive Carcinoma (TCGA, PanCancer Atlas))的表达情况</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1"># http://www.cbioportal.org/index.do</span>
+<span class="c1"># Select Studies 选项中输入Breast Invasive Carcinoma PanCancer 搜索并选中目标数据集</span>
+<span class="c1"># Enter Genes 数据框中输入目标基因BRCA1</span>
+<span class="c1"># 点击Submit Query提交搜索请求</span>
+<span class="c1"># 结果页面中，Plots选项卡选择合适数据进行绘图，或下载数据</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5-找到tp53基因在tcga数据库的乳腺癌数据集的表达量分组看其是否影响生存">5. 找到TP53基因在TCGA数据库的乳腺癌数据集的表达量分组看其是否影响生存</h3>
+<blockquote>
+<p><a href="http://www.oncolnc.org/kaplan/?lower=50&amp;upper=50&amp;cancer=BRCA&amp;gene_id=7157&amp;raw=TP53&amp;species=mRNA">http://www.oncolnc.org/kaplan/?lower=50&amp;upper=50&amp;cancer=BRCA&amp;gene_id=7157&amp;raw=TP53&amp;species=mRNA</a></p>
+</blockquote>
+<h3 id="6-下载数据集gse17215的表达矩阵并且提取下面的基因画热图">6. 下载数据集GSE17215的表达矩阵并且提取下面的基因画热图</h3>
+<blockquote>
+<p>ACTR3B ANLN BAG1 BCL2 BIRC5 BLVRA CCNB1 CCNE1 CDC20 CDC6 CDCA1 CDH3 CENPF CEP55 CXXC5 EGFR ERBB2 ESR1 EXO1 FGFR4 FOXA1 FOXC1 GPR160 GRB7 KIF2C KNTC2 KRT14 KRT17 KRT5 MAPT MDM2 MELK MIA MKI67 MLPH MMP11 MYBL2 MYC NAT1 ORC6L PGR PHGDH PTTG1 RRM2 SFRP1 SLC39A6 TMEM45B TYMS UBE2C UBE2T</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1"># 下载链接ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE17nnn/GSE17215/matrix/GSE17215_series_matrix.txt.gz</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">hthgu133a.db</span><span class="p">)</span>
+<span class="n">expMa</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;zhong6/GSE17215_series_matrix.txt.gz&#34;</span><span class="p">,</span>
+                    <span class="n">comment.char</span> <span class="o">=</span> <span class="s">&#34;!&#34;</span><span class="p">,</span>
+                    <span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;\t&#34;</span><span class="p">,</span>
+                    <span class="n">header</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+                    <span class="n">row.names</span> <span class="o">=</span> <span class="s">&#34;ID_REF&#34;</span><span class="p">)</span>
+<span class="n">ALIAS</span> <span class="o">&lt;-</span> <span class="s">&#34;ACTR3B ANLN BAG1 BCL2 BIRC5 BLVRA CCNB1 CCNE1 CDC20 CDC6 CDCA1 CDH3 CENPF CEP55 CXXC5 EGFR ERBB2 ESR1 EXO1 FGFR4 FOXA1 FOXC1 GPR160 GRB7 KIF2C KNTC2 KRT14 KRT17 KRT5 MAPT MDM2 MELK MIA MKI67 MLPH MMP11 MYBL2 MYC NAT1 ORC6L PGR PHGDH PTTG1 RRM2 SFRP1 SLC39A6 TMEM45B TYMS UBE2C UBE2T&#34;</span>
+<span class="n">ALIAS_id</span> <span class="o">&lt;-</span> <span class="nf">strsplit</span><span class="p">(</span><span class="n">ALIAS</span><span class="p">,</span> <span class="n">split</span> <span class="o">=</span> <span class="s">&#34; &#34;</span><span class="p">)</span><span class="n">[[1]]</span>
+<span class="n">probe_id</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">hthgu133a.db</span><span class="p">,</span> 
+                    <span class="n">keys</span> <span class="o">=</span> <span class="n">ALIAS_id</span><span class="p">,</span>
+                    <span class="n">columns</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;ALIAS&#34;</span><span class="p">,</span><span class="s">&#34;PROBEID&#34;</span><span class="p">),</span>
+                    <span class="n">keytype</span> <span class="o">=</span> <span class="s">&#34;ALIAS&#34;</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">probe_id</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;ALIAS&#34;</span><span class="p">,</span><span class="s">&#34;ID_REF&#34;</span><span class="p">)</span>
+<span class="n">exprSet</span> <span class="o">&lt;-</span> <span class="nf">merge</span><span class="p">(</span><span class="n">probe_id</span><span class="p">,</span> <span class="n">expMa</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#34;ID_REF&#34;</span><span class="p">)</span><span class="n">[</span><span class="p">,</span><span class="m">-2</span><span class="n">]</span>
+<span class="nf">row.names</span><span class="p">(</span><span class="n">exprSet</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">exprSet</span><span class="o">$</span><span class="n">ID_REF</span>
+<span class="n">exprSet</span> <span class="o">&lt;-</span> <span class="n">exprSet[</span><span class="p">,</span><span class="m">-1</span><span class="n">]</span>
+<span class="n">exprSet</span> <span class="o">&lt;-</span> <span class="nf">log</span><span class="p">(</span><span class="n">edgeR</span><span class="o">::</span><span class="nf">cpm</span><span class="p">(</span><span class="n">exprSet</span><span class="p">)</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">pheatmap</span><span class="o">::</span><span class="nf">pheatmap</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">exprSet</span> <span class="o">+</span> <span class="m">1</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="7-下载数据集gse24673的表达矩阵计算样本的相关性并且绘制热图需要标记上样本分组信息">7. 下载数据集GSE24673的表达矩阵计算样本的相关性并且绘制热图，需要标记上样本分组信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">expMa</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;zhong7/GSE24673_series_matrix.txt.gz&#34;</span><span class="p">,</span>
+                    <span class="n">comment.char</span> <span class="o">=</span> <span class="s">&#34;!&#34;</span><span class="p">,</span>
+                    <span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;\t&#34;</span><span class="p">,</span>
+                    <span class="n">header</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+                    <span class="n">row.names</span> <span class="o">=</span> <span class="s">&#34;ID_REF&#34;</span><span class="p">)</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">expMa</span><span class="p">)</span>
+<span class="n">group_list</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&#34;RB_139_09&#34;</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="s">&#34;RB_535_09&#34;</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&#34;RB_984_09&#34;</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&#34;Healthy&#34;</span><span class="p">,</span> <span class="m">2</span><span class="p">)))</span>
+<span class="c1"># pheatmap</span>
+<span class="n">choosen_gene</span> <span class="o">&lt;-</span> <span class="n">expMa</span><span class="nf">[names</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">expMa</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="n">mad</span><span class="p">),</span><span class="n">decreasing</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span><span class="n">[1</span><span class="o">:</span><span class="m">50</span><span class="n">]</span><span class="p">,</span><span class="n">]</span>
+<span class="n">heatMatrix</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="nf">scale</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">choosen_gene</span><span class="p">)))</span>
+<span class="n">annotation_col</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">group_list</span><span class="o">=</span><span class="n">group_list</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">annotation_col</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">choosen_gene</span><span class="p">)</span>
+<span class="n">pheatmap</span><span class="o">::</span><span class="nf">pheatmap</span><span class="p">(</span><span class="n">heatMatrix</span><span class="p">,</span> <span class="n">annotation_col</span> <span class="o">=</span> <span class="n">annotation_col</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="8-找到-gpl6244-platform-of-affymetrix-human-gene-10-st-array-对应的r的bioconductor注释包并且安装它">8. 找到 GPL6244 platform of Affymetrix Human Gene 1.0 ST Array 对应的R的bioconductor注释包，并且安装它！</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">options</span><span class="p">(</span><span class="n">BioC_mirror</span><span class="o">=</span><span class="s">&#34;https://mirrors.ustc.edu.cn/bioc/&#34;</span><span class="p">)</span>
+<span class="nf">options</span><span class="p">(</span><span class="s">&#34;repos&#34;</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">CRAN</span><span class="o">=</span><span class="s">&#34;https://mirrors.tuna.tsinghua.edu.cn/CRAN/&#34;</span><span class="p">))</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;hugene10sttranscriptcluster.db&#34;</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s">&#34;3.8&#34;</span><span class="p">)</span>
+<span class="c1"># 直接根据关键字搜索，第一个结果可能是pd.hugene.1.0.st.v1, 但它并不是GPL6244正确的注释包。</span>
+<span class="c1"># 关于芯片与注释包的对应关系，参考jimmy同学的文章https://www.jianshu.com/p/f6906ba703a0</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="9-下载数据集gse42872的表达矩阵并且分别挑选出-所有样本的平均表达量sdmad最大的探针并且找到它们对应的基因">9. 下载数据集GSE42872的表达矩阵，并且分别挑选出 所有样本的(平均表达量/sd/mad/)最大的探针，并且找到它们对应的基因。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">GEOquery</span><span class="p">)</span>
+<span class="n">gset</span> <span class="o">=</span> <span class="nf">getGEO</span><span class="p">(</span><span class="s">&#39;GSE42872&#39;</span><span class="p">,</span> <span class="n">GSEMatrix</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">AnnotGPL</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">getGPL</span><span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">exprSet</span> <span class="o">=</span> <span class="nf">exprs</span><span class="p">(</span><span class="n">gset[[1]]</span><span class="p">)</span>
+<span class="c1"># exprSet &lt;- exprSet[apply(exprSet, 1, function(x) sum(x&gt;1) &gt; 5),]</span>
+<span class="c1"># exprSet &lt;- log(edgeR::cpm(exprSet) + 1)</span>
+<span class="c1"># 处理中平均值最大的探针</span>
+<span class="n">max_mean</span> <span class="o">&lt;-</span> <span class="nf">names</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">exprSet</span><span class="p">,</span><span class="m">1</span><span class="p">,</span> <span class="n">mean</span><span class="p">),</span> <span class="n">decreasing</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span><span class="n">[1]</span>
+<span class="c1"># 处理中sd最大的探针</span>
+<span class="n">max_sd</span> <span class="o">&lt;-</span> <span class="nf">names</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">exprSet</span><span class="p">,</span><span class="m">1</span><span class="p">,</span> <span class="n">sd</span><span class="p">),</span> <span class="n">decreasing</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span><span class="n">[1]</span>
+<span class="c1"># 处理中mad最大的探针</span>
+<span class="n">max_mad</span> <span class="o">&lt;-</span> <span class="nf">names</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">exprSet</span><span class="p">,</span><span class="m">1</span><span class="p">,</span> <span class="n">mad</span><span class="p">),</span> <span class="n">decreasing</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span><span class="n">[1]</span>
+<span class="c1"># 查询探针ID对应基因的symbol</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">hugene10sttranscriptcluster.db</span><span class="p">)</span>
+<span class="nf">select</span><span class="p">(</span><span class="n">hugene10sttranscriptcluster.db</span><span class="p">,</span>
+       <span class="n">keys</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">max_mean</span><span class="p">,</span> <span class="n">max_sd</span><span class="p">,</span> <span class="n">max_mad</span><span class="p">),</span>
+       <span class="n">columns</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;SYMBOL&#34;</span><span class="p">),</span>
+       <span class="n">keytype</span> <span class="o">=</span> <span class="s">&#34;PROBEID&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="10-下载数据集gse42872的表达矩阵并且根据分组使用limma做差异分析得到差异结果矩阵">10. 下载数据集GSE42872的表达矩阵，并且根据分组使用limma做差异分析，得到差异结果矩阵</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">gset</span> <span class="o">=</span> <span class="nf">getGEO</span><span class="p">(</span><span class="s">&#39;GSE42872&#39;</span><span class="p">,</span> <span class="n">GSEMatrix</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">AnnotGPL</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">getGPL</span><span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">&lt;-</span> <span class="nf">toTable</span><span class="p">(</span><span class="n">hugene10sttranscriptclusterSYMBOL</span><span class="p">)</span>
+<span class="n">exprSet</span> <span class="o">=</span> <span class="nf">exprs</span><span class="p">(</span><span class="n">gset[[1]]</span><span class="p">)</span>
+<span class="n">group_list</span> <span class="o">&lt;-</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&#34;Control&#34;</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="s">&#34;Vemurafenib&#34;</span><span class="p">,</span><span class="m">3</span><span class="p">)))</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">exprSet</span><span class="p">)</span>
+<span class="c1"># 过滤【只保留和注释文件探针id相同的探针】</span>
+<span class="n">efilt</span> <span class="o">&lt;-</span> <span class="n">exprSet</span><span class="nf">[rownames</span><span class="p">(</span><span class="n">exprSet</span><span class="p">)</span><span class="o">%in%</span><span class="n">s</span><span class="o">$</span><span class="n">probe_id</span><span class="p">,</span><span class="n">]</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">efilt</span><span class="p">)</span>
+<span class="c1">## 整合1【目的：保证一个基因对应一个探针；如果基因和探针一一对应很好说，但如果一个基因对应多个探针：每个探针取一行的均值-》对应同一基因的探针取表达量最大的探针-》按照基因名给他们建索引，因为是按照基因来过滤探针（不用s$probe_id构建索引的原因是，看清楚我们的目的是让注释包的一个基因对应我们自己表达矩阵的一个探针。如果用s$probe_id那么结果就成了让注释包的一个探针对应我们自己表达矩阵的一个探针，当然这样也运行不成功，因为自己表达矩阵的探针过滤后的数量和注释包的探针数量不相等，这样没法一一对应。但基因名数量是不变的，什么是索引？以不变应万变的就是索引）】</span>
+<span class="n">maxp</span> <span class="o">=</span> <span class="nf">by</span><span class="p">(</span><span class="n">efilt</span><span class="p">,</span><span class="n">s</span><span class="o">$</span><span class="n">symbol</span><span class="p">,</span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="nf">[which.max</span><span class="p">(</span><span class="nf">rowMeans</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="n">]</span><span class="p">)</span> 
+<span class="n">uniprobes</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">maxp</span><span class="p">)</span>
+<span class="n">efilt</span><span class="o">=</span><span class="n">efilt</span><span class="nf">[rownames</span><span class="p">(</span><span class="n">efilt</span><span class="p">)</span><span class="o">%in%</span><span class="n">uniprobes</span><span class="p">,</span><span class="n">]</span>
+<span class="c1">## 整合2【目的：将我们表达矩阵的行名换成刚才一对一的基因名，并且match这个函数保证了表达矩阵和注释包的顺序是一致的】</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">efilt</span><span class="p">)</span><span class="o">=</span><span class="n">s</span><span class="nf">[match</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">efilt</span><span class="p">),</span><span class="n">s</span><span class="o">$</span><span class="n">probe_id</span><span class="p">),</span><span class="m">2</span><span class="n">]</span>
+
+<span class="c1"># 差异分析</span>
+<span class="nf">suppressMessages</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="n">limma</span><span class="p">))</span>
+<span class="c1">#limma需要三个矩阵：表达矩阵（efilt）、分组矩阵（design）、比较矩阵（contrast）</span>
+<span class="c1">#先做一个分组矩阵～design，说明MAO是哪几个样本，MNO又是哪几个，其中1代表“是”</span>
+<span class="n">design</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="m">0</span><span class="o">+</span><span class="nf">factor</span><span class="p">(</span><span class="n">group_list</span><span class="p">))</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">design</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">levels</span><span class="p">(</span><span class="nf">factor</span><span class="p">(</span><span class="n">group_list</span><span class="p">))</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">design</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">efilt</span><span class="p">)</span>
+<span class="n">design</span>
+<span class="c1">#再做一个比较矩阵【一般是case比control】</span>
+<span class="n">contrast</span><span class="o">&lt;-</span><span class="nf">makeContrasts</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="n">group_list</span><span class="p">),</span><span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">),</span><span class="n">levels</span> <span class="o">=</span> <span class="n">design</span><span class="p">)</span>
+<span class="n">contrast</span>
+
+<span class="n">DEG</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">efilt</span><span class="p">,</span><span class="n">design</span><span class="p">,</span><span class="n">contrast</span><span class="p">){</span>
+  <span class="c1">##step1</span>
+  <span class="n">fit</span> <span class="o">&lt;-</span> <span class="nf">lmFit</span><span class="p">(</span><span class="n">efilt</span><span class="p">,</span><span class="n">design</span><span class="p">)</span>
+  <span class="c1">##step2</span>
+  <span class="n">fit2</span> <span class="o">&lt;-</span> <span class="nf">contrasts.fit</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">contrast</span><span class="p">)</span> 
+  <span class="n">fit2</span> <span class="o">&lt;-</span> <span class="nf">eBayes</span><span class="p">(</span><span class="n">fit2</span><span class="p">)</span>  
+  <span class="c1">##step3</span>
+  <span class="n">mtx</span> <span class="o">=</span> <span class="nf">topTable</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span> <span class="n">coef</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">Inf</span><span class="p">)</span>
+  <span class="n">deg_mtx</span> <span class="o">=</span> <span class="nf">na.omit</span><span class="p">(</span><span class="n">mtx</span><span class="p">)</span> 
+  <span class="nf">return</span><span class="p">(</span><span class="n">deg_mtx</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">DEG_mtx</span> <span class="o">&lt;-</span> <span class="nf">DEG</span><span class="p">(</span><span class="n">efilt</span><span class="p">,</span><span class="n">design</span><span class="p">,</span><span class="n">contrast</span><span class="p">)</span> <span class="c1">#得到全部的差异基因矩阵</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="高级">高级</h2>
+<p><a href="http://www.bio-info-trainee.com/3409.html">http://www.bio-info-trainee.com/3409.html</a></p>
+<h3 id="1安装一些r包">1.安装一些R包：</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">数据包： ALL, CLL, pasilla, airway 
+软件包：limma，DESeq2，clusterProfiler 
+工具包：reshape2
+绘图包：ggplot2
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;reshape2&#34;</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s">&#34;3.8&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2-了解expressionset对象比如cll包里面就有datascllex-找到它包含的元素提取其表达矩阵使用exprs函数查看其大小">2. 了解ExpressionSet对象，比如<code>CLL</code>包里面就有<code>data(sCLLex)</code> ，找到它包含的元素，提取其表达矩阵(使用exprs函数)，查看其大小</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">CLL</span><span class="p">)</span>
+<span class="c1"># sCLLex是一个ExpressionSet对象，封装了表达矩阵与样本信息</span>
+<span class="o">&gt;</span> <span class="nf">data</span><span class="p">(</span><span class="n">sCLLex</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">sCLLex</span>
+<span class="nf">ExpressionSet </span><span class="p">(</span><span class="n">storageMode</span><span class="o">:</span> <span class="n">lockedEnvironment</span><span class="p">)</span> <span class="c1">#ExpressionSet对象</span>
+<span class="n">assayData</span><span class="o">:</span> <span class="m">12625</span> <span class="n">features</span><span class="p">,</span> <span class="m">22</span> <span class="n">samples</span> 
+  <span class="n">element</span> <span class="n">names</span><span class="o">:</span> <span class="n">exprs</span> 
+<span class="n">protocolData</span><span class="o">:</span> <span class="n">none</span>
+<span class="n">phenoData</span>
+  <span class="n">sampleNames</span><span class="o">:</span> <span class="n">CLL11.CEL</span> <span class="n">CLL12.CEL</span> <span class="kc">...</span> <span class="nf">CLL9.CEL </span><span class="p">(</span><span class="m">22</span> <span class="n">total</span><span class="p">)</span> <span class="c1">#样品名称</span>
+  <span class="n">varLabels</span><span class="o">:</span> <span class="n">SampleID</span> <span class="n">Disease</span> <span class="c1">#用于分组的变量</span>
+  <span class="n">varMetadata</span><span class="o">:</span> <span class="n">labelDescription</span>
+<span class="n">featureData</span><span class="o">:</span> <span class="n">none</span>
+<span class="n">experimentData</span><span class="o">:</span> <span class="n">use</span> <span class="s">&#39;experimentData(object)&#39;</span>
+<span class="n">Annotation</span><span class="o">:</span> <span class="n">hgu95av2</span> <span class="c1">#对应的注释包</span>
+<span class="c1"># 通过exprs函数提取表达矩阵</span>
+<span class="o">&gt;</span> <span class="n">exprMatrix</span> <span class="o">&lt;-</span> <span class="nf">exprs</span><span class="p">(</span><span class="n">sCLLex</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">dim</span><span class="p">(</span><span class="n">exprMatrix</span><span class="p">)</span>
+<span class="c1"># 通过pData函数提取样本分组信息</span>
+<span class="o">&gt;</span> <span class="n">meta</span> <span class="o">&lt;-</span> <span class="nf">pData</span><span class="p">(</span><span class="n">sCLLex</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">table</span><span class="p">(</span><span class="n">meta</span><span class="o">$</span><span class="n">Disease</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-了解-strheadhelp函数作用于第二步提取到的表达矩阵">3. 了解 str,head,help函数，作用于第二步提取到的表达矩阵</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="o">&gt;</span> <span class="nf">str</span><span class="p">(</span><span class="n">exprMatrix</span><span class="p">)</span> <span class="c1">#结果表明这是一个12625行，22列的二维矩阵</span>
+ <span class="n">num</span> <span class="n">[1</span><span class="o">:</span><span class="m">12625</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">22</span><span class="n">]</span> <span class="m">5.74</span> <span class="m">2.29</span> <span class="m">3.31</span> <span class="m">1.09</span> <span class="m">7.54</span> <span class="kc">...</span>
+ <span class="o">-</span> <span class="nf">attr</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="s">&#34;dimnames&#34;</span><span class="p">)</span><span class="o">=</span><span class="n">List</span> <span class="n">of</span> <span class="m">2</span>
+  <span class="n">..</span><span class="o">$</span> <span class="o">:</span> <span class="n">chr</span> <span class="n">[1</span><span class="o">:</span><span class="m">12625</span><span class="n">]</span> <span class="s">&#34;1000_at&#34;</span> <span class="s">&#34;1001_at&#34;</span> <span class="s">&#34;1002_f_at&#34;</span> <span class="s">&#34;1003_s_at&#34;</span> <span class="kc">...</span>
+  <span class="n">..</span><span class="o">$</span> <span class="o">:</span> <span class="n">chr</span> <span class="n">[1</span><span class="o">:</span><span class="m">22</span><span class="n">]</span> <span class="s">&#34;CLL11.CEL&#34;</span> <span class="s">&#34;CLL12.CEL&#34;</span> <span class="s">&#34;CLL13.CEL&#34;</span> <span class="s">&#34;CLL14.CEL&#34;</span> <span class="kc">...</span>
+<span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="n">exprMatrix</span><span class="p">)</span> <span class="c1">#得到前6行结果</span>
+<span class="o">&gt;</span> <span class="nf">help</span><span class="p">(</span><span class="n">exprMatrix</span><span class="p">)</span> <span class="c1">#该函数已过时。The function, class, or data object you have asked for has been deprecated or made defunct.</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4-安装并了解-hgu95av2db-包看看-lspackagehgu95av2db-后-显示的那些变量">4. 安装并了解 <code>hgu95av2.db</code> 包,看看 <code>ls(&quot;package:hgu95av2.db&quot;)</code> 后 显示的那些变量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="o">&gt;</span> <span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;hgu95av2.db&#34;</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s">&#34;3.8&#34;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">hgu95av2.db</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">ls</span><span class="p">(</span><span class="s">&#34;package:hgu95av2.db&#34;</span><span class="p">)</span> <span class="c1">#可以发现hgu95v2.db中含有24个变量</span>
+ <span class="n">[1]</span> <span class="s">&#34;hgu95av2&#34;</span>              <span class="s">&#34;hgu95av2.db&#34;</span>          
+ <span class="n">[3]</span> <span class="s">&#34;hgu95av2_dbconn&#34;</span>       <span class="s">&#34;hgu95av2_dbfile&#34;</span>      
+ <span class="n">[5]</span> <span class="s">&#34;hgu95av2_dbInfo&#34;</span>       <span class="s">&#34;hgu95av2_dbschema&#34;</span>    
+ <span class="n">[7]</span> <span class="s">&#34;hgu95av2ACCNUM&#34;</span>        <span class="s">&#34;hgu95av2ALIAS2PROBE&#34;</span>  
+ <span class="n">[9]</span> <span class="s">&#34;hgu95av2CHR&#34;</span>           <span class="s">&#34;hgu95av2CHRLENGTHS&#34;</span>   
+<span class="n">[11]</span> <span class="s">&#34;hgu95av2CHRLOC&#34;</span>        <span class="s">&#34;hgu95av2CHRLOCEND&#34;</span>    
+<span class="n">[13]</span> <span class="s">&#34;hgu95av2ENSEMBL&#34;</span>       <span class="s">&#34;hgu95av2ENSEMBL2PROBE&#34;</span>
+<span class="n">[15]</span> <span class="s">&#34;hgu95av2ENTREZID&#34;</span>      <span class="s">&#34;hgu95av2ENZYME&#34;</span>       
+<span class="n">[17]</span> <span class="s">&#34;hgu95av2ENZYME2PROBE&#34;</span>  <span class="s">&#34;hgu95av2GENENAME&#34;</span>     
+<span class="n">[19]</span> <span class="s">&#34;hgu95av2GO&#34;</span>            <span class="s">&#34;hgu95av2GO2ALLPROBES&#34;</span> 
+<span class="n">[21]</span> <span class="s">&#34;hgu95av2GO2PROBE&#34;</span>      <span class="s">&#34;hgu95av2MAP&#34;</span>          
+<span class="n">[23]</span> <span class="s">&#34;hgu95av2MAPCOUNTS&#34;</span>     <span class="s">&#34;hgu95av2OMIM&#34;</span>     
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5-理解-headtotablehgu95av2symbol-的用法找到-tp53-基因对应的探针id">5. 理解 <code>head(toTable(hgu95av2SYMBOL))</code> 的用法，找到 TP53 基因对应的探针ID</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="o">&gt;</span> <span class="nf">head</span><span class="p">(</span><span class="nf">toTable</span><span class="p">(</span><span class="n">hgu95av2SYMBOL</span><span class="p">))</span> <span class="c1">#查看芯片ID与基因symbol之间的对应关系</span>
+   <span class="n">probe_id</span>  <span class="n">symbol</span>
+<span class="m">1</span>   <span class="m">1000</span><span class="n">_at</span>   <span class="n">MAPK3</span>
+<span class="m">2</span>   <span class="m">1001</span><span class="n">_at</span>    <span class="n">TIE1</span>
+<span class="m">3</span> <span class="m">1002</span><span class="n">_f_at</span> <span class="n">CYP2C19</span>
+<span class="m">4</span> <span class="m">1003</span><span class="n">_s_at</span>   <span class="n">CXCR5</span>
+<span class="m">5</span>   <span class="m">1004</span><span class="n">_at</span>   <span class="n">CXCR5</span>
+<span class="m">6</span>   <span class="m">1005</span><span class="n">_at</span>   <span class="n">DUSP1</span>
+<span class="o">&gt;</span> <span class="n">probe_sym</span> <span class="o">&lt;-</span> <span class="nf">toTable</span><span class="p">(</span><span class="n">hgu95av2SYMBOL</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">subset</span><span class="p">(</span><span class="n">probe_sym</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">==</span> <span class="s">&#34;TP53&#34;</span><span class="p">)</span> <span class="c1">#使用subset抽取data.frame中的数据，筛选条件可以多样，使用逻辑关系运算组合</span>
+      <span class="n">probe_id</span> <span class="n">symbol</span>
+<span class="m">966</span>    <span class="m">1939</span><span class="n">_at</span>   <span class="n">TP53</span>
+<span class="m">997</span>  <span class="m">1974</span><span class="n">_s_at</span>   <span class="n">TP53</span>
+<span class="m">1420</span>  <span class="m">31618</span><span class="n">_at</span>   <span class="n">TP53</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="6-理解探针与基因的对应关系总共多少个基因基因最多对应多少个探针是哪些基因是不是因为这些基因很长所以在其上面设计多个探针呢">6. 理解探针与基因的对应关系，总共多少个基因，基因最多对应多少个探针，是哪些基因，是不是因为这些基因很长，所以在其上面设计多个探针呢？</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">probe_sym</span><span class="o">$</span><span class="n">symbol</span><span class="o">%&gt;%</span><span class="nf">unique</span><span class="p">()</span><span class="o">%&gt;%</span><span class="nf">length</span><span class="p">()</span> <span class="c1">#基因的数目</span>
+<span class="n">[1]</span> <span class="m">8585</span>
+<span class="o">&gt;</span> <span class="n">probe_sym</span><span class="o">$</span><span class="n">symbol</span><span class="o">%&gt;%</span><span class="nf">table</span><span class="p">()</span><span class="o">%&gt;%</span><span class="nf">sort</span><span class="p">()</span><span class="o">%&gt;%</span><span class="nf">tail</span><span class="p">()</span> <span class="c1">#对应最多探针的基因有哪些</span>
+<span class="n">.
+</span><span class="n">YME1L1</span>  <span class="n">GAPDH</span> <span class="n">INPP4A</span>    <span class="n">MYB</span> <span class="n">PTGER3</span>  <span class="n">STAT1</span> 
+     <span class="m">7</span>      <span class="m">8</span>      <span class="m">8</span>      <span class="m">8</span>      <span class="m">8</span>      <span class="m">8</span> 
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="7-第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵找到那些不在-hgu95av2db-包收录的对应着symbol的探针">7. 第二步提取到的表达矩阵是12625个探针在22个样本的表达量矩阵，找到那些不在 <code>hgu95av2.db</code> 包收录的对应着SYMBOL的探针。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">e_filter_out</span> <span class="o">&lt;-</span> <span class="n">exprMatrix[</span><span class="o">!</span><span class="nf">rownames</span><span class="p">(</span><span class="n">exprMatrix</span><span class="p">)</span><span class="o">%in%</span><span class="n">probe_sym</span><span class="o">$</span><span class="n">probe_id</span><span class="p">,</span><span class="n">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="8-过滤表达矩阵删除那1165个没有对应基因名字的探针">8. 过滤表达矩阵，删除那1165个没有对应基因名字的探针。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">e_filter</span> <span class="o">&lt;-</span> <span class="n">exprMatrix</span><span class="nf">[rownames</span><span class="p">(</span><span class="n">exprMatrix</span><span class="p">)</span><span class="o">%in%</span><span class="n">probe_sym</span><span class="o">$</span><span class="n">probe_id</span><span class="p">,</span><span class="n">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="9-整合表达矩阵多个探针对应一个基因的情况下只保留在所有样本里面平均表达量最大的那个探针">9. 整合表达矩阵，多个探针对应一个基因的情况下，只保留在所有样本里面平均表达量最大的那个探针。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">max_e</span> <span class="o">&lt;-</span> <span class="nf">by</span><span class="p">(</span><span class="n">e_filter</span><span class="p">,</span> 
+            <span class="n">probe_sym</span><span class="o">$</span><span class="n">symbol</span><span class="p">,</span> 
+            <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="nf">[which.max</span><span class="p">(</span><span class="nf">rowMeans</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="n">]</span><span class="p">)</span>
+<span class="n">uniprobes</span> <span class="o">&lt;-</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">max_e</span><span class="p">)</span>
+<span class="n">e_filter</span> <span class="o">&lt;-</span> <span class="n">e_filter</span><span class="nf">[rownames</span><span class="p">(</span><span class="n">e_filter</span><span class="p">)</span><span class="o">%in%</span><span class="n">uniprobes</span><span class="p">,</span><span class="n">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="10-把过滤后的表达矩阵更改行名为基因的symbol因为这个时候探针和基因是一对一关系了">10. 把过滤后的表达矩阵更改行名为基因的symbol，因为这个时候探针和基因是一对一关系了。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">rownames</span><span class="p">(</span><span class="n">e_filter</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">probe_sym</span><span class="nf">[match</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">e_filter</span><span class="p">),</span> <span class="n">probe_sym</span><span class="o">$</span><span class="n">probe_id</span><span class="p">),</span><span class="m">2</span><span class="n">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="11-对第10步得到的表达矩阵进行探索先画第一个样本的所有基因的表达量的boxplothistdensity--然后画所有样本的-这些图">11. 对第10步得到的表达矩阵进行探索，先画第一个样本的所有基因的表达量的boxplot,hist,density ， 然后画所有样本的 这些图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">exprM_L1</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">symbol</span> <span class="o">=</span> <span class="nf">row.names</span><span class="p">(</span><span class="n">e_filter</span><span class="p">),</span>
+                       <span class="n">expm</span> <span class="o">=</span> <span class="n">e_filter[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span><span class="p">)</span>
+<span class="n">p_box</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">exprM_L1</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">expm</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span>
+<span class="n">p_hist</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">exprM_L1</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">expm</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="m">50</span><span class="p">)</span>
+<span class="n">p_dens</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">exprM_L1</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">expm</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_density</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="12-理解统计学指标meanmedianmaxminsdvarmad并计算出每个基因在所有样本的这些统计学指标最后按照mad值排序取top-50-mad值的基因得到列表">12. 理解统计学指标mean,median,max,min,sd,var,mad并计算出每个基因在所有样本的这些统计学指标，最后按照mad值排序，取top 50 mad值的基因，得到列表。</h3>
+<blockquote>
+<p>注意：这个题目出的并不合规，请仔细看。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">e_mean</span> <span class="o">&lt;-</span> <span class="nf">rowMeans</span><span class="p">(</span><span class="n">e_filter</span><span class="p">)</span>
+<span class="n">e_median</span> <span class="o">&lt;-</span> <span class="nf">rowMedians</span><span class="p">(</span><span class="n">e_filter</span><span class="p">)</span>
+<span class="n">e_max</span> <span class="o">&lt;-</span> <span class="nf">rowMax</span><span class="p">(</span><span class="n">e_filter</span><span class="p">)</span>
+<span class="n">e_min</span> <span class="o">&lt;-</span> <span class="nf">rowMin</span><span class="p">(</span><span class="n">e_filter</span><span class="p">)</span>
+<span class="n">e_sd</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">e_filter</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">sd</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">sort</span><span class="p">()</span> <span class="c1">#没有对应的row系列函数的话，可以使用apply方法</span>
+<span class="n">e_var</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">e_filter</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">sort</span><span class="p">()</span> 
+<span class="n">e_mad_50</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">e_filter</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">mad</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">sort</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">tail</span><span class="p">(</span><span class="m">50</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="nf">names</span><span class="p">(</span><span class="n">e_mad_50</span><span class="p">)</span>
+ <span class="n">[1]</span> <span class="s">&#34;PFN2&#34;</span>     <span class="s">&#34;TNFSF9&#34;</span>   <span class="s">&#34;ARHGAP44&#34;</span> <span class="s">&#34;P2RY14&#34;</span>   <span class="s">&#34;THEMIS2&#34;</span>  <span class="s">&#34;LPL&#34;</span>     
+ <span class="n">[7]</span> <span class="s">&#34;ANXA4&#34;</span>    <span class="s">&#34;DUSP6&#34;</span>    <span class="s">&#34;DUSP5&#34;</span>    <span class="s">&#34;H1FX&#34;</span>     <span class="s">&#34;FLNA&#34;</span>     <span class="s">&#34;CLEC2B&#34;</span>  
+<span class="n">[13]</span> <span class="s">&#34;TSPYL2&#34;</span>   <span class="s">&#34;ZNF266&#34;</span>   <span class="s">&#34;S100A9&#34;</span>   <span class="s">&#34;NR4A2&#34;</span>    <span class="s">&#34;TGFBI&#34;</span>    <span class="s">&#34;ARF6&#34;</span>    
+<span class="n">[19]</span> <span class="s">&#34;APBB2&#34;</span>    <span class="s">&#34;VCAN&#34;</span>     <span class="s">&#34;RBM38&#34;</span>    <span class="s">&#34;CAPG&#34;</span>     <span class="s">&#34;PLXNC1&#34;</span>   <span class="s">&#34;RGS2&#34;</span>    
+<span class="n">[25]</span> <span class="s">&#34;RNASE6&#34;</span>   <span class="s">&#34;VAMP5&#34;</span>    <span class="s">&#34;CYBB&#34;</span>     <span class="s">&#34;GNLY&#34;</span>     <span class="s">&#34;CCL3&#34;</span>     <span class="s">&#34;OAS1&#34;</span>    
+<span class="n">[31]</span> <span class="s">&#34;TRIB2&#34;</span>    <span class="s">&#34;ZNF804A&#34;</span>  <span class="s">&#34;IGH&#34;</span>      <span class="s">&#34;PCDH9&#34;</span>    <span class="s">&#34;VIPR1&#34;</span>    <span class="s">&#34;COBLL1&#34;</span>  
+<span class="n">[37]</span> <span class="s">&#34;GUSBP11&#34;</span>  <span class="s">&#34;S100A8&#34;</span>   <span class="s">&#34;HBB&#34;</span>      <span class="s">&#34;LHFPL2&#34;</span>   <span class="s">&#34;FCN1&#34;</span>     <span class="s">&#34;ZAP70&#34;</span>   
+<span class="n">[43]</span> <span class="s">&#34;IGLC1&#34;</span>    <span class="s">&#34;LGALS1&#34;</span>   <span class="s">&#34;FOS&#34;</span>      <span class="s">&#34;SLAMF1&#34;</span>   <span class="s">&#34;TCF7&#34;</span>     <span class="s">&#34;DMD&#34;</span>     
+<span class="n">[49]</span> <span class="s">&#34;IGF2BP3&#34;</span>  <span class="s">&#34;FAM30A&#34;</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="13-根据第12步骤得到top-50-mad值的基因列表来取表达矩阵的子集并且热图可视化子表达矩阵试试看其它5种热图的包的不同效果">13. 根据第12步骤得到top 50 mad值的基因列表来取表达矩阵的子集，并且热图可视化子表达矩阵。试试看其它5种热图的包的不同效果。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">e50</span> <span class="o">&lt;-</span> <span class="n">e_filter</span><span class="nf">[names</span><span class="p">(</span><span class="n">e_mad_50</span><span class="p">),</span><span class="n">]</span>
+<span class="n">pheatmap</span><span class="o">::</span><span class="nf">pheatmap</span><span class="p">(</span><span class="n">e50</span><span class="p">)</span>
+<span class="n">tt_50</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="nf">scale</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">e50</span><span class="p">)))</span>
+<span class="n">pheatmap</span><span class="o">::</span><span class="nf">pheatmap</span><span class="p">(</span><span class="n">tt_50</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="14-取不同统计学指标meanmedianmaxmeansdvarmad的各top50基因列表使用upsetr包来看他们之间的overlap情况">14. 取不同统计学指标mean,median,max,mean,sd,var,mad的各top50基因列表，使用UpSetR包来看他们之间的overlap情况。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">e_mean_50</span> <span class="o">&lt;-</span> <span class="nf">rowMeans</span><span class="p">(</span><span class="n">e_filter</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">sort</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">tail</span><span class="p">(</span><span class="m">50</span><span class="p">)</span>
+<span class="n">e_median_50</span> <span class="o">&lt;-</span> <span class="nf">rowMedians</span><span class="p">(</span><span class="n">e_filter</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">sort</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">tail</span><span class="p">(</span><span class="m">50</span><span class="p">)</span>
+<span class="n">e_max_50</span> <span class="o">&lt;-</span> <span class="nf">rowMax</span><span class="p">(</span><span class="n">e_filter</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">sort</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">tail</span><span class="p">(</span><span class="m">50</span><span class="p">)</span>
+<span class="n">e_min_50</span> <span class="o">&lt;-</span> <span class="nf">rowMin</span><span class="p">(</span><span class="n">e_filter</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">sort</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">tail</span><span class="p">(</span><span class="m">50</span><span class="p">)</span>
+<span class="n">e_sd_50</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">e_filter</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">sd</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">sort</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">tail</span><span class="p">(</span><span class="m">50</span><span class="p">)</span>
+<span class="n">e_var_50</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">e_filter</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">sort</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">tail</span><span class="p">(</span><span class="m">50</span><span class="p">)</span>
+<span class="n">e_mad_50</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">e_filter</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">mad</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">sort</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">tail</span><span class="p">(</span><span class="m">50</span><span class="p">)</span>
+
+<span class="n">g_all</span> <span class="o">&lt;-</span> <span class="nf">unique</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">e_mean_50</span><span class="p">),</span>
+                  <span class="nf">names</span><span class="p">(</span><span class="n">e_median_50</span><span class="p">),</span>
+                  <span class="nf">names</span><span class="p">(</span><span class="n">e_max_50</span><span class="p">),</span>
+                  <span class="nf">names</span><span class="p">(</span><span class="n">e_min_50</span><span class="p">),</span>
+                  <span class="nf">names</span><span class="p">(</span><span class="n">e_sd_50</span><span class="p">),</span>
+                  <span class="nf">names</span><span class="p">(</span><span class="n">e_var_50</span><span class="p">),</span>
+                  <span class="nf">names</span><span class="p">(</span><span class="n">e_mad_50</span><span class="p">)))</span>
+<span class="n">g_upset</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">g_all</span> <span class="o">=</span> <span class="n">g_all</span><span class="p">,</span>
+                      <span class="n">g_mean</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">g_all</span> <span class="o">%in%</span> <span class="nf">names</span><span class="p">(</span><span class="n">e_mean_50</span><span class="p">),</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span>
+                      <span class="n">g_median</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">g_all</span> <span class="o">%in%</span> <span class="nf">names</span><span class="p">(</span><span class="n">e_median_50</span><span class="p">),</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span>
+                      <span class="n">g_max</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">g_all</span> <span class="o">%in%</span> <span class="nf">names</span><span class="p">(</span><span class="n">e_max_50</span><span class="p">),</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span>
+                      <span class="n">g_min</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">g_all</span> <span class="o">%in%</span> <span class="nf">names</span><span class="p">(</span><span class="n">e_min_50</span><span class="p">),</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span>
+                      <span class="n">g_sd</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">g_all</span> <span class="o">%in%</span> <span class="nf">names</span><span class="p">(</span><span class="n">e_sd_50</span><span class="p">),</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span>
+                      <span class="n">g_var</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">g_all</span> <span class="o">%in%</span> <span class="nf">names</span><span class="p">(</span><span class="n">e_var_50</span><span class="p">),</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span>
+                      <span class="n">g_mad</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">g_all</span> <span class="o">%in%</span> <span class="nf">names</span><span class="p">(</span><span class="n">e_mad_50</span><span class="p">),</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">)</span>
+                      <span class="p">)</span>
+<span class="n">UpSetR</span><span class="o">::</span><span class="nf">upset</span><span class="p">(</span><span class="n">g_upset</span><span class="p">,</span> <span class="n">nsets</span> <span class="o">=</span> <span class="m">7</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="15-在第二步的基础上面提取cll包里面的datascllex-数据对象的样本的表型数据">15. 在第二步的基础上面提取<code>CLL</code>包里面的<code>data(sCLLex)</code> 数据对象的样本的表型数据。</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">pdata</span><span class="o">=</span><span class="nf">pData</span><span class="p">(</span><span class="n">sCLLex</span><span class="p">)</span>
+<span class="n">group_list</span><span class="o">=</span><span class="nf">as.character</span><span class="p">(</span><span class="n">pdata[</span><span class="p">,</span><span class="m">2</span><span class="n">]</span><span class="p">)</span>
+<span class="n">group_list</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="16-对所有样本的表达矩阵进行聚类并且绘图然后添加样本的临床表型数据信息更改样本名">16. 对所有样本的表达矩阵进行聚类并且绘图，然后添加样本的临床表型数据信息(更改样本名)</h3>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://www.jianshu.com/p/993b4022363f">https://www.jianshu.com/p/993b4022363f</a></p>
+<p><a href="http://www.bio-info-trainee.com/3415.html">http://www.bio-info-trainee.com/3415.html</a></p>
+<p><a href="https://www.statmethods.net/stats/withby.html">https://www.statmethods.net/stats/withby.html</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-03-11
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/R/">R</a>
+          <a href="/tags/%E7%94%9F%E4%BF%A1%E6%8A%80%E8%83%BD%E6%A0%91/">生信技能树</a>
+          <a href="/tags/biotrainee/">biotrainee</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/03/11/linux-exercise/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">linux练习题</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/03/08/SERF-identify-telomere-sequences/">
+            <span class="next-text nav-default">使用SERF鉴定端粒序列</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

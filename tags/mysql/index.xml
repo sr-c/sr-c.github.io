@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on SR-C</title>
+    <link>https://sr-c.github.io/tags/mysql/</link>
+    <description>Recent content in mysql on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 29 Sep 2018 17:24:22 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mysql ERROR 1101 (42000)</title>
+      <link>https://sr-c.github.io/2018/09/29/mysql-ERROR-1101-42000/</link>
+      <pubDate>Sat, 29 Sep 2018 17:24:22 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/29/mysql-ERROR-1101-42000/</guid>
+      <description>问题描述 新建数据表时出现报错 1 ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column &amp;#39;description&amp;#39; can&amp;#39;t have a default value 这是由于mysql处于strict mode, 不允许text或blod字段有缺省值。因此，</description>
+    </item>
+    
+    <item>
+      <title>重装mysql</title>
+      <link>https://sr-c.github.io/2018/09/11/mysql-reinstall/</link>
+      <pubDate>Tue, 11 Sep 2018 22:36:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/11/mysql-reinstall/</guid>
+      <description>重新安装mysql, 将其回复默认的配置 删除mysql 1 sudo apt-get remove --purge mysql-* 清理残留数据 1 dpkg -l |grep ^rc|awk &amp;#39;{print $2}&amp;#39; |sudo xargs dpkg -P 或者更为手动的方式，首先搜索含有mysql</description>
+    </item>
+    
+    <item>
+      <title>更改mysql数据库路径</title>
+      <link>https://sr-c.github.io/2018/09/11/change-mysql-datadir/</link>
+      <pubDate>Tue, 11 Sep 2018 22:35:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/11/change-mysql-datadir/</guid>
+      <description>查看mysql文件存放目录 1 show variables like &amp;#39;%dir%&amp;#39;; 能够查看到目前的数据库文件配置信息，其中的datadir值为/var/lib/mysql/ 停止mysql</description>
+    </item>
+    
+    <item>
+      <title>配置MySQL Server</title>
+      <link>https://sr-c.github.io/2018/09/09/mysql-config/</link>
+      <pubDate>Sun, 09 Sep 2018 16:31:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/09/mysql-config/</guid>
+      <description>这一情况使得用户使用mysql -u root -p登陆时出现MySql Error 1698(28000)错误。这与之前出现MySql Error 1698(28000)错误的</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Circos共线性比较 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="数据准备 获取区域关联关系 Mummer匹配 获取已硬屏蔽了重复序列的基因组序列，使用nucmer(Mummer)对其进行匹配 1 2 3 4 5 6 7 8 9 10" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2020/06/03/Circo-Synteny-Panel/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Circos共线性比较" />
+<meta property="og:description" content="数据准备 获取区域关联关系 Mummer匹配 获取已硬屏蔽了重复序列的基因组序列，使用nucmer(Mummer)对其进行匹配 1 2 3 4 5 6 7 8 9 10" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2020/06/03/Circo-Synteny-Panel/" />
+<meta property="article:published_time" content="2020-06-03T21:37:09+00:00" />
+<meta property="article:modified_time" content="2020-06-03T21:37:09+00:00" />
+<meta itemprop="name" content="Circos共线性比较">
+<meta itemprop="description" content="数据准备 获取区域关联关系 Mummer匹配 获取已硬屏蔽了重复序列的基因组序列，使用nucmer(Mummer)对其进行匹配 1 2 3 4 5 6 7 8 9 10">
+<meta itemprop="datePublished" content="2020-06-03T21:37:09+00:00" />
+<meta itemprop="dateModified" content="2020-06-03T21:37:09+00:00" />
+<meta itemprop="wordCount" content="1646">
+
+
+
+<meta itemprop="keywords" content="Circos,Mummer," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Circos共线性比较"/>
+<meta name="twitter:description" content="数据准备 获取区域关联关系 Mummer匹配 获取已硬屏蔽了重复序列的基因组序列，使用nucmer(Mummer)对其进行匹配 1 2 3 4 5 6 7 8 9 10"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Circos共线性比较</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-06-03 </span>
+        <div class="post-category">
+            <a href="/categories/Genomics/"> Genomics </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#获取区域关联关系">获取区域关联关系</a>
+      <ul>
+        <li><a href="#mummer匹配">Mummer匹配</a></li>
+      </ul>
+    </li>
+    <li><a href="#基因组核型染色体长度">基因组核型（染色体长度）</a></li>
+    <li><a href="#基因重复序列密度">基因/重复序列密度</a></li>
+    <li><a href="#gc含量">GC含量</a></li>
+    <li><a href="#环境配置">环境配置</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#circosconf">circos.conf</a>
+      <ul>
+        <li><a href="#linksconf">links.conf</a></li>
+        <li><a href="#ticksconf">ticks.conf</a></li>
+      </ul>
+    </li>
+    <li><a href="#单位">单位</a></li>
+    <li><a href="#颜色">颜色</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><img src="http://xuzhougeng.top/upload/2019/7/circos-link-2-2222e6d11bd049c0b5e9a200c5e50508.png" alt="效果示意图"></p>
+<h1 id="数据准备">数据准备</h1>
+<h2 id="获取区域关联关系">获取区域关联关系</h2>
+<h3 id="mummer匹配">Mummer匹配</h3>
+<p>获取已硬屏蔽了重复序列的基因组序列，使用nucmer(Mummer)对其进行匹配</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#比对</span>
+nucmer --prefix<span class="o">=</span>ref_qry ref.fasta qry.fasta 
+<span class="c1">#过滤，除去不太适合的部分，但结果不适合读</span>
+delta-filter -q ref_qry.delta &gt; ref_qry.filter 
+<span class="c1">#将结果转换为以人类可读的格式显示匹配的坐标</span>
+show-coords -rcl ref_qry.delta &gt; ref_qry.coords 
+
+<span class="c1">##Genome Linkage info</span>
+<span class="c1">##以一定标准（如匹配区域长度&gt;2 kb, 相似度&gt;80%）过滤匹配的区域</span>
+awk <span class="s1">&#39;$5&gt;50000, OFS=&#34;\t&#34;{print $12,$1,$2,$13,$3,$4}&#39;</span> ../../Mummer/out.1coords &gt; req_qry.50k.LinkedRegion.info
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="基因组核型染色体长度">基因组核型（染色体长度）</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">seqkit fx2tab ~/reference/genome/ref.fasta -l -n &gt; ref.SeqLen
+seqkit fx2tab ~/reference/genome/qry.fasta -l -n &gt; qry.SeqLen
+cat ref.SeqLen qry.SeqLen &gt; all.SeqLen
+
+awk <span class="s1">&#39;{print &#34;chr\t-\t&#34;$1&#34;\t&#34;$1&#34;\t&#34;0&#34;\t&#34;$2&#34;\tblack&#34;}&#39;</span> ref.SeqLen &gt; karyotype.ref.txt
+awk <span class="s1">&#39;{print &#34;chr\t-\t&#34;$1&#34;\t&#34;$1&#34;\t&#34;0&#34;\t&#34;$2&#34;\tblack&#34;}&#39;</span> qry.SeqLen &gt; karyotype.qry.txt
+cat karyotype.ref.txt karyotype.qry.txt &gt; karyotype.both.txt
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="基因重复序列密度">基因/重复序列密度</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">## Gene position</span>
+awk <span class="s1">&#39;$3==&#34;gene&#34;, OFS=&#34;\t&#34;{print $1,$4,$5,1,$7}&#39;</span> ~/reference/annotation/ref.gff3 &gt; ref.genePos
+awk <span class="s1">&#39;$3==&#34;gene&#34;, OFS=&#34;\t&#34;{print $1,$4,$5,1,$7}&#39;</span> ~/reference/annotation/qry.gff3 &gt; qry.genePos
+cat ref.genePos qry.genePos &gt; All.GenePos
+
+<span class="c1">## Repeat Region position</span>
+awk <span class="s1">&#39;OFS=&#34;\t&#34;{print $1,$4,$5,1,$7}&#39;</span> RepeatMasker/ref.fasta.out.gff &gt; ref.RepPos
+awk <span class="s1">&#39;OFS=&#34;\t&#34;{print $1,$4,$5,1,$7}&#39;</span> RepeatMasker/qry.fasta.out.gff &gt; qry.RepPos
+cat ref.RepPos qry.RepPos <span class="p">|</span> grep -v <span class="s2">&#34;#&#34;</span> &gt; All.RepPos
+
+<span class="c1">## 设定滑动窗口</span>
+bedtools makewindows -g Os.AllContigLen -w <span class="m">100000</span> &gt; both.windows
+<span class="c1">## 计算基因/重复序列单元的覆盖度</span>
+bedtools coverage -a All.GenePos -b both.windows <span class="p">|</span> cut -f 1-4 &gt; genes_num.txt
+bedtools coverage -a All.RepPos -b both.windows<span class="p">|</span> cut -f 1-4 &gt; reps_num.txt
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="gc含量">GC含量</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">## 临时合并ref与qry的基因组序列，方便同时计算</span>
+cat ~/reference/genome/ref.fasta ~/reference/genome/qry.fasta &gt; tmp.fasta
+<span class="c1">## 设定滑动窗口</span>
+bedtools makewindows -g All.SeqLen -w <span class="m">100000</span> &gt; both.windows
+<span class="c1">## 使用bedtools nuc计算GC含量，默认输出的第5列为GC含量</span>
+bedtools nuc -fi tmp.fasta -bed both.windows <span class="p">|</span> cut -f 1-3,5 <span class="p">|</span> sed <span class="s1">&#39;1d&#39;</span> &gt; both.GCrate.txt
+<span class="c1">## 删除临时文件</span>
+rm tmp.fasta tmp.fasta.fai
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="环境配置">环境配置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装circos</span>
+conda create -c bioconda -n circos circos
+<span class="c1"># 测试circos</span>
+conda activate circos
+<span class="c1"># 确认安装</span>
+circos -V
+<span class="c1"># 输出如下</span>
+<span class="c1"># circos | v 0.69-8 | 15 Jun 2019 | Perl 5.026002</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="circos绘图">Circos绘图</h1>
+<h2 id="circosconf">circos.conf</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">karyotype = karyotype.ref.txt,karyotype.qry.txt
+
+## 设定显示的染色体
+chromosomes_display_default = no
+chromosomes = refContig01;refContig02;refContig03;refContig04;refContig05;refContig06;refContig07;refContig08;refContig09;refContig10;refContig11;refContig12;refContig13;refContig14;refContig15;refContig16;qryContig01;qryContig02;qryContig03;qryContig04;qryContig05;qryContig06;qryContig07;qryContig08;qryContig09;qryContig10;qryContig11;qryContig12;qryContig13;qryContig14;qryContig15;qryContig16;qryContig17;qryContig18
+## 设定染色体的排列顺序
+chromosomes_order = qryContig18,qryContig17,qryContig16,qryContig15,qryContig14,qryContig13,qryContig12,qryContig11,qryContig10,qryContig09,qryContig08,qryContig07,qryContig06,qryContig05,qryContig04,qryContig03,qryContig02,qryContig01
+
+## 逆转qry序列的方向（从最大值向零沿逆时针反向排列），正则匹配符合的染色体
+chromosomes_reverse = /qryContig/
+## 设定染色体颜色
+chromosomes_color = /ref/=pastel1-3-qual-1,/qry/=pastel1-3-qual-2
+## 此设定会ref与qry的染色体各占半圈，但每个染色体的长度都被缩放至同一长度
+# chromosomes_scale = /refContig/:0.5rn;/qryContig/:0.5rn
+
+## 设定染色体上的标尺
+&lt;&lt;include ticks.conf&gt;&gt;
+
+&lt;ideogram&gt;
+&lt;spacing&gt;
+## 染色体之间默认的间距
+default = 1u
+## 设定ref与qry之间的间隙稍大于一般值
+  &lt;pairwise refContig01 qryContig01&gt;
+   spacing = 4u
+  &lt;/pairwise&gt;
+  
+  &lt;pairwise refContig16 qryContig18&gt;
+   spacing = 4u
+  &lt;/pairwise&gt;
+&lt;/spacing&gt;
+
+radius           = 0.90r
+thickness        = 20p
+fill             = yes
+stroke_color     = dgrey
+stroke_thickness = 2p
+show_label     = yes #展示label
+label_font     = default # 字体
+label_radius   = dims(ideogram,radius) + 0.08r #位置
+label_size     = 16 # 字体大小
+label_parallel = no # 是否平行
+
+label_format   = eval(sprintf(&#34;%s&#34;,var(chr))) # 格式
+&lt;/ideogram&gt;
+
+&lt;plots&gt;
+
+&lt;plot&gt;
+## 基因密度
+type      = line
+thickness = 1
+max_gap = 1u
+file = genes_num.txt
+color   = red
+r0      = 0.86r
+r1      = 0.95r
+&lt;/plot&gt;
+
+## 重复序列密度
+&lt;plot&gt;
+type      = line
+thickness = 1
+max_gap = 1u
+file = reps_num.txt
+color   = blue
+r0      = 0.76r
+r1      = 0.85r
+&lt;/plot&gt;
+
+## GC含量
+&lt;plot&gt;
+type    = heatmap
+file    = both.GCrate.txt
+color   = ylorrd-9-seq
+r1      = 0.95r
+r0      = 0.99r
+&lt;/plot&gt;
+
+&lt;/plots&gt;
+
+## 设定染色体之间的关联信息
+&lt;&lt;include ./etc/links.conf&gt;&gt;
+
+&lt;image&gt;
+angle_offset* = -88 ## 选项后加*表示覆盖已有的设置
+dir*    = .    # 输出文件夹
+radius* = 500p # 图片半径，默认为1500p
+svg*    = yes   # 是否输出svg
+&lt;&lt;include etc/image.conf&gt;&gt;
+&lt;/image&gt;
+
+&lt;&lt;include etc/colors_fonts_patterns.conf&gt;&gt;
+&lt;&lt;include etc/housekeeping.conf&gt;&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="linksconf">links.conf</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;links&gt;
+&lt;link&gt;
+file          = req_qry.50k.LinkedRegion.info
+radius        = 0.75r
+color         = greys-9-seq-3
+ribbon = yes
+
+&lt;rules&gt;
+&lt;rule&gt;
+condition = var(chr1) eq &#34;refContig01&#34;
+color=spectral-9-div-1
+&lt;/rule&gt;
+&lt;rule&gt;
+condition = var(chr1) eq &#34;refContig02&#34;
+color=spectral-11-div-3
+&lt;/rule&gt;
+&lt;rule&gt;
+condition = var(chr1) eq &#34;refContig03&#34;
+color=spectral-11-div-5
+&lt;/rule&gt;
+&lt;rule&gt;
+condition = var(chr1) eq &#34;refContig04&#34;
+color=spectral-11-div-6
+&lt;/rule&gt;
+&lt;rule&gt;
+condition = var(chr1) eq &#34;refContig05&#34;
+color=spectral-11-div-8
+&lt;/rule&gt;
+&lt;rule&gt;
+condition = var(chr1) eq &#34;refContig06&#34;
+color=spectral-11-div-9
+&lt;/rule&gt;
+&lt;rule&gt;
+condition = var(chr1) eq &#34;refContig07&#34;
+color=spectral-11-div-10
+&lt;/rule&gt;
+&lt;rule&gt;
+condition = var(chr1) eq &#34;refContig08&#34;
+color=spectral-11-div-11
+&lt;/rule&gt;
+&lt;rule&gt;
+condition = var(chr1) eq &#34;refContig09&#34;
+color=blue_a4
+&lt;/rule&gt;
+
+&lt;/rules&gt;
+
+&lt;/link&gt;
+&lt;/links&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="ticksconf">ticks.conf</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">chromosomes_units = 1000000
+show_ticks          = yes
+show_tick_labels    = yes
+
+&lt;ticks&gt;
+
+radius           = 1r
+color            = black
+thickness        = 2p
+
+multiplier       = 1e-6 #输出的标签为实际长度与其相乘
+
+format           = %d # %d表示显示整数
+
+&lt;tick&gt;
+spacing        = 1u
+size           = 5p
+&lt;/tick&gt;
+
+&lt;tick&gt;
+spacing        = 5u
+size           = 10p
+show_label     = yes
+label_size     = 10p
+label_offset   = 10p
+format         = %d
+&lt;/tick&gt;
+
+&lt;/ticks&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="单位">单位</h2>
+<blockquote>
+<p>上面出现了控制图形不同元素大小的三个单位，p,r,u。p(pixels), 表示绝对大小， r(relative), 相对大小， u(chromosome unit)。 如果使用p作为单位，需要考虑最终输出图形<code>&lt;image&gt;</code>定义的radius。 而r是相对大小，会随着最终图形大小而发生变换。u一般在显示刻度时使用。</p>
+</blockquote>
+<h2 id="颜色">颜色</h2>
+<p>Circos中颜色的命名格式为<code>PALETTE-NUMCOLORS-TYPE-IDX</code>:</p>
+<ul>
+<li>PALETTE:调色版名，如rdylbu</li>
+<li>NUMCOLORS: 颜色数目,  11</li>
+<li>调色版类型: div(diverging), seq(sequential), qual(qualitative)</li>
+<li>IDX: 调色版中的颜色索引</li>
+</ul>
+<p>Circos的颜色设置来自https://colorbrewer2.org/。因此，<code>gnbu-9-seq</code>对应的是就是下图的<code>9-class GnBu</code>。因此，<code>gnbu-9-seq</code>对应的是就是下图的<code>9-class GnBu</code>。</p>
+<p><img src="http://xuzhougeng.top/upload/2019/7/circos-colors-88bba063fa264c9f9825a9b9fd3baad0.png" alt="颜色设置"></p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="http://xuzhougeng.top/tags/circos">http://xuzhougeng.top/tags/circos</a></p>
+<p><a href="https://www.royfrancis.com/beautiful-circos-plots-in-r/">https://www.royfrancis.com/beautiful-circos-plots-in-r/</a></p>
+<p><a href="http://xuzhougeng.top/archives/Using-MUMmer-to-align-genome">http://xuzhougeng.top/archives/Using-MUMmer-to-align-genome</a></p>
+<p><a href="http://xuzhougeng.top/archives/Visualization-of-MUMMER-Result">http://xuzhougeng.top/archives/Visualization-of-MUMMER-Result</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-06-03
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Circos/">Circos</a>
+          <a href="/tags/Mummer/">Mummer</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2020/06/07/cds-coverage/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">计算基因组中CDS的覆盖度</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2020/05/26/RPKM-normilization/">
+            <span class="next-text nav-default">RPKM-normilization</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

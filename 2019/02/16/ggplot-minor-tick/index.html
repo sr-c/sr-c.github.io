@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ggplot设置次级刻度 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="在basic plot中实现 1 minor.tick(nx=3, ny=3, tick.ratio=0.5) ggplot实现 在ggplot中反而没有发现很便捷的解决方案，虽然在scale_x_continuous(" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/02/16/ggplot-minor-tick/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="ggplot设置次级刻度" />
+<meta property="og:description" content="在basic plot中实现 1 minor.tick(nx=3, ny=3, tick.ratio=0.5) ggplot实现 在ggplot中反而没有发现很便捷的解决方案，虽然在scale_x_continuous(" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/02/16/ggplot-minor-tick/" />
+<meta property="article:published_time" content="2019-02-16T19:46:04+00:00" />
+<meta property="article:modified_time" content="2019-02-16T19:46:04+00:00" />
+<meta itemprop="name" content="ggplot设置次级刻度">
+<meta itemprop="description" content="在basic plot中实现 1 minor.tick(nx=3, ny=3, tick.ratio=0.5) ggplot实现 在ggplot中反而没有发现很便捷的解决方案，虽然在scale_x_continuous(">
+<meta itemprop="datePublished" content="2019-02-16T19:46:04+00:00" />
+<meta itemprop="dateModified" content="2019-02-16T19:46:04+00:00" />
+<meta itemprop="wordCount" content="369">
+
+
+
+<meta itemprop="keywords" content="R,ggplot2," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ggplot设置次级刻度"/>
+<meta name="twitter:description" content="在basic plot中实现 1 minor.tick(nx=3, ny=3, tick.ratio=0.5) ggplot实现 在ggplot中反而没有发现很便捷的解决方案，虽然在scale_x_continuous("/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ggplot设置次级刻度</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-02-16 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#在basic-plot中实现">在basic plot中实现</a></li>
+    <li><a href="#ggplot实现">ggplot实现</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="在basic-plot中实现">在basic plot中实现</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">minor.tick</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">tick.ratio</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="data:image/png;base64,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" alt="img"></p>
+<h2 id="ggplot实现">ggplot实现</h2>
+<p>在ggplot中反而没有发现很便捷的解决方案，虽然在<code>scale_x_continuous()</code>函数中有<code>minor_breaks</code>参数，但并不是直接对应刻度线的设置。</p>
+<p>目前找到折中的解决方案是在指定<code>breaks</code>的同时指定<code>lables</code>，而<code>lables</code>在指定次级刻度时留空。其实，如此并没有设定次级刻度，只是在部分刻度上留空，视觉上看起来像是次级刻度罢了。具体方案如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1">#首先设定一个函数</span>
+<span class="c1">#replace every x element with an empty charactor</span>
+<span class="n">every_nth</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nth</span><span class="p">,</span> <span class="n">empty</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">inverse</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> 
+  <span class="p">{</span>
+  <span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="n">inverse</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">if</span><span class="p">(</span><span class="n">empty</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">x[1</span><span class="o">:</span><span class="n">nth</span> <span class="o">==</span> <span class="m">1</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="s">&#34;&#34;</span>
+      <span class="n">x</span>
+      <span class="p">}</span> <span class="n">else</span> <span class="p">{</span>
+        <span class="n">x[1</span><span class="o">:</span><span class="n">nth</span> <span class="o">!=</span> <span class="m">1</span><span class="n">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="n">else</span> <span class="p">{</span>
+      <span class="nf">if</span><span class="p">(</span><span class="n">empty</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">x[1</span><span class="o">:</span><span class="n">nth</span> <span class="o">!=</span> <span class="m">1</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="s">&#34;&#34;</span>
+        <span class="n">x</span>
+        <span class="p">}</span> <span class="n">else</span> <span class="p">{</span>
+          <span class="n">x[1</span><span class="o">:</span><span class="n">nth</span> <span class="o">==</span> <span class="m">1</span><span class="n">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># example</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">1000</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">1000</span><span class="p">))</span>
+
+<span class="c1">## ggplot2 default axis labelling</span>
+<span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_point</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme_bw</span><span class="p">()</span>
+<span class="c1">## Add minor ticks to axes</span>
+<span class="n">custom_breaks</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0.25</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">+</span> 
+  <span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span> <span class="o">=</span> <span class="n">custom_breaks</span><span class="p">,</span>
+                     <span class="n">labels</span> <span class="o">=</span> <span class="nf">every_nth</span><span class="p">(</span><span class="n">custom_breaks</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="n">inverse</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span> <span class="o">+</span> 
+  <span class="nf">scale_y_continuous</span><span class="p">(</span><span class="n">breaks</span> <span class="o">=</span> <span class="n">custom_breaks</span><span class="p">,</span>
+                     <span class="n">labels</span> <span class="o">=</span> <span class="nf">every_nth</span><span class="p">(</span><span class="n">custom_breaks</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">inverse</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/WklrX4H.png" alt="custom labelling"></p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://www.cnblogs.com/hdu-2010/p/3833088.html">https://www.cnblogs.com/hdu-2010/p/3833088.html</a></p>
+<p><a href="https://stackoverflow.com/questions/34533472/insert-blanks-into-a-vector-for-e-g-minor-tick-labels-in-r/34533473#34533473">https://stackoverflow.com/questions/34533472/insert-blanks-into-a-vector-for-e-g-minor-tick-labels-in-r/34533473#34533473</a></p>
+<p><a href="https://www.cnblogs.com/hdu-2010/p/3833088.html">https://www.cnblogs.com/hdu-2010/p/3833088.html</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-02-16
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/R/">R</a>
+          <a href="/tags/ggplot2/">ggplot2</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/02/16/Error-C-stack-usage-is-too-close-to-the-limit/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">【debug】C stack usage is too close to the limit</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/02/15/using-tidyverse-to-go-between-wide-and-long/">
+            <span class="next-text nav-default">长短数据格式转换</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

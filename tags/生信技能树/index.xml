@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>生信技能树 on SR-C</title>
+    <link>https://sr-c.github.io/tags/%E7%94%9F%E4%BF%A1%E6%8A%80%E8%83%BD%E6%A0%91/</link>
+    <description>Recent content in 生信技能树 on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 11 Mar 2019 20:54:10 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/%E7%94%9F%E4%BF%A1%E6%8A%80%E8%83%BD%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RNA-seq小考核</title>
+      <link>https://sr-c.github.io/2019/03/11/RNA-seq-exercise/</link>
+      <pubDate>Mon, 11 Mar 2019 20:54:10 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/11/RNA-seq-exercise/</guid>
+      <description>Q1: 参考基因组及注释文件下载地址 列出人，小鼠，拟南芥的基因组序列，转录组cDNA序列，基因组注释gtf文件下载地址 Human (GRCh38.p12) ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz ftp://ftp.ensembl.org/pub/release-95/gtf/homo_sapiens/Homo_sapiens.GRCh38.95.gtf.gz Mouse (GRCm38.p6) ftp://ftp.ensembl.org/pub/release-95/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.toplevel.fa.gz ftp://ftp.ensembl.org/pub/release-95/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz ftp://ftp.ensembl.org/pub/release-95/gtf/mus_musculus/Mus_musculus.GRCm38.95.gtf.gz Arabidopsis thaliana (TAIR10) ftp://ftp.ensemblgenomes.org/pub/plants/release-42/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</description>
+    </item>
+    
+    <item>
+      <title>linux练习题</title>
+      <link>https://sr-c.github.io/2019/03/11/linux-exercise/</link>
+      <pubDate>Mon, 11 Mar 2019 20:48:07 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/11/linux-exercise/</guid>
+      <description>http://www.bio-info-trainee.com/2900.html 在任意文件夹下面创建形如 1/2/3/4/5/6/7/8/9 格式的文件夹系列。 1 mkdir -p 1/2/3/4/5/6/7/8/9 在创建好的文件夹下面，比如我的是 /Users/jimmy/tmp/1/2/3/4/5/6/7/8/9 ，里面创建文本文件 me.txt 1 touch me.txt 在文本文件 me.txt 里面输入内容:</description>
+    </item>
+    
+    <item>
+      <title>R语言练习题</title>
+      <link>https://sr-c.github.io/2019/03/11/R-exercise/</link>
+      <pubDate>Mon, 11 Mar 2019 15:52:28 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/11/R-exercise/</guid>
+      <description>初级 http://www.bio-info-trainee.com/3793.html 1. 打开 Rstudio 告诉我它的工作目录。 1 getwd() 2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值） 1 2 3 4 5 6 7 8 9 10 11 12 # Character v_char &amp;lt;- c(&amp;#34;www&amp;#34;,&amp;#34;biotrainee&amp;#34;,&amp;#34;com&amp;#34;) #</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>计算基因组中LTR的插入时间 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="Aging LTR insertion 使用LTRharvest与c计算LTR-RTs在基因组中的插入时间。 LTRharvest LTRharvest是Genome tools中进行de novo识" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/12/22/Aging-LTR-insert-time/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="计算基因组中LTR的插入时间" />
+<meta property="og:description" content="Aging LTR insertion 使用LTRharvest与c计算LTR-RTs在基因组中的插入时间。 LTRharvest LTRharvest是Genome tools中进行de novo识" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/12/22/Aging-LTR-insert-time/" />
+<meta property="article:published_time" content="2018-12-22T14:52:20+00:00" />
+<meta property="article:modified_time" content="2018-12-22T14:52:20+00:00" />
+<meta itemprop="name" content="计算基因组中LTR的插入时间">
+<meta itemprop="description" content="Aging LTR insertion 使用LTRharvest与c计算LTR-RTs在基因组中的插入时间。 LTRharvest LTRharvest是Genome tools中进行de novo识">
+<meta itemprop="datePublished" content="2018-12-22T14:52:20+00:00" />
+<meta itemprop="dateModified" content="2018-12-22T14:52:20+00:00" />
+<meta itemprop="wordCount" content="1011">
+
+
+
+<meta itemprop="keywords" content="LTR,LTRharvest,LTR-retriever," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计算基因组中LTR的插入时间"/>
+<meta name="twitter:description" content="Aging LTR insertion 使用LTRharvest与c计算LTR-RTs在基因组中的插入时间。 LTRharvest LTRharvest是Genome tools中进行de novo识"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">计算基因组中LTR的插入时间</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-22 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ltrharvest">LTRharvest</a></li>
+    <li><a href="#ltr-retriever">LTR-retriever</a>
+      <ul>
+        <li><a href="#计算dna序列间的距离">计算DNA序列间的距离</a></li>
+        <li><a href="#计算ltr插入时间">计算LTR插入时间</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h1 id="aging-ltr-insertion">Aging LTR insertion</h1>
+<p>使用<code>LTRharvest</code>与<code>c</code>计算LTR-RTs在基因组中的插入时间。</p>
+<h2 id="ltrharvest">LTRharvest</h2>
+<p><code>LTRharvest</code>是<code>Genome tools</code>中进行<em>de novo</em>识别LTR的组件。不依赖于序列相似性，根据LTR-RT的结构特点进行识别。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#LTRharvest并不会根据输入的序列名进行命名，而根据序列在fasta文件中的顺序在输出中命名为seq0，seq1...</span>
+<span class="c1">#因此可手动将输入文件中的scaffold整合为一条，方面后续根据gff文件输出LTR序列</span>
+
+gt suffix -db &lt;path-to-your-genome&gt; -index &lt;genome-index&gt;
+gt ltrharvest -index &lt;genome-index&gt; -motif TGCA -motifmis <span class="m">1</span> -gff3 out/genome.harvest.gff -out out/genome.harvest.out &gt; genome.harvest.scn
+gt ltrharvest -index &lt;genome-index&gt; -gff3 out/genome.harvest.nonTGCA.gff -out out/genome.harvest.nonTGCA.out &gt; genome.harvest.nonTGCA.scn
+</code></pre></td></tr></table>
+</div>
+</div><p>得到输出的结果中往往存在着数千条LTR-RTs，但其中存在着许多的假阳性。距离相近的其他类型重复序列，若其相似性较高，往往也会被识别为LTR-RT。LTR-retriever能够过滤这一结果，降低假阳性，得到完整的LTR-RT。</p>
+<h2 id="ltr-retriever">LTR-retriever</h2>
+<p><code>LTR-retriever</code>能够识别<code>LTRharvest</code>, <code>LTR_Finder</code>或<code>MGEScan_LTR</code>的输出，对结果进行过滤，得到完整的LTR-RT。
+LTR-retriever基于的假设是，LTR-RT在新插入基因组序列时，两端的LTR序列是相同的，同时，LTR序列两端的序列是不同的，以此来判断LTR序列的边界。
+<code>LTR-retriever</code>计算LTR序列间的距离，基于物种的突变速率（默认使用水稻的）计算LTR的插入时间。基于<code>bin/LTR.indefinder.pl</code>使用JK法计算。</p>
+<h3 id="计算dna序列间的距离">计算DNA序列间的距离</h3>
+<p>最简单的算法是Jukes-Cantor 模型，默认ACGT四种碱基之间的替换速率相同。
+$$
+d_{AB}=-\frac{3}{4}\ln\left( 1-\frac{4}{3}f_{AB}\right)
+$$</p>
+<blockquote>
+<p>where f<!-- raw HTML omitted -->AB<!-- raw HTML omitted --> is the <strong>dissimilarity (fraction of observed differences)</strong> between sequences A and B, and d<!-- raw HTML omitted -->AB<!-- raw HTML omitted --> is the <strong>estimated evolutionary distance (fraction of expected substitutions)</strong> between sequences A and B.</p>
+</blockquote>
+<p>实际上，由于嘧啶与嘌呤之间的替换比同种碱基之间的替换更为更为困难，将transitions与transversions分开考虑，则使用的是Kimura 2-parameter 模型
+$$
+d_{AB}=-\frac{1}{2}\ln \left [ \left ( 1-2P-Q \right )\sqrt{1-2Q} \right ]
+$$</p>
+<blockquote>
+<p><strong>where P is the fraction of sequence positions differing by a transition and Q is the fraction of sequence positions differing by a transversion.</strong></p>
+</blockquote>
+<h3 id="计算ltr插入时间">计算LTR插入时间</h3>
+<p>基于<code>LTR-RT</code>两端<code>5'LTR</code>与<code>3'LTR</code>序列之间的距离<code>K</code>，我们可以计算该LTR-RT在插入基因组后所经历的时间<code>T</code>。
+$$
+K=-\frac{1}{2}\ln \left [ \left ( 1-2P-Q \right )\sqrt{1-2Q} \right ]
+$$</p>
+<p>其中，<code>P</code>为transitions的占比，<code>Q</code>为transversions的占比。</p>
+<p>基于\(T=\frac{K}{2\mu} \)我们可以很容易地由<code>K</code>值计算得到<code>T</code>，其中<code>μ</code>为目标物种的自然变异速率（水稻的变异速率为1.3e-8 bp<!-- raw HTML omitted -->-1<!-- raw HTML omitted -->·year<!-- raw HTML omitted -->-1<!-- raw HTML omitted --> ）。</p>
+<h1 id="参考来源">参考来源</h1>
+<p><a href="https://github.com/SIWLab/Lab_Info/wiki/Ageing-LTR-insertions">https://github.com/SIWLab/Lab_Info/wiki/Ageing-LTR-insertions</a></p>
+<p><a href="http://bioinformatics.psb.ugent.be/downloads/psb/Userman/treecon_distance.html">http://bioinformatics.psb.ugent.be/downloads/psb/Userman/treecon_distance.html</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-12-22
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/LTR/">LTR</a>
+          <a href="/tags/LTRharvest/">LTRharvest</a>
+          <a href="/tags/LTR-retriever/">LTR-retriever</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/12/22/LTRpred/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">LTRpred</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/12/13/LTR-RT/">
+            <span class="next-text nav-default">LTR-RT</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

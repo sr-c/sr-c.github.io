@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on SR-C</title>
+    <link>https://sr-c.github.io/tags/R/</link>
+    <description>Recent content in R on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 20 Jan 2021 15:45:30 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/R/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【debug】Unable to Load Shared Object Stringi</title>
+      <link>https://sr-c.github.io/2021/01/20/unable-to-load-shared-object-stringi.so/</link>
+      <pubDate>Wed, 20 Jan 2021 15:45:30 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2021/01/20/unable-to-load-shared-object-stringi.so/</guid>
+      <description>在Manjaro桌面环境在安装reshape2或加载tidyverse之中。 在安装reshape2时出现如下报错 1 2 3 Error in dyn.load(file, DLLpath = DLLpath, ...) : unable to load</description>
+    </item>
+    
+    <item>
+      <title>使用Bacsnp可视化病毒基因组中的SNP位点</title>
+      <link>https://sr-c.github.io/2020/09/11/bacsnp/</link>
+      <pubDate>Fri, 11 Sep 2020 16:17:11 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/09/11/bacsnp/</guid>
+      <description>Bacsnp是用来分析杆状病毒毒株之间遗传多样性（判断SNP的种群特异性）的下游工具。 安装 新建R环境 环境需求R 3.6.3, 严格限制在此版本，其他版本均</description>
+    </item>
+    
+    <item>
+      <title>ANOVA-in-R</title>
+      <link>https://sr-c.github.io/2019/11/15/ANOVA-in-R/</link>
+      <pubDate>Fri, 15 Nov 2019 20:47:57 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/11/15/ANOVA-in-R/</guid>
+      <description>安装 1 2 3 4 5 #安装一个田间实验设计方面的包，为我们提供LSD.test()等好用的函数 install.packages(&amp;#34;agricolae&amp;#34;) library(agricolae) ##读入数据 data(sweetpotato) 安装过程可能会报错，需要我们手动安</description>
+    </item>
+    
+    <item>
+      <title>Salmon快速转录本定量</title>
+      <link>https://sr-c.github.io/2019/05/28/salmon-tximport/</link>
+      <pubDate>Tue, 28 May 2019 22:49:08 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/05/28/salmon-tximport/</guid>
+      <description>Scallop Scallop可组装出新转录本，作为特定条件下的补充。 Salmon 构建索引 1 salmon index -t athal.fa.gz -i athal_index --type quasi -k 31 直接定量 1 salmon quant -i transcripts_index -l A -1 reads_1.fastq.gz -2 reads_2.fastq.gz -o transcripts_valid -p 16 --validateMappings 结果导入 1 2</description>
+    </item>
+    
+    <item>
+      <title>如何绘制一张热图</title>
+      <link>https://sr-c.github.io/2019/04/30/how-heatmaps-work/</link>
+      <pubDate>Tue, 30 Apr 2019 11:28:59 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/04/30/how-heatmaps-work/</guid>
+      <description>绘制热图的过程分为两个关键的步骤，第一，将数据聚类；第二，将数值矩阵转化为颜色图像。 将数据聚类 聚类的方法有许多，其中最简单的方法就是分层聚集</description>
+    </item>
+    
+    <item>
+      <title>ggplot的字体设置</title>
+      <link>https://sr-c.github.io/2019/04/19/R-set-font/</link>
+      <pubDate>Fri, 19 Apr 2019 22:32:30 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/04/19/R-set-font/</guid>
+      <description>geom_text geom_text是直接向ggplot对象中添加绘制的文字 theme 在theme中以element_text()设置字体 element_text(family = NULL**,** face = NULL**,** colour = NULL**,** size = NULL**,** hjust</description>
+    </item>
+    
+    <item>
+      <title>【debug】EOF within quoted string</title>
+      <link>https://sr-c.github.io/2019/03/31/debug-EOF-within-quoted-string/</link>
+      <pubDate>Sun, 31 Mar 2019 22:26:54 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/31/debug-EOF-within-quoted-string/</guid>
+      <description>问题描述 在R中读入外部数据时，得到warning 1 2 3 Warning message: In scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings, : EOF within quoted string 这可能是由于数据表格中存在引号&amp;quot;或&#39;, 而默</description>
+    </item>
+    
+    <item>
+      <title>Windows中R的配置</title>
+      <link>https://sr-c.github.io/2019/03/16/R-setup/</link>
+      <pubDate>Sat, 16 Mar 2019 22:53:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/16/R-setup/</guid>
+      <description>用户目录 R的用户目录在Windows系统下默认位于当前用户的Documents文件夹 1 2 &amp;gt; normalizePath(&amp;#39;~&amp;#39;) [1] &amp;#34;C:\\Users\\yourUserName\\Documents&amp;#34; 注意，若你使用了Onedrive，并且将文档</description>
+    </item>
+    
+    <item>
+      <title>R语言练习题</title>
+      <link>https://sr-c.github.io/2019/03/11/R-exercise/</link>
+      <pubDate>Mon, 11 Mar 2019 15:52:28 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/11/R-exercise/</guid>
+      <description>初级 http://www.bio-info-trainee.com/3793.html 1. 打开 Rstudio 告诉我它的工作目录。 1 getwd() 2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值） 1 2 3 4 5 6 7 8 9 10 11 12 # Character v_char &amp;lt;- c(&amp;#34;www&amp;#34;,&amp;#34;biotrainee&amp;#34;,&amp;#34;com&amp;#34;) #</description>
+    </item>
+    
+    <item>
+      <title>【debug】C stack usage is too close to the limit</title>
+      <link>https://sr-c.github.io/2019/02/16/Error-C-stack-usage-is-too-close-to-the-limit/</link>
+      <pubDate>Sat, 16 Feb 2019 21:54:19 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/16/Error-C-stack-usage-is-too-close-to-the-limit/</guid>
+      <description>问题描述 1 Error: C stack usage 9964644 is too close to the limit 这似乎是由于数据过大导致 解决方案 1 2 3 4 5 $ ulimit -s # print default 10240 $ R --slave -e &amp;#39;Cstack_info()[&amp;#34;size&amp;#34;]&amp;#39; size 9961472 这个值本应该等于10240*1024=</description>
+    </item>
+    
+    <item>
+      <title>ggplot设置次级刻度</title>
+      <link>https://sr-c.github.io/2019/02/16/ggplot-minor-tick/</link>
+      <pubDate>Sat, 16 Feb 2019 19:46:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/16/ggplot-minor-tick/</guid>
+      <description>在basic plot中实现 1 minor.tick(nx=3, ny=3, tick.ratio=0.5) ggplot实现 在ggplot中反而没有发现很便捷的解决方案，虽然在scale_x_continuous(</description>
+    </item>
+    
+    <item>
+      <title>长短数据格式转换</title>
+      <link>https://sr-c.github.io/2019/02/15/using-tidyverse-to-go-between-wide-and-long/</link>
+      <pubDate>Fri, 15 Feb 2019 22:37:01 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/15/using-tidyverse-to-go-between-wide-and-long/</guid>
+      <description>Wide to long 1 gather(data, key, value, ..., na.rm = FALSE, convert = FALSE) data: The dataset to be modified (in our case, seps) key: the name of the new “naming” variable (year) value: the name of the new “result” variable (value) na.rm: whether missing values are removed (this dataset doesn’</description>
+    </item>
+    
+    <item>
+      <title>将factor转为numeric</title>
+      <link>https://sr-c.github.io/2019/02/15/convert-factor-to-numeric/</link>
+      <pubDate>Fri, 15 Feb 2019 22:18:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/15/convert-factor-to-numeric/</guid>
+      <description>预防方法 在数据处理过程中，时常会自动将字符串转变为因子，这对于后续的操作可能会带来困难。为避免此类麻烦，可以在程序中声明禁止chr转为fac</description>
+    </item>
+    
+    <item>
+      <title>RIdeogram</title>
+      <link>https://sr-c.github.io/2019/01/16/RIdeogram/</link>
+      <pubDate>Wed, 16 Jan 2019 10:06:37 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/16/RIdeogram/</guid>
+      <description>安装 1 2 3 install.package(&amp;#34;RIdeogram&amp;#34;) # 直接安装出现报错，需要依赖rsvg包 conda install -c conda-forge librsvg r-rsvg 使用 准备输入文件 karyotype.csv 核型文件，必须。包含5列 第1列 染色体名 第2, 3列 染色体起止位</description>
+    </item>
+    
+    <item>
+      <title>R4ds-exercises-1</title>
+      <link>https://sr-c.github.io/2019/01/08/R4ds-exercises-1/</link>
+      <pubDate>Tue, 08 Jan 2019 14:29:40 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/08/R4ds-exercises-1/</guid>
+      <description>统计变换 What is the default geom associated with stat_summary()? How could you rewrite the previous plot to use that geom function instead of the stat function? 统计变换函数stat_summary()的默认几何对象函数是什么？如何使用几何对象</description>
+    </item>
+    
+    <item>
+      <title>【R】饼图</title>
+      <link>https://sr-c.github.io/2019/01/02/R-pie-chart/</link>
+      <pubDate>Wed, 02 Jan 2019 19:30:42 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/02/R-pie-chart/</guid>
+      <description>使用基本的pie()函数能够直接画出饼状图 1 pie(x, labels, radius, main, col, clockwise) 简单方案 1 2 3 4 5 6 7 8 9 10 11 12 # Create data for the graph. x &amp;lt;- c(11, 30, 39, 20) labels &amp;lt;- c(&amp;#34;70后&amp;#</description>
+    </item>
+    
+    <item>
+      <title>绘制treemap</title>
+      <link>https://sr-c.github.io/2018/12/31/R-treemap/</link>
+      <pubDate>Mon, 31 Dec 2018 21:04:07 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/31/R-treemap/</guid>
+      <description>treemap 安装 1 install.packages(&amp;#34;treemap&amp;#34;) 读取数据 1 contig_length &amp;lt;- read.table(&amp;#34;genome_length.txt&amp;#34;, header = FALSE, sep = &amp;#39;\t&amp;#39;) 画图 1 treemap(contig_length, index = &amp;#34;V1&amp;#34;, vSize = &amp;#34;V2&amp;#34;, palette = &amp;#34;Reds&amp;#34;, title = &amp;#34;Contig length of xxx genome&amp;#34;) 指定每格的颜色与边框宽度 1 2 3 4 #添加一列作为颜色列，为每一行</description>
+    </item>
+    
+    <item>
+      <title>使用cowplot完成图片排版</title>
+      <link>https://sr-c.github.io/2018/12/06/arranging-graphs-into-a-grid-by-cowplot/</link>
+      <pubDate>Thu, 06 Dec 2018 15:18:16 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/06/arranging-graphs-into-a-grid-by-cowplot/</guid>
+      <description>默认方案 使用cowplot提供的draw_image函数读入图片 1 2 library(cowplot) p1 &amp;lt;- ggdraw() + draw_image(&amp;#34;myFirstAlignment.pdf&amp;#34;) 存在问题 读入的图片存在太多的空白，需要手动切割，或者使用pa</description>
+    </item>
+    
+    <item>
+      <title>使用clusterProfiler进行富集分析</title>
+      <link>https://sr-c.github.io/2018/12/01/clusterProfiler/</link>
+      <pubDate>Sat, 01 Dec 2018 09:26:32 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/01/clusterProfiler/</guid>
+      <description>构建物种数据库 准备注释数据 GO注释 由功能注释得到的数据录入，主要分为两类方法： 序列相似性比对（BLAST, diamond） 结构域相似性比对（</description>
+    </item>
+    
+    <item>
+      <title>R-3.5.1安装</title>
+      <link>https://sr-c.github.io/2018/11/24/R-3-5-1-install/</link>
+      <pubDate>Sat, 24 Nov 2018 16:35:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/24/R-3-5-1-install/</guid>
+      <description>conda安装 1 conda create -n R-3.5.1 R=3.5.1 但在安装完成后，运行R出现如下报错： 1 2 (R-3.5.1) [shurh@cluster EggNOG]$ R /Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/bin/exec/R: error while loading shared libraries: libbz2.so.1.0: cannot open shared object file: No such file or directory 此时，覆盖安装bzip2可解决问</description>
+    </item>
+    
+    <item>
+      <title>【R】集合运算</title>
+      <link>https://sr-c.github.io/2018/10/14/R-intersect/</link>
+      <pubDate>Sun, 14 Oct 2018 22:56:14 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/14/R-intersect/</guid>
+      <description>集合运算 1 2 3 4 5 6 7 x &amp;lt;- c(1,3,4) y &amp;lt;- c(2,4,8) union(x,y) #取向量x与向量y的交集，并去冗余 intersect(x,y) #取向量x与向量y的并集 setdiff(x,y) #找出向量x中与向量y不同的元素 setequal(x,y) #判断x</description>
+    </item>
+    
+    <item>
+      <title>【R】转换数据格式</title>
+      <link>https://sr-c.github.io/2018/10/11/convert-wide-formatted-data/</link>
+      <pubDate>Thu, 11 Oct 2018 22:35:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/11/convert-wide-formatted-data/</guid>
+      <description>数据格式 Wide format为每列一个变量，也是常见的SPSS，excel等存储数据的格式。例如在基因表达数据中，每行一个基因，每列一个样品，构成</description>
+    </item>
+    
+    <item>
+      <title>【R】改变因子的排列顺序</title>
+      <link>https://sr-c.github.io/2018/09/16/Changing-the-order-of-levels-of-a-factor/</link>
+      <pubDate>Sun, 16 Sep 2018 15:38:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/16/Changing-the-order-of-levels-of-a-factor/</guid>
+      <description>R中的因子存在着有序和无序两种，默认按照ASCII顺序排序。 对于无序因子 使用levels函数指定顺序，如下 1 2 3 4 5 6 7 8 9 10 # 创建一个错误</description>
+    </item>
+    
+  </channel>
+</rss>

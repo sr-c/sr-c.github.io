@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>InterProScan的安装与使用 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="安装要求 64-bit Linux Perl 5 (default on most Linux distributions) Python 3 (InterProScan 5.30-69.0 onwards) Oracle&amp;rsquo;s Java JDK/JRE version 8 (InterProScan 5.17-56.0 onwards) Environment variables set $JAVA_HOME should point to the location of the JVM $JAVA_HOME/bin should be added to the $PATH 下载与安装 1 2 3 4 5 6 7 8 9 10 11 12 13 # 下载核心程序" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/09/13/interproscan-config/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="InterProScan的安装与使用" />
+<meta property="og:description" content="安装要求 64-bit Linux Perl 5 (default on most Linux distributions) Python 3 (InterProScan 5.30-69.0 onwards) Oracle&rsquo;s Java JDK/JRE version 8 (InterProScan 5.17-56.0 onwards) Environment variables set $JAVA_HOME should point to the location of the JVM $JAVA_HOME/bin should be added to the $PATH 下载与安装 1 2 3 4 5 6 7 8 9 10 11 12 13 # 下载核心程序" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/09/13/interproscan-config/" />
+<meta property="article:published_time" content="2018-09-13T15:27:13+00:00" />
+<meta property="article:modified_time" content="2018-09-13T15:27:13+00:00" />
+<meta itemprop="name" content="InterProScan的安装与使用">
+<meta itemprop="description" content="安装要求 64-bit Linux Perl 5 (default on most Linux distributions) Python 3 (InterProScan 5.30-69.0 onwards) Oracle&rsquo;s Java JDK/JRE version 8 (InterProScan 5.17-56.0 onwards) Environment variables set $JAVA_HOME should point to the location of the JVM $JAVA_HOME/bin should be added to the $PATH 下载与安装 1 2 3 4 5 6 7 8 9 10 11 12 13 # 下载核心程序">
+<meta itemprop="datePublished" content="2018-09-13T15:27:13+00:00" />
+<meta itemprop="dateModified" content="2018-09-13T15:27:13+00:00" />
+<meta itemprop="wordCount" content="837">
+
+
+
+<meta itemprop="keywords" content="InterPro," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="InterProScan的安装与使用"/>
+<meta name="twitter:description" content="安装要求 64-bit Linux Perl 5 (default on most Linux distributions) Python 3 (InterProScan 5.30-69.0 onwards) Oracle&rsquo;s Java JDK/JRE version 8 (InterProScan 5.17-56.0 onwards) Environment variables set $JAVA_HOME should point to the location of the JVM $JAVA_HOME/bin should be added to the $PATH 下载与安装 1 2 3 4 5 6 7 8 9 10 11 12 13 # 下载核心程序"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">InterProScan的安装与使用</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-13 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装要求">安装要求</a></li>
+    <li><a href="#下载与安装">下载与安装</a></li>
+    <li><a href="#运行测试数据">运行测试数据</a></li>
+    <li><a href="#提升程序运行效率">提升程序运行效率</a>
+      <ul>
+        <li><a href="#多线程设置">多线程设置</a></li>
+        <li><a href="#将输入数据分组">将输入数据分组</a></li>
+        <li><a href="#精简输出结果">精简输出结果</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#rpsblast-错误">RPSBlast 错误</a></li>
+        <li><a href="#序列输入错误">序列输入错误</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="安装要求">安装要求</h2>
+<ul>
+<li>64-bit Linux</li>
+<li>Perl 5 (default on most Linux distributions)</li>
+<li>Python 3 (InterProScan 5.30-69.0 onwards)</li>
+<li>Oracle&rsquo;s Java JDK/JRE version 8 (InterProScan 5.17-56.0 onwards)</li>
+<li>Environment variables set
+<ul>
+<li>$JAVA_HOME should point to the location of the JVM</li>
+<li>$JAVA_HOME/bin should be added to the $PATH</li>
+</ul>
+</li>
+</ul>
+<h2 id="下载与安装">下载与安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 下载核心程序</span>
+mkdir my_interproscan
+<span class="nb">cd</span> my_interproscan
+wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.30-69.0/interproscan-5.30-69.0-64-bit.tar.gz
+wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.30-69.0/interproscan-5.30-69.0-64-bit.tar.gz.md5
+
+<span class="c1"># 由于程序很大，推荐进行MD5校验，保证数据准确:</span>
+md5sum -c interproscan-5.30-69.0-64-bit.tar.gz.md5
+<span class="c1"># Must return *interproscan-5.30-69.0-64-bit.tar.gz: OK*</span>
+<span class="c1"># If not - try downloading the file again as it may be a corrupted copy.</span> 
+
+<span class="c1"># 解压程序，注意使用参数p保留文件的权限信息</span>
+tar -pxvzf interproscan-5.30-69.0-*-bit.tar.gz
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 下载Panther Models</span>
+<span class="nb">cd</span> <span class="o">[</span>InterProScan5 home<span class="o">]</span>/data/
+wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-12.0.tar.gz
+wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-12.0.tar.gz.md5
+<span class="c1"># 下载完成后进行MD5校验</span>
+md5sum -c panther-data-12.0.tar.gz.md5
+<span class="c1"># This must return *panther-data-12.0.tar.gz: OK*</span>
+<span class="c1"># If not - try downloading the file again as it may be a corrupted copy.</span>
+<span class="nb">cd</span> <span class="o">[</span>InterProScan5 home<span class="o">]</span>/data
+<span class="c1"># 在data文件夹中解压数据库</span>
+tar -pxvzf panther-data-12.0.tar.gz
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="运行测试数据">运行测试数据</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">./interproscan.sh
+<span class="c1"># 短暂等待后，即会输出帮助信息</span>
+<span class="c1"># 使用程序自带的测试数据进行测试</span>
+./interproscan.sh -i test_proteins.fasta -f tsv
+<span class="c1"># 程序不联网，使用本地的Lookup Service</span>
+./interproscan.sh -i test_proteins.fasta -f tsv -dp
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="提升程序运行效率">提升程序运行效率</h2>
+<h3 id="多线程设置">多线程设置</h3>
+<p>在单机运行InterProScan时，可以在配置文件<code>interproscan.properties</code>中设置运行时的线程数，其默认设置如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># Set the number of embedded workers to the number of processors that you would like to employ
+# on the machine you are using to run InterProScan.
+#number of embedded workers  a master process can have
+number.of.embedded.workers=6
+maxnumber.of.embedded.workers=8
+</code></pre></td></tr></table>
+</div>
+</div><p>对于一个40核的机器，<a href="https://github.com/ebi-pf-team/interproscan/wiki/ImprovingPerformance#how-to-configure-cpu-usage---example-cases">推荐</a>的设置如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#Number of embedded workers at start time
+number.of.embedded.workers=1
+#Maximum number of embedded workers
+maxnumber.of.embedded.workers=35
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="将输入数据分组">将输入数据分组</h3>
+<p>推荐单次输入蛋白序列10000条，核酸序列1000条。若输入数据过多，建议将其分组运行。</p>
+<h3 id="精简输出结果">精简输出结果</h3>
+<p>使用<code>-appl</code>参数设置比对的项目，减少程序耗时</p>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="rpsblast-错误">RPSBlast 错误</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">bin/blast/ncbi-blast-2.6.0+/rpsblast: error <span class="k">while</span> loading shared libraries: libgnutls.so.28: cannot open shared object file: No such file or directory
+</code></pre></td></tr></table>
+</div>
+</div><p>这是由于InterProScan自带的blast+中rpsblast的编译环境与本机环境不同。我们可以通过替换这支程序来解决。下载ncbi提供的已编译版本，使用其中的rpsblast替换InterProScan自带的rpsblast即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.6.0/ncbi-blast-2.6.0+-x64-linux.tar.gz
+tar xvf ncbi-blast-2.6.0+-x64-linux.tar.gz
+
+<span class="c1"># backup original version</span>
+cp bin/blast/ncbi-blast-2.6.0+/rpsblast bin/blast/ncbi-blast-2.6.0+/rpsblast.bak
+
+<span class="c1"># copy the new version to the binary folder</span>
+cp ncbi-blast-2.6.0+/bin/rpsblast bin/blast/ncbi-blast-2.6.0+/rpsblast
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="序列输入错误">序列输入错误</h3>
+<p>进行比对的蛋白序列中不应含有星号，否则将有如下报错。将序列中的星号删除即可。</p>
+<blockquote>
+<p>You have submitted a protein sequence which contains an asterix (*). This may be from an ORF prediction program. &lsquo;*&rsquo; is not a valid IUPAC amino acid character and amino acid sequences which go through our pipeline should not contain it. Please strip out all asterix characters from your sequence and resubmit your search.</p>
+</blockquote>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="https://github.com/ebi-pf-team/interproscan/wiki/HowToDownload">https://github.com/ebi-pf-team/interproscan/wiki/HowToDownload</a></p>
+<p><a href="https://github.com/ebi-pf-team/interproscan/wiki/HowToRun">https://github.com/ebi-pf-team/interproscan/wiki/HowToRun</a></p>
+<p><a href="https://github.com/ebi-pf-team/interproscan/issues/44">https://github.com/ebi-pf-team/interproscan/issues/44</a></p>
+<p><a href="https://github.com/ebi-pf-team/interproscan/wiki/FAQ">https://github.com/ebi-pf-team/interproscan/wiki/FAQ</a></p>
+<p><a href="https://github.com/ebi-pf-team/interproscan/wiki/ImprovingPerformance">https://github.com/ebi-pf-team/interproscan/wiki/ImprovingPerformance</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-09-13
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/InterPro/">InterPro</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/09/16/Changing-the-order-of-levels-of-a-factor/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">【R】改变因子的排列顺序</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/09/11/mysql-reinstall/">
+            <span class="next-text nav-default">重装mysql</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

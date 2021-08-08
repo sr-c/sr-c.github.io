@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>arch on SR-C</title>
+    <link>https://sr-c.github.io/tags/arch/</link>
+    <description>Recent content in arch on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 11 May 2019 19:48:51 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/arch/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在manjaro上配置工作环境</title>
+      <link>https://sr-c.github.io/2019/05/11/manjaro-quickstart/</link>
+      <pubDate>Sat, 11 May 2019 19:48:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/05/11/manjaro-quickstart/</guid>
+      <description>最近看老莱视频，了解到用户友好的manjaro(竟然内置steam), 再加上强大的AUG, 忍不住来尝试一下。 安装 使用dd将安装镜像写入到u盘</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1324 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on SR-C</title>
+    <link>https://sr-c.github.io/post/</link>
+    <description>Recent content in Posts on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 01 Jul 2021 19:10:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>同文输入法(Trime)在Android上使用自然码双拼</title>
+      <link>https://sr-c.github.io/2021/07/01/trime-zrm-shuangpin/</link>
+      <pubDate>Thu, 01 Jul 2021 19:10:49 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2021/07/01/trime-zrm-shuangpin/</guid>
+      <description>在Android上使用双拼输入法，那么trime可能是你最佳的选择。 近年来，许多大厂的输入法都存在这样或那样的隐私数据收集记录。6月11日，</description>
+    </item>
+    
+    <item>
+      <title>自定义Zotero Style</title>
+      <link>https://sr-c.github.io/2021/02/24/zotero-style-for-ucas-dissertation/</link>
+      <pubDate>Wed, 24 Feb 2021 20:15:21 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2021/02/24/zotero-style-for-ucas-dissertation/</guid>
+      <description>自定义Zotero的参考文献style 常规的Zotero Style是.csl文件，使用xml语法。不同于Endnote, 这一格式开源，通用于</description>
+    </item>
+    
+    <item>
+      <title>【debug】Unable to Load Shared Object Stringi</title>
+      <link>https://sr-c.github.io/2021/01/20/unable-to-load-shared-object-stringi.so/</link>
+      <pubDate>Wed, 20 Jan 2021 15:45:30 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2021/01/20/unable-to-load-shared-object-stringi.so/</guid>
+      <description>在Manjaro桌面环境在安装reshape2或加载tidyverse之中。 在安装reshape2时出现如下报错 1 2 3 Error in dyn.load(file, DLLpath = DLLpath, ...) : unable to load</description>
+    </item>
+    
+    <item>
+      <title>使用Bacsnp可视化病毒基因组中的SNP位点</title>
+      <link>https://sr-c.github.io/2020/09/11/bacsnp/</link>
+      <pubDate>Fri, 11 Sep 2020 16:17:11 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/09/11/bacsnp/</guid>
+      <description>Bacsnp是用来分析杆状病毒毒株之间遗传多样性（判断SNP的种群特异性）的下游工具。 安装 新建R环境 环境需求R 3.6.3, 严格限制在此版本，其他版本均</description>
+    </item>
+    
+    <item>
+      <title>使用GenomeScope2评估基因组</title>
+      <link>https://sr-c.github.io/2020/09/11/GenomeScope2/</link>
+      <pubDate>Fri, 11 Sep 2020 09:35:51 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/09/11/GenomeScope2/</guid>
+      <description>GenomeScope是基因组评估的有效工具，但是之前只能够预测二倍体基因组，现在使用GenomeScope2则可以预测多倍体（至多六倍体）</description>
+    </item>
+    
+    <item>
+      <title>批量中止进程</title>
+      <link>https://sr-c.github.io/2020/09/02/kill-task-in-batch/</link>
+      <pubDate>Wed, 02 Sep 2020 22:10:44 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/09/02/kill-task-in-batch/</guid>
+      <description>批量搜索并杀死目标进程 1 2 ## 搜索当前进程 | 关键词过滤 | 获取pid | 批量运行kill -9 ps -ef | grep &amp;#34;key words&amp;#34; | awk &amp;#39;{print $2}&amp;#39; | xargs kill -9 批量杀死同一个会话下的进程 1</description>
+    </item>
+    
+    <item>
+      <title>AGAT使用</title>
+      <link>https://sr-c.github.io/2020/08/28/AGAT-usage/</link>
+      <pubDate>Fri, 28 Aug 2020 14:45:13 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/08/28/AGAT-usage/</guid>
+      <description>AGAT是Another Gff Analysis Toolkit的缩写, 是一个用于操作GTF/GFF文件的工具。它集合了一系列perl脚本，并且可以通过conda</description>
+    </item>
+    
+    <item>
+      <title>【StatQuest】错误发现率(FDR)</title>
+      <link>https://sr-c.github.io/2020/08/09/False-Discovery-Rates-StatQuest/</link>
+      <pubDate>Sun, 09 Aug 2020 12:45:34 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/08/09/False-Discovery-Rates-StatQuest/</guid>
+      <description>错误发现率(False Discovery Rates, FDR)在高通量测序的RNA-seq分析中非常常见，甚至还使用过，但是对其中原理还需要更多探究。 主旨 False Discovery Rates are a tool to</description>
+    </item>
+    
+    <item>
+      <title>搜索简单基因组中的重复序列</title>
+      <link>https://sr-c.github.io/2020/07/22/repeat-region-search/</link>
+      <pubDate>Wed, 22 Jul 2020 11:46:46 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/22/repeat-region-search/</guid>
+      <description>分析原核/病毒基因组中的重复序列 寻找基因间区 首先，计算基因组中的基因编码区。然后，通过interval取反得到基因间区。若只为得到基因间区，</description>
+    </item>
+    
+    <item>
+      <title>自定义Hugo主题样式</title>
+      <link>https://sr-c.github.io/2020/07/21/Hugo-custom/</link>
+      <pubDate>Tue, 21 Jul 2020 23:16:03 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/21/Hugo-custom/</guid>
+      <description>参照其他的优秀方案对even主题进行部分自定义修改。 修改主题配色 even主题的样式文件位于${Hugo-Site}/themes/even/</description>
+    </item>
+    
+    <item>
+      <title>DNA Features Viewer使用</title>
+      <link>https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/</link>
+      <pubDate>Tue, 21 Jul 2020 16:21:29 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/</guid>
+      <description>最近发表在Bioinformatics的DNA Features Viewer是一个可视化DNA序列特征的Python工具。此为尝鲜。 安装 官方文档目前只提供p</description>
+    </item>
+    
+    <item>
+      <title>在Vscode中配置Python环境</title>
+      <link>https://sr-c.github.io/2020/07/21/python-environment-in-vscode/</link>
+      <pubDate>Tue, 21 Jul 2020 15:15:47 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/21/python-environment-in-vscode/</guid>
+      <description>使用Anaconda配置python环境，在VScode中使用 安装 anaconda和VScode的安装都很方便，默认安装即可。Windows</description>
+    </item>
+    
+    <item>
+      <title>将博客从Hexo迁移至Hugo</title>
+      <link>https://sr-c.github.io/2020/07/18/Hexo-to-Hugo/</link>
+      <pubDate>Sat, 18 Jul 2020 12:07:50 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/18/Hexo-to-Hugo/</guid>
+      <description>Github最近总是邮件提醒我有些插件过时了，存在安全问题。随着文章数量增多，Hexo的速度越来越慢。因此决定切换到Hugo 安装 安装 Git 和 Go H</description>
+    </item>
+    
+    <item>
+      <title>interval进行区间计算</title>
+      <link>https://sr-c.github.io/2020/07/17/interval-caculating/</link>
+      <pubDate>Fri, 17 Jul 2020 22:23:49 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/17/interval-caculating/</guid>
+      <description>环境配置 interval只有1.0.0一个版本，并不兼容于python3. 无法使用conda按照，因此直接使用pip安装。 1 pip install interval 测试 1 2 3</description>
+    </item>
+    
+    <item>
+      <title>LaTeX-beginer</title>
+      <link>https://sr-c.github.io/2020/06/19/LaTeX-beginer/</link>
+      <pubDate>Fri, 19 Jun 2020 21:49:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/06/19/LaTeX-beginer/</guid>
+      <description>环境配置 安装TexLive与vscode, 具体流程参考其他说明。 文献管理格式BibTeX 使用BibTex管理参考文献。 规范格式 1 2 3 4 5 6 @article{mrx05,</description>
+    </item>
+    
+    <item>
+      <title>计算基因组中CDS的覆盖度</title>
+      <link>https://sr-c.github.io/2020/06/07/cds-coverage/</link>
+      <pubDate>Sun, 07 Jun 2020 17:53:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/06/07/cds-coverage/</guid>
+      <description>已知基因组的注释信息，可以得到任一CDS的位置区间，求所有CDS在基因组中的覆盖度。 解决方案 根据feature table或gff/gtf注释</description>
+    </item>
+    
+    <item>
+      <title>Circos共线性比较</title>
+      <link>https://sr-c.github.io/2020/06/03/Circo-Synteny-Panel/</link>
+      <pubDate>Wed, 03 Jun 2020 21:37:09 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/06/03/Circo-Synteny-Panel/</guid>
+      <description>数据准备 获取区域关联关系 Mummer匹配 获取已硬屏蔽了重复序列的基因组序列，使用nucmer(Mummer)对其进行匹配 1 2 3 4 5 6 7 8 9 10</description>
+    </item>
+    
+    <item>
+      <title>RPKM-normilization</title>
+      <link>https://sr-c.github.io/2020/05/26/RPKM-normilization/</link>
+      <pubDate>Tue, 26 May 2020 10:57:43 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/05/26/RPKM-normilization/</guid>
+      <description>现已不推荐使用RPKM/FPKM对RNA-seq数据进行定量比较，详情可查看 计算原理 $$ RPKM = (10^9 * C) / (N * L) $$ C = Number of reads mapped to a gene N = Total mapped reads in the experiment</description>
+    </item>
+    
+    <item>
+      <title>简易计算RNA-seq差异表达基因</title>
+      <link>https://sr-c.github.io/2020/05/25/RNA-seq-DiffExp-analysis/</link>
+      <pubDate>Mon, 25 May 2020 20:50:18 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/05/25/RNA-seq-DiffExp-analysis/</guid>
+      <description>使用nf-core，能够很方便地进行RNA-seq的上游分析，得到表达矩阵。但是，大多数时候，我们更关心的是筛选差异表达基因。别担心，Tri</description>
+    </item>
+    
+    <item>
+      <title>tutorials-Multiple-Sequence-Alignment</title>
+      <link>https://sr-c.github.io/2020/03/01/tutorials-Multiple-Sequence-Alignment/</link>
+      <pubDate>Sun, 01 Mar 2020 22:50:25 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/03/01/tutorials-Multiple-Sequence-Alignment/</guid>
+      <description>#概述 我们使用目前最流行的多序列比对工具MAFFT进行多序列比对。此外，还使用NCBI的GenBank来判断一些序列的同源序列。 #比对 可视化</description>
+    </item>
+    
+    <item>
+      <title>nf-core一步完成RNA-seq上游分析</title>
+      <link>https://sr-c.github.io/2020/03/01/nf-core-rnaseq/</link>
+      <pubDate>Sun, 01 Mar 2020 22:42:21 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/03/01/nf-core-rnaseq/</guid>
+      <description>nf-core使用nextflow作为流程管理工具，搭建了一系列分析流程，现已发表在Nat Biotechnol。其中，最为常用，关注也最多的</description>
+    </item>
+    
+    <item>
+      <title>向GenBank提交基因组数据</title>
+      <link>https://sr-c.github.io/2020/02/25/submit-genome-to-NCBI/</link>
+      <pubDate>Tue, 25 Feb 2020 23:31:22 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/02/25/submit-genome-to-NCBI/</guid>
+      <description>向NCBI提交基因组数据的关键在于提供符合NCBI规范的注释信息。NCBI要求其专门的5列的注释形式，以.tbl文件提供。当时该文件的生成比</description>
+    </item>
+    
+    <item>
+      <title>使用ibus输入法</title>
+      <link>https://sr-c.github.io/2019/12/21/ibus-rime/</link>
+      <pubDate>Sat, 21 Dec 2019 19:21:39 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/12/21/ibus-rime/</guid>
+      <description>在manjaro中替换fcitx输入法为ibus, 设置启动项，并配置环境调用。 安装 1 2 yay -S ibus yay -S ibus-rime 配置启动项 添加ibus启动项 在/etc/x</description>
+    </item>
+    
+    <item>
+      <title>ANOVA-in-R</title>
+      <link>https://sr-c.github.io/2019/11/15/ANOVA-in-R/</link>
+      <pubDate>Fri, 15 Nov 2019 20:47:57 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/11/15/ANOVA-in-R/</guid>
+      <description>安装 1 2 3 4 5 #安装一个田间实验设计方面的包，为我们提供LSD.test()等好用的函数 install.packages(&amp;#34;agricolae&amp;#34;) library(agricolae) ##读入数据 data(sweetpotato) 安装过程可能会报错，需要我们手动安</description>
+    </item>
+    
+    <item>
+      <title>Viral-genome-assembly</title>
+      <link>https://sr-c.github.io/2019/10/26/Virus-genome-assembly/</link>
+      <pubDate>Sat, 26 Oct 2019 21:57:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/10/26/Virus-genome-assembly/</guid>
+      <description>目前一般的方法有VICUNA, PRICE, IVA, 因此，我们尝试使用这3种方法进行组装。 本地工具 VICUNA VICUNA出自大名鼎鼎的borad研究所，但在2012年</description>
+    </item>
+    
+    <item>
+      <title>Docker初探</title>
+      <link>https://sr-c.github.io/2019/07/19/Docker-basic/</link>
+      <pubDate>Fri, 19 Jul 2019 21:04:02 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/07/19/Docker-basic/</guid>
+      <description>安装 1 sudo pacman -S docker 为普通用户配置权限 创建docker用户组 1 sudo groupadd docker 将当前用户添加到docker用户组中 1 sudo usermod -aG docker $USER 注销后重新登录，或直接使修改生</description>
+    </item>
+    
+    <item>
+      <title>StatQuest-PCA</title>
+      <link>https://sr-c.github.io/2019/07/19/StatQuest-PCA/</link>
+      <pubDate>Fri, 19 Jul 2019 10:36:28 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/07/19/StatQuest-PCA/</guid>
+      <description>PCA 主成分分析是处理多维数据时降维的方法。举例说明，不同处理组中上万个基因的表达量矩阵，也就对应着上万个维度。 Step 1 投射Gene1 与Gene2 的</description>
+    </item>
+    
+    <item>
+      <title>使用PBJelly与blasr进行补洞</title>
+      <link>https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/</link>
+      <pubDate>Tue, 02 Jul 2019 14:12:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/07/02/PBJelly-and-blasr-installation/</guid>
+      <description>PBJelly在2012年发表于PLoS ONE, 其设计目的是使用PacBio RS Ⅱ 数据来提升assembly的连续性。目前版本停滞在2015年9月1</description>
+    </item>
+    
+    <item>
+      <title>RNA-seq-123</title>
+      <link>https://sr-c.github.io/2019/06/20/RNA-seq-123/</link>
+      <pubDate>Thu, 20 Jun 2019 21:21:34 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/06/20/RNA-seq-123/</guid>
+      <description>初始配置 1 2 3 4 library(limma) library(Glimma) library(edgeR) library(Mus.musculus) 读入数据 1 2 3 4 5 6 7 #使用DGEList读取counts矩阵 genelist &amp;lt;- DGEList(counts = salmon_counts[2:31], group = group) #使用tximport读入数据 ## 读入分</description>
+    </item>
+    
+    <item>
+      <title>Hexo升级</title>
+      <link>https://sr-c.github.io/2019/06/05/hexo-upgrade/</link>
+      <pubDate>Wed, 05 Jun 2019 18:01:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/06/05/hexo-upgrade/</guid>
+      <description>升级方案 node.js 使用n模块管理node版本 1 2 3 4 5 6 7 8 9 10 #查看当前node版本 node -v #清除npm chche npm cache clean -f #安装n模块 npm install -g n #使用n模块安装</description>
+    </item>
+    
+    <item>
+      <title>Salmon快速转录本定量</title>
+      <link>https://sr-c.github.io/2019/05/28/salmon-tximport/</link>
+      <pubDate>Tue, 28 May 2019 22:49:08 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/05/28/salmon-tximport/</guid>
+      <description>Scallop Scallop可组装出新转录本，作为特定条件下的补充。 Salmon 构建索引 1 salmon index -t athal.fa.gz -i athal_index --type quasi -k 31 直接定量 1 salmon quant -i transcripts_index -l A -1 reads_1.fastq.gz -2 reads_2.fastq.gz -o transcripts_valid -p 16 --validateMappings 结果导入 1 2</description>
+    </item>
+    
+    <item>
+      <title>RNA-seq的表达量计算单元</title>
+      <link>https://sr-c.github.io/2019/05/27/RNA-seq-expression-units/</link>
+      <pubDate>Mon, 27 May 2019 23:08:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/05/27/RNA-seq-expression-units/</guid>
+      <description>定量过程可以分为三个水平：基因水平(gene-level), 转录本水平(transcript-level), 外显子水平(exon-usage</description>
+    </item>
+    
+    <item>
+      <title>在manjaro上配置工作环境</title>
+      <link>https://sr-c.github.io/2019/05/11/manjaro-quickstart/</link>
+      <pubDate>Sat, 11 May 2019 19:48:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/05/11/manjaro-quickstart/</guid>
+      <description>最近看老莱视频，了解到用户友好的manjaro(竟然内置steam), 再加上强大的AUG, 忍不住来尝试一下。 安装 使用dd将安装镜像写入到u盘</description>
+    </item>
+    
+    <item>
+      <title>如何绘制一张热图</title>
+      <link>https://sr-c.github.io/2019/04/30/how-heatmaps-work/</link>
+      <pubDate>Tue, 30 Apr 2019 11:28:59 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/04/30/how-heatmaps-work/</guid>
+      <description>绘制热图的过程分为两个关键的步骤，第一，将数据聚类；第二，将数值矩阵转化为颜色图像。 将数据聚类 聚类的方法有许多，其中最简单的方法就是分层聚集</description>
+    </item>
+    
+    <item>
+      <title>ggtree-quickstart</title>
+      <link>https://sr-c.github.io/2019/04/21/ggtree-quickstart/</link>
+      <pubDate>Sun, 21 Apr 2019 23:44:55 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/04/21/ggtree-quickstart/</guid>
+      <description>安装 1 2 3 4 if (!requireNamespace(&amp;#34;BiocManager&amp;#34;, quietly = TRUE)) install.packages(&amp;#34;BiocManager&amp;#34;) BiocManager::install(&amp;#34;treeio&amp;#34;, version = &amp;#34;3.8&amp;#34;) BiocManager::install(&amp;#34;ggtree&amp;#34;, version = &amp;#34;3.8&amp;#34;) 输入 ggtree可以直接文本输入Newick tree 1 2 3 4 library(ggtree) tree_text &amp;lt;- &amp;#34;(((((cow, (whale, dolphin)), (pig2, boar)), camel), fish), seedling);&amp;#34; x &amp;lt;- read.tree(text=tree_text) 也可使用treei</description>
+    </item>
+    
+    <item>
+      <title>ggplot的字体设置</title>
+      <link>https://sr-c.github.io/2019/04/19/R-set-font/</link>
+      <pubDate>Fri, 19 Apr 2019 22:32:30 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/04/19/R-set-font/</guid>
+      <description>geom_text geom_text是直接向ggplot对象中添加绘制的文字 theme 在theme中以element_text()设置字体 element_text(family = NULL**,** face = NULL**,** colour = NULL**,** size = NULL**,** hjust</description>
+    </item>
+    
+    <item>
+      <title>【debug】EOF within quoted string</title>
+      <link>https://sr-c.github.io/2019/03/31/debug-EOF-within-quoted-string/</link>
+      <pubDate>Sun, 31 Mar 2019 22:26:54 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/31/debug-EOF-within-quoted-string/</guid>
+      <description>问题描述 在R中读入外部数据时，得到warning 1 2 3 Warning message: In scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings, : EOF within quoted string 这可能是由于数据表格中存在引号&amp;quot;或&#39;, 而默</description>
+    </item>
+    
+    <item>
+      <title>使用KinFin进行比较基因组分析</title>
+      <link>https://sr-c.github.io/2019/03/23/KinFin-quickstart/</link>
+      <pubDate>Sat, 23 Mar 2019 18:31:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/23/KinFin-quickstart/</guid>
+      <description>安装 1 2 3 git clone https://github.com/DRL/kinfin.git cd kinfin ./install 安装程序会下载一些数据，并使用pip安装相应的模块。但若是没有管理员权限，还是使用conda来配置环境比较方便。 软件的</description>
+    </item>
+    
+    <item>
+      <title>LACHESIS安装</title>
+      <link>https://sr-c.github.io/2019/03/19/LACHESIS-install/</link>
+      <pubDate>Tue, 19 Mar 2019 21:12:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/19/LACHESIS-install/</guid>
+      <description>系统依赖 LACHESIS的系统依赖有 gcc, the C++ compiler (http://gcc.gnu.org/) The zlib compression library (http://www.zlib.net/) The boost C++ libraries (http://www.boost.org/) The SAMtools toolkit for handling SAM/BAM files (http://samtools.sourceforge.net/) (make sure to use version 0.1.19 or older) 其中，boost的版本应该高于1.52.0</description>
+    </item>
+    
+    <item>
+      <title>Windows中R的配置</title>
+      <link>https://sr-c.github.io/2019/03/16/R-setup/</link>
+      <pubDate>Sat, 16 Mar 2019 22:53:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/16/R-setup/</guid>
+      <description>用户目录 R的用户目录在Windows系统下默认位于当前用户的Documents文件夹 1 2 &amp;gt; normalizePath(&amp;#39;~&amp;#39;) [1] &amp;#34;C:\\Users\\yourUserName\\Documents&amp;#34; 注意，若你使用了Onedrive，并且将文档</description>
+    </item>
+    
+    <item>
+      <title>【StatQuest】置信区间</title>
+      <link>https://sr-c.github.io/2019/03/16/StatQuest-confidence-intervals/</link>
+      <pubDate>Sat, 16 Mar 2019 16:54:18 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/16/StatQuest-confidence-intervals/</guid>
+      <description>bootstraping 通过bootstrap来计算置信区间，帮助我们更好地理解置信区间。 假设我们需要测量雌性小鼠的体重，对总体抽样12次，测得12个样本。 Sampling with replacement:</description>
+    </item>
+    
+    <item>
+      <title>RNA-seq小考核</title>
+      <link>https://sr-c.github.io/2019/03/11/RNA-seq-exercise/</link>
+      <pubDate>Mon, 11 Mar 2019 20:54:10 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/11/RNA-seq-exercise/</guid>
+      <description>Q1: 参考基因组及注释文件下载地址 列出人，小鼠，拟南芥的基因组序列，转录组cDNA序列，基因组注释gtf文件下载地址 Human (GRCh38.p12) ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz ftp://ftp.ensembl.org/pub/release-95/gtf/homo_sapiens/Homo_sapiens.GRCh38.95.gtf.gz Mouse (GRCm38.p6) ftp://ftp.ensembl.org/pub/release-95/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.toplevel.fa.gz ftp://ftp.ensembl.org/pub/release-95/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz ftp://ftp.ensembl.org/pub/release-95/gtf/mus_musculus/Mus_musculus.GRCm38.95.gtf.gz Arabidopsis thaliana (TAIR10) ftp://ftp.ensemblgenomes.org/pub/plants/release-42/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</description>
+    </item>
+    
+    <item>
+      <title>linux练习题</title>
+      <link>https://sr-c.github.io/2019/03/11/linux-exercise/</link>
+      <pubDate>Mon, 11 Mar 2019 20:48:07 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/11/linux-exercise/</guid>
+      <description>http://www.bio-info-trainee.com/2900.html 在任意文件夹下面创建形如 1/2/3/4/5/6/7/8/9 格式的文件夹系列。 1 mkdir -p 1/2/3/4/5/6/7/8/9 在创建好的文件夹下面，比如我的是 /Users/jimmy/tmp/1/2/3/4/5/6/7/8/9 ，里面创建文本文件 me.txt 1 touch me.txt 在文本文件 me.txt 里面输入内容:</description>
+    </item>
+    
+    <item>
+      <title>R语言练习题</title>
+      <link>https://sr-c.github.io/2019/03/11/R-exercise/</link>
+      <pubDate>Mon, 11 Mar 2019 15:52:28 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/11/R-exercise/</guid>
+      <description>初级 http://www.bio-info-trainee.com/3793.html 1. 打开 Rstudio 告诉我它的工作目录。 1 getwd() 2. 新建6个向量，基于不同的原子类型。（重点是字符串，数值，逻辑值） 1 2 3 4 5 6 7 8 9 10 11 12 # Character v_char &amp;lt;- c(&amp;#34;www&amp;#34;,&amp;#34;biotrainee&amp;#34;,&amp;#34;com&amp;#34;) #</description>
+    </item>
+    
+    <item>
+      <title>使用SERF鉴定端粒序列</title>
+      <link>https://sr-c.github.io/2019/03/08/SERF-identify-telomere-sequences/</link>
+      <pubDate>Fri, 08 Mar 2019 20:13:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/08/SERF-identify-telomere-sequences/</guid>
+      <description>端粒重复序列 端粒是染色体末端的一端核酸序列，起着保护染色体末端免于降解，防止与相邻的染色体错误融合的作用。其名称来源于希腊语 τέλος (en</description>
+    </item>
+    
+    <item>
+      <title>conda源的配置</title>
+      <link>https://sr-c.github.io/2019/03/03/conda-channels-order/</link>
+      <pubDate>Sun, 03 Mar 2019 17:05:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/03/conda-channels-order/</guid>
+      <description>conda升级 conda提示的升级方案为 1 conda update -n base conda 按照提示进行升级，但升级提示竟然会将原本3.6版本的python降级至2.7 1 2 3 The following packages</description>
+    </item>
+    
+    <item>
+      <title>SALSA安装</title>
+      <link>https://sr-c.github.io/2019/02/28/SALSA-install/</link>
+      <pubDate>Thu, 28 Feb 2019 22:16:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/28/SALSA-install/</guid>
+      <description>安装 1 2 3 4 5 6 7 8 git clone https://github.com/machinegun/SALSA.git conda create -n SALSA python=2.7 source activate SALSA conda install boost networkx==1.11 cd SALSA make debug 1 2 3 4 5 g++ -O3 -Wall -Wextra -std=c++11 -o correct_links correct_links.cpp correct_links.cpp:12:10: fatal error: boost/config.hpp: No such file or directory #include &amp;lt;boost/config.hpp&amp;gt; ^~~~~~~~~~~~~~~~~~ compilation terminated. 这表明，编译过程中未配置好之</description>
+    </item>
+    
+    <item>
+      <title>将Bootstrap值转化为百分数</title>
+      <link>https://sr-c.github.io/2019/02/22/convert-Bootstrap-to-Integer/</link>
+      <pubDate>Fri, 22 Feb 2019 21:59:21 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/22/convert-Bootstrap-to-Integer/</guid>
+      <description>在使用iTOL或者Evolview可视化进化树时，往往nwk格式的bootstrap值需要转化为百分数 使用re正则匹配 参考作者使用re正则查</description>
+    </item>
+    
+    <item>
+      <title>Python练习6</title>
+      <link>https://sr-c.github.io/2019/02/22/python-exercise-6/</link>
+      <pubDate>Fri, 22 Feb 2019 11:17:06 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/22/python-exercise-6/</guid>
+      <description>Overlap Graphs http://rosalind.info/problems/grph/ 基于图论的基本设定，二代测序的组装就是基于kmer的延伸 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39</description>
+    </item>
+    
+    <item>
+      <title>HiC-Pro使用手册</title>
+      <link>https://sr-c.github.io/2019/02/20/HiC-pro-quickstart/</link>
+      <pubDate>Wed, 20 Feb 2019 19:49:38 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/20/HiC-pro-quickstart/</guid>
+      <description>软件安装 软件默认提供了Singularity的镜像，可以直接使用 环境依赖 The bowtie2 mapper Python (&amp;gt;2.7) with pysam (&amp;gt;=0.8.3), bx-python(&amp;gt;=0.5.0), numpy(&amp;gt;=1.8.2), and scipy(&amp;gt;=0.15.1) libraries. Note that the current version does not support python 3 R with the RColorBrewer and ggplot2 (&amp;gt;2.2.1) packages g++ compiler samtools</description>
+    </item>
+    
+    <item>
+      <title>Python练习5</title>
+      <link>https://sr-c.github.io/2019/02/19/python-exercise-5/</link>
+      <pubDate>Tue, 19 Feb 2019 16:20:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/19/python-exercise-5/</guid>
+      <description>计算肽链的分子量 http://rosalind.info/problems/prtm/ 值得注意的是，最后一个氨基酸中一个水分子的分子量18.01056 Da. 但我的结果中没有加上这个水，仍然提示我为正确答案，可见还</description>
+    </item>
+    
+    <item>
+      <title>【debug】C stack usage is too close to the limit</title>
+      <link>https://sr-c.github.io/2019/02/16/Error-C-stack-usage-is-too-close-to-the-limit/</link>
+      <pubDate>Sat, 16 Feb 2019 21:54:19 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/16/Error-C-stack-usage-is-too-close-to-the-limit/</guid>
+      <description>问题描述 1 Error: C stack usage 9964644 is too close to the limit 这似乎是由于数据过大导致 解决方案 1 2 3 4 5 $ ulimit -s # print default 10240 $ R --slave -e &amp;#39;Cstack_info()[&amp;#34;size&amp;#34;]&amp;#39; size 9961472 这个值本应该等于10240*1024=</description>
+    </item>
+    
+    <item>
+      <title>ggplot设置次级刻度</title>
+      <link>https://sr-c.github.io/2019/02/16/ggplot-minor-tick/</link>
+      <pubDate>Sat, 16 Feb 2019 19:46:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/16/ggplot-minor-tick/</guid>
+      <description>在basic plot中实现 1 minor.tick(nx=3, ny=3, tick.ratio=0.5) ggplot实现 在ggplot中反而没有发现很便捷的解决方案，虽然在scale_x_continuous(</description>
+    </item>
+    
+    <item>
+      <title>长短数据格式转换</title>
+      <link>https://sr-c.github.io/2019/02/15/using-tidyverse-to-go-between-wide-and-long/</link>
+      <pubDate>Fri, 15 Feb 2019 22:37:01 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/15/using-tidyverse-to-go-between-wide-and-long/</guid>
+      <description>Wide to long 1 gather(data, key, value, ..., na.rm = FALSE, convert = FALSE) data: The dataset to be modified (in our case, seps) key: the name of the new “naming” variable (year) value: the name of the new “result” variable (value) na.rm: whether missing values are removed (this dataset doesn’</description>
+    </item>
+    
+    <item>
+      <title>将factor转为numeric</title>
+      <link>https://sr-c.github.io/2019/02/15/convert-factor-to-numeric/</link>
+      <pubDate>Fri, 15 Feb 2019 22:18:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/15/convert-factor-to-numeric/</guid>
+      <description>预防方法 在数据处理过程中，时常会自动将字符串转变为因子，这对于后续的操作可能会带来困难。为避免此类麻烦，可以在程序中声明禁止chr转为fac</description>
+    </item>
+    
+    <item>
+      <title>解压缩rar文件</title>
+      <link>https://sr-c.github.io/2019/02/06/extract-rar/</link>
+      <pubDate>Wed, 06 Feb 2019 18:14:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/06/extract-rar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CentOS6安装后配置</title>
+      <link>https://sr-c.github.io/2019/01/30/centos6-config/</link>
+      <pubDate>Wed, 30 Jan 2019 18:33:06 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/30/centos6-config/</guid>
+      <description>配置中文支持 1 yum groupinstall &amp;#34;Chinese support&amp;#34; -y 安装git yum提供的git版本为1.7.1，推荐使用第三方源提供的版本，或自行编译。 1 2 3 4 5 6 7 8 9 10 11 12 13 #yum remove</description>
+    </item>
+    
+    <item>
+      <title>使用salmon计算RNA-seq表达量矩阵</title>
+      <link>https://sr-c.github.io/2019/01/24/salmon-transcript-quantification/</link>
+      <pubDate>Thu, 24 Jan 2019 18:56:56 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/24/salmon-transcript-quantification/</guid>
+      <description>传统的RNA-seq分析方法需要将reads比对到基因组上，然后再统计每个基因的counts，进而计算TPM/FPKM。现在，发展出了许多a</description>
+    </item>
+    
+    <item>
+      <title>【ggplot】设置坐标轴区域</title>
+      <link>https://sr-c.github.io/2019/01/17/ggplot-set-axis-limits/</link>
+      <pubDate>Thu, 17 Jan 2019 16:10:26 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/17/ggplot-set-axis-limits/</guid>
+      <description>问题 1 2 3 4 require(ggplot2) d &amp;lt;- data.frame(x=c(0, 0.002, 0.00575), y = 1:3) p &amp;lt;- ggplot(d, aes(x, y)) + geom_point() + xlab(NULL) + ylab(NULL) print(p) x轴最右端的文本0.006最后一个字符有一半过界了。 解决方案 设定xlim 1 p + xlim(NA, 0.0062) 设定</description>
+    </item>
+    
+    <item>
+      <title>RIdeogram</title>
+      <link>https://sr-c.github.io/2019/01/16/RIdeogram/</link>
+      <pubDate>Wed, 16 Jan 2019 10:06:37 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/16/RIdeogram/</guid>
+      <description>安装 1 2 3 install.package(&amp;#34;RIdeogram&amp;#34;) # 直接安装出现报错，需要依赖rsvg包 conda install -c conda-forge librsvg r-rsvg 使用 准备输入文件 karyotype.csv 核型文件，必须。包含5列 第1列 染色体名 第2, 3列 染色体起止位</description>
+    </item>
+    
+    <item>
+      <title>R4ds-exercises-2</title>
+      <link>https://sr-c.github.io/2019/01/12/R4ds-exercises-2/</link>
+      <pubDate>Sat, 12 Jan 2019 14:53:31 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/12/R4ds-exercises-2/</guid>
+      <description>分组摘要 摘要函数summaize()结合分组函数group_by()能够很方便地得到统计结果。 结合使用管道符号%&amp;gt;%，可以省却很多变量</description>
+    </item>
+    
+    <item>
+      <title>使用jcvi进行MCscan可视化</title>
+      <link>https://sr-c.github.io/2019/01/11/jcvi-MCscan/</link>
+      <pubDate>Fri, 11 Jan 2019 19:19:34 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/11/jcvi-MCscan/</guid>
+      <description>安装 软件推荐使用pip安装，但是作为普通用户，还是选择使用conda安装 1 2 3 4 5 conda create -n jcvi python=2.7 source activate jcvi # 安装前需要确认存在bioconda和r c</description>
+    </item>
+    
+    <item>
+      <title>R4ds-exercises-1</title>
+      <link>https://sr-c.github.io/2019/01/08/R4ds-exercises-1/</link>
+      <pubDate>Tue, 08 Jan 2019 14:29:40 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/08/R4ds-exercises-1/</guid>
+      <description>统计变换 What is the default geom associated with stat_summary()? How could you rewrite the previous plot to use that geom function instead of the stat function? 统计变换函数stat_summary()的默认几何对象函数是什么？如何使用几何对象</description>
+    </item>
+    
+    <item>
+      <title>【R】饼图</title>
+      <link>https://sr-c.github.io/2019/01/02/R-pie-chart/</link>
+      <pubDate>Wed, 02 Jan 2019 19:30:42 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/02/R-pie-chart/</guid>
+      <description>使用基本的pie()函数能够直接画出饼状图 1 pie(x, labels, radius, main, col, clockwise) 简单方案 1 2 3 4 5 6 7 8 9 10 11 12 # Create data for the graph. x &amp;lt;- c(11, 30, 39, 20) labels &amp;lt;- c(&amp;#34;70后&amp;#</description>
+    </item>
+    
+    <item>
+      <title>绘制treemap</title>
+      <link>https://sr-c.github.io/2018/12/31/R-treemap/</link>
+      <pubDate>Mon, 31 Dec 2018 21:04:07 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/31/R-treemap/</guid>
+      <description>treemap 安装 1 install.packages(&amp;#34;treemap&amp;#34;) 读取数据 1 contig_length &amp;lt;- read.table(&amp;#34;genome_length.txt&amp;#34;, header = FALSE, sep = &amp;#39;\t&amp;#39;) 画图 1 treemap(contig_length, index = &amp;#34;V1&amp;#34;, vSize = &amp;#34;V2&amp;#34;, palette = &amp;#34;Reds&amp;#34;, title = &amp;#34;Contig length of xxx genome&amp;#34;) 指定每格的颜色与边框宽度 1 2 3 4 #添加一列作为颜色列，为每一行</description>
+    </item>
+    
+    <item>
+      <title>StatQuest-Logs</title>
+      <link>https://sr-c.github.io/2018/12/30/StatQuest-Logs/</link>
+      <pubDate>Sun, 30 Dec 2018 19:31:45 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/30/StatQuest-Logs/</guid>
+      <description>参考来源</description>
+    </item>
+    
+    <item>
+      <title>StatQuest词汇表</title>
+      <link>https://sr-c.github.io/2018/12/29/StatQuest-cihui/</link>
+      <pubDate>Sat, 29 Dec 2018 19:31:45 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/29/StatQuest-cihui/</guid>
+      <description>allele 等位基因，对偶基因 a role of tumble 习惯法则 standard diversion normal distribution 正态分布/高斯分布 Central Limit Theorem 中心极限定理 Even if you are not normal, the average is normal. ethnicity 种族特点，种族渊源 get more bang for your buck 花最少的</description>
+    </item>
+    
+    <item>
+      <title>LTRpred</title>
+      <link>https://sr-c.github.io/2018/12/22/LTRpred/</link>
+      <pubDate>Sat, 22 Dec 2018 14:52:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/22/LTRpred/</guid>
+      <description>LTRpred实际是调用GenomeTools中封装的LTRharvest对基因组序列进行de novo 预测，并使用LTRdigest开展分析，并包</description>
+    </item>
+    
+    <item>
+      <title>计算基因组中LTR的插入时间</title>
+      <link>https://sr-c.github.io/2018/12/22/Aging-LTR-insert-time/</link>
+      <pubDate>Sat, 22 Dec 2018 14:52:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/22/Aging-LTR-insert-time/</guid>
+      <description>Aging LTR insertion 使用LTRharvest与c计算LTR-RTs在基因组中的插入时间。 LTRharvest LTRharvest是Genome tools中进行de novo识</description>
+    </item>
+    
+    <item>
+      <title>LTR-RT</title>
+      <link>https://sr-c.github.io/2018/12/13/LTR-RT/</link>
+      <pubDate>Thu, 13 Dec 2018 21:10:19 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/13/LTR-RT/</guid>
+      <description>转座因子 几乎所有基因组内，都存在着转座因子(transposable element)或称转座子(transposon)。它们是基因组中可移动</description>
+    </item>
+    
+    <item>
+      <title>【StatQuest】P值</title>
+      <link>https://sr-c.github.io/2018/12/08/StatQuest-p-value/</link>
+      <pubDate>Sat, 08 Dec 2018 16:52:45 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/08/StatQuest-p-value/</guid>
+      <description>许多人认为p值代表了可能性/概率(probability)，p-value确实与probability相关，但并不是一个意思。举例如下 抛硬币</description>
+    </item>
+    
+    <item>
+      <title>Transition vs Transversion</title>
+      <link>https://sr-c.github.io/2018/12/07/Transition-vs-Transversion/</link>
+      <pubDate>Fri, 07 Dec 2018 10:53:49 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/07/Transition-vs-Transversion/</guid>
+      <description>DNA单碱基的替换有两种类型： Transition是双环结构的嘌呤(A↔G) 或单环结构的嘧啶(C↔T)之间的替换 Transversion则是</description>
+    </item>
+    
+    <item>
+      <title>使用cowplot完成图片排版</title>
+      <link>https://sr-c.github.io/2018/12/06/arranging-graphs-into-a-grid-by-cowplot/</link>
+      <pubDate>Thu, 06 Dec 2018 15:18:16 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/06/arranging-graphs-into-a-grid-by-cowplot/</guid>
+      <description>默认方案 使用cowplot提供的draw_image函数读入图片 1 2 library(cowplot) p1 &amp;lt;- ggdraw() + draw_image(&amp;#34;myFirstAlignment.pdf&amp;#34;) 存在问题 读入的图片存在太多的空白，需要手动切割，或者使用pa</description>
+    </item>
+    
+    <item>
+      <title>使用clusterProfiler进行富集分析</title>
+      <link>https://sr-c.github.io/2018/12/01/clusterProfiler/</link>
+      <pubDate>Sat, 01 Dec 2018 09:26:32 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/12/01/clusterProfiler/</guid>
+      <description>构建物种数据库 准备注释数据 GO注释 由功能注释得到的数据录入，主要分为两类方法： 序列相似性比对（BLAST, diamond） 结构域相似性比对（</description>
+    </item>
+    
+    <item>
+      <title>R-3.5.1安装</title>
+      <link>https://sr-c.github.io/2018/11/24/R-3-5-1-install/</link>
+      <pubDate>Sat, 24 Nov 2018 16:35:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/24/R-3-5-1-install/</guid>
+      <description>conda安装 1 conda create -n R-3.5.1 R=3.5.1 但在安装完成后，运行R出现如下报错： 1 2 (R-3.5.1) [shurh@cluster EggNOG]$ R /Storage/data002/shurh/miniconda3/envs/R-3.5.1/lib/R/bin/exec/R: error while loading shared libraries: libbz2.so.1.0: cannot open shared object file: No such file or directory 此时，覆盖安装bzip2可解决问</description>
+    </item>
+    
+    <item>
+      <title>【debug】maker3</title>
+      <link>https://sr-c.github.io/2018/11/12/debug-maker3/</link>
+      <pubDate>Mon, 12 Nov 2018 11:01:57 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/12/debug-maker3/</guid>
+      <description>问题描述 BUG1 运行maker3.01.02时，部分scaffold运行失败，其报错信息如下 1 substr outside of string at ../lib/PhatHit_utils.pm line 850. 本机perl版本为5.10.1，经过</description>
+    </item>
+    
+    <item>
+      <title>Python练习4</title>
+      <link>https://sr-c.github.io/2018/11/07/python-exercise-4/</link>
+      <pubDate>Wed, 07 Nov 2018 20:45:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/07/python-exercise-4/</guid>
+      <description>计算后代显性表型的期望 http://rosalind.info/problems/iev/ 1 2 3 4 5 6 7 import os with open(&amp;#39;rosalind_iev.txt&amp;#39;,&amp;#39;r&amp;#39;) as f: couplesNumb = f.readline().strip() [p1, p2, p3, p4, p5, p6] = couplesNumb.split() dominantNumb = (int(p1)+ int(p2)+ int(p3))*2 + int(p4)*1.5 + int(p5) print(dominantNumb) 计算蛋白对应的mRNA序列数量 http://rosalind.info/problems/mrna/ 1 2 3 4 5 6 7 8</description>
+    </item>
+    
+    <item>
+      <title>使用STAR判断测序文库的链特异性</title>
+      <link>https://sr-c.github.io/2018/11/06/STAR/</link>
+      <pubDate>Tue, 06 Nov 2018 10:39:42 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/06/STAR/</guid>
+      <description>安装 1 2 3 4 5 6 7 8 9 10 # Get latest STAR source from releases wget https://github.com/alexdobin/STAR/archive/2.6.1c.tar.gz tar -xzf 2.6.1c.tar.gz cd STAR-2.6.1c # Compile cd STAR/source make STAR #在bin/目录下就已存在对应平台的已编译版本，可直接使用 使用 构建索引 1 2 3</description>
+    </item>
+    
+    <item>
+      <title>读取文件UnicodeDecodeError编码错误</title>
+      <link>https://sr-c.github.io/2018/11/02/python-DecodeError/</link>
+      <pubDate>Fri, 02 Nov 2018 12:45:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/02/python-DecodeError/</guid>
+      <description>问题描述 1 UnicodeDecodeError: &amp;#39;utf-8&amp;#39; codec can&amp;#39;t decode byte 0x96 in position 4575: invalid start byte 解决方案 1 2 3 4 import codecs with open(&amp;#39;pepunit.idlist&amp;#39;,&amp;#39;r&amp;#39;,encoding=&amp;#39;unicode-escape&amp;#39;) as f: #或忽略错误 with open(&amp;#39;pepunit.idlist&amp;#39;,&amp;#39;r&amp;#39;, encoding=&amp;#39;utf-8&amp;#39;, errors=&amp;#39;ignore&amp;#39;) as f: 参考来源 https://www.crifan.com/summary_python_unicodedecode_error_possible_reasons_and_solutions/</description>
+    </item>
+    
+    <item>
+      <title>文本处理小技巧</title>
+      <link>https://sr-c.github.io/2018/11/02/grep-echo-ln-tips/</link>
+      <pubDate>Fri, 02 Nov 2018 11:54:56 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/02/grep-echo-ln-tips/</guid>
+      <description>删除文件夹软链接 通过ln -s方法建立的文件夹软链接，只会将该文件夹链接过来，该文件夹下的文件仍然为原文件，直接删除就是删除原文件。 1 2 3 4 #</description>
+    </item>
+    
+    <item>
+      <title>【Python】使用正则表达式搜索</title>
+      <link>https://sr-c.github.io/2018/10/31/python-regex/</link>
+      <pubDate>Wed, 31 Oct 2018 22:20:41 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/31/python-regex/</guid>
+      <description>使用re模块 在Python中使用正则表达式时，re模块内部会干两件事情： 编译正则表达式，如果正则表达式的字符串本身不合法，会报错； 用编译后的</description>
+    </item>
+    
+    <item>
+      <title>Python练习-3</title>
+      <link>https://sr-c.github.io/2018/10/31/python-exercise-3/</link>
+      <pubDate>Wed, 31 Oct 2018 21:59:15 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/31/python-exercise-3/</guid>
+      <description>斐波那契数列 http://rosalind.info/problems/fib/ 数列的循环数为n(≤40)，扩大级数为k(≤5) F~1~ = F~2~ = 1 Fn=Fn−1+Fn−2 1 2 3 4 5 6 7 8 9 10 11 12 13 14 def fib(i,k): i = int(i) if i in</description>
+    </item>
+    
+    <item>
+      <title>Python练习-2</title>
+      <link>https://sr-c.github.io/2018/10/30/python-exercise-2/</link>
+      <pubDate>Tue, 30 Oct 2018 17:58:54 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/30/python-exercise-2/</guid>
+      <description>查找核酸序列的子集 http://rosalind.info/problems/subs/ 1 2 3 4 5 6 7 8 9 10 11 12 with open(&amp;#39;rosalind_subs.txt&amp;#39;) as lines: string_1 = lines.readline().strip() string_2 = lines.readline().strip() note = [] length_2 = len(string_2) for i in range(0, len(string_1)+1): if string_1[i:i+length_2] == string_2: note.append(str(i+1)) notes = &amp;#39; &amp;#39;.join(note) print(notes) 计算两条序列间的汉明距离 http://rosalind.info/problems/hamm/ 1 2 3 4</description>
+    </item>
+    
+    <item>
+      <title>Python练习-1</title>
+      <link>https://sr-c.github.io/2018/10/29/python-exercise-1/</link>
+      <pubDate>Mon, 29 Oct 2018 21:41:24 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/29/python-exercise-1/</guid>
+      <description>获得一条序列的反义链 http://rosalind.info/problems/revc/ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 with open(&amp;#39;rosalind_revc.txt&amp;#39;) as string_dna: string_dna = string_dna.readline().strip() new_sting = [] for i in string_dna: if i == &amp;#39;A&amp;#39;: new_sting.append(&amp;#39;T&amp;#39;) elif i == &amp;#39;C&amp;#39;: new_sting.append(&amp;#39;G&amp;#39;) elif i == &amp;#39;T&amp;#39;: new_sting.append(&amp;#39;A&amp;#39;) elif i == &amp;#39;G&amp;#39;: new_sting.append(&amp;#39;C&amp;#39;) #将列表倒序</description>
+    </item>
+    
+    <item>
+      <title>【debug】local variable referenced before assignment</title>
+      <link>https://sr-c.github.io/2018/10/28/debug-python-UnboundLocalError/</link>
+      <pubDate>Sun, 28 Oct 2018 22:55:36 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/28/debug-python-UnboundLocalError/</guid>
+      <description>问题描述 在函数中调用了外部的变量，并改变变量的值，却不声明这是全局变量，会导致Python报错。因为一旦要在函数中改变这个变量的值，就会使得</description>
+    </item>
+    
+    <item>
+      <title>【Python】理解数据</title>
+      <link>https://sr-c.github.io/2018/10/28/python-learning-5/</link>
+      <pubDate>Sun, 28 Oct 2018 22:12:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/28/python-learning-5/</guid>
+      <description>方法串链与函数串链 方法串链从左向右读 1 f.readline().strip().split(&amp;#39;.&amp;#39;) 函数串链从右向左读 1 print(sorted(james)) 排序有两种方式 原地排序（In-place sorting）是指按照指定的顺序排列</description>
+    </item>
+    
+    <item>
+      <title>【Python】持久存储</title>
+      <link>https://sr-c.github.io/2018/10/28/python-learning-4/</link>
+      <pubDate>Sun, 28 Oct 2018 11:01:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/28/python-learning-4/</guid>
+      <description>用with处理文件 使用try/except处理文件时，若在文件处理过程出现错误，其后的代码都不会运行。此时，应当将关闭文件的语句加入fina</description>
+    </item>
+    
+    <item>
+      <title>【Python】文件与异常</title>
+      <link>https://sr-c.github.io/2018/10/26/python-learning-3/</link>
+      <pubDate>Fri, 26 Oct 2018 22:31:03 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/26/python-learning-3/</guid>
+      <description>输入 Python中的基本输入机制是基于行的：从文本文件向程序读入数据时，一次会到达一个数据行。 基本操作 使用open() BIF处理文件中的数据</description>
+    </item>
+    
+    <item>
+      <title>【Python】函数模块</title>
+      <link>https://sr-c.github.io/2018/10/26/python-learning-2/</link>
+      <pubDate>Fri, 26 Oct 2018 12:46:43 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/26/python-learning-2/</guid>
+      <description>命名空间 主Python程序中的代码与一个名为__main__的命名空间关联。将代码放在其单独的模块中时，Python会自动创建一个与模块同名</description>
+    </item>
+    
+    <item>
+      <title>Python语言基础</title>
+      <link>https://sr-c.github.io/2018/10/25/python-learning-1/</link>
+      <pubDate>Thu, 25 Oct 2018 22:33:08 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/25/python-learning-1/</guid>
+      <description>数据类型 变量 变量的动态类型：整型（int），浮点型（float），字符型（str） 基本运算 +，-，*，/，次方（**），整除（//），取余（</description>
+    </item>
+    
+    <item>
+      <title>使用Rfam进行ncRNA注释</title>
+      <link>https://sr-c.github.io/2018/10/19/rfam-genome-annotation/</link>
+      <pubDate>Fri, 19 Oct 2018 16:02:44 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/19/rfam-genome-annotation/</guid>
+      <description>Infernal 直接下载安装Infernal1.1.2的已编译版本 1 2 3 wget http://eddylab.org/infernal/infernal-1.1.2-linux-intel-gcc.tar.gz tar xf infernal-1.1.2-linux-intel-gcc.tar.gz echo &amp;#39;PATH=$PATH:/your/path/to/infernal-1.1.2-linux-intel-gcc/binaries&amp;#39; &amp;gt;&amp;gt; ~/.bashrc Rfam12.0是第一个基于Infernal1.1构建的版本，更</description>
+    </item>
+    
+    <item>
+      <title>真菌RIP分析</title>
+      <link>https://sr-c.github.io/2018/10/18/ripcal/</link>
+      <pubDate>Thu, 18 Oct 2018 20:39:02 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/18/ripcal/</guid>
+      <description>安装 RIPCAL最新版应为2.0版本，但其软件主页默认下载项却仍为1.0.4版本，应当注意下载时的选择。 1 2 3 4 5 6 7 8 9 10 11 wget http://nchc.dl.sourceforge.net/project/ripcal/RIPCAL/RIPCAL_2.0/ripcal2_install.zip unzip ripcal2_install.zip mkdir ~/opt/ripcal2/ mv</description>
+    </item>
+    
+    <item>
+      <title>回车与换行</title>
+      <link>https://sr-c.github.io/2018/10/18/CR-and-LF/</link>
+      <pubDate>Thu, 18 Oct 2018 15:32:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/18/CR-and-LF/</guid>
+      <description>问题描述 在求一些向量的交集时，发现肉眼可见的交集却得不到结果。 一阵折腾过后，在notepad++中打开，发现在换行时两组数据的差异。CR LF (\r\n)</description>
+    </item>
+    
+    <item>
+      <title>正则表达式</title>
+      <link>https://sr-c.github.io/2018/10/16/Regex/</link>
+      <pubDate>Tue, 16 Oct 2018 23:13:55 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/16/Regex/</guid>
+      <description>练习 4765-8910之间的所有自然数 1 476[5-9]|47[7-9]\d|4[8-9]\d\d|[5-7]\d{3}|8[0-8]\d\d|890\d|8910 参考来源 https://www.jb51.net/tools/zhengze.html</description>
+    </item>
+    
+    <item>
+      <title>【R】集合运算</title>
+      <link>https://sr-c.github.io/2018/10/14/R-intersect/</link>
+      <pubDate>Sun, 14 Oct 2018 22:56:14 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/14/R-intersect/</guid>
+      <description>集合运算 1 2 3 4 5 6 7 x &amp;lt;- c(1,3,4) y &amp;lt;- c(2,4,8) union(x,y) #取向量x与向量y的交集，并去冗余 intersect(x,y) #取向量x与向量y的并集 setdiff(x,y) #找出向量x中与向量y不同的元素 setequal(x,y) #判断x</description>
+    </item>
+    
+    <item>
+      <title>使用pfam-scan进行Pfam注释</title>
+      <link>https://sr-c.github.io/2018/10/14/pfam-scan/</link>
+      <pubDate>Sun, 14 Oct 2018 17:05:09 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/14/pfam-scan/</guid>
+      <description>安装 使用conda安装 1 2 3 conda create -n pfam_scan ##可新建一个环境，用于安装pfam-scan source activate pfam_scan conda install pfam_scan pfam_scan依赖bioperl，因此，通</description>
+    </item>
+    
+    <item>
+      <title>使用dbCAN2进行CAZyme注释</title>
+      <link>https://sr-c.github.io/2018/10/12/dbCAN2/</link>
+      <pubDate>Fri, 12 Oct 2018 18:28:38 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/12/dbCAN2/</guid>
+      <description>dbCAN2 meta server是dbCAN web server的升级版本，使用HMMER, DIAMOND与Hotpep三种方式进行比对，并且允许提交核算序列（原</description>
+    </item>
+    
+    <item>
+      <title>bed格式转换</title>
+      <link>https://sr-c.github.io/2018/10/12/convert-gff-to-bed/</link>
+      <pubDate>Fri, 12 Oct 2018 18:21:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/12/convert-gff-to-bed/</guid>
+      <description>在线工具 The Galaxy Project提供了这方面的在线工具，可以方便地将gff格式文件转换为bed格式。 但是由于gff格式文件标签太多，导致输出的be</description>
+    </item>
+    
+    <item>
+      <title>【R】转换数据格式</title>
+      <link>https://sr-c.github.io/2018/10/11/convert-wide-formatted-data/</link>
+      <pubDate>Thu, 11 Oct 2018 22:35:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/11/convert-wide-formatted-data/</guid>
+      <description>数据格式 Wide format为每列一个变量，也是常见的SPSS，excel等存储数据的格式。例如在基因表达数据中，每行一个基因，每列一个样品，构成</description>
+    </item>
+    
+    <item>
+      <title>本地化nr数据库</title>
+      <link>https://sr-c.github.io/2018/10/02/local-nr-database/</link>
+      <pubDate>Tue, 02 Oct 2018 12:19:26 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/02/local-nr-database/</guid>
+      <description>数据库下载 nr数据库下载前应确认其序列ID中包含有gi信息。推荐通过NCBI提供的脚本进行下载。 1 perl update_blastdb.pl nr 下载完成后解压 1 tar -zxvf *.tar.gz 建库 由于下载的</description>
+    </item>
+    
+    <item>
+      <title>mysql ERROR 1101 (42000)</title>
+      <link>https://sr-c.github.io/2018/09/29/mysql-ERROR-1101-42000/</link>
+      <pubDate>Sat, 29 Sep 2018 17:24:22 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/29/mysql-ERROR-1101-42000/</guid>
+      <description>问题描述 新建数据表时出现报错 1 ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column &amp;#39;description&amp;#39; can&amp;#39;t have a default value 这是由于mysql处于strict mode, 不允许text或blod字段有缺省值。因此，</description>
+    </item>
+    
+    <item>
+      <title>使用alienness识别基因水平转移</title>
+      <link>https://sr-c.github.io/2018/09/27/HGT-alienness/</link>
+      <pubDate>Thu, 27 Sep 2018 22:27:27 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/27/HGT-alienness/</guid>
+      <description>官方描述 alienness需要输入蛋白序列比对到nr数据库的结果文件作为输入 其对blastp的需求如下 -option value Description -outfmt 7 7 = tabular with comment lines !MANDATORY -db nr BLAST database name For a</description>
+    </item>
+    
+    <item>
+      <title>blast结果格式转换</title>
+      <link>https://sr-c.github.io/2018/09/27/blastxml-to-tabular/</link>
+      <pubDate>Thu, 27 Sep 2018 21:49:48 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/27/blastxml-to-tabular/</guid>
+      <description>解决方案 目前找到最简便的解决方案 其他方案都依赖使用Bioperl, BioPython, BioRuby等解决方案，不够灵活 网页版解决方案，其中还有许多丰富功能，</description>
+    </item>
+    
+    <item>
+      <title>makeblastdb-fails</title>
+      <link>https://sr-c.github.io/2018/09/25/makeblastdb-fails/</link>
+      <pubDate>Tue, 25 Sep 2018 22:33:45 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/25/makeblastdb-fails/</guid>
+      <description>问题描述 对某个特定下载的数据库使用makeblastdb建库时，出现No volumes were created because no sequences were found.报错 使用环境 BLAST 2.2.28+ 需要建库的fasta文件内</description>
+    </item>
+    
+    <item>
+      <title>blast2go-local-failed</title>
+      <link>https://sr-c.github.io/2018/09/22/blast2go-local-failed/</link>
+      <pubDate>Sat, 22 Sep 2018 21:32:58 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/22/blast2go-local-failed/</guid>
+      <description>导入错误 导入第一个数据库go_month-assocdb-data之后，再载入第二个数据库，却报告不存在b2gdb.gene2accessi</description>
+    </item>
+    
+    <item>
+      <title>在服务器安装Jupyter Notebook</title>
+      <link>https://sr-c.github.io/2018/09/19/jupyter-notebook/</link>
+      <pubDate>Wed, 19 Sep 2018 22:02:31 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/19/jupyter-notebook/</guid>
+      <description>安装 使用conda安装简单方便 1 2 3 conda creat -n jupyter python=3.6 source activate jupyter conda install jupyter notebook 配置 1 2 3 jupyter notebook --generate-config ##生成配置文件 jupyter notebook password ##设置jupyter密码 vi ~/.jupyter/jupyter_notebook_config.py 设置如下 1 2</description>
+    </item>
+    
+    <item>
+      <title>自动化运行OrthoMCL</title>
+      <link>https://sr-c.github.io/2018/09/18/OrthoMCL-Pipeline/</link>
+      <pubDate>Tue, 18 Sep 2018 17:11:46 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/18/OrthoMCL-Pipeline/</guid>
+      <description>安装 1 git clone https://github.com/apetkau/orthomcl-pipeline.git Perl模块 通过cpanm安装 1 cpanm BioPerl DBD::mysql DBI Parallel::ForkManager YAML::Tiny Set::Scalar Text::Table Exception::Class Test::Most Test::Warn Test::Exception Test::Deep Moose SVG Algorithm::Combinatorics 依赖软件 OrthoMCL 或 OrthoMCL Custom （能够自定义序列识别符的修改版本） BLAST (blastall, formatdb) 注意不是</description>
+    </item>
+    
+    <item>
+      <title>【R】改变因子的排列顺序</title>
+      <link>https://sr-c.github.io/2018/09/16/Changing-the-order-of-levels-of-a-factor/</link>
+      <pubDate>Sun, 16 Sep 2018 15:38:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/16/Changing-the-order-of-levels-of-a-factor/</guid>
+      <description>R中的因子存在着有序和无序两种，默认按照ASCII顺序排序。 对于无序因子 使用levels函数指定顺序，如下 1 2 3 4 5 6 7 8 9 10 # 创建一个错误</description>
+    </item>
+    
+    <item>
+      <title>InterProScan的安装与使用</title>
+      <link>https://sr-c.github.io/2018/09/13/interproscan-config/</link>
+      <pubDate>Thu, 13 Sep 2018 15:27:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/13/interproscan-config/</guid>
+      <description>安装要求 64-bit Linux Perl 5 (default on most Linux distributions) Python 3 (InterProScan 5.30-69.0 onwards) Oracle&amp;rsquo;s Java JDK/JRE version 8 (InterProScan 5.17-56.0 onwards) Environment variables set $JAVA_HOME should point to the location of the JVM $JAVA_HOME/bin should be added to the $PATH 下载与安装 1 2 3 4 5 6 7 8 9 10 11 12 13 # 下载核心程序</description>
+    </item>
+    
+    <item>
+      <title>重装mysql</title>
+      <link>https://sr-c.github.io/2018/09/11/mysql-reinstall/</link>
+      <pubDate>Tue, 11 Sep 2018 22:36:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/11/mysql-reinstall/</guid>
+      <description>重新安装mysql, 将其回复默认的配置 删除mysql 1 sudo apt-get remove --purge mysql-* 清理残留数据 1 dpkg -l |grep ^rc|awk &amp;#39;{print $2}&amp;#39; |sudo xargs dpkg -P 或者更为手动的方式，首先搜索含有mysql</description>
+    </item>
+    
+    <item>
+      <title>更改mysql数据库路径</title>
+      <link>https://sr-c.github.io/2018/09/11/change-mysql-datadir/</link>
+      <pubDate>Tue, 11 Sep 2018 22:35:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/11/change-mysql-datadir/</guid>
+      <description>查看mysql文件存放目录 1 show variables like &amp;#39;%dir%&amp;#39;; 能够查看到目前的数据库文件配置信息，其中的datadir值为/var/lib/mysql/ 停止mysql</description>
+    </item>
+    
+    <item>
+      <title>配置MySQL Server</title>
+      <link>https://sr-c.github.io/2018/09/09/mysql-config/</link>
+      <pubDate>Sun, 09 Sep 2018 16:31:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/09/mysql-config/</guid>
+      <description>这一情况使得用户使用mysql -u root -p登陆时出现MySql Error 1698(28000)错误。这与之前出现MySql Error 1698(28000)错误的</description>
+    </item>
+    
+    <item>
+      <title>PH525x学习笔记Ⅰ</title>
+      <link>https://sr-c.github.io/2018/09/06/study-notes-PH525x-Chapter0/</link>
+      <pubDate>Thu, 06 Sep 2018 19:48:10 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/06/study-notes-PH525x-Chapter0/</guid>
+      <description>数据导入 安装软件包 1 2 install.packages(&amp;#34;rafalib&amp;#34;) install.packages(&amp;#34;downloader&amp;#34;) 下载课程地址中的femaleMiceWeights.csv，并导入数据到R中。 方法一 直接下载文件到工作目录下，然后</description>
+    </item>
+    
+    <item>
+      <title>AUGUSTUS的普通用户安装</title>
+      <link>https://sr-c.github.io/2018/09/04/augustus-install/</link>
+      <pubDate>Tue, 04 Sep 2018 18:07:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/04/augustus-install/</guid>
+      <description>直接编译AUGUSTUS 1 2 3 4 5 6 7 8 9 10 11 12 make[2]: Entering directory `$HOME/software/augustus-3.3.1/auxprogs/bam2hints&amp;#39; make[2]: warning: jobserver unavailable: using -j1. Add `+&amp;#39; to parent make rule. g++ -Wall -O2 -c bam2hints.cc -o bam2hints.o -I/usr/include/bamtools bam2hints.cc:16:10: fatal error: api/BamReader.h: No such file or directory #include &amp;lt;api/BamReader.h&amp;gt; ^~~~~~~~~~~~~~~~~ compilation terminated. make[2]: *** [bam2hints.o] Error 1 make[2]: Leaving directory</description>
+    </item>
+    
+    <item>
+      <title>SNAP软件安装</title>
+      <link>https://sr-c.github.io/2018/09/02/SNAP-install/</link>
+      <pubDate>Sun, 02 Sep 2018 18:37:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/02/SNAP-install/</guid>
+      <description>软件下载 虽然在Korf Lab的官网上提供最新版本(latest release 11/29/2013)的下载，但此版本在本机(CENTOS 6.9, GCC )编译时出现错</description>
+    </item>
+    
+    <item>
+      <title>GeneWise的安装</title>
+      <link>https://sr-c.github.io/2018/09/01/genewise-install/</link>
+      <pubDate>Sat, 01 Sep 2018 23:01:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/01/genewise-install/</guid>
+      <description>软件下载 1 2 wget http://www.ebi.ac.uk/~birney/wise2/wise2.4.1.tar.gz tar zxf ~/software/wise2.4.1.tar.gz -C ~/opt/ 软件编译 1 2 3 4 5 6 7 8 cd /opt/biosoft/wise2.4.1/src/ cd HMMer2 sed &amp;#39;s/getline/getline_new/&amp;#39; sqio.c &amp;gt; a &amp;amp;&amp;amp; mv a sqio.c cd .. perl -p -i -e &amp;#39;s/isnumber/isdigit/&amp;#39; models/phasemodel.c make all echo &amp;#39;PATH=$PATH:~/opt/wise2.4.1/src/bin/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc echo &amp;#39;WISECONFIGDIR=~/opt/wise2.4.1/wisecfg/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc 这里修改了两个文件HMMer</description>
+    </item>
+    
+    <item>
+      <title>xargs-tips</title>
+      <link>https://sr-c.github.io/2018/08/31/xargs-tips/</link>
+      <pubDate>Fri, 31 Aug 2018 22:19:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/08/31/xargs-tips/</guid>
+      <description>批量化生成trimmomatic运行脚本 对于paired-end数据，trimmomatic官方推荐的运行方式如下 java -jar trimmomatic-0.35.jar PE -phred33 input_forward.fq.gz input_reverse.fq.gz output_forward_paired.fq.gz output_forward_unpaired.fq.gz output_reverse_paired.fq.gz output_reverse_unpaired.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3</description>
+    </item>
+    
+    <item>
+      <title>使用GenomeScope进行基因组评估</title>
+      <link>https://sr-c.github.io/2018/08/30/genome-scope/</link>
+      <pubDate>Thu, 30 Aug 2018 20:32:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/08/30/genome-scope/</guid>
+      <description>使用Jellyfish 统计k-mer 下载并安装: http://www.genome.umd.edu/jellyfish.html#Release 准备数据 参照陈连福的方法，提前将paired-end数据整合。将read2数据的序列反向重</description>
+    </item>
+    
+    <item>
+      <title>快速了解fastq.gz文件中的reads数目</title>
+      <link>https://sr-c.github.io/2018/08/30/count-reads-number/</link>
+      <pubDate>Thu, 30 Aug 2018 16:17:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/08/30/count-reads-number/</guid>
+      <description>查看单个fq.gz文件中的reads数目 使用zcat命令即可直接查看fq.gz文件的内容。而fastq文件中，每一条read记录占用4行。因</description>
+    </item>
+    
+    <item>
+      <title>SCP遇到&#34;Write failed Broken pipe&#34;</title>
+      <link>https://sr-c.github.io/2018/08/14/Write-failed-Broken-pipe/</link>
+      <pubDate>Tue, 14 Aug 2018 11:51:50 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/08/14/Write-failed-Broken-pipe/</guid>
+      <description>解决方案 无管理员权限则修改客户端的ssh配置 1 2 3 4 ##编辑ssh配置文件，无此文件则新建 vi ~/.ssh/config ##在其中添加如下语句 ServerAliveInterval 60 使得客户端在ssh连</description>
+    </item>
+    
+    <item>
+      <title>超净工作台的防护罩能阻挡紫外辐射么？</title>
+      <link>https://sr-c.github.io/2018/08/03/pmma-uv-transmittance/</link>
+      <pubDate>Fri, 03 Aug 2018 10:57:21 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/08/03/pmma-uv-transmittance/</guid>
+      <description>超净工作台的防护罩材质 一般超净台的防护罩采用的都是有机玻璃，聚甲基丙烯酸甲酯（poly(methyl methacrylate)，简称PMMA</description>
+    </item>
+    
+    <item>
+      <title>Pilon的使用</title>
+      <link>https://sr-c.github.io/2018/07/16/pilon/</link>
+      <pubDate>Mon, 16 Jul 2018 20:44:35 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/16/pilon/</guid>
+      <description>Pilon使用read比对分析识别输入的基因组序列与reads证据之间的不一致，尝试修正基因组序列中的差错，包括： 单碱基变异 小的插入缺失 较大</description>
+    </item>
+    
+    <item>
+      <title>【转载】环境变量，include搜索路径，lib库搜索路径</title>
+      <link>https://sr-c.github.io/2018/07/16/LIBRARY-PATH/</link>
+      <pubDate>Mon, 16 Jul 2018 20:36:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/16/LIBRARY-PATH/</guid>
+      <description>环境变量 系统环境变量 我们知道，我们经常要设置一些环境变量，系统环境变量我们非常容易理解。其实我们在windows中经常容易接触。其实环境变量</description>
+    </item>
+    
+    <item>
+      <title>PASA的安装</title>
+      <link>https://sr-c.github.io/2018/07/15/pasa-install/</link>
+      <pubDate>Sun, 15 Jul 2018 11:59:02 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/15/pasa-install/</guid>
+      <description>安装PASA 1 2 3 4 5 6 7 8 cd ~/software/ wget https://github.com/PASApipeline/PASApipeline/releases/download/pasa-v2.3.3/PASApipeline-v2.3.3.tar.gz tar zxf PASApipeline-v2.3.3.tar.gz -C ~/opt/ mv ~/opt/PASApipeline-pasa-v2.3.3 ~/opt/pasa-v2.3.3 cd ~/opt/pasa-v2.3.3 make echo &amp;#39;$PASAHOME=~/opt/pasa-v2.3.3/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc source ~/.bashrc 安装perl模块 安装PASA最大的困难就在于perl模块的配置。本文参</description>
+    </item>
+    
+    <item>
+      <title>设置aria2日志级别</title>
+      <link>https://sr-c.github.io/2018/07/10/aria2-log-level/</link>
+      <pubDate>Tue, 10 Jul 2018 12:51:56 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/10/aria2-log-level/</guid>
+      <description>设置日志文件级别 添加log-level项目 1 2 3 log-level=warn OR log-level=error 删去设置中的log项 去除aria2.conf文件中的log项，程序运行时即不记录日志文</description>
+    </item>
+    
+    <item>
+      <title>Google Play出现登陆错误</title>
+      <link>https://sr-c.github.io/2018/07/10/googleplay-login/</link>
+      <pubDate>Tue, 10 Jul 2018 12:11:28 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/10/googleplay-login/</guid>
+      <description>解决方案 设置-更多应用-googleplay服务-管理空间-清除所有数据 重新打开Google Play，问题解决。 前提条件：保证本机能够连接到</description>
+    </item>
+    
+    <item>
+      <title>vim使用的小技巧</title>
+      <link>https://sr-c.github.io/2018/07/06/vim-tips/</link>
+      <pubDate>Fri, 06 Jul 2018 17:52:33 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/06/vim-tips/</guid>
+      <description>一、查找 查找命令 1 2 /pattern&amp;lt;Enter&amp;gt; ：向下查找pattern匹配字符串 ?pattern&amp;lt;Enter&amp;gt;：向上查找pattern匹配字符串 使用了查</description>
+    </item>
+    
+    <item>
+      <title>百度云的aria2下载</title>
+      <link>https://sr-c.github.io/2018/07/04/aria2-baiduyun/</link>
+      <pubDate>Wed, 04 Jul 2018 17:19:25 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/04/aria2-baiduyun/</guid>
+      <description>下载aria2 1 https://github.com/aria2/aria2/releases/download/release-1.34.0/aria2-1.34.0.tar.gz 编译安装 1 2 3 ./configure --prefix=~/opt/aria2 make make install 浏览器附加组件 Firefox https://addons.mozilla.org/zh-CN/firefox/addon/baidu-pan-exporter/ Chrome https://github.com/acgotaku/BaiduExporter aria2配置文件 1 2 3 4 mkdir download cd download touch aria2.session aria2.log vi aria2.conf 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16</description>
+    </item>
+    
+    <item>
+      <title>canu的使用</title>
+      <link>https://sr-c.github.io/2018/07/04/canu/</link>
+      <pubDate>Wed, 04 Jul 2018 13:05:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/04/canu/</guid>
+      <description>下载测试数据 1 2 curl -L -o pacbio.fastq http://gembox.cbcb.umd.edu/mhap/raw/ecoli_p6_25x.filtered.fastq curl -L -o oxford.fasta http://nanopore.s3.climb.ac.uk/MAP006-PCR-1_2D_pass.fasta 一步执行 1 2 3 4 canu \ -p ecoli -d ecoli-pacbio \ genomeSize=4.8m \ -pacbio-raw pacbio.fastq canu可分步骤执行 Correct 1 2 3 4 canu -correct \ -p ecoli -d ecoli \ genomeSize=4.8m \ -pacbio-raw pacbio.fastq Trim 1 2 3 4 canu</description>
+    </item>
+    
+    <item>
+      <title>解决zlib.h:no such file or directory</title>
+      <link>https://sr-c.github.io/2018/07/02/debug-zlib-h/</link>
+      <pubDate>Mon, 02 Jul 2018 23:11:48 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/02/debug-zlib-h/</guid>
+      <description>编译安装时报错 zlib.h:no such file or directory 网络搜索出的解决方案大多是安装zlib 1 yum install zlib-devel 但实际上zlib已经安装 1 rpm search zlib | grep zlib zlib library files are placed into /usr/local/lib and zlib header files are placed into /usr/local/include, by</description>
+    </item>
+    
+    <item>
+      <title>使用awk提取文件内容</title>
+      <link>https://sr-c.github.io/2018/06/30/awk/</link>
+      <pubDate>Sat, 30 Jun 2018 13:11:16 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/30/awk/</guid>
+      <description>语法 1 2 awk &amp;#39;program&amp;#39; input files awk -f progfile optional list of files 简单的单行awk命令格式如下，其命令由一个单独的 模式–动作 语句 (pattern-action statement) 组成 1 awk &amp;#39;[pattern] {action}&amp;#39; {filenames} # 行匹配语句 awk &amp;#39;&amp;#39; 只能用单引号 A</description>
+    </item>
+    
+    <item>
+      <title>使用pheatmap绘制热图</title>
+      <link>https://sr-c.github.io/2018/06/30/pheatmap/</link>
+      <pubDate>Sat, 30 Jun 2018 11:23:27 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/30/pheatmap/</guid>
+      <description>安装 1 2 install.package(&amp;#34;pheatmap&amp;#34;) library(pheatmap) 读入数据 1 2 setwd(&amp;#34;path/to/my/workdir/&amp;#34;) data &amp;lt;- read.delim(&amp;#34;mydata.txt&amp;#34;, header = T, sep = &amp;#34;\t&amp;#34;, row.names = 1) 开始绘制 1 pheatmap(as.matrix(data), color=colorRampPalette(c(&amp;#34;green&amp;#34;,&amp;#34;black&amp;#34;,&amp;#34;red&amp;#34;))(100), scale=&amp;#39;row&amp;#39;, border_color=NA, width=9, height=18, fontsize=9, fontsize_row=6, filename=&amp;#34;heatmap.pdf&amp;#34; ) 参数设置 1 2 3 4 5 6 scale=&amp;#39;row&amp;#39; #对矩阵进行标准化，以row或colu</description>
+    </item>
+    
+    <item>
+      <title>本地blast</title>
+      <link>https://sr-c.github.io/2018/06/23/local-blast/</link>
+      <pubDate>Sat, 23 Jun 2018 14:35:06 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/23/local-blast/</guid>
+      <description>安装 从ncbi下载已编译好的版本，解压缩后即可使用。 使用 Building a BLAST database with local sequences 1 2 3 4 5 6 7 8 9 10 11 $ makeblastdb -in mydb.fsa -parse_seqids -dbtype nucl Building a new DB, current time: 01/28/2011 13:39:37 New DB name: mydb.fsa New DB title: mydb.fsa Sequence</description>
+    </item>
+    
+    <item>
+      <title>libstdc&#43;&#43;.so.6 GLIBCXX_not_found问题的解决方案</title>
+      <link>https://sr-c.github.io/2018/06/19/libstdc-so-6-GLIBCXX-not-found/</link>
+      <pubDate>Tue, 19 Jun 2018 21:26:39 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/19/libstdc-so-6-GLIBCXX-not-found/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>使用conda安装软件</title>
+      <link>https://sr-c.github.io/2018/06/12/conda-install/</link>
+      <pubDate>Tue, 12 Jun 2018 23:17:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/12/conda-install/</guid>
+      <description>安装miniconda 在软件主页选择需要安装的版本，在此我们选择Python3.6 64位的版本， 下载后运行安装脚本即可完成安装 1 sh Miniconda3-latest-Linux-x86_64.sh 配置co</description>
+    </item>
+    
+    <item>
+      <title>使用BUSCO评价基因组组装质量</title>
+      <link>https://sr-c.github.io/2018/06/04/BUSCO/</link>
+      <pubDate>Mon, 04 Jun 2018 22:48:08 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/04/BUSCO/</guid>
+      <description>软件安装 BUSCO的手动安装并不困难，但是BUSCO依赖tblastn与augustus，而augustus的安装比较复杂，因此选择使用co</description>
+    </item>
+    
+    <item>
+      <title>quickmerge的使用</title>
+      <link>https://sr-c.github.io/2018/06/04/quickmerge/</link>
+      <pubDate>Mon, 04 Jun 2018 22:44:59 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/04/quickmerge/</guid>
+      <description>install 1 2 3 wget https://github.com/mahulchak/quickmerge/archive/v0.2.tar.gz tar zxf v0.2.tar.gz bash make_merger.sh Running The simplest way to run &amp;lsquo;merger&amp;rsquo; is to use the python wrapper &amp;lsquo;merge_wrapper_v2.py&amp;rsquo;: 1 merge_wrapper.py hybrid_assembly.fasta self_assembly.fasta Which of my assemblies should I use as query and reference? There is no golden rule for this. Quickmerge was developed with the idea that every genome is different and that you know best about the genome you are assembling. All</description>
+    </item>
+    
+    <item>
+      <title>Polish Pacbio Assembly</title>
+      <link>https://sr-c.github.io/2018/05/29/polish-pacbio-assembly/</link>
+      <pubDate>Tue, 29 May 2018 23:18:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/29/polish-pacbio-assembly/</guid>
+      <description>In the README of quickmerge, I got a advice.
+ Assembly polishing with Quiver and pilon before and after assembly merging is strongly recommended.
+ As for Sequal data, Pacbio updated the quiver to arrow.
+ Quiver is supported for PacBio RS data. Arrow is supported for PacBio Sequel data and RS data with the P6-C4 chemistry.
+ So, let&amp;rsquo;s do it !
+Step 0 Install SMRT Tools 1 2  SMRT_ROOT=/opt/pacbio/smrtlink .</description>
+    </item>
+    
+    <item>
+      <title>配置perl模块</title>
+      <link>https://sr-c.github.io/2018/05/27/perl-modules/</link>
+      <pubDate>Sun, 27 May 2018 22:50:40 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/27/perl-modules/</guid>
+      <description>安装Perlberw 1 \curl -L https://install.perlbrew.pl | bash 安装完成后即可不需sudo安装模块，尝试不同版本的perl 使用cpanminus管理模块 使用perlberw</description>
+    </item>
+    
+    <item>
+      <title>RepeatModeler与RepeatMasker 重复序列分析</title>
+      <link>https://sr-c.github.io/2018/05/27/RepeatModeler-engine/</link>
+      <pubDate>Sun, 27 May 2018 13:23:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/27/RepeatModeler-engine/</guid>
+      <description>建立数据库 1 ${RepeatModelerPath}/BuildDatabase -name ${database_name} ${fasta} 但是对于ABBlast来说，BuildDatabase建立的索引还缺少nt_db.xni文件，出现提示 1 2 3 4 FATAL: xdf_db_fopen failed code 22</description>
+    </item>
+    
+    <item>
+      <title>Hexo与NexT升级</title>
+      <link>https://sr-c.github.io/2018/05/13/update_Hexo_and_NexT/</link>
+      <pubDate>Sun, 13 May 2018 18:32:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/13/update_Hexo_and_NexT/</guid>
+      <description>近来发现NexT主题升级到了6.2.0，主仓库由iissnan迁移到了theme-next，为了更新页面效果，合并站点与主题的配置文件，于是</description>
+    </item>
+    
+    <item>
+      <title>MECAT安装</title>
+      <link>https://sr-c.github.io/2018/05/12/MECAT_install/</link>
+      <pubDate>Sat, 12 May 2018 22:57:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/12/MECAT_install/</guid>
+      <description>MECAT依赖HDF5和dextract，README中推荐的安装方法，并不十分友好，记录如下。 安装HDF5 HDF是比较成熟的一种库文件格式</description>
+    </item>
+    
+    <item>
+      <title>使用TransDecoder预测转录本的编码区域</title>
+      <link>https://sr-c.github.io/2018/04/30/TransDecoder-log/</link>
+      <pubDate>Mon, 30 Apr 2018 20:57:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/04/30/TransDecoder-log/</guid>
+      <description>TransDecoder是一款用于预测转录本序列中编码区域的软件。其使用比较简单，下载后其中的perl脚本已预编译完成，可直接使用。 参考官网</description>
+    </item>
+    
+    <item>
+      <title>hexo的多端配置</title>
+      <link>https://sr-c.github.io/2018/01/08/hexo-remote-configuration/</link>
+      <pubDate>Mon, 08 Jan 2018 21:59:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/01/08/hexo-remote-configuration/</guid>
+      <description>想要多设备配置hexo，中间遇到了几个坑，记录下来，也帮助大家。 背景介绍 hexo会将个人写的文章经过编译在public/.deploy_gi</description>
+    </item>
+    
+    <item>
+      <title>blast_error_ncbireg</title>
+      <link>https://sr-c.github.io/2018/01/04/blast-error-ncbireg/</link>
+      <pubDate>Thu, 04 Jan 2018 22:11:49 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/01/04/blast-error-ncbireg/</guid>
+      <description>BLAST+ 2.7.1 在运行的时候出现如下类似问题： 1 $ Critical: (110.6) CNcbiRegistry: Syntax error in system-wide configuration file: NCBI C++ Exception: &amp;#34;..........\src\corelib\ncbireg.cpp&amp;#34;, line 660: Error: ncbi::IRWRegistry ::x_Read() - Badly placed &amp;#39;\&amp;#39; in the registry value: &amp;#39;ROOT=J:\nASNLOAD=J:\BioEdi t\tables\nDATA=J:\BioEdit\tables\&amp;#39; (m_Pos = 4) 这是由于ncbi.ini文件被bioed</description>
+    </item>
+    
+  </channel>
+</rss>

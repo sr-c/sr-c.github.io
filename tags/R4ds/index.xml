@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R4ds on SR-C</title>
+    <link>https://sr-c.github.io/tags/R4ds/</link>
+    <description>Recent content in R4ds on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 12 Jan 2019 14:53:31 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/R4ds/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>R4ds-exercises-2</title>
+      <link>https://sr-c.github.io/2019/01/12/R4ds-exercises-2/</link>
+      <pubDate>Sat, 12 Jan 2019 14:53:31 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/12/R4ds-exercises-2/</guid>
+      <description>分组摘要 摘要函数summaize()结合分组函数group_by()能够很方便地得到统计结果。 结合使用管道符号%&amp;gt;%，可以省却很多变量</description>
+    </item>
+    
+  </channel>
+</rss>

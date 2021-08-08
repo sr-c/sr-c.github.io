@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>如何绘制一张热图 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="绘制热图的过程分为两个关键的步骤，第一，将数据聚类；第二，将数值矩阵转化为颜色图像。 将数据聚类 聚类的方法有许多，其中最简单的方法就是分层聚集" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2019/04/30/how-heatmaps-work/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="如何绘制一张热图" />
+<meta property="og:description" content="绘制热图的过程分为两个关键的步骤，第一，将数据聚类；第二，将数值矩阵转化为颜色图像。 将数据聚类 聚类的方法有许多，其中最简单的方法就是分层聚集" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2019/04/30/how-heatmaps-work/" />
+<meta property="article:published_time" content="2019-04-30T11:28:59+00:00" />
+<meta property="article:modified_time" content="2019-04-30T11:28:59+00:00" />
+<meta itemprop="name" content="如何绘制一张热图">
+<meta itemprop="description" content="绘制热图的过程分为两个关键的步骤，第一，将数据聚类；第二，将数值矩阵转化为颜色图像。 将数据聚类 聚类的方法有许多，其中最简单的方法就是分层聚集">
+<meta itemprop="datePublished" content="2019-04-30T11:28:59+00:00" />
+<meta itemprop="dateModified" content="2019-04-30T11:28:59+00:00" />
+<meta itemprop="wordCount" content="2133">
+
+
+
+<meta itemprop="keywords" content="heatmap,R," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何绘制一张热图"/>
+<meta name="twitter:description" content="绘制热图的过程分为两个关键的步骤，第一，将数据聚类；第二，将数值矩阵转化为颜色图像。 将数据聚类 聚类的方法有许多，其中最简单的方法就是分层聚集"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">如何绘制一张热图</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-04-30 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#将数据聚类">将数据聚类</a></li>
+    <li><a href="#计算距离">计算距离</a></li>
+    <li><a href="#数据缩放scaling">数据缩放(scaling)</a></li>
+    <li><a href="#问题所在">问题所在</a>
+      <ul>
+        <li><a href="#解决方案">解决方案</a></li>
+      </ul>
+    </li>
+    <li><a href="#热图实例">热图实例</a></li>
+    <li><a href="#无量纲化">无量纲化</a>
+      <ul>
+        <li><a href="#极差法">极差法</a></li>
+        <li><a href="#log函数标准化">log函数标准化</a></li>
+        <li><a href="#z-score">z-score</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><img src="http://www.frontiersin.org/files/Articles/53165/fgene-04-00153-r4/image_m/fgene-04-00153-g005.jpg" alt="classical-heatmap"></p>
+<p>绘制热图的过程分为两个关键的步骤，第一，将数据聚类；第二，将数值矩阵转化为颜色图像。</p>
+<h2 id="将数据聚类">将数据聚类</h2>
+<p>聚类的方法有许多，其中最简单的方法就是分层聚集聚类(hierarchical, agglomerative cluster analysis).</p>
+<p>简单来说，该方法会首先计算矩阵中所有数据点之间的相互距离，然后将相聚最近的数据点连接起来，然后连接距离第二近的数据点，重复直至所有数据点都被聚类。我们得到的聚类树就是这一过程的展示。</p>
+<p>聚类过程中，有时需要将不同的类再次聚类，这个过程也有许多不同的方法，但是最常用的方式是计算两个类中所有点之间的平均距离。</p>
+<h2 id="计算距离">计算距离</h2>
+<p>距离代表着两个数据点之间的差异。这与相似性测量是正交的（相互独立的）。</p>
+<p>距离是如何计算的呢？在<code>R</code>的<code>heatmap()</code>或<code>heatmap.2()</code>函数的默认方法是使用<code>dist()</code>函数。<code>dist()</code>函数的默认方式是欧几里得距离。这一方法测量的是数据向量之间的绝对距离，但是却与其表达模式( the “shape” of the “curve”)无关。</p>
+<p>例如，测定4个基因在8个时间点的表达量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">h1</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">)</span>
+<span class="n">h2</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">10</span><span class="p">)</span>
+
+<span class="n">l1</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="n">l2</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+
+<span class="n">mat</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="n">h2</span><span class="p">,</span><span class="n">l1</span><span class="p">,</span><span class="n">l2</span><span class="p">)</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">8</span><span class="p">,</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">8</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">35</span><span class="p">),</span> <span class="n">pch</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&#34;Time&#34;</span><span class="p">,</span> <span class="n">ylab</span><span class="o">=</span><span class="s">&#34;Gene Expression&#34;</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">mat</span><span class="p">))</span> <span class="p">{</span>
+<span class="nf">lines</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">8</span><span class="p">,</span><span class="n">mat[i</span><span class="p">,</span><span class="n">]</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nf">legend</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">35</span><span class="p">,</span><span class="nf">rownames</span><span class="p">(</span><span class="n">mat</span><span class="p">),</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span> <span class="n">cex</span><span class="o">=</span><span class="m">0.7</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://www.opiniomics.org/wp-content/uploads/2015/03/gex.png" alt="gene-expression-example"></p>
+<p>可以看到，图中表达的基因与两个低表达的基因。关键的是，这两对基因的表达模式完全相反。</p>
+<p>如果我们将这个数据置于<code>dist()</code>函数中，可得到这样的距离矩阵</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">dist</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R">          <span class="n">h1</span>        <span class="n">h2</span>        <span class="n">l1</span>
+<span class="n">h2</span> <span class="m">28.284271</span>                    
+<span class="n">l1</span> <span class="m">38.470768</span> <span class="m">40.496913</span>          
+<span class="n">l2</span> <span class="m">40.496913</span> <span class="m">38.470768</span>  <span class="m">5.656854</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>距离矩阵中最小的值是<code>l1</code>与<code>l2</code>之间的距离(5.65)，因此这两者被聚为一类；然后，次小值是<code>h1</code>与<code>h2</code>之间的距离(28.28)，因此，这两者接下来被聚类；最后，这两个类连接起来。这就产生了一个基于距离矩阵的简单聚类分析。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">hc</span> <span class="o">&lt;-</span> <span class="nf">hclust</span><span class="p">(</span><span class="nf">dist</span><span class="p">(</span><span class="n">mat</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">hc</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://www.opiniomics.org/wp-content/uploads/2015/03/hclust.png" alt="cluster"></p>
+<p>简单的热图（列水平上不聚类，保持时间点的顺序）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span>
+<span class="nf">heatmap</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">Colv</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="nf">greenred</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap1.png" alt="naive-heatmap"></p>
+<p>聚类过程按照距离进行，l1与l2是最相似的，因此它们被聚为一类；然后，h1与h2被聚类。但是，由于颜色不合适，热图看起来很糟糕。尽管l1与l2被聚为一类，它们的颜色却不是同一个模式；h1与h2也是如此。此外，l1与h1有相同的颜色，尽管它们的表达量相差很大。</p>
+<h2 id="数据缩放scaling">数据缩放(scaling)</h2>
+<p>l2与h2有着相同的颜色，但实际上它们的表达量不同。这是因为它们的表达量被缩放了，然后再转化为热图中的颜色。<code>heatmap()</code>与<code>heatmap.2()</code>中的默认设置都是按照行缩放(scale by row). 数据矩阵按行依次使用<code>scale()</code>函数进行缩放，然后转换为颜色。</p>
+<p>关闭缩放后，我们可以看到热图通过欧几里得距离聚类后的结果。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">heatmap</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">Colv</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="nf">greenred</span><span class="p">(</span><span class="m">10</span><span class="p">),</span> <span class="n">scale</span><span class="o">=</span><span class="s">&#34;none&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap2.png" alt="no-scale"></p>
+<p>这样看起来结果好了一些，但是还不完善。<code>l1</code>与<code>l2</code>都是绿色，而<code>h1</code>与<code>h2</code>都是红色/黑色。</p>
+<p>一般来说，热图中的绿色代表较低的数值；红色代表较高的数值；黑色则代表中间值。在不进行缩放的时候，<code>l1</code>与<code>l2</code>都是较低的值，因此，它们是绿色；<code>h1</code>与<code>h2</code>中的较大值是较高的值，因此为红色；其中较低的值则是中间值，因此为黑色。</p>
+<h2 id="问题所在">问题所在</h2>
+<p>通常情况下，我们系统将有相近表达模式的基因聚类在一起。而有些基因的表达量高，有些基因的表达量低。将所有高表达的基因标为红色，低表达的基因表为绿色，而不考虑随时间表达模式的变化。有些时候，我们希望这样，但更多时候，我们系统将相同表达模式的基因聚类在一起。</p>
+<p>因此，<code>heatmap()</code>和<code>heatmap.2()</code>的默认参数结果对我们不可用。它们默认都缩放了数据，这在所有数据点都有着相近表达模式时很有用，但是它们还是用了欧几里得距离，这在我们系统通过表达模式聚类时并不适用。</p>
+<p>我们知道h1与l1有相近的表达模式(similar shape)，h2与l2也有相近的表达模式。但是，<code>dist()</code>函数只考虑绝对距离，并不考虑其表达模式。</p>
+<h3 id="解决方案">解决方案</h3>
+<p>使用另一种距离计算方式，相似性计算，皮尔逊相关系数(<a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">the pearson correlation co-efficient</a>)。简单来说，它产生一个在-1到1之间的值；1代表两者相同；-1则表达两者正好相对。</p>
+<p>其计算结果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">cor</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">mat</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R">   <span class="n">h1</span> <span class="n">h2</span> <span class="n">l1</span> <span class="n">l2</span>
+<span class="n">h1</span>  <span class="m">1</span> <span class="m">-1</span>  <span class="m">1</span> <span class="m">-1</span>
+<span class="n">h2</span> <span class="m">-1</span>  <span class="m">1</span> <span class="m">-1</span>  <span class="m">1</span>
+<span class="n">l1</span>  <span class="m">1</span> <span class="m">-1</span>  <span class="m">1</span> <span class="m">-1</span>
+<span class="n">l2</span> <span class="m">-1</span>  <span class="m">1</span> <span class="m">-1</span>  <span class="m">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>结果中，h1与h2的相关系数为-1, 因此它们非常不相似，而h1与l1，h2与l2则完全正相关。</p>
+<p>在聚类过程中，我们需要的时距离矩阵，不是相似性矩阵。因此，我们需要用1减去相似性，转换得到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="m">1</span> <span class="o">-</span> <span class="nf">cor</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">mat</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R">   <span class="n">h1</span> <span class="n">h2</span> <span class="n">l1</span> <span class="n">l2</span>
+<span class="n">h1</span>  <span class="m">0</span>  <span class="m">2</span>  <span class="m">0</span>  <span class="m">2</span>
+<span class="n">h2</span>  <span class="m">2</span>  <span class="m">0</span>  <span class="m">2</span>  <span class="m">0</span>
+<span class="n">l1</span>  <span class="m">0</span>  <span class="m">2</span>  <span class="m">0</span>  <span class="m">2</span>
+<span class="n">l2</span>  <span class="m">2</span>  <span class="m">0</span>  <span class="m">2</span>  <span class="m">0</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样h1与l1之间的距离为0；h1与h2之间的距离为2. 那么我们可以得到简单的聚类结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">hc</span> <span class="o">&lt;-</span> <span class="nf">hclust</span><span class="p">(</span><span class="nf">as.dist</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="nf">cor</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">mat</span><span class="p">))))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">hc</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://www.opiniomics.org/wp-content/uploads/2015/03/hclust_corr.png" alt="similar-cluster"></p>
+<p>简单的热图结果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">heatmap</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">Rowv</span><span class="o">=</span><span class="nf">as.dendrogram</span><span class="p">(</span><span class="n">hc</span><span class="p">),</span> <span class="n">Colv</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="nf">greenred</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap3.png" alt=""></p>
+<p>如此，相同表达模式的基因被聚类在一起，也具有相同的颜色。</p>
+<h2 id="热图实例">热图实例</h2>
+<p>来自ARK-Genomic的<a href="http://www.ark-genomics.org/events-online-training/heatmaps-r">实例</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span>
+
+<span class="n">read</span> <span class="n">the</span> <span class="n">data</span> <span class="n">in</span> <span class="n">from</span> <span class="n">URL</span>
+<span class="n">bots</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="nf">url</span><span class="p">(</span><span class="s">&#34;http://genome-www.stanford.edu/cellcycle/data/rawdata/combined.txt&#34;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#34;t&#34;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># get just the alpha data</span>
+<span class="n">abot</span> <span class="o">&lt;-</span> <span class="n">bots[</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="o">:</span><span class="m">25</span><span class="p">)</span><span class="n">]</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">abot</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">bots[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>
+<span class="n">abot[1</span><span class="o">:</span><span class="m">7</span><span class="p">,</span><span class="n">]</span>
+
+<span class="c1"># get rid of NAs</span>
+<span class="n">abot</span><span class="nf">[is.na</span><span class="p">(</span><span class="n">abot</span><span class="p">)</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
+
+<span class="c1"># we need to find a way of reducing the data.</span>
+<span class="c1"># Sort on max difference and take first 1000</span>
+<span class="n">min</span> <span class="o">&lt;-</span><span class="nf">apply</span><span class="p">(</span><span class="n">abot</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">min</span><span class="p">)</span>
+<span class="n">max</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">abot</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span>
+<span class="n">sabot</span> <span class="o">&lt;-</span> <span class="n">abot</span><span class="nf">[order</span><span class="p">(</span><span class="n">max</span> <span class="o">-</span> <span class="n">min</span><span class="p">,</span> <span class="n">decreasing</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span><span class="n">][1</span><span class="o">:</span><span class="m">1000</span><span class="p">,</span><span class="n">]</span>
+
+<span class="c1"># cluster on correlation</span>
+<span class="n">hc</span> <span class="o">&lt;-</span> <span class="nf">hclust</span><span class="p">(</span><span class="nf">as.dist</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="nf">cor</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">sabot</span><span class="p">))),</span> <span class="n">method</span><span class="o">=</span><span class="s">&#34;average&#34;</span><span class="p">)</span>
+
+<span class="c1"># draw a heatmap</span>
+<span class="nf">heatmap</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">sabot</span><span class="p">),</span>
+<span class="n">Rowv</span><span class="o">=</span><span class="nf">as.dendrogram</span><span class="p">(</span><span class="n">hc</span><span class="p">),</span>
+<span class="n">Colv</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span>
+<span class="n">col</span><span class="o">=</span><span class="nf">greenred</span><span class="p">(</span><span class="m">10</span><span class="p">),</span>
+<span class="n">labRow</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap4.png"><img src="http://www.opiniomics.org/wp-content/uploads/2015/04/heatmap4.png" alt="heatmap4"></a></p>
+<p>因此，热图绘制还是一个比较复杂的可视化过程。</p>
+<h2 id="无量纲化">无量纲化</h2>
+<h3 id="极差法">极差法</h3>
+<blockquote>
+<p>(观测值-最小值)/极差</p>
+</blockquote>
+<p>将数值缩放到0至1之间，又称为<strong>归一化(normalization)</strong></p>
+<h3 id="log函数标准化">log函数标准化</h3>
+<blockquote>
+<p>log10(X)/log10(MAX)</p>
+</blockquote>
+<p>适用于观测值大于等于1的情况，这也是一种特殊的归一化。</p>
+<h3 id="z-score">z-score</h3>
+<blockquote>
+<p>(观测值-均值)/标准差</p>
+</blockquote>
+<p>将数值转化为均值为0，方差为1的标准正态分布的形式，又称作<strong>标准化(standrdization)</strong></p>
+<h2 id="参考来源">参考来源</h2>
+<p><a href="http://www.opiniomics.org/you-probably-dont-understand-heatmaps/">http://www.opiniomics.org/you-probably-dont-understand-heatmaps/</a></p>
+<p><a href="https://sebastianraschka.com/Articles/2014_about_feature_scaling.html">https://sebastianraschka.com/Articles/2014_about_feature_scaling.html</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU4NjU4ODQ2MQ==&amp;mid=2247485966&amp;idx=1&amp;sn=7c7cfcc79eba37dd377a31dd30e16e3b&amp;chksm=fdf8424cca8fcb5af1d10b141f92ee545d737483b58fd0a08b45ae2802947db4aaf4f3660092">https://mp.weixin.qq.com/s?__biz=MzU4NjU4ODQ2MQ==&amp;mid=2247485966&amp;idx=1&amp;sn=7c7cfcc79eba37dd377a31dd30e16e3b&amp;chksm=fdf8424cca8fcb5af1d10b141f92ee545d737483b58fd0a08b45ae2802947db4aaf4f3660092</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-04-30
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/heatmap/">heatmap</a>
+          <a href="/tags/R/">R</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/05/11/manjaro-quickstart/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">在manjaro上配置工作环境</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/04/21/ggtree-quickstart/">
+            <span class="next-text nav-default">ggtree-quickstart</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

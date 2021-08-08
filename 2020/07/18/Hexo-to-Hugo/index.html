@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>将博客从Hexo迁移至Hugo - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="Github最近总是邮件提醒我有些插件过时了，存在安全问题。随着文章数量增多，Hexo的速度越来越慢。因此决定切换到Hugo 安装 安装 Git 和 Go H" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2020/07/18/Hexo-to-Hugo/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="将博客从Hexo迁移至Hugo" />
+<meta property="og:description" content="Github最近总是邮件提醒我有些插件过时了，存在安全问题。随着文章数量增多，Hexo的速度越来越慢。因此决定切换到Hugo 安装 安装 Git 和 Go H" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2020/07/18/Hexo-to-Hugo/" />
+<meta property="article:published_time" content="2020-07-18T12:07:50+08:00" />
+<meta property="article:modified_time" content="2020-07-18T12:07:50+08:00" />
+<meta itemprop="name" content="将博客从Hexo迁移至Hugo">
+<meta itemprop="description" content="Github最近总是邮件提醒我有些插件过时了，存在安全问题。随着文章数量增多，Hexo的速度越来越慢。因此决定切换到Hugo 安装 安装 Git 和 Go H">
+<meta itemprop="datePublished" content="2020-07-18T12:07:50+08:00" />
+<meta itemprop="dateModified" content="2020-07-18T12:07:50+08:00" />
+<meta itemprop="wordCount" content="1658">
+
+
+
+<meta itemprop="keywords" content="Hugo,Hexo,blog," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="将博客从Hexo迁移至Hugo"/>
+<meta name="twitter:description" content="Github最近总是邮件提醒我有些插件过时了，存在安全问题。随着文章数量增多，Hexo的速度越来越慢。因此决定切换到Hugo 安装 安装 Git 和 Go H"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">将博客从Hexo迁移至Hugo</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-07-18 </span>
+        <div class="post-category">
+            <a href="/categories/Blog/"> Blog </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#安装-git-和-go">安装 Git 和 Go</a></li>
+        <li><a href="#安装hugo">安装Hugo</a></li>
+      </ul>
+    </li>
+    <li><a href="#生成博客">生成博客</a>
+      <ul>
+        <li><a href="#安装主题">安装主题</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置文件">配置文件</a>
+      <ul>
+        <li><a href="#文章迁移">文章迁移</a></li>
+        <li><a href="#front-matter">Front-matter</a></li>
+        <li><a href="#其他项目">其他项目</a></li>
+        <li><a href="#调试">调试</a></li>
+      </ul>
+    </li>
+    <li><a href="#github项目迁移">Github项目迁移</a>
+      <ul>
+        <li><a href="#向github添加ssh-key">向GitHub添加SSH key</a></li>
+        <li><a href="#提交hugo分支">提交hugo分支</a></li>
+        <li><a href="#提交master分支">提交master分支</a></li>
+        <li><a href="#托管至master分支中的docs目录">托管至master分支中的<code>docs</code>目录</a></li>
+        <li><a href="#参考来源">参考来源</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>Github最近总是邮件提醒我有些插件过时了，存在安全问题。随着文章数量增多，Hexo的速度越来越慢。因此决定切换到Hugo</p>
+<!-- raw HTML omitted -->
+<h2 id="安装">安装</h2>
+<h3 id="安装-git-和-go">安装 Git 和 Go</h3>
+<p>Hugo是用Golang编写的，使用Hugo前需要安装<a href="https://git-scm.com/">Git</a> 和 <a href="https://golang.org/dl/">Go</a> 语言开发环境。</p>
+<h3 id="安装hugo">安装Hugo</h3>
+<p>参考<a href="https://gohugo.io/getting-started/installing/#windows">官方文档</a>有很多安装方式。对于Windows用户，可直接下载二进制文件，将放置路径添加至环境变量<code>PATH</code>即可。</p>
+<h2 id="生成博客">生成博客</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">hugo version <span class="c1"># 查看版本</span>
+hugo new site myblog <span class="c1"># 使用Hugo新建myblog项目，名称自拟</span>
+<span class="nb">cd</span> myblog <span class="c1"># 进入myblog目录</span>
+hugo server <span class="c1"># 启动本地调试服务</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="安装主题">安装主题</h3>
+<p>Hugo没有自带的主题，但其官网的<a href="https://themes.gohugo.io/">主题库</a>也非常丰富，应该能满足大部分人的需要。安装方式也与Hexo类似，在<code>themes</code>目录中<code>git clone</code>需要的主题即可。目前使用的是<code>even</code>, 推荐的还有<code>LeaveIt</code>,<code>maupassant</code></p>
+<h2 id="配置文件">配置文件</h2>
+<p>默认的配置文件为站点目录中的<code>config.toml</code>，该文件可直接从主题的<code>exampleSite/config.toml</code>直接替换，再进一步自定义。</p>
+<h3 id="文章迁移">文章迁移</h3>
+<p>之前Hexo默认的URL为如下形式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">/2017/01/02/xxxxx
+/2017/03/04/yyyyy
+/2017/05/06/zzzzz
+</code></pre></td></tr></table>
+</div>
+</div><p>在Hugo的配置文件中，需要做如下设置才能达到相同结构的URL</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">permalinks</span><span class="p">]</span>
+  <span class="nx">posts</span> <span class="p">=</span> <span class="s2">&#34;/:year/:month/:day/:filename&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="front-matter">Front-matter</h3>
+<p>Markdown文档开头起说明作用的Front-matter字段应书写规范，Hugo的要求似乎比Hexo更严格，需要检查一下哪些文章没有写好。</p>
+<ol>
+<li>在<code>tags</code>, <code>categories</code>等字段设置了多个值，则应该以<code>tags: [mongodb, test]</code>的方式记录。</li>
+<li>Front-matter字段首尾的<code>---</code>分割符不能缺少。</li>
+</ol>
+<h3 id="其他项目">其他项目</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c">## 保持分类的原始名字（false会做转小写处理）</span>
+<span class="nx">preserveTaxonomyNames</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="c">## 是否禁止URL Path转小写</span>
+<span class="nx">disablePathToLower</span> <span class="p">=</span> <span class="kc">true</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="调试">调试</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">hugo server
+hugo server -D <span class="c1">##强制渲染非草稿的文章</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="github项目迁移">Github项目迁移</h2>
+<p>之前，为了Hexo项目的<a href="https://sr-c.github.io/2018/01/08/hexo-remote-configuration/">多地部署</a>，我在<code>sr-c.github.io</code>新开了一个<code>hexo</code>分支用于同步Hexo站点的配置目录。每次更新文章，先将站点目录<code>git push</code>到<code>hexo</code>分支，再使用<code>hexo g -d</code>调用<code>git</code>将<code>public</code>目录的内容提交至<code>master</code>分支。</p>
+<p>顺应这个思路，我又新建了一个<code>hugo</code>分支用于同步站点目录，再将每次更新生成的<code>public</code>目录推送至<code>master</code>分支。</p>
+<h3 id="向github添加ssh-key">向GitHub添加SSH key</h3>
+<p>参考之前的<a href="https://www.cnblogs.com/ayseeing/p/3572582.html">设置</a>方式，对于已有的SSH key，可直接添加至GitHub.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Add SSH key to clipboard</span>
+clip &lt; ~/.ssh/id_rsa.pub
+<span class="c1"># Paste the key to GitHub Accout Settings page.</span>
+<span class="c1"># Test the Key</span>
+ssh -T git@github.com
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="提交hugo分支">提交hugo分支</h3>
+<p>在新建立的Hugo站点目录中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> myblog <span class="c1"># 位于新建立的站点目录中</span>
+git init  <span class="c1"># git初始化</span>
+git remote add origin https://&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git  <span class="c1"># 添加仓库地址</span>
+git checkout -b hugo  <span class="c1"># 新建分支hexo并切换到新建的分支hexo</span>
+git add .  <span class="c1"># 添加所有本地文件到git</span>
+git commit -m <span class="s2">&#34;version_log&#34;</span>  <span class="c1"># git提交</span>
+git push origin hugo  <span class="c1"># 文件推送到hugo分支</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="提交master分支">提交master分支</h3>
+<p>Hugo<a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/#step-by-step-instructions">官方文档</a>推荐使用<a href="https://github.blog/2016-02-01-working-with-submodules/">子项目</a>的方式管理并提交<code>public</code>目录至<code>master</code>分支。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">rm -rf public
+<span class="c1">#git submodule add -b master https://github.com/&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git public</span>
+
+<span class="c1">## deploy.sh</span>
+<span class="c1">#!/bin/sh</span>
+
+<span class="c1"># If a command fails then the deploy stops</span>
+<span class="nb">set</span> -e
+
+<span class="nb">printf</span> <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&#34;</span>
+
+<span class="c1"># Build the project.</span>
+hugo <span class="c1"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
+
+<span class="c1"># Go To Public folder</span>
+<span class="nb">cd</span> public
+
+<span class="c1"># Ensure submit to object branch</span>
+git clone git@github.com:sr-c/sr-c.github.io.git master
+<span class="c1"># Add changes to git.</span>
+git add .
+
+<span class="c1"># Commit changes.</span>
+<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&#34;</span>
+<span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+	<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span>
+<span class="k">fi</span>
+git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span>
+
+<span class="c1"># Push source and build repos.</span>
+git push origin master
+</code></pre></td></tr></table>
+</div>
+</div><p>注意，此处要求先删去已有的<code>public</code>目录，但是<code>public</code>已被注册称为子项目，最好在<code>git</code>中删除该<code>submodule</code>，否则如果下一步提交不成功，那么可能会存在问题。删除<code>submodule</code>的<a href="https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule/36593218#36593218">方式</a>记录如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Remove the submodule entry from .git/config</span>
+git submodule deinit -f path/to/submodule
+
+<span class="c1"># Remove the submodule directory from the superproject&#39;s .git/modules directory</span>
+rm -rf .git/modules/path/to/submodule
+
+<span class="c1"># Remove the entry in .gitmodules and remove the submodule directory located at path/to/submodule</span>
+git rm -f path/to/submodule
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="托管至master分支中的docs目录">托管至master分支中的<code>docs</code>目录</h3>
+<p><a href="https://sspai.com/post/59904">https://sspai.com/post/59904</a>中推荐将Github Page使用docs目录进行部署，但是实测目前该方法已经失效。</p>
+<p><code>Github</code>对于个人用户的<code>&lt;username&gt;.github.io</code>或<code>&lt;orgname&gt;.github.io</code>的Page页面现在只能通过<code>master</code>分支进行部署，不支持自定义，也<a href="https://docs.github.com/en/enterprise/2.14/user/articles/configuring-a-publishing-source-for-github-pages#publishing-your-github-pages-site-from-a-docs-folder-on-your-master-branch">不支持使用<code>docs</code>目录</a>了。</p>
+<h3 id="参考来源">参考来源</h3>
+<p><a href="https://scarletsky.github.io/2019/05/02/migrate-hexo-to-hugo/">https://scarletsky.github.io/2019/05/02/migrate-hexo-to-hugo/</a></p>
+<p><a href="https://www.flysnow.org/2018/07/29/from-hexo-to-hugo.html">https://www.flysnow.org/2018/07/29/from-hexo-to-hugo.html</a></p>
+<p><a href="https://io-oi.me/tech/hugo-vs-hexo/">https://io-oi.me/tech/hugo-vs-hexo/</a></p>
+<p><a href="https://ouuan.github.io/post/from-hexo-to-hugo/">https://ouuan.github.io/post/from-hexo-to-hugo/</a></p>
+<p><a href="https://blog.eric7.site/2020/01/05/%E8%BF%81%E7%A7%BBhexo%E5%8D%9A%E5%AE%A2%E5%88%B0hugo/">https://blog.eric7.site/2020/01/05/%E8%BF%81%E7%A7%BBhexo%E5%8D%9A%E5%AE%A2%E5%88%B0hugo/</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-07-18
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Hugo/">Hugo</a>
+          <a href="/tags/Hexo/">Hexo</a>
+          <a href="/tags/blog/">blog</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2020/07/21/python-environment-in-vscode/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">在Vscode中配置Python环境</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2020/07/17/interval-caculating/">
+            <span class="next-text nav-default">interval进行区间计算</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

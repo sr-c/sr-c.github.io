@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rfam on SR-C</title>
+    <link>https://sr-c.github.io/tags/Rfam/</link>
+    <description>Recent content in Rfam on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 19 Oct 2018 16:02:44 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Rfam/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Rfam进行ncRNA注释</title>
+      <link>https://sr-c.github.io/2018/10/19/rfam-genome-annotation/</link>
+      <pubDate>Fri, 19 Oct 2018 16:02:44 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/19/rfam-genome-annotation/</guid>
+      <description>Infernal 直接下载安装Infernal1.1.2的已编译版本 1 2 3 wget http://eddylab.org/infernal/infernal-1.1.2-linux-intel-gcc.tar.gz tar xf infernal-1.1.2-linux-intel-gcc.tar.gz echo &amp;#39;PATH=$PATH:/your/path/to/infernal-1.1.2-linux-intel-gcc/binaries&amp;#39; &amp;gt;&amp;gt; ~/.bashrc Rfam12.0是第一个基于Infernal1.1构建的版本，更</description>
+    </item>
+    
+  </channel>
+</rss>

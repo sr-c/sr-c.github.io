@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ncbi on SR-C</title>
+    <link>https://sr-c.github.io/tags/ncbi/</link>
+    <description>Recent content in ncbi on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 25 Feb 2020 23:31:22 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/ncbi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>向GenBank提交基因组数据</title>
+      <link>https://sr-c.github.io/2020/02/25/submit-genome-to-NCBI/</link>
+      <pubDate>Tue, 25 Feb 2020 23:31:22 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/02/25/submit-genome-to-NCBI/</guid>
+      <description>向NCBI提交基因组数据的关键在于提供符合NCBI规范的注释信息。NCBI要求其专门的5列的注释形式，以.tbl文件提供。当时该文件的生成比</description>
+    </item>
+    
+    <item>
+      <title>本地化nr数据库</title>
+      <link>https://sr-c.github.io/2018/10/02/local-nr-database/</link>
+      <pubDate>Tue, 02 Oct 2018 12:19:26 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/02/local-nr-database/</guid>
+      <description>数据库下载 nr数据库下载前应确认其序列ID中包含有gi信息。推荐通过NCBI提供的脚本进行下载。 1 perl update_blastdb.pl nr 下载完成后解压 1 tar -zxvf *.tar.gz 建库 由于下载的</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>biopython on SR-C</title>
+    <link>https://sr-c.github.io/tags/biopython/</link>
+    <description>Recent content in biopython on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 21 Jul 2020 16:21:29 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/biopython/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DNA Features Viewer使用</title>
+      <link>https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/</link>
+      <pubDate>Tue, 21 Jul 2020 16:21:29 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/21/DNA-Features-Viewer-quickstart/</guid>
+      <description>最近发表在Bioinformatics的DNA Features Viewer是一个可视化DNA序列特征的Python工具。此为尝鲜。 安装 官方文档目前只提供p</description>
+    </item>
+    
+  </channel>
+</rss>

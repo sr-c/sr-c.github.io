@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ripcal on SR-C</title>
+    <link>https://sr-c.github.io/tags/ripcal/</link>
+    <description>Recent content in ripcal on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 18 Oct 2018 20:39:02 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/ripcal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>真菌RIP分析</title>
+      <link>https://sr-c.github.io/2018/10/18/ripcal/</link>
+      <pubDate>Thu, 18 Oct 2018 20:39:02 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/18/ripcal/</guid>
+      <description>安装 RIPCAL最新版应为2.0版本，但其软件主页默认下载项却仍为1.0.4版本，应当注意下载时的选择。 1 2 3 4 5 6 7 8 9 10 11 wget http://nchc.dl.sourceforge.net/project/ripcal/RIPCAL/RIPCAL_2.0/ripcal2_install.zip unzip ripcal2_install.zip mkdir ~/opt/ripcal2/ mv</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mummer on SR-C</title>
+    <link>https://sr-c.github.io/tags/Mummer/</link>
+    <description>Recent content in Mummer on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 03 Jun 2020 21:37:09 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Mummer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Circos共线性比较</title>
+      <link>https://sr-c.github.io/2020/06/03/Circo-Synteny-Panel/</link>
+      <pubDate>Wed, 03 Jun 2020 21:37:09 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/06/03/Circo-Synteny-Panel/</guid>
+      <description>数据准备 获取区域关联关系 Mummer匹配 获取已硬屏蔽了重复序列的基因组序列，使用nucmer(Mummer)对其进行匹配 1 2 3 4 5 6 7 8 9 10</description>
+    </item>
+    
+  </channel>
+</rss>

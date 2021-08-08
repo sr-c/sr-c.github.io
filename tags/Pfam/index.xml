@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pfam on SR-C</title>
+    <link>https://sr-c.github.io/tags/Pfam/</link>
+    <description>Recent content in Pfam on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 14 Oct 2018 17:05:09 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Pfam/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用pfam-scan进行Pfam注释</title>
+      <link>https://sr-c.github.io/2018/10/14/pfam-scan/</link>
+      <pubDate>Sun, 14 Oct 2018 17:05:09 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/14/pfam-scan/</guid>
+      <description>安装 使用conda安装 1 2 3 conda create -n pfam_scan ##可新建一个环境，用于安装pfam-scan source activate pfam_scan conda install pfam_scan pfam_scan依赖bioperl，因此，通</description>
+    </item>
+    
+  </channel>
+</rss>

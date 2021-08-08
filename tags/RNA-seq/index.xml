@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RNA-seq on SR-C</title>
+    <link>https://sr-c.github.io/tags/RNA-seq/</link>
+    <description>Recent content in RNA-seq on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 09 Aug 2020 12:45:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/RNA-seq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【StatQuest】错误发现率(FDR)</title>
+      <link>https://sr-c.github.io/2020/08/09/False-Discovery-Rates-StatQuest/</link>
+      <pubDate>Sun, 09 Aug 2020 12:45:34 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/08/09/False-Discovery-Rates-StatQuest/</guid>
+      <description>错误发现率(False Discovery Rates, FDR)在高通量测序的RNA-seq分析中非常常见，甚至还使用过，但是对其中原理还需要更多探究。 主旨 False Discovery Rates are a tool to</description>
+    </item>
+    
+    <item>
+      <title>RPKM-normilization</title>
+      <link>https://sr-c.github.io/2020/05/26/RPKM-normilization/</link>
+      <pubDate>Tue, 26 May 2020 10:57:43 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/05/26/RPKM-normilization/</guid>
+      <description>现已不推荐使用RPKM/FPKM对RNA-seq数据进行定量比较，详情可查看 计算原理 $$ RPKM = (10^9 * C) / (N * L) $$ C = Number of reads mapped to a gene N = Total mapped reads in the experiment</description>
+    </item>
+    
+    <item>
+      <title>简易计算RNA-seq差异表达基因</title>
+      <link>https://sr-c.github.io/2020/05/25/RNA-seq-DiffExp-analysis/</link>
+      <pubDate>Mon, 25 May 2020 20:50:18 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/05/25/RNA-seq-DiffExp-analysis/</guid>
+      <description>使用nf-core，能够很方便地进行RNA-seq的上游分析，得到表达矩阵。但是，大多数时候，我们更关心的是筛选差异表达基因。别担心，Tri</description>
+    </item>
+    
+    <item>
+      <title>nf-core一步完成RNA-seq上游分析</title>
+      <link>https://sr-c.github.io/2020/03/01/nf-core-rnaseq/</link>
+      <pubDate>Sun, 01 Mar 2020 22:42:21 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/03/01/nf-core-rnaseq/</guid>
+      <description>nf-core使用nextflow作为流程管理工具，搭建了一系列分析流程，现已发表在Nat Biotechnol。其中，最为常用，关注也最多的</description>
+    </item>
+    
+    <item>
+      <title>Salmon快速转录本定量</title>
+      <link>https://sr-c.github.io/2019/05/28/salmon-tximport/</link>
+      <pubDate>Tue, 28 May 2019 22:49:08 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/05/28/salmon-tximport/</guid>
+      <description>Scallop Scallop可组装出新转录本，作为特定条件下的补充。 Salmon 构建索引 1 salmon index -t athal.fa.gz -i athal_index --type quasi -k 31 直接定量 1 salmon quant -i transcripts_index -l A -1 reads_1.fastq.gz -2 reads_2.fastq.gz -o transcripts_valid -p 16 --validateMappings 结果导入 1 2</description>
+    </item>
+    
+    <item>
+      <title>RNA-seq的表达量计算单元</title>
+      <link>https://sr-c.github.io/2019/05/27/RNA-seq-expression-units/</link>
+      <pubDate>Mon, 27 May 2019 23:08:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/05/27/RNA-seq-expression-units/</guid>
+      <description>定量过程可以分为三个水平：基因水平(gene-level), 转录本水平(transcript-level), 外显子水平(exon-usage</description>
+    </item>
+    
+    <item>
+      <title>RNA-seq小考核</title>
+      <link>https://sr-c.github.io/2019/03/11/RNA-seq-exercise/</link>
+      <pubDate>Mon, 11 Mar 2019 20:54:10 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/11/RNA-seq-exercise/</guid>
+      <description>Q1: 参考基因组及注释文件下载地址 列出人，小鼠，拟南芥的基因组序列，转录组cDNA序列，基因组注释gtf文件下载地址 Human (GRCh38.p12) ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz ftp://ftp.ensembl.org/pub/release-95/gtf/homo_sapiens/Homo_sapiens.GRCh38.95.gtf.gz Mouse (GRCm38.p6) ftp://ftp.ensembl.org/pub/release-95/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.toplevel.fa.gz ftp://ftp.ensembl.org/pub/release-95/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz ftp://ftp.ensembl.org/pub/release-95/gtf/mus_musculus/Mus_musculus.GRCm38.95.gtf.gz Arabidopsis thaliana (TAIR10) ftp://ftp.ensemblgenomes.org/pub/plants/release-42/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</description>
+    </item>
+    
+    <item>
+      <title>使用salmon计算RNA-seq表达量矩阵</title>
+      <link>https://sr-c.github.io/2019/01/24/salmon-transcript-quantification/</link>
+      <pubDate>Thu, 24 Jan 2019 18:56:56 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/24/salmon-transcript-quantification/</guid>
+      <description>传统的RNA-seq分析方法需要将reads比对到基因组上，然后再统计每个基因的counts，进而计算TPM/FPKM。现在，发展出了许多a</description>
+    </item>
+    
+  </channel>
+</rss>

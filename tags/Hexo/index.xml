@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hexo on SR-C</title>
+    <link>https://sr-c.github.io/tags/Hexo/</link>
+    <description>Recent content in Hexo on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 18 Jul 2020 12:07:50 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Hexo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>将博客从Hexo迁移至Hugo</title>
+      <link>https://sr-c.github.io/2020/07/18/Hexo-to-Hugo/</link>
+      <pubDate>Sat, 18 Jul 2020 12:07:50 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/07/18/Hexo-to-Hugo/</guid>
+      <description>Github最近总是邮件提醒我有些插件过时了，存在安全问题。随着文章数量增多，Hexo的速度越来越慢。因此决定切换到Hugo 安装 安装 Git 和 Go H</description>
+    </item>
+    
+    <item>
+      <title>Hexo升级</title>
+      <link>https://sr-c.github.io/2019/06/05/hexo-upgrade/</link>
+      <pubDate>Wed, 05 Jun 2019 18:01:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/06/05/hexo-upgrade/</guid>
+      <description>升级方案 node.js 使用n模块管理node版本 1 2 3 4 5 6 7 8 9 10 #查看当前node版本 node -v #清除npm chche npm cache clean -f #安装n模块 npm install -g n #使用n模块安装</description>
+    </item>
+    
+    <item>
+      <title>Hexo与NexT升级</title>
+      <link>https://sr-c.github.io/2018/05/13/update_Hexo_and_NexT/</link>
+      <pubDate>Sun, 13 May 2018 18:32:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/13/update_Hexo_and_NexT/</guid>
+      <description>近来发现NexT主题升级到了6.2.0，主仓库由iissnan迁移到了theme-next，为了更新页面效果，合并站点与主题的配置文件，于是</description>
+    </item>
+    
+    <item>
+      <title>hexo的多端配置</title>
+      <link>https://sr-c.github.io/2018/01/08/hexo-remote-configuration/</link>
+      <pubDate>Mon, 08 Jan 2018 21:59:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/01/08/hexo-remote-configuration/</guid>
+      <description>想要多设备配置hexo，中间遇到了几个坑，记录下来，也帮助大家。 背景介绍 hexo会将个人写的文章经过编译在public/.deploy_gi</description>
+    </item>
+    
+  </channel>
+</rss>

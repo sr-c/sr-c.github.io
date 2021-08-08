@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>自定义Hugo主题样式 - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="参照其他的优秀方案对even主题进行部分自定义修改。 修改主题配色 even主题的样式文件位于${Hugo-Site}/themes/even/" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2020/07/21/Hugo-custom/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="自定义Hugo主题样式" />
+<meta property="og:description" content="参照其他的优秀方案对even主题进行部分自定义修改。 修改主题配色 even主题的样式文件位于${Hugo-Site}/themes/even/" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2020/07/21/Hugo-custom/" />
+<meta property="article:published_time" content="2020-07-21T23:16:03+08:00" />
+<meta property="article:modified_time" content="2020-07-21T23:16:03+08:00" />
+<meta itemprop="name" content="自定义Hugo主题样式">
+<meta itemprop="description" content="参照其他的优秀方案对even主题进行部分自定义修改。 修改主题配色 even主题的样式文件位于${Hugo-Site}/themes/even/">
+<meta itemprop="datePublished" content="2020-07-21T23:16:03+08:00" />
+<meta itemprop="dateModified" content="2020-07-21T23:16:03+08:00" />
+<meta itemprop="wordCount" content="1232">
+
+
+
+<meta itemprop="keywords" content="Hugo," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="自定义Hugo主题样式"/>
+<meta name="twitter:description" content="参照其他的优秀方案对even主题进行部分自定义修改。 修改主题配色 even主题的样式文件位于${Hugo-Site}/themes/even/"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">自定义Hugo主题样式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-07-21 </span>
+        <div class="post-category">
+            <a href="/categories/Blog/"> Blog </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#修改主题配色">修改主题配色</a></li>
+    <li><a href="#添加搜索菜单">添加搜索菜单</a></li>
+    <li><a href="#添加评论区">添加评论区</a></li>
+    <li><a href="#添加rss订阅">添加RSS订阅</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>参照其他的优秀方案对even主题进行部分自定义修改。</p>
+<!-- raw HTML omitted -->
+<h2 id="修改主题配色">修改主题配色</h2>
+<p><code>even</code>主题的样式文件位于<code>${Hugo-Site}/themes/even/assets/sass/_variables.scss</code></p>
+<p>修改其中的<code>white</code>与<code>global-font-color</code>结果如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="o">...</span>
+<span class="o">//</span> <span class="o">==========</span> <span class="nt">Color</span> <span class="o">==========</span> <span class="o">//</span>
+<span class="o">$</span><span class="nt">black</span><span class="o">:</span> <span class="p">#</span><span class="nn">002a35</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">white</span><span class="o">:</span> <span class="p">#</span><span class="nn">fdf6e3</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">light-gray</span><span class="o">:</span> <span class="p">#</span><span class="nn">e6e6e6</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">gray</span><span class="o">:</span> <span class="p">#</span><span class="nn">cacaca</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">dark-gray</span><span class="o">:</span> <span class="p">#</span><span class="nn">8a8a8a</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+
+
+<span class="o">//</span> <span class="o">==========</span> <span class="nt">Global</span> <span class="o">==========</span> <span class="o">//</span>
+<span class="o">//</span> <span class="nt">Text</span> <span class="nt">color</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">body</span><span class="o">.</span>
+<span class="o">$</span><span class="nt">global-font-color</span><span class="o">:</span> <span class="p">#</span><span class="nn">657b83</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+<span class="o">...</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="添加搜索菜单">添加搜索菜单</h2>
+<p><a href="https://github.com/lryong">lryong</a>在<a href="https://github.com/olOwOlo/hugo-theme-even/issues/289">issues#289</a>中提到添加搜索功能的方案<a href="https://github.com/kaushalmodi/hugo-search-fuse-js">hugo-search-fuse-js</a>.</p>
+<ol>
+<li>下载<a href="https://github.com/kaushalmodi/hugo-search-fuse-js">hugo-search-fuse-js</a>至<code>theme</code>目录</li>
+<li>添加&quot;hugo-search-fuse-js&quot;至<code>config.toml</code></li>
+<li>新建一个<code>content/search.md</code>文件，用于配置search页面</li>
+</ol>
+<p>上述步骤参照官方的<a href="https://github.com/kaushalmodi/hugo-search-fuse-js">说明文档</a>进行即可。</p>
+<p>由于站点的<code>layouts</code>目录优先级高于主题的<code>layouts</code>目录。因此，我们可以将自定义的内容放置于站点的<code>layouts</code>目录，而不用修改主题的内容，避免主题升级时出现问题。</p>
+<p>将<code>${Hugo-sites}\themes\even\layouts\_default\baseof.html</code>拷至<code>${Hugo-sites}\layouts\_default</code>目录中。然后在合适的位置插入<code>main</code>与<code>footer</code>block. 修改后的<code>baseof.html</code>如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html">...
+    <span class="p">&lt;</span><span class="nt">main</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;main&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;content-wrapper&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;content&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p">&gt;</span>
+            {{ block &#34;main&#34; . }}{{ end }}
+			{{ block &#34;content&#34; . }}{{ end }}
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        {{ partial &#34;comments.html&#34; . }}
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+
+    {{ if not .Params.hideHeaderAndFooter -}}
+    <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;footer&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;footer&#34;</span><span class="p">&gt;</span>
+      {{ partial &#34;footer.html&#34; . }}
+      {{ block &#34;footer&#34; . }}{{ end }}
+    <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+    {{- end }}
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>在站点的配置文件<code>config.toml</code>中添加<code>Search</code>菜单</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+  <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;搜索&#34;</span>
+  <span class="nx">weight</span> <span class="p">=</span> <span class="mi">50</span>
+  <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;search&#34;</span>
+  <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/search/&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="添加评论区">添加评论区</h2>
+<p><code>even</code>主题现已加入<code>utterances</code>支持，参照<a href="https://utteranc.es/">文档</a>，其已经设定为GitHub App安装非常方便，步骤如下：</p>
+<ol>
+<li>在GitHub中新建一个repo (sr-c/blog-comment)用于存放评论</li>
+<li>在GitHub中一键安装utterances app</li>
+<li>在设置页面选择 repo: sr-c/blog-comment</li>
+<li>在站点<code>config.toml</code>中的<code>[params.utterances]</code>字段中填入<code>owner = &quot;sr-c&quot;</code>与<code>repo = &quot;blog-comment&quot;</code></li>
+</ol>
+<p>查看<code>themes/even/layouts/paritals/comments.html</code>, 可以看到其中已经集成了<code>utterances</code>的script字段，无需再做修改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html">  <span class="c">&lt;!-- utterances --&gt;</span>
+  {{- if .Site.Params.utterances.owner}}
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://utteranc.es/client.js&#34;</span>
+            <span class="na">repo</span><span class="o">=</span><span class="s">&#34;{{ .Site.Params.utterances.owner }}/{{ .Site.Params.utterances.repo }}&#34;</span>
+            <span class="na">issue-term</span><span class="o">=</span><span class="s">&#34;pathname&#34;</span>
+            <span class="na">theme</span><span class="o">=</span><span class="s">&#34;github-light&#34;</span>
+            <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span>
+            <span class="na">async</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">noscript</span><span class="p">&gt;</span>Please enable JavaScript to view the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://github.com/utterance&#34;</span><span class="p">&gt;</span>comments powered by utterances.<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">noscript</span><span class="p">&gt;</span>
+  {{- end }}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="添加rss订阅">添加RSS订阅</h2>
+<p>参考<a href="https://www.gohugo.org/doc/templates/rss/">官方文档</a>，添加<code>/layouts/rss.xml</code>文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;rss</span> <span class="na">version=</span><span class="s">&#34;2.0&#34;</span> <span class="na">xmlns:atom=</span><span class="s">&#34;http://www.w3.org/2005/Atom&#34;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;channel&gt;</span>
+    <span class="nt">&lt;title&gt;</span>{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link&gt;</span>{{ .Permalink }}<span class="nt">&lt;/link&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Recent content {{ with .Title }}in {{.}} {{ end }}on {{ .Site.Title }}<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;generator&gt;</span>Hugo -- gohugo.io<span class="nt">&lt;/generator&gt;</span>{{ with .Site.LanguageCode }}
+    <span class="nt">&lt;language&gt;</span>{{.}}<span class="nt">&lt;/language&gt;</span>{{end}}{{ with .Site.Author.email }}
+    <span class="nt">&lt;managingEditor&gt;</span>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}<span class="nt">&lt;/managingEditor&gt;</span>{{end}}{{ with .Site.Author.email }}
+    <span class="nt">&lt;webMaster&gt;</span>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}<span class="nt">&lt;/webMaster&gt;</span>{{end}}{{ with .Site.Copyright }}
+    <span class="nt">&lt;copyright&gt;</span>{{.}}<span class="nt">&lt;/copyright&gt;</span>{{end}}{{ if not .Date.IsZero }}
+    <span class="nt">&lt;lastBuildDate&gt;</span>{{ .Date.Format &#34;Mon, 02 Jan 2006 15:04:05 -0700&#34; | safeHTML }}<span class="nt">&lt;/lastBuildDate&gt;</span>{{ end }}
+    <span class="nt">&lt;atom:link</span> <span class="na">href=</span><span class="s">&#34;{{.URL}}&#34;</span> <span class="na">rel=</span><span class="s">&#34;self&#34;</span> <span class="na">type=</span><span class="s">&#34;application/rss+xml&#34;</span> <span class="nt">/&gt;</span>
+    {{ range first 15 .Data.Pages }}
+    <span class="nt">&lt;item&gt;</span>
+      <span class="nt">&lt;title&gt;</span>{{ .Title }}<span class="nt">&lt;/title&gt;</span>
+      <span class="nt">&lt;link&gt;</span>{{ .Permalink }}<span class="nt">&lt;/link&gt;</span>
+      <span class="nt">&lt;pubDate&gt;</span>{{ .Date.Format &#34;Mon, 02 Jan 2006 15:04:05 -0700&#34; | safeHTML }}<span class="nt">&lt;/pubDate&gt;</span>
+      {{ with .Site.Author.email }}<span class="nt">&lt;author&gt;</span>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}<span class="nt">&lt;/author&gt;</span>{{end}}
+      <span class="nt">&lt;guid&gt;</span>{{ .Permalink }}<span class="nt">&lt;/guid&gt;</span>
+      <span class="nt">&lt;description&gt;</span>{{ .Content | html }}<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;/item&gt;</span>
+    {{ end }}
+  <span class="nt">&lt;/channel&gt;</span>
+<span class="nt">&lt;/rss&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="http://www.herbert.top">http://www.herbert.top</a>:18080/2020/07/09/how_change_hugo_even_font/</p>
+<p><a href="https://github.com/olOwOlo/hugo-theme-even/issues/289#issuecomment-657229431">https://github.com/olOwOlo/hugo-theme-even/issues/289#issuecomment-657229431</a></p>
+<p><a href="https://www.dazhuanlan.com/2019/12/05/5de8934e6f081/">https://www.dazhuanlan.com/2019/12/05/5de8934e6f081/</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-07-21
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Hugo/">Hugo</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2020/07/22/repeat-region-search/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">搜索简单基因组中的重复序列</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2020/07/21/DNA-Features-Viewer-quickstart/">
+            <span class="next-text nav-default">DNA Features Viewer使用</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

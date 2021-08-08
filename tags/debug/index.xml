@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>debug on SR-C</title>
+    <link>https://sr-c.github.io/tags/debug/</link>
+    <description>Recent content in debug on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 20 Jan 2021 15:45:30 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/debug/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【debug】Unable to Load Shared Object Stringi</title>
+      <link>https://sr-c.github.io/2021/01/20/unable-to-load-shared-object-stringi.so/</link>
+      <pubDate>Wed, 20 Jan 2021 15:45:30 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/2021/01/20/unable-to-load-shared-object-stringi.so/</guid>
+      <description>在Manjaro桌面环境在安装reshape2或加载tidyverse之中。 在安装reshape2时出现如下报错 1 2 3 Error in dyn.load(file, DLLpath = DLLpath, ...) : unable to load</description>
+    </item>
+    
+    <item>
+      <title>【debug】EOF within quoted string</title>
+      <link>https://sr-c.github.io/2019/03/31/debug-EOF-within-quoted-string/</link>
+      <pubDate>Sun, 31 Mar 2019 22:26:54 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/03/31/debug-EOF-within-quoted-string/</guid>
+      <description>问题描述 在R中读入外部数据时，得到warning 1 2 3 Warning message: In scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings, : EOF within quoted string 这可能是由于数据表格中存在引号&amp;quot;或&#39;, 而默</description>
+    </item>
+    
+    <item>
+      <title>SALSA安装</title>
+      <link>https://sr-c.github.io/2019/02/28/SALSA-install/</link>
+      <pubDate>Thu, 28 Feb 2019 22:16:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/28/SALSA-install/</guid>
+      <description>安装 1 2 3 4 5 6 7 8 git clone https://github.com/machinegun/SALSA.git conda create -n SALSA python=2.7 source activate SALSA conda install boost networkx==1.11 cd SALSA make debug 1 2 3 4 5 g++ -O3 -Wall -Wextra -std=c++11 -o correct_links correct_links.cpp correct_links.cpp:12:10: fatal error: boost/config.hpp: No such file or directory #include &amp;lt;boost/config.hpp&amp;gt; ^~~~~~~~~~~~~~~~~~ compilation terminated. 这表明，编译过程中未配置好之</description>
+    </item>
+    
+    <item>
+      <title>【debug】C stack usage is too close to the limit</title>
+      <link>https://sr-c.github.io/2019/02/16/Error-C-stack-usage-is-too-close-to-the-limit/</link>
+      <pubDate>Sat, 16 Feb 2019 21:54:19 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/16/Error-C-stack-usage-is-too-close-to-the-limit/</guid>
+      <description>问题描述 1 Error: C stack usage 9964644 is too close to the limit 这似乎是由于数据过大导致 解决方案 1 2 3 4 5 $ ulimit -s # print default 10240 $ R --slave -e &amp;#39;Cstack_info()[&amp;#34;size&amp;#34;]&amp;#39; size 9961472 这个值本应该等于10240*1024=</description>
+    </item>
+    
+    <item>
+      <title>【debug】maker3</title>
+      <link>https://sr-c.github.io/2018/11/12/debug-maker3/</link>
+      <pubDate>Mon, 12 Nov 2018 11:01:57 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/12/debug-maker3/</guid>
+      <description>问题描述 BUG1 运行maker3.01.02时，部分scaffold运行失败，其报错信息如下 1 substr outside of string at ../lib/PhatHit_utils.pm line 850. 本机perl版本为5.10.1，经过</description>
+    </item>
+    
+    <item>
+      <title>读取文件UnicodeDecodeError编码错误</title>
+      <link>https://sr-c.github.io/2018/11/02/python-DecodeError/</link>
+      <pubDate>Fri, 02 Nov 2018 12:45:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/11/02/python-DecodeError/</guid>
+      <description>问题描述 1 UnicodeDecodeError: &amp;#39;utf-8&amp;#39; codec can&amp;#39;t decode byte 0x96 in position 4575: invalid start byte 解决方案 1 2 3 4 import codecs with open(&amp;#39;pepunit.idlist&amp;#39;,&amp;#39;r&amp;#39;,encoding=&amp;#39;unicode-escape&amp;#39;) as f: #或忽略错误 with open(&amp;#39;pepunit.idlist&amp;#39;,&amp;#39;r&amp;#39;, encoding=&amp;#39;utf-8&amp;#39;, errors=&amp;#39;ignore&amp;#39;) as f: 参考来源 https://www.crifan.com/summary_python_unicodedecode_error_possible_reasons_and_solutions/</description>
+    </item>
+    
+    <item>
+      <title>【debug】local variable referenced before assignment</title>
+      <link>https://sr-c.github.io/2018/10/28/debug-python-UnboundLocalError/</link>
+      <pubDate>Sun, 28 Oct 2018 22:55:36 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/28/debug-python-UnboundLocalError/</guid>
+      <description>问题描述 在函数中调用了外部的变量，并改变变量的值，却不声明这是全局变量，会导致Python报错。因为一旦要在函数中改变这个变量的值，就会使得</description>
+    </item>
+    
+    <item>
+      <title>mysql ERROR 1101 (42000)</title>
+      <link>https://sr-c.github.io/2018/09/29/mysql-ERROR-1101-42000/</link>
+      <pubDate>Sat, 29 Sep 2018 17:24:22 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/29/mysql-ERROR-1101-42000/</guid>
+      <description>问题描述 新建数据表时出现报错 1 ERROR 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column &amp;#39;description&amp;#39; can&amp;#39;t have a default value 这是由于mysql处于strict mode, 不允许text或blod字段有缺省值。因此，</description>
+    </item>
+    
+    <item>
+      <title>makeblastdb-fails</title>
+      <link>https://sr-c.github.io/2018/09/25/makeblastdb-fails/</link>
+      <pubDate>Tue, 25 Sep 2018 22:33:45 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/25/makeblastdb-fails/</guid>
+      <description>问题描述 对某个特定下载的数据库使用makeblastdb建库时，出现No volumes were created because no sequences were found.报错 使用环境 BLAST 2.2.28+ 需要建库的fasta文件内</description>
+    </item>
+    
+    <item>
+      <title>配置MySQL Server</title>
+      <link>https://sr-c.github.io/2018/09/09/mysql-config/</link>
+      <pubDate>Sun, 09 Sep 2018 16:31:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/09/mysql-config/</guid>
+      <description>这一情况使得用户使用mysql -u root -p登陆时出现MySql Error 1698(28000)错误。这与之前出现MySql Error 1698(28000)错误的</description>
+    </item>
+    
+    <item>
+      <title>AUGUSTUS的普通用户安装</title>
+      <link>https://sr-c.github.io/2018/09/04/augustus-install/</link>
+      <pubDate>Tue, 04 Sep 2018 18:07:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/04/augustus-install/</guid>
+      <description>直接编译AUGUSTUS 1 2 3 4 5 6 7 8 9 10 11 12 make[2]: Entering directory `$HOME/software/augustus-3.3.1/auxprogs/bam2hints&amp;#39; make[2]: warning: jobserver unavailable: using -j1. Add `+&amp;#39; to parent make rule. g++ -Wall -O2 -c bam2hints.cc -o bam2hints.o -I/usr/include/bamtools bam2hints.cc:16:10: fatal error: api/BamReader.h: No such file or directory #include &amp;lt;api/BamReader.h&amp;gt; ^~~~~~~~~~~~~~~~~ compilation terminated. make[2]: *** [bam2hints.o] Error 1 make[2]: Leaving directory</description>
+    </item>
+    
+    <item>
+      <title>GeneWise的安装</title>
+      <link>https://sr-c.github.io/2018/09/01/genewise-install/</link>
+      <pubDate>Sat, 01 Sep 2018 23:01:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/09/01/genewise-install/</guid>
+      <description>软件下载 1 2 wget http://www.ebi.ac.uk/~birney/wise2/wise2.4.1.tar.gz tar zxf ~/software/wise2.4.1.tar.gz -C ~/opt/ 软件编译 1 2 3 4 5 6 7 8 cd /opt/biosoft/wise2.4.1/src/ cd HMMer2 sed &amp;#39;s/getline/getline_new/&amp;#39; sqio.c &amp;gt; a &amp;amp;&amp;amp; mv a sqio.c cd .. perl -p -i -e &amp;#39;s/isnumber/isdigit/&amp;#39; models/phasemodel.c make all echo &amp;#39;PATH=$PATH:~/opt/wise2.4.1/src/bin/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc echo &amp;#39;WISECONFIGDIR=~/opt/wise2.4.1/wisecfg/&amp;#39; &amp;gt;&amp;gt; ~/.bashrc 这里修改了两个文件HMMer</description>
+    </item>
+    
+    <item>
+      <title>SCP遇到&#34;Write failed Broken pipe&#34;</title>
+      <link>https://sr-c.github.io/2018/08/14/Write-failed-Broken-pipe/</link>
+      <pubDate>Tue, 14 Aug 2018 11:51:50 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/08/14/Write-failed-Broken-pipe/</guid>
+      <description>解决方案 无管理员权限则修改客户端的ssh配置 1 2 3 4 ##编辑ssh配置文件，无此文件则新建 vi ~/.ssh/config ##在其中添加如下语句 ServerAliveInterval 60 使得客户端在ssh连</description>
+    </item>
+    
+    <item>
+      <title>Google Play出现登陆错误</title>
+      <link>https://sr-c.github.io/2018/07/10/googleplay-login/</link>
+      <pubDate>Tue, 10 Jul 2018 12:11:28 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/10/googleplay-login/</guid>
+      <description>解决方案 设置-更多应用-googleplay服务-管理空间-清除所有数据 重新打开Google Play，问题解决。 前提条件：保证本机能够连接到</description>
+    </item>
+    
+    <item>
+      <title>解决zlib.h:no such file or directory</title>
+      <link>https://sr-c.github.io/2018/07/02/debug-zlib-h/</link>
+      <pubDate>Mon, 02 Jul 2018 23:11:48 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/07/02/debug-zlib-h/</guid>
+      <description>编译安装时报错 zlib.h:no such file or directory 网络搜索出的解决方案大多是安装zlib 1 yum install zlib-devel 但实际上zlib已经安装 1 rpm search zlib | grep zlib zlib library files are placed into /usr/local/lib and zlib header files are placed into /usr/local/include, by</description>
+    </item>
+    
+    <item>
+      <title>libstdc&#43;&#43;.so.6 GLIBCXX_not_found问题的解决方案</title>
+      <link>https://sr-c.github.io/2018/06/19/libstdc-so-6-GLIBCXX-not-found/</link>
+      <pubDate>Tue, 19 Jun 2018 21:26:39 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/06/19/libstdc-so-6-GLIBCXX-not-found/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MECAT安装</title>
+      <link>https://sr-c.github.io/2018/05/12/MECAT_install/</link>
+      <pubDate>Sat, 12 May 2018 22:57:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/05/12/MECAT_install/</guid>
+      <description>MECAT依赖HDF5和dextract，README中推荐的安装方法，并不十分友好，记录如下。 安装HDF5 HDF是比较成熟的一种库文件格式</description>
+    </item>
+    
+    <item>
+      <title>blast_error_ncbireg</title>
+      <link>https://sr-c.github.io/2018/01/04/blast-error-ncbireg/</link>
+      <pubDate>Thu, 04 Jan 2018 22:11:49 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/01/04/blast-error-ncbireg/</guid>
+      <description>BLAST+ 2.7.1 在运行的时候出现如下类似问题： 1 $ Critical: (110.6) CNcbiRegistry: Syntax error in system-wide configuration file: NCBI C++ Exception: &amp;#34;..........\src\corelib\ncbireg.cpp&amp;#34;, line 660: Error: ncbi::IRWRegistry ::x_Read() - Badly placed &amp;#39;\&amp;#39; in the registry value: &amp;#39;ROOT=J:\nASNLOAD=J:\BioEdi t\tables\nDATA=J:\BioEdit\tables\&amp;#39; (m_Pos = 4) 这是由于ncbi.ini文件被bioed</description>
+    </item>
+    
+  </channel>
+</rss>

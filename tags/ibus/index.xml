@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ibus on SR-C</title>
+    <link>https://sr-c.github.io/tags/ibus/</link>
+    <description>Recent content in ibus on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 21 Dec 2019 19:21:39 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/ibus/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用ibus输入法</title>
+      <link>https://sr-c.github.io/2019/12/21/ibus-rime/</link>
+      <pubDate>Sat, 21 Dec 2019 19:21:39 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/12/21/ibus-rime/</guid>
+      <description>在manjaro中替换fcitx输入法为ibus, 设置启动项，并配置环境调用。 安装 1 2 yay -S ibus yay -S ibus-rime 配置启动项 添加ibus启动项 在/etc/x</description>
+    </item>
+    
+  </channel>
+</rss>

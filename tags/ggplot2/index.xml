@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ggplot2 on SR-C</title>
+    <link>https://sr-c.github.io/tags/ggplot2/</link>
+    <description>Recent content in ggplot2 on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 16 Feb 2019 19:46:04 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ggplot设置次级刻度</title>
+      <link>https://sr-c.github.io/2019/02/16/ggplot-minor-tick/</link>
+      <pubDate>Sat, 16 Feb 2019 19:46:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/16/ggplot-minor-tick/</guid>
+      <description>在basic plot中实现 1 minor.tick(nx=3, ny=3, tick.ratio=0.5) ggplot实现 在ggplot中反而没有发现很便捷的解决方案，虽然在scale_x_continuous(</description>
+    </item>
+    
+    <item>
+      <title>R4ds-exercises-1</title>
+      <link>https://sr-c.github.io/2019/01/08/R4ds-exercises-1/</link>
+      <pubDate>Tue, 08 Jan 2019 14:29:40 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/01/08/R4ds-exercises-1/</guid>
+      <description>统计变换 What is the default geom associated with stat_summary()? How could you rewrite the previous plot to use that geom function instead of the stat function? 统计变换函数stat_summary()的默认几何对象函数是什么？如何使用几何对象</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nf-core on SR-C</title>
+    <link>https://sr-c.github.io/tags/nf-core/</link>
+    <description>Recent content in nf-core on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 25 May 2020 20:50:18 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/nf-core/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>简易计算RNA-seq差异表达基因</title>
+      <link>https://sr-c.github.io/2020/05/25/RNA-seq-DiffExp-analysis/</link>
+      <pubDate>Mon, 25 May 2020 20:50:18 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/05/25/RNA-seq-DiffExp-analysis/</guid>
+      <description>使用nf-core，能够很方便地进行RNA-seq的上游分析，得到表达矩阵。但是，大多数时候，我们更关心的是筛选差异表达基因。别担心，Tri</description>
+    </item>
+    
+    <item>
+      <title>nf-core一步完成RNA-seq上游分析</title>
+      <link>https://sr-c.github.io/2020/03/01/nf-core-rnaseq/</link>
+      <pubDate>Sun, 01 Mar 2020 22:42:21 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2020/03/01/nf-core-rnaseq/</guid>
+      <description>nf-core使用nextflow作为流程管理工具，搭建了一系列分析流程，现已发表在Nat Biotechnol。其中，最为常用，关注也最多的</description>
+    </item>
+    
+  </channel>
+</rss>

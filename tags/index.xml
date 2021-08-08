@@ -1,0 +1,1364 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on SR-C</title>
+    <link>https://sr-c.github.io/tags/</link>
+    <description>Recent content in Tags on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 01 Jul 2021 19:10:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Android</title>
+      <link>https://sr-c.github.io/tags/Android/</link>
+      <pubDate>Thu, 01 Jul 2021 19:10:49 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rime</title>
+      <link>https://sr-c.github.io/tags/rime/</link>
+      <pubDate>Thu, 01 Jul 2021 19:10:49 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/rime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>style</title>
+      <link>https://sr-c.github.io/tags/style/</link>
+      <pubDate>Wed, 24 Feb 2021 20:15:21 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/style/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Zotero</title>
+      <link>https://sr-c.github.io/tags/Zotero/</link>
+      <pubDate>Wed, 24 Feb 2021 20:15:21 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Zotero/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>debug</title>
+      <link>https://sr-c.github.io/tags/debug/</link>
+      <pubDate>Wed, 20 Jan 2021 15:45:30 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/debug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>manjaro</title>
+      <link>https://sr-c.github.io/tags/manjaro/</link>
+      <pubDate>Wed, 20 Jan 2021 15:45:30 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/manjaro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>https://sr-c.github.io/tags/R/</link>
+      <pubDate>Wed, 20 Jan 2021 15:45:30 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/R/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>stringi</title>
+      <link>https://sr-c.github.io/tags/stringi/</link>
+      <pubDate>Wed, 20 Jan 2021 15:45:30 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/stringi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>https://sr-c.github.io/tags/github/</link>
+      <pubDate>Fri, 11 Sep 2020 16:17:11 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://sr-c.github.io/tags/linux/</link>
+      <pubDate>Wed, 02 Sep 2020 22:10:44 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gff</title>
+      <link>https://sr-c.github.io/tags/gff/</link>
+      <pubDate>Fri, 28 Aug 2020 14:45:13 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/gff/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gtf</title>
+      <link>https://sr-c.github.io/tags/gtf/</link>
+      <pubDate>Fri, 28 Aug 2020 14:45:13 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/gtf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>perl</title>
+      <link>https://sr-c.github.io/tags/perl/</link>
+      <pubDate>Fri, 28 Aug 2020 14:45:13 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/perl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FDR</title>
+      <link>https://sr-c.github.io/tags/FDR/</link>
+      <pubDate>Sun, 09 Aug 2020 12:45:34 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/FDR/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RNA-seq</title>
+      <link>https://sr-c.github.io/tags/RNA-seq/</link>
+      <pubDate>Sun, 09 Aug 2020 12:45:34 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/RNA-seq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>StatQuest</title>
+      <link>https://sr-c.github.io/tags/StatQuest/</link>
+      <pubDate>Sun, 09 Aug 2020 12:45:34 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/StatQuest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://sr-c.github.io/tags/python/</link>
+      <pubDate>Wed, 22 Jul 2020 11:46:46 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://sr-c.github.io/tags/Hugo/</link>
+      <pubDate>Tue, 21 Jul 2020 23:16:03 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>biopython</title>
+      <link>https://sr-c.github.io/tags/biopython/</link>
+      <pubDate>Tue, 21 Jul 2020 16:21:29 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/biopython/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>conda</title>
+      <link>https://sr-c.github.io/tags/conda/</link>
+      <pubDate>Tue, 21 Jul 2020 16:21:29 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/conda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VScode</title>
+      <link>https://sr-c.github.io/tags/VScode/</link>
+      <pubDate>Tue, 21 Jul 2020 15:15:47 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/VScode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://sr-c.github.io/tags/blog/</link>
+      <pubDate>Sat, 18 Jul 2020 12:07:50 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hexo</title>
+      <link>https://sr-c.github.io/tags/Hexo/</link>
+      <pubDate>Sat, 18 Jul 2020 12:07:50 +0800</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Hexo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>interval</title>
+      <link>https://sr-c.github.io/tags/interval/</link>
+      <pubDate>Fri, 17 Jul 2020 22:23:49 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/interval/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LaTex</title>
+      <link>https://sr-c.github.io/tags/LaTex/</link>
+      <pubDate>Fri, 19 Jun 2020 21:49:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/LaTex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cds</title>
+      <link>https://sr-c.github.io/tags/cds/</link>
+      <pubDate>Sun, 07 Jun 2020 17:53:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/cds/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Circos</title>
+      <link>https://sr-c.github.io/tags/Circos/</link>
+      <pubDate>Wed, 03 Jun 2020 21:37:09 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Circos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mummer</title>
+      <link>https://sr-c.github.io/tags/Mummer/</link>
+      <pubDate>Wed, 03 Jun 2020 21:37:09 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Mummer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FPKM</title>
+      <link>https://sr-c.github.io/tags/FPKM/</link>
+      <pubDate>Tue, 26 May 2020 10:57:43 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/FPKM/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nf-core</title>
+      <link>https://sr-c.github.io/tags/nf-core/</link>
+      <pubDate>Mon, 25 May 2020 20:50:18 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/nf-core/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Trinity</title>
+      <link>https://sr-c.github.io/tags/Trinity/</link>
+      <pubDate>Mon, 25 May 2020 20:50:18 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Trinity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ncbi</title>
+      <link>https://sr-c.github.io/tags/ncbi/</link>
+      <pubDate>Tue, 25 Feb 2020 23:31:22 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ncbi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ibus</title>
+      <link>https://sr-c.github.io/tags/ibus/</link>
+      <pubDate>Sat, 21 Dec 2019 19:21:39 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ibus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ANOVA</title>
+      <link>https://sr-c.github.io/tags/ANOVA/</link>
+      <pubDate>Fri, 15 Nov 2019 20:47:57 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ANOVA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>assembly</title>
+      <link>https://sr-c.github.io/tags/assembly/</link>
+      <pubDate>Sat, 26 Oct 2019 21:57:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/assembly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://sr-c.github.io/tags/Docker/</link>
+      <pubDate>Fri, 19 Jul 2019 21:04:02 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PCA</title>
+      <link>https://sr-c.github.io/tags/PCA/</link>
+      <pubDate>Fri, 19 Jul 2019 10:36:28 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/PCA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blasr</title>
+      <link>https://sr-c.github.io/tags/blasr/</link>
+      <pubDate>Tue, 02 Jul 2019 14:12:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/blasr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PacBio</title>
+      <link>https://sr-c.github.io/tags/PacBio/</link>
+      <pubDate>Tue, 02 Jul 2019 14:12:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/PacBio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PBJelly</title>
+      <link>https://sr-c.github.io/tags/PBJelly/</link>
+      <pubDate>Tue, 02 Jul 2019 14:12:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/PBJelly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RNAS-seq</title>
+      <link>https://sr-c.github.io/tags/RNAS-seq/</link>
+      <pubDate>Thu, 20 Jun 2019 21:21:34 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/RNAS-seq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Next</title>
+      <link>https://sr-c.github.io/tags/Next/</link>
+      <pubDate>Wed, 05 Jun 2019 18:01:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Next/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>node.js</title>
+      <link>https://sr-c.github.io/tags/node.js/</link>
+      <pubDate>Wed, 05 Jun 2019 18:01:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/node.js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>salmon</title>
+      <link>https://sr-c.github.io/tags/salmon/</link>
+      <pubDate>Tue, 28 May 2019 22:49:08 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/salmon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tximport</title>
+      <link>https://sr-c.github.io/tags/tximport/</link>
+      <pubDate>Tue, 28 May 2019 22:49:08 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/tximport/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>arch</title>
+      <link>https://sr-c.github.io/tags/arch/</link>
+      <pubDate>Sat, 11 May 2019 19:48:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/arch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>heatmap</title>
+      <link>https://sr-c.github.io/tags/heatmap/</link>
+      <pubDate>Tue, 30 Apr 2019 11:28:59 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/heatmap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggtree</title>
+      <link>https://sr-c.github.io/tags/ggtree/</link>
+      <pubDate>Sun, 21 Apr 2019 23:44:55 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ggtree/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>font</title>
+      <link>https://sr-c.github.io/tags/font/</link>
+      <pubDate>Fri, 19 Apr 2019 22:32:30 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/font/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggplot</title>
+      <link>https://sr-c.github.io/tags/ggplot/</link>
+      <pubDate>Fri, 19 Apr 2019 22:32:30 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ggplot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KinFin</title>
+      <link>https://sr-c.github.io/tags/KinFin/</link>
+      <pubDate>Sat, 23 Mar 2019 18:31:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/KinFin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hi-C</title>
+      <link>https://sr-c.github.io/tags/Hi-C/</link>
+      <pubDate>Tue, 19 Mar 2019 21:12:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Hi-C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LACHESIS</title>
+      <link>https://sr-c.github.io/tags/LACHESIS/</link>
+      <pubDate>Tue, 19 Mar 2019 21:12:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/LACHESIS/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>biotrainee</title>
+      <link>https://sr-c.github.io/tags/biotrainee/</link>
+      <pubDate>Mon, 11 Mar 2019 20:54:10 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/biotrainee/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>生信技能树</title>
+      <link>https://sr-c.github.io/tags/%E7%94%9F%E4%BF%A1%E6%8A%80%E8%83%BD%E6%A0%91/</link>
+      <pubDate>Mon, 11 Mar 2019 20:54:10 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/%E7%94%9F%E4%BF%A1%E6%8A%80%E8%83%BD%E6%A0%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>telomere</title>
+      <link>https://sr-c.github.io/tags/telomere/</link>
+      <pubDate>Fri, 08 Mar 2019 20:13:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/telomere/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>端粒</title>
+      <link>https://sr-c.github.io/tags/%E7%AB%AF%E7%B2%92/</link>
+      <pubDate>Fri, 08 Mar 2019 20:13:12 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/%E7%AB%AF%E7%B2%92/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SALSA</title>
+      <link>https://sr-c.github.io/tags/SALSA/</link>
+      <pubDate>Thu, 28 Feb 2019 22:16:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/SALSA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python，debug</title>
+      <link>https://sr-c.github.io/tags/Pythondebug/</link>
+      <pubDate>Fri, 22 Feb 2019 21:59:21 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Pythondebug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rosalind</title>
+      <link>https://sr-c.github.io/tags/Rosalind/</link>
+      <pubDate>Fri, 22 Feb 2019 11:17:06 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Rosalind/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggplot2</title>
+      <link>https://sr-c.github.io/tags/ggplot2/</link>
+      <pubDate>Sat, 16 Feb 2019 19:46:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyverse</title>
+      <link>https://sr-c.github.io/tags/tidyverse/</link>
+      <pubDate>Fri, 15 Feb 2019 22:37:01 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>factor</title>
+      <link>https://sr-c.github.io/tags/factor/</link>
+      <pubDate>Fri, 15 Feb 2019 22:18:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/factor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>7zip</title>
+      <link>https://sr-c.github.io/tags/7zip/</link>
+      <pubDate>Wed, 06 Feb 2019 18:14:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/7zip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rar</title>
+      <link>https://sr-c.github.io/tags/rar/</link>
+      <pubDate>Wed, 06 Feb 2019 18:14:47 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/rar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CentOS</title>
+      <link>https://sr-c.github.io/tags/CentOS/</link>
+      <pubDate>Wed, 30 Jan 2019 18:33:06 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/CentOS/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R4ds</title>
+      <link>https://sr-c.github.io/tags/R4ds/</link>
+      <pubDate>Sat, 12 Jan 2019 14:53:31 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/R4ds/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jcvi</title>
+      <link>https://sr-c.github.io/tags/jcvi/</link>
+      <pubDate>Fri, 11 Jan 2019 19:19:34 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/jcvi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MCscan</title>
+      <link>https://sr-c.github.io/tags/MCscan/</link>
+      <pubDate>Fri, 11 Jan 2019 19:19:34 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/MCscan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>treemap</title>
+      <link>https://sr-c.github.io/tags/treemap/</link>
+      <pubDate>Mon, 31 Dec 2018 21:04:07 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/treemap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>treemapify</title>
+      <link>https://sr-c.github.io/tags/treemapify/</link>
+      <pubDate>Mon, 31 Dec 2018 21:04:07 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/treemapify/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LTR</title>
+      <link>https://sr-c.github.io/tags/LTR/</link>
+      <pubDate>Sat, 22 Dec 2018 14:52:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/LTR/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LTR-retriever</title>
+      <link>https://sr-c.github.io/tags/LTR-retriever/</link>
+      <pubDate>Sat, 22 Dec 2018 14:52:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/LTR-retriever/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LTRharvest</title>
+      <link>https://sr-c.github.io/tags/LTRharvest/</link>
+      <pubDate>Sat, 22 Dec 2018 14:52:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/LTRharvest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LTRpred</title>
+      <link>https://sr-c.github.io/tags/LTRpred/</link>
+      <pubDate>Sat, 22 Dec 2018 14:52:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/LTRpred/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>transition</title>
+      <link>https://sr-c.github.io/tags/transition/</link>
+      <pubDate>Fri, 07 Dec 2018 10:53:49 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/transition/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>transversion</title>
+      <link>https://sr-c.github.io/tags/transversion/</link>
+      <pubDate>Fri, 07 Dec 2018 10:53:49 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/transversion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cowplot</title>
+      <link>https://sr-c.github.io/tags/cowplot/</link>
+      <pubDate>Thu, 06 Dec 2018 15:18:16 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/cowplot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggimage</title>
+      <link>https://sr-c.github.io/tags/ggimage/</link>
+      <pubDate>Thu, 06 Dec 2018 15:18:16 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ggimage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AnnotationForge</title>
+      <link>https://sr-c.github.io/tags/AnnotationForge/</link>
+      <pubDate>Sat, 01 Dec 2018 09:26:32 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/AnnotationForge/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>clusterProfiler</title>
+      <link>https://sr-c.github.io/tags/clusterProfiler/</link>
+      <pubDate>Sat, 01 Dec 2018 09:26:32 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/clusterProfiler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OrgDB</title>
+      <link>https://sr-c.github.io/tags/OrgDB/</link>
+      <pubDate>Sat, 01 Dec 2018 09:26:32 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/OrgDB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>annotation</title>
+      <link>https://sr-c.github.io/tags/annotation/</link>
+      <pubDate>Mon, 12 Nov 2018 11:01:57 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/annotation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>maker</title>
+      <link>https://sr-c.github.io/tags/maker/</link>
+      <pubDate>Mon, 12 Nov 2018 11:01:57 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/maker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dUTP</title>
+      <link>https://sr-c.github.io/tags/dUTP/</link>
+      <pubDate>Tue, 06 Nov 2018 10:39:42 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/dUTP/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IGV</title>
+      <link>https://sr-c.github.io/tags/IGV/</link>
+      <pubDate>Tue, 06 Nov 2018 10:39:42 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/IGV/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>STAR</title>
+      <link>https://sr-c.github.io/tags/STAR/</link>
+      <pubDate>Tue, 06 Nov 2018 10:39:42 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/STAR/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>transcript</title>
+      <link>https://sr-c.github.io/tags/transcript/</link>
+      <pubDate>Tue, 06 Nov 2018 10:39:42 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/transcript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>regex</title>
+      <link>https://sr-c.github.io/tags/regex/</link>
+      <pubDate>Wed, 31 Oct 2018 22:20:41 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/regex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Head First</title>
+      <link>https://sr-c.github.io/tags/Head-First/</link>
+      <pubDate>Sun, 28 Oct 2018 22:12:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Head-First/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PyPI</title>
+      <link>https://sr-c.github.io/tags/PyPI/</link>
+      <pubDate>Fri, 26 Oct 2018 12:46:43 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/PyPI/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ncRNA</title>
+      <link>https://sr-c.github.io/tags/ncRNA/</link>
+      <pubDate>Fri, 19 Oct 2018 16:02:44 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ncRNA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>non-coding RNA</title>
+      <link>https://sr-c.github.io/tags/non-coding-RNA/</link>
+      <pubDate>Fri, 19 Oct 2018 16:02:44 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/non-coding-RNA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rfam</title>
+      <link>https://sr-c.github.io/tags/Rfam/</link>
+      <pubDate>Fri, 19 Oct 2018 16:02:44 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Rfam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RIP</title>
+      <link>https://sr-c.github.io/tags/RIP/</link>
+      <pubDate>Thu, 18 Oct 2018 20:39:02 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/RIP/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ripcal</title>
+      <link>https://sr-c.github.io/tags/ripcal/</link>
+      <pubDate>Thu, 18 Oct 2018 20:39:02 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ripcal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unix</title>
+      <link>https://sr-c.github.io/tags/Unix/</link>
+      <pubDate>Thu, 18 Oct 2018 15:32:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Unix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vim</title>
+      <link>https://sr-c.github.io/tags/vim/</link>
+      <pubDate>Thu, 18 Oct 2018 15:32:05 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/vim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>交集</title>
+      <link>https://sr-c.github.io/tags/%E4%BA%A4%E9%9B%86/</link>
+      <pubDate>Sun, 14 Oct 2018 22:56:14 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/%E4%BA%A4%E9%9B%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>并集</title>
+      <link>https://sr-c.github.io/tags/%E5%B9%B6%E9%9B%86/</link>
+      <pubDate>Sun, 14 Oct 2018 22:56:14 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/%E5%B9%B6%E9%9B%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>集合运算</title>
+      <link>https://sr-c.github.io/tags/%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97/</link>
+      <pubDate>Sun, 14 Oct 2018 22:56:14 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HMMER</title>
+      <link>https://sr-c.github.io/tags/HMMER/</link>
+      <pubDate>Sun, 14 Oct 2018 17:05:09 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/HMMER/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pfam</title>
+      <link>https://sr-c.github.io/tags/Pfam/</link>
+      <pubDate>Sun, 14 Oct 2018 17:05:09 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Pfam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pfam-scan</title>
+      <link>https://sr-c.github.io/tags/pfam-scan/</link>
+      <pubDate>Sun, 14 Oct 2018 17:05:09 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/pfam-scan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CAZyme</title>
+      <link>https://sr-c.github.io/tags/CAZyme/</link>
+      <pubDate>Fri, 12 Oct 2018 18:28:38 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/CAZyme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dbCAN</title>
+      <link>https://sr-c.github.io/tags/dbCAN/</link>
+      <pubDate>Fri, 12 Oct 2018 18:28:38 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/dbCAN/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bed</title>
+      <link>https://sr-c.github.io/tags/bed/</link>
+      <pubDate>Fri, 12 Oct 2018 18:21:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/bed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data format</title>
+      <link>https://sr-c.github.io/tags/data-format/</link>
+      <pubDate>Thu, 11 Oct 2018 22:35:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/data-format/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyr</title>
+      <link>https://sr-c.github.io/tags/tidyr/</link>
+      <pubDate>Thu, 11 Oct 2018 22:35:51 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/tidyr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blast</title>
+      <link>https://sr-c.github.io/tags/blast/</link>
+      <pubDate>Tue, 02 Oct 2018 12:19:26 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/blast/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gi</title>
+      <link>https://sr-c.github.io/tags/gi/</link>
+      <pubDate>Tue, 02 Oct 2018 12:19:26 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/gi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nr</title>
+      <link>https://sr-c.github.io/tags/nr/</link>
+      <pubDate>Tue, 02 Oct 2018 12:19:26 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/nr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>taxid</title>
+      <link>https://sr-c.github.io/tags/taxid/</link>
+      <pubDate>Tue, 02 Oct 2018 12:19:26 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/taxid/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mysql</title>
+      <link>https://sr-c.github.io/tags/mysql/</link>
+      <pubDate>Sat, 29 Sep 2018 17:24:22 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>alienness</title>
+      <link>https://sr-c.github.io/tags/alienness/</link>
+      <pubDate>Thu, 27 Sep 2018 22:27:27 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/alienness/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HGT</title>
+      <link>https://sr-c.github.io/tags/HGT/</link>
+      <pubDate>Thu, 27 Sep 2018 22:27:27 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/HGT/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blast2go</title>
+      <link>https://sr-c.github.io/tags/blast2go/</link>
+      <pubDate>Sat, 22 Sep 2018 21:32:58 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/blast2go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jupyter</title>
+      <link>https://sr-c.github.io/tags/jupyter/</link>
+      <pubDate>Wed, 19 Sep 2018 22:02:31 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/jupyter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OrthoMCL</title>
+      <link>https://sr-c.github.io/tags/OrthoMCL/</link>
+      <pubDate>Tue, 18 Sep 2018 17:11:46 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/OrthoMCL/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>InterPro</title>
+      <link>https://sr-c.github.io/tags/InterPro/</link>
+      <pubDate>Thu, 13 Sep 2018 15:27:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/InterPro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datadir</title>
+      <link>https://sr-c.github.io/tags/datadir/</link>
+      <pubDate>Tue, 11 Sep 2018 22:35:20 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/datadir/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PH525x</title>
+      <link>https://sr-c.github.io/tags/PH525x/</link>
+      <pubDate>Thu, 06 Sep 2018 19:48:10 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/PH525x/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>笔记</title>
+      <link>https://sr-c.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 06 Sep 2018 19:48:10 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AUGUSTUS</title>
+      <link>https://sr-c.github.io/tags/AUGUSTUS/</link>
+      <pubDate>Tue, 04 Sep 2018 18:07:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/AUGUSTUS/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bamtools</title>
+      <link>https://sr-c.github.io/tags/bamtools/</link>
+      <pubDate>Tue, 04 Sep 2018 18:07:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/bamtools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ab initio</title>
+      <link>https://sr-c.github.io/tags/ab-initio/</link>
+      <pubDate>Sun, 02 Sep 2018 18:37:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ab-initio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SNAP</title>
+      <link>https://sr-c.github.io/tags/SNAP/</link>
+      <pubDate>Sun, 02 Sep 2018 18:37:52 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/SNAP/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GeneWise</title>
+      <link>https://sr-c.github.io/tags/GeneWise/</link>
+      <pubDate>Sat, 01 Sep 2018 23:01:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/GeneWise/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>install</title>
+      <link>https://sr-c.github.io/tags/install/</link>
+      <pubDate>Sat, 01 Sep 2018 23:01:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/install/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>awk</title>
+      <link>https://sr-c.github.io/tags/awk/</link>
+      <pubDate>Fri, 31 Aug 2018 22:19:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/awk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xargs</title>
+      <link>https://sr-c.github.io/tags/xargs/</link>
+      <pubDate>Fri, 31 Aug 2018 22:19:13 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/xargs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GenomeScope</title>
+      <link>https://sr-c.github.io/tags/GenomeScope/</link>
+      <pubDate>Thu, 30 Aug 2018 20:32:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/GenomeScope/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jellyfish</title>
+      <link>https://sr-c.github.io/tags/Jellyfish/</link>
+      <pubDate>Thu, 30 Aug 2018 20:32:53 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Jellyfish/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fastq</title>
+      <link>https://sr-c.github.io/tags/fastq/</link>
+      <pubDate>Thu, 30 Aug 2018 16:17:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/fastq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>qc</title>
+      <link>https://sr-c.github.io/tags/qc/</link>
+      <pubDate>Thu, 30 Aug 2018 16:17:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/qc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scp</title>
+      <link>https://sr-c.github.io/tags/scp/</link>
+      <pubDate>Tue, 14 Aug 2018 11:51:50 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/scp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>https://sr-c.github.io/tags/ssh/</link>
+      <pubDate>Tue, 14 Aug 2018 11:51:50 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pmma</title>
+      <link>https://sr-c.github.io/tags/pmma/</link>
+      <pubDate>Fri, 03 Aug 2018 10:57:21 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/pmma/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>uv</title>
+      <link>https://sr-c.github.io/tags/uv/</link>
+      <pubDate>Fri, 03 Aug 2018 10:57:21 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/uv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pilon</title>
+      <link>https://sr-c.github.io/tags/Pilon/</link>
+      <pubDate>Mon, 16 Jul 2018 20:44:35 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/Pilon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gcc</title>
+      <link>https://sr-c.github.io/tags/gcc/</link>
+      <pubDate>Mon, 16 Jul 2018 20:36:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/gcc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>include</title>
+      <link>https://sr-c.github.io/tags/include/</link>
+      <pubDate>Mon, 16 Jul 2018 20:36:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/include/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>library</title>
+      <link>https://sr-c.github.io/tags/library/</link>
+      <pubDate>Mon, 16 Jul 2018 20:36:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/library/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>path</title>
+      <link>https://sr-c.github.io/tags/path/</link>
+      <pubDate>Mon, 16 Jul 2018 20:36:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/path/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>环境变量</title>
+      <link>https://sr-c.github.io/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</link>
+      <pubDate>Mon, 16 Jul 2018 20:36:04 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pasa</title>
+      <link>https://sr-c.github.io/tags/pasa/</link>
+      <pubDate>Sun, 15 Jul 2018 11:59:02 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/pasa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aria2</title>
+      <link>https://sr-c.github.io/tags/aria2/</link>
+      <pubDate>Tue, 10 Jul 2018 12:51:56 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/aria2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vi</title>
+      <link>https://sr-c.github.io/tags/vi/</link>
+      <pubDate>Fri, 06 Jul 2018 17:52:33 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/vi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>canu</title>
+      <link>https://sr-c.github.io/tags/canu/</link>
+      <pubDate>Wed, 04 Jul 2018 13:05:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/canu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>software</title>
+      <link>https://sr-c.github.io/tags/software/</link>
+      <pubDate>Sun, 27 May 2018 13:23:17 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/tags/software/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

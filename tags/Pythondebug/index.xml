@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python，debug on SR-C</title>
+    <link>https://sr-c.github.io/tags/Pythondebug/</link>
+    <description>Recent content in Python，debug on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 22 Feb 2019 21:59:21 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/Pythondebug/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>将Bootstrap值转化为百分数</title>
+      <link>https://sr-c.github.io/2019/02/22/convert-Bootstrap-to-Integer/</link>
+      <pubDate>Fri, 22 Feb 2019 21:59:21 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2019/02/22/convert-Bootstrap-to-Integer/</guid>
+      <description>在使用iTOL或者Evolview可视化进化树时，往往nwk格式的bootstrap值需要转化为百分数 使用re正则匹配 参考作者使用re正则查</description>
+    </item>
+    
+  </channel>
+</rss>

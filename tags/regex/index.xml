@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>regex on SR-C</title>
+    <link>https://sr-c.github.io/tags/regex/</link>
+    <description>Recent content in regex on SR-C</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 31 Oct 2018 22:20:41 +0000</lastBuildDate>
+    
+	<atom:link href="https://sr-c.github.io/tags/regex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Python】使用正则表达式搜索</title>
+      <link>https://sr-c.github.io/2018/10/31/python-regex/</link>
+      <pubDate>Wed, 31 Oct 2018 22:20:41 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/31/python-regex/</guid>
+      <description>使用re模块 在Python中使用正则表达式时，re模块内部会干两件事情： 编译正则表达式，如果正则表达式的字符串本身不合法，会报错； 用编译后的</description>
+    </item>
+    
+    <item>
+      <title>正则表达式</title>
+      <link>https://sr-c.github.io/2018/10/16/Regex/</link>
+      <pubDate>Tue, 16 Oct 2018 23:13:55 +0000</pubDate>
+      
+      <guid>https://sr-c.github.io/2018/10/16/Regex/</guid>
+      <description>练习 4765-8910之间的所有自然数 1 476[5-9]|47[7-9]\d|4[8-9]\d\d|[5-7]\d{3}|8[0-8]\d\d|890\d|8910 参考来源 https://www.jb51.net/tools/zhengze.html</description>
+    </item>
+    
+  </channel>
+</rss>

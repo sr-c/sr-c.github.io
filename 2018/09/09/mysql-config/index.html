@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>配置MySQL Server - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="这一情况使得用户使用mysql -u root -p登陆时出现MySql Error 1698(28000)错误。这与之前出现MySql Error 1698(28000)错误的" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/09/09/mysql-config/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="配置MySQL Server" />
+<meta property="og:description" content="这一情况使得用户使用mysql -u root -p登陆时出现MySql Error 1698(28000)错误。这与之前出现MySql Error 1698(28000)错误的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/09/09/mysql-config/" />
+<meta property="article:published_time" content="2018-09-09T16:31:04+00:00" />
+<meta property="article:modified_time" content="2018-09-09T16:31:04+00:00" />
+<meta itemprop="name" content="配置MySQL Server">
+<meta itemprop="description" content="这一情况使得用户使用mysql -u root -p登陆时出现MySql Error 1698(28000)错误。这与之前出现MySql Error 1698(28000)错误的">
+<meta itemprop="datePublished" content="2018-09-09T16:31:04+00:00" />
+<meta itemprop="dateModified" content="2018-09-09T16:31:04+00:00" />
+<meta itemprop="wordCount" content="776">
+
+
+
+<meta itemprop="keywords" content="mysql,debug," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="配置MySQL Server"/>
+<meta name="twitter:description" content="这一情况使得用户使用mysql -u root -p登陆时出现MySql Error 1698(28000)错误。这与之前出现MySql Error 1698(28000)错误的"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">配置MySQL Server</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-09 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#mysql-error-169828000">MySql Error 1698(28000)</a>
+      <ul>
+        <li><a href="#表征">表征</a></li>
+        <li><a href="#进一步确认">进一步确认</a></li>
+      </ul>
+    </li>
+    <li><a href="#解决方案">解决方案</a>
+      <ul>
+        <li><a href="#step-1">Step 1</a></li>
+        <li><a href="#step-2-向root用户添加密码">Step 2 向<code>root</code>用户添加密码</a></li>
+        <li><a href="#终极一键解决方案">终极一键解决方案</a></li>
+      </ul>
+    </li>
+    <li><a href="#重新安装mysql">重新安装mysql</a></li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这一情况使得用户使用<code>mysql -u root -p</code>登陆时出现<code>MySql Error 1698(28000)</code>错误。这与之前出现<code>MySql Error 1698(28000)</code>错误的原因不同，因此很多网上<code>MySql Error 1698(28000)</code>问题的解决方案不奏效。</p>
+<p>使用linuxMint安装MySQL Server 5.7, 在导入本地blast2go数据库时出现错误。</p>
+<h2 id="mysql-error-169828000">MySql Error 1698(28000)</h2>
+<h3 id="表征">表征</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">mysql -u root -p
+Enter password: 
+ERROR <span class="m">1698</span> <span class="o">(</span>28000<span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="o">(</span>using password: NO<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="进一步确认">进一步确认</h3>
+<p>默认root用户的plugin项为<code>auth_socker</code>，不是<code>mysql_native_password</code>，因此不能够输入密码进入。同时，也可以看到root用户的密码为空。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mysql -u root	<span class="c1">##如此方可进入刚安装的MySQL</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">USE</span> <span class="n">mysql</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">User</span><span class="p">,</span> <span class="n">Host</span><span class="p">,</span> <span class="n">plugin</span> <span class="k">FROM</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="p">;</span>
+<span class="o">+------------------+-----------------------+</span>
+<span class="o">|</span> <span class="k">User</span>             <span class="o">|</span> <span class="n">plugin</span>                <span class="o">|</span>
+<span class="o">+------------------+-----------------------+</span>
+<span class="o">|</span> <span class="n">root</span>             <span class="o">|</span> <span class="n">auth_socket</span>           <span class="o">|</span>
+<span class="o">|</span> <span class="n">mysql</span><span class="p">.</span><span class="n">sys</span>        <span class="o">|</span> <span class="n">mysql_native_password</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">debian</span><span class="o">-</span><span class="n">sys</span><span class="o">-</span><span class="n">maint</span> <span class="o">|</span> <span class="n">mysql_native_password</span> <span class="o">|</span>
+<span class="o">+------------------+-----------------------+</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">User</span><span class="p">,</span> <span class="n">Host</span><span class="p">,</span> <span class="nf">HEX</span><span class="p">(</span><span class="n">authentication_string</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="p">;</span>
+<span class="o">+-----------+-----------+-------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="k">User</span>      <span class="o">|</span> <span class="n">Host</span>      <span class="o">|</span> <span class="nf">HEX</span><span class="p">(</span><span class="n">authentication_string</span><span class="p">)</span>                                  <span class="o">|</span>
+<span class="o">+-----------+-----------+-------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">root</span>      <span class="o">|</span> <span class="n">localhost</span> <span class="o">|</span>                                                             <span class="o">|</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>As you can see in the query, the root user is using the auth_socket plugin.And the password is empty.</p>
+</blockquote>
+<h2 id="解决方案">解决方案</h2>
+<h3 id="step-1">Step 1</h3>
+<h4 id="option-1-set-the-root-user-to-use-the-mysql_native_password-plugin">Option 1: set the root user to use the mysql_native_password plugin</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo mysql -u root <span class="c1"># I had to use &#34;sudo&#34; since is new installation</span>
+
+mysql&gt; USE mysql<span class="p">;</span>
+mysql&gt; UPDATE user SET <span class="nv">plugin</span><span class="o">=</span><span class="s1">&#39;mysql_native_password&#39;</span> WHERE <span class="nv">User</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">;</span>
+mysql&gt; FLUSH PRIVILEGES<span class="p">;</span>
+mysql&gt; exit<span class="p">;</span>
+
+$ service mysql restart
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="option-2-replace-your_system_user-with-the-username-you-have">Option 2: replace YOUR_SYSTEM_USER with the username you have</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo mysql -u root <span class="c1"># I had to use &#34;sudo&#34; since is new installation</span>
+
+mysql&gt; USE mysql<span class="p">;</span>
+mysql&gt; CREATE USER <span class="s1">&#39;YOUR_SYSTEM_USER&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;&#39;</span><span class="p">;</span>
+mysql&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="s1">&#39;YOUR_SYSTEM_USER&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+mysql&gt; UPDATE user SET <span class="nv">plugin</span><span class="o">=</span><span class="s1">&#39;auth_socket&#39;</span> WHERE <span class="nv">User</span><span class="o">=</span><span class="s1">&#39;YOUR_SYSTEM_USER&#39;</span><span class="p">;</span>
+mysql&gt; FLUSH PRIVILEGES<span class="p">;</span>
+mysql&gt; exit<span class="p">;</span>
+
+$ service mysql restart
+</code></pre></td></tr></table>
+</div>
+</div><p>Remember that if you use option #2 you&rsquo;ll have to connect to mysql as your system username (mysql -u YOUR_SYSTEM_USER)</p>
+<p>Note: On some systems (e.g., Debian stretch) &lsquo;auth_socket&rsquo; plugin is called &lsquo;unix_socket&rsquo;, so the corresponding SQL command should be: UPDATE user SET plugin='unix_socket&rsquo; WHERE User='YOUR_SYSTEM_USER&rsquo;;</p>
+<h3 id="step-2-向root用户添加密码">Step 2 向<code>root</code>用户添加密码</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="k">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;your_password&#39;</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">User</span><span class="p">,</span> <span class="n">Host</span><span class="p">,</span> <span class="nf">HEX</span><span class="p">(</span><span class="n">authentication_string</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="p">;</span>   <span class="c1">##查看密码是否添加成功
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="终极一键解决方案">终极一键解决方案</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="k">IDENTIFIED</span> <span class="k">WITH</span> <span class="n">mysql_native_password</span> <span class="k">BY</span> <span class="s1">&#39;your_password&#39;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>And now, it works 🙂</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">User</span><span class="p">,</span> <span class="n">Host</span><span class="p">,</span> <span class="nf">HEX</span><span class="p">(</span><span class="n">authentication_string</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="p">;</span>
+<span class="o">+-----------+-----------+------------------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="k">User</span>      <span class="o">|</span> <span class="n">Host</span>      <span class="o">|</span> <span class="nf">HEX</span><span class="p">(</span><span class="n">authentication_string</span><span class="p">)</span>                                                         <span class="o">|</span>
+<span class="o">+-----------+-----------+------------------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">root</span>      <span class="o">|</span> <span class="n">localhost</span> <span class="o">|</span> <span class="mi">2</span><span class="n">A39344244434542453139303833434532413146393539464430324639363443374146344346433239</span> <span class="o">|</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="重新安装mysql">重新安装mysql</h2>
+<p>对于5.5版本生效，但对于5.7版本MySQL，重新安装的过程中仍然不会向用户要求设置root密码，因此并不奏效。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get purge mysql-server mysql-client mysql-common mysql-server-core-5.5 mysql-client-core-5.5
+sudo rm -rf /etc/mysql /var/lib/mysql
+sudo apt-get autoremove
+sudo apt-get autoclean
+</code></pre></td></tr></table>
+</div>
+</div><p>再重新安装mysql-server，此时可在安装时设置root密码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get update
+sudo apt-get install mysql-server
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://www.percona.com/blog/2016/03/16/change-user-password-in-mysql-5-7-with-plugin-auth_socket/">https://www.percona.com/blog/2016/03/16/change-user-password-in-mysql-5-7-with-plugin-auth_socket/</a>
+<a href="https://stackoverflow.com/questions/39281594/error-1698-28000-access-denied-for-user-rootlocalhost">https://stackoverflow.com/questions/39281594/error-1698-28000-access-denied-for-user-rootlocalhost</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-09-09
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/mysql/">mysql</a>
+          <a href="/tags/debug/">debug</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/09/11/change-mysql-datadir/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">更改mysql数据库路径</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/09/06/study-notes-PH525x-Chapter0/">
+            <span class="next-text nav-default">PH525x学习笔记Ⅰ</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

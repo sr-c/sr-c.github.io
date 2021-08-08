@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>绘制treemap - SR-C</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="SR-C" /><meta name="description" content="treemap 安装 1 install.packages(&amp;#34;treemap&amp;#34;) 读取数据 1 contig_length &amp;lt;- read.table(&amp;#34;genome_length.txt&amp;#34;, header = FALSE, sep = &amp;#39;\t&amp;#39;) 画图 1 treemap(contig_length, index = &amp;#34;V1&amp;#34;, vSize = &amp;#34;V2&amp;#34;, palette = &amp;#34;Reds&amp;#34;, title = &amp;#34;Contig length of xxx genome&amp;#34;) 指定每格的颜色与边框宽度 1 2 3 4 #添加一列作为颜色列，为每一行" /><meta name="keywords" content="Genomics, Bioinformation" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://sr-c.github.io/2018/12/31/R-treemap/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="绘制treemap" />
+<meta property="og:description" content="treemap 安装 1 install.packages(&#34;treemap&#34;) 读取数据 1 contig_length &lt;- read.table(&#34;genome_length.txt&#34;, header = FALSE, sep = &#39;\t&#39;) 画图 1 treemap(contig_length, index = &#34;V1&#34;, vSize = &#34;V2&#34;, palette = &#34;Reds&#34;, title = &#34;Contig length of xxx genome&#34;) 指定每格的颜色与边框宽度 1 2 3 4 #添加一列作为颜色列，为每一行" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sr-c.github.io/2018/12/31/R-treemap/" />
+<meta property="article:published_time" content="2018-12-31T21:04:07+00:00" />
+<meta property="article:modified_time" content="2018-12-31T21:04:07+00:00" />
+<meta itemprop="name" content="绘制treemap">
+<meta itemprop="description" content="treemap 安装 1 install.packages(&#34;treemap&#34;) 读取数据 1 contig_length &lt;- read.table(&#34;genome_length.txt&#34;, header = FALSE, sep = &#39;\t&#39;) 画图 1 treemap(contig_length, index = &#34;V1&#34;, vSize = &#34;V2&#34;, palette = &#34;Reds&#34;, title = &#34;Contig length of xxx genome&#34;) 指定每格的颜色与边框宽度 1 2 3 4 #添加一列作为颜色列，为每一行">
+<meta itemprop="datePublished" content="2018-12-31T21:04:07+00:00" />
+<meta itemprop="dateModified" content="2018-12-31T21:04:07+00:00" />
+<meta itemprop="wordCount" content="403">
+
+
+
+<meta itemprop="keywords" content="treemap,treemapify,R," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="绘制treemap"/>
+<meta name="twitter:description" content="treemap 安装 1 install.packages(&#34;treemap&#34;) 读取数据 1 contig_length &lt;- read.table(&#34;genome_length.txt&#34;, header = FALSE, sep = &#39;\t&#39;) 画图 1 treemap(contig_length, index = &#34;V1&#34;, vSize = &#34;V2&#34;, palette = &#34;Reds&#34;, title = &#34;Contig length of xxx genome&#34;) 指定每格的颜色与边框宽度 1 2 3 4 #添加一列作为颜色列，为每一行"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SR-C</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">SR-C</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+            
+			<article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">绘制treemap</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-31 </span>
+        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#treemap">treemap</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#读取数据">读取数据</a></li>
+        <li><a href="#画图">画图</a></li>
+      </ul>
+    </li>
+    <li><a href="#treemapify">treemapify</a>
+      <ul>
+        <li><a href="#安装-1">安装</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#调整">调整</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考来源">参考来源</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="treemap">treemap</h2>
+<h3 id="安装">安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;treemap&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="读取数据">读取数据</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="n">contig_length</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;genome_length.txt&#34;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#39;\t&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="画图">画图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">treemap</span><span class="p">(</span><span class="n">contig_length</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="s">&#34;V1&#34;</span><span class="p">,</span> <span class="n">vSize</span> <span class="o">=</span> <span class="s">&#34;V2&#34;</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;Reds&#34;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Contig length of xxx genome&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>指定每格的颜色与边框宽度</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="c1">#添加一列作为颜色列，为每一行指定颜色</span>
+<span class="n">OS_contig_length</span><span class="o">$</span><span class="n">V3</span> <span class="o">&lt;-</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&#34;#ffffff&#34;</span><span class="p">,</span> <span class="m">23</span><span class="p">)</span>
+<span class="c1">#指定type为color,不显示index</span>
+<span class="nf">treemap</span><span class="p">(</span><span class="n">OS_contig_length</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="s">&#34;V1&#34;</span><span class="p">,</span> <span class="n">vSize</span> <span class="o">=</span> <span class="s">&#34;V2&#34;</span><span class="p">,</span> <span class="n">vColor</span> <span class="o">=</span> <span class="s">&#34;V3&#34;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;color&#34;</span><span class="p">,</span> <span class="n">border.lwds</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Contig length of XXX genome&#34;</span><span class="p">,</span> <span class="n">fontsize.labels</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="treemapify">treemapify</h2>
+<p>使用treemap绘图产生的图形不是ggplot对象，而<code>trrmapify</code>则解决了这一问题。</p>
+<h3 id="安装-1">安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;treemapify&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="使用">使用</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">treemapify</span><span class="p">)</span>
+<span class="c1">#使用treemapify自带的示例数据G20</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">G20</span><span class="p">,</span> 
+       <span class="nf">aes</span><span class="p">(</span><span class="n">area</span> <span class="o">=</span> <span class="n">gdp_mil_usd</span><span class="p">)</span>  <span class="c1"># 输入的映射中，只有area为必须</span>
+       ） <span class="o">+</span>
+       <span class="nf">geom_treemap</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://pic2.zhimg.com/80/v2-acd5f391e31e3ceb8c0615deaa0fb865_hd.jpg" alt="img"></p>
+<h3 id="调整">调整</h3>
+<p>默认的输出为黑色背景，这一点可以手动赋值给<code>fill</code>映射修改</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">ggplot</span><span class="p">(</span><span class="n">G20</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">area</span> <span class="o">=</span> <span class="n">gdp_mil_usd</span><span class="p">))</span> <span class="o">+</span> 
+ <span class="nf">geom_treemap</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s">&#34;white&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>还可以向<code>fill</code>映射另一个变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">ggplot</span><span class="p">(</span><span class="n">G20</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">area</span> <span class="o">=</span> <span class="n">gdp_mil_usd</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">hdi</span><span class="p">))</span> <span class="o">+</span> 
+ <span class="nf">geom_treemap</span><span class="p">()</span> <span class="o">+</span>
+ <span class="nf">scale_fill_distiller</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s">&#34;Greens&#34;</span><span class="p">)</span> <span class="c1">#使用内置的配色方案</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用<code>geom_treemap_text</code>添加标签，不支出ggplot通用的<code>geom_text()</code>函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">ggplot</span><span class="p">(</span><span class="n">G20</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">area</span> <span class="o">=</span> <span class="n">gdp_mil_usd</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">hdi</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">country</span><span class="p">))</span> <span class="o">+</span>
+ <span class="nf">geom_treemap</span><span class="p">()</span> <span class="o">+</span>
+ <span class="nf">geom_treemap_text</span><span class="p">(</span><span class="n">fontface</span> <span class="o">=</span> <span class="s">&#34;italic&#34;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&#34;red&#34;</span><span class="p">,</span> <span class="n">place</span> <span class="o">=</span> <span class="s">&#34;centre&#34;</span><span class="p">,</span><span class="n">grow</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">.6</span><span class="p">)</span><span class="o">+</span>
+ <span class="nf">scale_fill_distiller</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s">&#34;Greens&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考来源">参考来源</h2>
+<p><a href="https://www.r-bloggers.com/simple-steps-to-create-treemap-in-r/">https://www.r-bloggers.com/simple-steps-to-create-treemap-in-r/</a></p>
+<p><a href="https://rdrr.io/cran/treemap/man/treemap.html">https://rdrr.io/cran/treemap/man/treemap.html</a></p>
+<p><a href="https://rpubs.com/brandonkopp/creating-a-treemap-in-r">https://rpubs.com/brandonkopp/creating-a-treemap-in-r</a></p>
+<p><a href="https://cran.r-project.org/web/packages/treemap/treemap.pdf">https://cran.r-project.org/web/packages/treemap/treemap.pdf</a></p>
+<p><a href="https://github.com/wilkox/treemapify">https://github.com/wilkox/treemapify</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/29834340">https://zhuanlan.zhihu.com/p/29834340</a></p>
+<!-- raw HTML omitted -->
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">SR-C</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-12-31
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/treemap/">treemap</a>
+          <a href="/tags/treemapify/">treemapify</a>
+          <a href="/tags/R/">R</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/01/02/R-pie-chart/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">【R】饼图</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/12/30/StatQuest-Logs/">
+            <span class="next-text nav-default">StatQuest-Logs</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="sr-c/blog-comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://sr-c.github.io" class="iconfont icon-github" title="github"></a>
+  <a href="https://sr-c.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SR-C</span>
+  </span>
+</div>
+      
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
