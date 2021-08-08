@@ -3,7 +3,6 @@ title: "在Vscode中配置Python环境"
 date: 2020-07-21T15:15:47+08:00
 tags: [python, VScode]
 categories: 
-draft: true
 ---
 
 使用Anaconda配置python环境，在VScode中使用
@@ -71,13 +70,13 @@ conda create -n "scipy" pandas biopython
 在`settings.json`中配置终端自动激活conda环境，添加如下字段
 
 ```json
-“terminal.integrated.shellArgs.windows”: [“/K”, “C:\\<path-to-conda-installation>\\Scripts\\activate.bat C:\\<path-to-conda-installation> & conda activate <your-env-name>”]
+"terminal.integrated.shellArgs.windows": ["/K", "C:\\<path-to-conda-installation>\\Scripts\\activate.bat C:\\<path-to-conda-installation> & conda activate <your-env-name>"]
 ```
 
 推荐在Windows中，VScode默认调用的终端改为`cmd.exe`, 在`settings.json`中添加
 
 ```json
-“terminal.integrated.shell.windows”:“C:\\Windows\\System32\\cmd.exe”
+"terminal.integrated.shell.windows":"C:\\Windows\\System32\\cmd.exe"
 ```
 
 ## 参考来源

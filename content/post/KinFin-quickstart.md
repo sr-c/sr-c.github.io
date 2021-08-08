@@ -156,6 +156,18 @@ $KINFIN/scripts/filter_functional_annotation_of_clusters.py synapo \
 
 
 
+## 进阶使用
+
+综合功能注释信息。
+
+根据其提供的说明书`KinFin_v1.supplementary_methods.pdf`。综合功能注释的方法如下：
+
+功能注释
+
+1. 短于30 个氨基酸或其中还有提前终止密码子的序列被过滤`filter_fastas_before_clustering.py`
+2. 非最长的序列被过`filter_isoforms_based_on_gff3.py`
+3. 所有序列通过` InterProScan v5.22-61.0 `的`Pfam-30.0`与` SignalP-EUK-4.1`注释，并通过`iprs_to_table.py`转化为可识别的格式。
+
 ## 参考来源
 
 https://kinfin.readme.io/docs/running-the-example-dataset
